@@ -2,6 +2,16 @@
 
 This repository contains my personal configuration for Home Assistant, focused on a clean, room-based dashboard and modular YAML structure.
 
+---
+
+## 🖥️ Dashboard Screenshots
+  Light Theme             |  Dark Theme
+:-------------------------:|:-------------------------:
+![Light themed dashboard](./screenshots/dashboard-light.jpg)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.jpg)
+
+---
+
+
 ## 🧭 Overview
 
 * **Platform:** Home Assistant
@@ -34,13 +44,6 @@ This repository contains my personal configuration for Home Assistant, focused o
   scenes.yaml
   google_calendars.example.yaml
 ```
-
----
-
-## 🖥️ Dashboard
-  Light Theme             |  Dark Theme
-:-------------------------:|:-------------------------:
-![Light themed dashboard](./screenshots/dashboard-light.jpg)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.jpg)
 
 ---
 
