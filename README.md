@@ -2,6 +2,8 @@
 
 This repository contains my personal configuration for Home Assistant, focused on a clean, room-based dashboard and modular YAML structure.
 
+**Version:** v1.0 (Initial public release)
+
 ---
 
 ## 🖥️ Dashboard Screenshots
@@ -122,6 +124,7 @@ Screenshots are stored in the `/screenshots` directory and referenced using rela
 
 ## 🔄 Future Improvements
 
+* Add detail on how my instance is configured (HAOS/Zigbee etc)
 * Further modularisation of dashboard components
 * Dashboards are to be split into **modular card files** for easier maintenance and cleaner Git diffs.
 * Each room or section is defined independently and included in the main dashboard.
@@ -139,7 +142,13 @@ Screenshots are stored in the `/screenshots` directory and referenced using rela
 * Complete a kitchen popup card for white-good automation
 * and no doubt many more tweaks and updates as my journey evolves.
 
+## 🛠️ Getting Started
 
+---
 
+1. Copy files into your Home Assistant `/config` directory
+2. Create `secrets.yaml` based on `secrets_example.yaml`
+3. Install required custom cards via HACS
+4. Restart Home Assistant
 
 ---
