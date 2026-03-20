@@ -1,0 +1,20 @@
+# Example Google Calendar entries (do NOT commit private calendar IDs)
+# Copy to google_calendars.yaml for your local instance
+- cal_id: your_primary_calendar_id@group.calendar.google.com
+  entities:
+    - device_id: googleCalendar
+      name: My Calendar
+      search: "#event"
+      track: true
+
+- cal_id: your_shared_family_calendar_id@group.calendar.google.com
+  entities:
+    - device_id: family
+      ignore_availability: true
+      name: Family
+
+- cal_id: en.australian#holiday@group.v.calendar.google.com
+  entities:
+    - device_id: holidays_in_australia
+      ignore_availability: true
+      name: Holidays in Australia

@@ -1,0 +1,254 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+  extra_module_url:
+    - /local/card-mod.js
+
+homeassistant:
+  customize: !include customize.yaml
+  external_url: "https://home.gstott.com"
+  internal_url: "http://10.0.0.20:8123"
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.17.0.0/16
+    - 10.0.0.21
+  server_host:
+    - 0.0.0.0
+
+lovelace:
+  mode: storage
+  dashboards:
+    yaml-dashboard:
+      mode: yaml
+      title: YAML Dashboard
+      icon: mdi:code-tags
+      show_in_sidebar: true
+      filename: dashboards/ui-lovelace.yaml
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+template: !include template.yaml
+
+sensor:
+  # NSW Fuel Watch Search for /FuelCheckApp/v1/fuel/prices/bylocation
+  # Site: https://www.fuelcheck.nsw.gov.au/App/
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 1490
+
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 1733
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 1086
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 20550
+
+  #   7-Eleven West Ryde
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 284
+
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 2129
+
+  #   coles express, west ryde
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 569
+
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 18286
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 17240
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 17270
+
+    # 7-Eleven, Blaxland Road, Ryde
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 262
+
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 62
+
+  #   shell wicks rd
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 502
+
+  #   shell marsfield
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 52
+
+  - platform: nsw_fuel_station
+    fuel_types:
+      - E10
+    station_id: 834
+
+  #   shell north ryde
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 924
+
+  # 7 eleven - north ryde
+  # - platform: nsw_fuel_station
+  #   fuel_types:
+  #     - E10
+  #   station_id: 260
+
+media_player:
+  - platform: emby
+    host: 10.0.0.26
+    api_key: !secret emby_api_key
+
+input_number:
+  slider1:
+    name: volumeslider
+    initial: 10
+    min: 0
+    max: 100
+    step: 5
+
+input_boolean:
+  its_christmas:
+    name: Enable_Christmas
+    initial: off
+    icon: mdi:string-lights
+
+  foyerlightlock_switch:
+    name: foyerlightlock
+    initial: off
+    icon: mdi:lock
+  loungelightlock_switch:
+    name: loungelightlock
+    initial: off
+    icon: mdi:lock
+  stairslightlock_switch:
+    name: stairslightlock
+    initial: off
+    icon: mdi:lock
+  landinglightlock_switch:
+    name: landinglightlock
+    initial: off
+    icon: mdi:lock
+  officelightlock_switch:
+    name: officelightlock
+    initial: off
+    icon: mdi:lock
+  laundrylightlock_switch:
+    name: laundrylightlock
+    initial: off
+    icon: mdi:lock
+  loolightlock_switch:
+    name: loolightlock
+    initial: off
+    icon: mdi:lock
+  outdoorlightlock_switch:
+    name: outdoorlightlock
+    initial: off
+    icon: mdi:lock
+  whatsapp_switch:
+    name: Whatsapp
+    icon: mdi:account-group
+  xmas_switch:
+    name: xmas
+    icon: mdi:string-lights
+  reading_switch:
+    name: Reading
+    icon: mdi:book-open-variant-outline
+  wii_switch:
+    name: Wii
+    icon: mdi:nintendo-wii
+  movie_switch:
+    name: Movie
+    icon: mdi:movie-open-play-outline
+  tv_auto_on:
+    name: Shield turning on
+    initial: off
+    icon: mdi:movie-open-play-outline
+  lounge_chill_switch:
+    name: Chill
+    icon: mdi:sofa
+  lounge_user_switch:
+    name: usertest
+    initial: off
+    icon: mdi:account
+  welcome_trigger_switch:
+    name: usertest
+    initial: off
+    icon: mdi:account
+  spoti_switch:
+    name: spoti
+    initial: off
+    icon: mdi:spotify
+  wfh_today:
+    name: Working from home today
+    icon: mdi:desk
+  wfh_tomorrow:
+    name: Working from home tomorrow
+    icon: mdi:desk
+  cool_room:
+    name: Cooling mode
+    initial: off
+    icon: mdi:snowflake
+  heat_room:
+    name: Heating mode
+    initial: off
+    icon: mdi:heat-wave
+  ac_activating:
+    name: AC Turning on or off
+    initial: off
+  purifier_activating:
+    name: Purifier Turning on or off
+    initial: off
+  purifier_vacuum:
+    name: Filter Clean Flag
+  lights_manual:
+    name: No Motion Lights
+    initial: off
+
+
+wake_on_lan:
+
+# Example configuration.yaml entry
+light:
+  - platform: group
+    name: house_lights
+    entities:
+      - light.downstairs_hallway
+      - light.outside_front
+      - light.hue_ambiance_lamp_1_2 #stairs
+      - light.hue_filament_bulb_1 # office
+      - light.laundry_light
+      - light.living_room
+      - light.loo_light
+      - light.upstairs_landing_bedroom

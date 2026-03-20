@@ -1,0 +1,3404 @@
+kiosk_mode:
+  mobile_settings:
+    hide_header: true
+    ignore_entity_settings: true
+  non_admin_settings:
+    hide_header: true
+    hide_menubutton: true
+    ignore_entity_settings: true
+  entity_settings:
+    - entity:
+        input_boolean.kiosk_mode: 'on'
+      hide_header: true
+    - entity:
+        input_boolean.kiosk_mode: 'off'
+      hide_header: false
+decluttering_templates:
+  light_row:
+    card:
+      type: custom:bubble-card
+      card_type: button
+      button_type: slider
+      sub_button:
+        main:
+          - entity: '[[entity]]'
+            name: percent
+            scrolling_effect: false
+            show_background: false
+            light_background: false
+            show_icon: false
+            show_state: false
+            show_attribute: true
+            attribute: brightness
+          - entity: '[[lock_entity]]'
+            scrolling_effect: false
+            show_icon: true
+            show_background: true
+            state_background: true
+            use_accent_color: true
+            show_state: false
+            tap_action:
+              action: toggle
+            hide_when_parent_unavailable: true
+            content_layout: icon-left
+            name: lock
+        bottom: []
+      entity: '[[entity]]'
+      name: '[[name]]'
+      icon: '[[icon]]'
+      scrolling_effect: false
+      use_accent_color: false
+      show_state: false
+      show_attribute: false
+      attribute: brightness
+      min_value: 0
+      max_value: 100
+      step: 1
+      slider_live_update: true
+      allow_light_slider_to_0: true
+      light_transition: true
+      tap_action:
+        action: none
+      hold_action:
+        action: more-info
+      styles: |-
+        .bubble-container {
+          height: 50px !important;
+          background-color: var(--card-background-color) !important;
+          opacity: 1 !important;
+          border-radius: var(--ha-card-border-radius) !important;
+          box-shadow: var(--ha-card-box-shadow) !important;
+        }
+        * {
+          --bubble-button-border-radius: 12px;
+        }
+        .bubble-range-fill {
+          opacity: var(--bubble-light-opacity) !important;
+          background-color: var(--accent-color) !important;
+          right: 100 !important;
+          left: 10 !important;
+          transform-origin: left center !important;
+        }
+        ${
+          (() => {
+            const sub = card.querySelector('.lock');
+            if (!sub) return;
+            const entity = sub.getAttribute('data-entity');
+            const state = hass.states[entity]?.state;
+            sub.style.backgroundColor = state === 'on' ? 'green' : '';
+          })()
+        }
+
+        ${
+          (() => {
+            const lock = card.querySelector('.lock');
+            const fill = card.querySelector('.bubble-range-fill');
+            if (!lock || !fill) return;
+
+            const entity = lock.getAttribute('data-entity');
+            const locked = hass.states[entity]?.state === 'on';
+
+            fill.style.filter = locked ? 'saturate(0.3)' : '';
+            fill.style.boxShadow = locked
+                  ? 'inset 0 0 0px 1px rgba(0, 150, 0, 0.4)'
+                  : '';
+          })()
+        }       
+
+        ${
+          (() => {
+            const lock = card.querySelector('.lock');
+            if (!lock) return;
+
+            const entity = lock.getAttribute('data-entity');
+            const locked = hass.states[entity]?.state === 'on';
+
+            lock.style.opacity = locked ? '1' : '0.6';
+            lock.style.transform = locked ? 'scale(1)' : 'scale(0.85)';
+          })()
+        }        
+  scene_button:
+    card:
+      type: custom:button-card
+      entity: '[[entity]]'
+      name: '[[name]]'
+      icon: '[[icon]]'
+      styles:
+        card:
+          - margin-top: '-12px'
+          - margin-bottom: '-12px'
+          - margin-left: '-7px'
+          - border-radius: var(--ha-card-border-radius)
+        icon:
+          - width: 80%
+          - height: 80%
+          - color: var(--primary-color)
+        img_cell:
+          - border-radius: 50%
+          - width: 80%
+          - height: 80%
+        name:
+          - font-size: 12px
+          - font-weight: 500
+          - color: var(--primary-color)
+      state:
+        - value: 'on'
+          styles:
+            icon:
+              - color: var(--scene-selected-color)
+            card:
+              - background-color: var(--scene-active-background)
+            name:
+              - color: var(--scene-selected-color)
+button_card_templates:
+  room_card:
+    variables:
+      show_state: false
+      show_label: false
+      accent_color: blue
+    name: '[[[ return variables.name]]]'
+    icon: '[[[ return variables.icon]]]'
+    label: '[[[ return variables.label]]]'
+    tap_action:
+      action: navigate
+    styles:
+      grid:
+        - grid-template-areas: '"n btn" "l btn" "i btn"'
+        - grid-template-columns: 1fr min-content
+        - grid-template-rows: min-content min-content 1fr
+      card:
+        - height: 140px
+        - padding: 10px 10px 15px 15px
+      custom_fields:
+        btn:
+          - justify-content: end
+          - align-self: start
+      name:
+        - justify-self: start
+        - align-self: start
+        - font-size: 16px
+        - font-weight: 600
+        - color: '[[[return variables.accent_color]]]'
+      label:
+        - min-height: 80px
+        - text-align: left
+        - justify-content: start
+        - justify-self: start
+        - align-self: start
+        - font-size: 12px
+        - font-weight: 700
+        - color: '[[[return variables.accent_color]]]'
+        - opacity: 0.6
+        - word-break: break-word
+        - white-space: normal
+      img_cell:
+        - justify-content: start
+        - position: absolute
+        - width: 105px
+        - height: 105px
+        - left: 0
+        - bottom: 0
+        - margin: 0 0 -20px -20px
+        - background: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ",
+            transparent 40%)"; ]]]
+        - border-radius: 500px
+      icon:
+        - margin-left: 25px
+        - width: 50px
+        - color: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ", black
+            70%)"; ]]]
+        - opacity: '0.3'
+    show_state: true
+  sub_headings:
+    variables:
+      var_name: name
+    name: '[[[ return variables.var_name]]]'
+    styles:
+      grid:
+        - grid-template-areas: '"n"'
+      card:
+        - background: transparent
+        - height: 40px
+        - border-radius: 0px
+        - margin-top: 20px
+      name:
+        - justify-self: start
+        - font-size: 18px
+        - font-weight: 500
+        - color: var(--primary-text-color)
+        - font-weight: bold
+        - margin-bottom: '-15px'
+    show_state: false
+    show_name: true
+    show_icon: false
+  bubble_base:
+    variables:
+      show_state: false
+    name: '[[[ return variables.name]]]'
+    entity: '[[[ return variables.entity]]]'
+    icon: '[[[ return variables.icon]]]'
+    show_state: '[[[ return variables.show_state]]]'
+    tap_action:
+      action: toggle
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - background: var(--card-background-color)
+          img_cell:
+            - background: var(--grey1150)
+          icon:
+            - color: var(--primary-color)
+          name:
+            - color: var(--primary-color)
+          state:
+            - color: var(--primary-color)
+      - value: 'on'
+        styles:
+          card:
+            - background: var(--bubble-accent-color)
+          img_cell:
+            - background: var(--card-background-color)
+          icon:
+            - color: var(--bubble-accent-color)
+          name:
+            - color: var(--card-background-color)
+    styles:
+      card:
+        - padding: 5px 0px 5px 6px
+        - height: 50px
+        - border-radius: var(--ha-card-border-radius)
+      grid:
+        - grid-template-areas: |
+            "i n"
+        - grid-template-columns: 33% 67%
+      img_cell:
+        - justify-self: start
+        - align-self: start
+        - padding: 9px
+        - border-radius: 500%
+        - width: 21px
+        - height: 20px
+      icon:
+        - width: 70%
+        - height: 70%
+      name:
+        - justify-self: start
+        - text-align: left
+        - font-size: 12px
+        - font-weight: 600
+        - color: var(--disabled-text-color)
+  heat:
+    styles:
+      icon:
+        - color: |
+            [[[
+              if (entity.state === 'on') return 'orange';
+              return variables.accent_color;
+            ]]]           
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+              return 'heat-shimmer 2.5s ease-in-out infinite';
+            ]]]   
+    extra_styles: |
+      @keyframes heat-shimmer {
+        0% {
+          transform: translate(0px, 0px) skewX(0deg);
+        }
+        25% {
+          transform: translate(0.6px, -0.8px) skewX(2deg);
+        }
+        50% {
+          transform: translate(-0.6px, -1.2px) skewX(-2deg);
+        }
+        75% {
+          transform: translate(0.4px, -0.6px) skewX(0.6deg);
+        }
+        100% {
+          transform: translate(0px, 0px) skewX(0deg);
+        }
+      }
+  aircon:
+    styles:
+      icon:
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+              return `rotating 6s linear infinite`;
+            ]]]
+    extra_styles: |
+      @keyframes rotating {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+  fan:
+    styles:
+      icon:
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+
+              const base = entity.entity_id.split('.')[1];
+              const powerSensor = `sensor.${base}_power`;
+              const s = states[powerSensor];
+
+              let watts = s ? parseFloat(s.state) : NaN;
+              if (isNaN(watts)) watts = 20;
+
+              const duration = Math.min(7, Math.max(.2, 8 - watts * 0.23));
+              return `rotating ${duration}s linear infinite`;
+            ]]]
+    extra_styles: |
+      @keyframes rotating {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+  coffee:
+    icon: |
+      [[[
+        if (entity.state !== 'on') return 'mdi:coffee-maker-outline';
+        return 'mdi:coffee-maker';
+      ]]]
+    styles:
+      icon:
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+              return `java 4s linear infinite`;
+            ]]]
+    extra_styles: |
+      @keyframes java {
+        0%, 80%, 100% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 0 100%); }
+        10% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 79%, 63% 76%, 67% 70%, 66% 54%, 42% 55%, 42% 70%, 47% 77%, 55% 80%, 57% 100%, 0 100%); }
+        15% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 79%, 63% 76%, 67% 70%, 66% 54%, 42% 54%, 42% 70%, 47% 77%, 55% 80%, 55% 100%, 0 100%); }
+        20% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 76%, 63% 76%, 67% 70%, 66% 54%, 42% 55%, 42% 70%, 47% 76%, 55% 76%, 57% 100%, 0 100%); }
+        25% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 76%, 63% 76%, 67% 70%, 66% 54%, 42% 54%, 42% 70%, 47% 76%, 55% 76%, 56% 100%, 0 100%); }
+        30% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 73%, 64% 73%, 66% 70%, 66% 55%, 42% 55%, 42% 69%, 44% 73%, 55% 73%, 57% 100%, 0 100%); }
+        35% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 73%, 64% 73%, 66% 70%, 66% 55%, 42% 54%, 42% 69%, 44% 73%, 55% 73%, 56% 100%, 0 100%); }
+        40% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 70%, 67% 70%, 66% 54%, 42% 54%, 42% 70%, 57% 70%, 57% 100%, 0 100%); }
+        45% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 70%, 67% 70%, 66% 54%, 42% 54%, 42% 70%, 55% 70%, 56% 100%, 0 100%); }
+        50% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 66%, 67% 65%, 66% 54%, 42% 54%, 42% 65%, 57% 65%, 57% 100%, 0 100%); }
+        55% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 66%, 67% 65%, 66% 54%, 42% 54%, 42% 65%, 55% 65%, 56% 100%, 0 100%); }
+        60% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 60%, 66% 60%, 66% 54%, 42% 54%, 42% 60%, 57% 60%, 57% 100%, 0 100%); }
+        65% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 60%, 66% 60%, 66% 54%, 42% 54%, 42% 60%, 55% 60%, 56% 100%, 0 100%); }
+        70% { clip-path: polygon(0 0, 100% 0, 100% 32%, 47% 32%, 47% 43%, 100% 43%, 100% 100%, 55% 100%, 55% 56%, 66% 56%, 66% 54%, 42% 54%, 42% 56%, 57% 56%, 57% 100%, 0 100%); }
+        75% { clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 56%, 66% 56%, 66% 54%, 42% 54%, 42% 56%, 55% 56%, 55% 100%, 0 100%); }
+      }
+  bubble_lookalike:
+    template: bubble_base
+  bubble_aircon:
+    template:
+      - bubble_base
+      - aircon
+  bubble_heater:
+    template:
+      - bubble_base
+      - heat
+  bubble_coffee:
+    template:
+      - bubble_base
+      - coffee
+  bubble_fan:
+    template:
+      - bubble_base
+      - fan
+  room_button:
+    tap_action:
+      action: '[[[return variables.tap_action]]]'
+      navigation_path: '[[navigation_path]]'
+      service: light.turn_off
+      target:
+        entity_id: light.house_lights
+    entity: '[[entity]]'
+    icon: '[[[ return variables.icon]]]'
+    show_name: false
+    state:
+      - value: 'on'
+        styles:
+          icon:
+            - color: var(--selected-color)
+            - opacity: 1
+          card:
+            - background-color: '[[[ return variables.accent_color]]]'
+    styles:
+      card:
+        - padding: 2px
+        - width: 44px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - background-color: var(--selected-color)
+      icon:
+        - width: 30px
+        - color: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ",
+            transparent 40%)"; ]]]
+        - opacity: 0.8
+  fan_room_button:
+    template:
+      - room_button
+      - fan
+  heater_room_button:
+    template:
+      - room_button
+      - heat
+  aircon_room_button:
+    template:
+      - room_button
+      - aircon
+  coffee_room_button:
+    template:
+      - room_button
+      - coffee
+  inkwell:
+    show_name: false
+    show_state: true
+    extra_styles: |
+      [[[ return `
+        @keyframes pulse {
+          0% {
+            background-color: ${variables.color};
+          }
+          50% {
+            background-color: transparent;
+          }
+          100% {
+            background-color: ${variables.color};
+          }
+        }
+      `]]]
+    styles:
+      icon:
+        - opacity: 0.7
+        - color: '[[[ return variables.color ]]]'
+      state:
+        - font-size: 0.7em
+        - font-weight: normal
+        - color: |
+            [[[
+             var color = variables.color;
+             if (color == 'black') return 'white';
+             if (color == 'yellow') return 'black';
+             else return 'var(--grey800)';
+             ]]]
+      card:
+        - border: solid 1px VAR(--grey600)
+        - border-radius: 6px 6px 15px 15px
+        - background: |
+            [[[
+              var level = entity.state;
+              var color = variables.color;
+              var ink_color = 'black'; // Added quotes and fixed semicolon
+
+              if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+              if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+              if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+              if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+              return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+            ]]]
+        - animation: |
+            [[[
+              return (0 + entity.state) < 10
+                ? 'pulse 3s ease-in-out infinite'
+                : 'none'
+            ]]]
+title: Collt
+views:
+  - title: Home
+    path: home
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            tap_action:
+              action: call-service
+              service: |
+                [[[
+                  this.dispatchEvent(new Event('hass-toggle-menu', { bubbles: true, composed: true}));
+                  return none;
+                ]]]
+            hold_action:
+              action: url
+              url_path: null
+            icon: mdi:menu
+            color: var(--primary-color)
+            show_name: false
+            styles:
+              card:
+                - margin: 10px 0px -5px 3px
+                - width: 33px
+                - height: 35px
+                - border-radius: var(--ha-card-border-radius)
+                - box-shadow: none
+                - background-color: transparent
+                - background: transparent
+              icon:
+                - width: 90%
+          - type: custom:gap-card
+            styles: null
+            card:
+              - margin: 0px 0px -5px 0px
+              - width: 3px
+          - type: custom:button-card
+            entity: weather.ryde
+            tap_action:
+              action: navigate
+              navigation_path: '#weather'
+            icon: ''
+            label: |
+              [[[
+                var state1 = states['sensor.ryde_temp'].state;
+                var state2 = states['weather.ryde'].state;
+
+                // Replace hyphens with spaces and convert to title case
+                state2 = state2.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+                return "Ryde: " + state1 + " °C<br/>" + state2;
+              ]]]
+            show_icon: false
+            show_name: false
+            show_label: true
+            styles:
+              grid:
+                - grid-template-areas: |
+                    "i l" "i l"
+                - grid-template-columns: 27% 73%
+                - grid-template-rows: 1fr
+              label:
+                - font-size: 0.60em
+                - font-weight: 500
+                - color: var(--primary-color)
+                - text-align: left
+                - justify-sef: start
+              card:
+                - margin: 10px 0px -5px 3px
+                - height: 36px
+                - width: 115px
+                - background: var(--card-background-color)
+                - background-image: |
+                    [[[ 
+                      var images = states["weather.ryde"].state; 
+                      return 'url(/local/ic/weather_icons/animated2/'+images+'.svg)'
+                    ]]]        
+                - background-repeat: no-repeat
+                - background-size: 32%
+                - background-position-x: 4px
+                - background-position-y: center
+                - background-origin: border-box
+          - type: custom:button-card
+            entity: sensor.temp_sensor_temperature
+            icon: mdi:thermometer
+            show_icon: true
+            label: |
+              [[[
+                var state1 = states['sensor.temp_sensor_temperature'].state;
+                return "Indoor <br/> " + state1 + " °C ";
+              ]]]
+            show_name: false
+            show_label: true
+            styles:
+              card:
+                - margin: 10px -3px -5px 0px !important;
+                - height: 36px
+                - width: 82px
+              grid:
+                - grid-template-areas: |
+                    "i l" "i l"
+                - grid-template-columns: 35% 65%
+              label:
+                - font-size: 0.60em
+                - font-weight: 500
+                - color: var(--primary-color)
+                - text-align: left
+                - justify-self: start
+              icon:
+                - height: 100%
+                - width: 65%
+                - color: |
+                    [[[
+                      const t = parseFloat(states['sensor.temp_sensor_temperature']?.state);
+                      if (isNaN(t)) return '#4D8DF7';
+
+                      const ease = x => Math.pow(Math.min(Math.max(x, 0), 1), 0.8);
+
+                      const blend = (c1, c2, x) => {
+                        const r1 = parseInt(c1.substr(1,2), 16);
+                        const g1 = parseInt(c1.substr(3,2), 16);
+                        const b1 = parseInt(c1.substr(5,2), 16);
+                        const r2 = parseInt(c2.substr(1,2), 16);
+                        const g2 = parseInt(c2.substr(3,2), 16);
+                        const b2 = parseInt(c2.substr(5,2), 16);
+
+                        const k = ease(x);
+
+                        const r = Math.round(r1 + (r2 - r1) * k);
+                        const g = Math.round(g1 + (g2 - g1) * k);
+                        const b = Math.round(b1 + (b2 - b1) * k);
+
+                        return `rgb(${r}, ${g}, ${b})`;
+                      };
+
+                      if (t < 10) {
+                        return '#4D8DF7';
+
+                      } else if (t < 17) {
+                        return blend('#4D8DF7', '#68DA6A', (t - 10) / 7);
+
+                      } else if (t < 23) {
+                        return blend('#68DA6A', '#CAFA4F', (t - 17) / 6);
+
+                      } else if (t < 26) {
+                        return blend('#CAFA4F', '#E4BE49', (t - 23) / 3);
+
+                      } else if (t < 30) {
+                        return blend('#E4BE49', '#EA4237', (t - 26) / 4);
+
+                      } else {
+                        return '#EA4237';
+                      }
+                    ]]]
+          - type: custom:button-card
+            entity: sensor.temp_sensor_humidity
+            icon: mdi:water-percent
+            show_icon: true
+            label: |
+              [[[
+                const h = states['sensor.temp_sensor_humidity']?.state;
+                return `Humidity<br/>${h} %`;
+              ]]]
+            show_name: false
+            show_label: true
+            styles:
+              grid:
+                - grid-template-areas: |
+                    "i l" "i l"
+                - grid-template-columns: 35% 65%
+              label:
+                - font-size: 0.60em
+                - font-weight: 500
+                - color: var(--primary-color)
+                - text-align: left
+                - justify-self: start
+              card:
+                - margin: 10px 9px -5px 0px !important;
+                - height: 36px
+                - width: 80px
+              icon:
+                - height: 100%
+                - width: 65%
+                - color: |
+                    [[[
+                      const h = parseFloat(states['sensor.temp_sensor_humidity']?.state);
+                      if (isNaN(h)) return '#27c45e';
+
+                      // Same perceptual easing used in your temperature icon
+                      const ease = x => Math.pow(Math.min(Math.max(x, 0), 1), 0.8);
+
+                      const blend = (c1, c2, x) => {
+                        const r1 = parseInt(c1.substr(1, 2), 16);
+                        const g1 = parseInt(c1.substr(3, 2), 16);
+                        const b1 = parseInt(c1.substr(5, 2), 16);
+                        const r2 = parseInt(c2.substr(1, 2), 16);
+                        const g2 = parseInt(c2.substr(3, 2), 16);
+                        const b2 = parseInt(c2.substr(5, 2), 16);
+
+                        const k = ease(x);
+
+                        const r = Math.round(r1 + (r2 - r1) * k);
+                        const g = Math.round(g1 + (g2 - g1) * k);
+                        const b = Math.round(b1 + (b2 - b1) * k);
+
+                        return `rgb(${r}, ${g}, ${b})`;
+                      };
+
+                      if (h < 10) {
+                        return blend('#ef4a46', '#f8a44b', h / 10);
+
+                      } else if (h < 35) {
+                        return blend('#f8a44b', '#27c45e', (h - 10) / 25);
+
+                      } else if (h < 65) {
+                        return blend('#27c45e', '#f8a44b', (h - 35) / 30);
+
+                      } else if (h < 80) {
+                        return blend('#f8a44b', '#ef4a46', (h - 65) / 20);
+
+                      } else {
+                        return '#ef4a46';
+                      }
+                    ]]]
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          xmas-grid-template-columns: 17% 17% 17% 17% 17% 17%
+          grid-template-columns: 20.8% 20.8% 20.8% 20.8% 20.8%
+        cards:
+          - type: custom:decluttering-card
+            template: scene_button
+            variables:
+              - name: Movie
+              - icon: mdi:movie-open-check
+              - entity: input_boolean.movie_switch
+              - lmargin: '-5px'
+          - type: custom:decluttering-card
+            template: scene_button
+            variables:
+              - name: Wii
+              - icon: mdi:nintendo-wii
+              - entity: input_boolean.wii_switch
+              - lmargin: '-5px'
+          - type: custom:decluttering-card
+            template: scene_button
+            variables:
+              - name: Chat
+              - icon: mdi:whatsapp
+              - entity: input_boolean.whatsapp_switch
+              - lmargin: '-5px'
+          - type: custom:decluttering-card
+            template: scene_button
+            variables:
+              - name: Music
+              - icon: mdi:music
+              - entity: input_boolean.spoti_switch
+              - lmargin: '-5px'
+          - type: custom:decluttering-card
+            template: scene_button
+            variables:
+              - name: Chill
+              - icon: mdi:sofa-outline
+              - entity: input_boolean.lounge_chill_switch
+              - lmargin: '-5px'
+          - type: conditional
+            conditions:
+              - condition: state
+                entity: input_boolean.its_christmas
+                state: 'on'
+            card:
+              - type: custom:decluttering-card
+                template: scene_button
+                variables:
+                  - name: Xmas
+                  - icon: mdi:pine-tree-variant-outline
+                  - entity: input_boolean.xmas_switch
+                  - lmargin: '-5px'
+      - type: vertical-stack
+        cards:
+          - square: false
+            type: grid
+            cards:
+              - type: custom:button-card
+                template: room_card
+                variables:
+                  accent_color: var(--room-lounge)
+                name: Lounge
+                icon: mdi:sofa
+                tap_action:
+                  navigation_path: '#room_lounge'
+                show_label: true
+                label: |
+                  [[[
+                    var lounge = ' ';
+                    var movie = states['input_boolean.movie_switch'].state;
+                    var wii = states['input_boolean.wii_switch'].state;
+                    var chill = states['input_boolean.lounge_chill_switch'].state;
+                    var spotify = states['input_boolean.reading_switch'].state;
+                    var whatsapp = states['input_boolean.whatsapp_switch'].state;
+
+                    if (movie == 'on') {
+                      lounge = 'Movie Time';
+                    } else if (wii == 'on') {
+                      lounge = 'Play Time';
+                    } else if (chill == 'on') {
+                      lounge = 'Just Chilling';
+                    } else if (spotify == 'on') {
+                      lounge = 'Music time';
+                    } else if (whatsapp == 'on') {
+                      lounge = 'Family Catchups';
+                    } else {
+                      lounge = ' ';
+                    }
+                      return lounge;
+                  ]]]
+                custom_fields:
+                  btn:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:button-card
+                          template: room_button
+                          variables:
+                            accent_color: var(--room-lounge)
+                            tap_action: toggle
+                          entity: light.lounge_light
+                          icon: mdi:lightbulb-outline
+                        - type: custom:button-card
+                          template: room_button
+                          variables:
+                            accent_color: var(--room-lounge)
+                            tap_action: navigate
+                            navigation_path: '#room_lounge'
+                          entity: media_player.shield_2
+                          icon: mdi:television-speaker
+                        - type: custom:button-card
+                          template: fan_room_button
+                          variables:
+                            accent_color: var(--room-lounge)
+                            tap_action: toggle
+                          entity: switch.plug_pink_2
+                          icon: mdi:fan
+                show_state: true
+              - type: custom:button-card
+                template: room_card
+                variables:
+                  accent_color: var(--room-bedroom)
+                name: Bedroom
+                icon: mdi:bed
+                tap_action:
+                  navigation_path: '#room_bedroom'
+                show_label: true
+                label: |
+                  [[[
+                    return states['sensor.temp_sensor_temperature'].state + "°C • " + states['sensor.temp_sensor_humidity'].state + "%"
+                  ]]]
+                custom_fields:
+                  vac:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: conditional
+                          conditions:
+                            - condition: and
+                              conditions:
+                                - condition: state
+                                  entity: input_boolean.purifier_vacuum
+                                  state: 'on'
+                          card:
+                            type: custom:button-card
+                            icon: mdi:vacuum
+                            entity: input_boolean.purifier_vacuum
+                            tap_action:
+                              action: navigate
+                              navigation_path: '#room_bedroom'
+                            styles:
+                              card:
+                                - animation: blink 2s ease infinite
+                                - height: 30px
+                                - width: 30px
+                                - border: none
+                                - box-shadow: none
+                                - border-style: none
+                                - border-radius: 100%
+                                - margin-right: 5px
+                                - margin-top: '-54px'
+                              img_cell:
+                                - border-radius: 100%
+                                - background: rgba(180,60,60,1)
+                              icon:
+                                - color: white
+                                - height: 18px
+                                - width: 18px
+                            show_name: false
+                  btn:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:button-card
+                          template: fan_room_button
+                          icon: mdi:fan
+                          entity: switch.plug_blue
+                          variables:
+                            accent_color: var(--room-bedroom)
+                            tap_action: toggle
+                        - type: custom:button-card
+                          template: aircon_room_button
+                          entity: input_boolean.cool_room
+                          icon: mdi:snowflake
+                          variables:
+                            accent_color: var(--room-bedroom)
+                            tap_action: toggle
+                        - type: custom:button-card
+                          template: heater_room_button
+                          entity: input_boolean.heat_room
+                          icon: mdi:radiator
+                          variables:
+                            accent_color: var(--room-bedroom)
+                            tap_action: toggle
+                styles:
+                  grid:
+                    - grid-template-areas: '"n n btn" "l l btn" "i vac btn"'
+                    - grid-template-columns: 1fr 0.3fr min-content
+                    - grid-template-rows: min-content min-content 1fr
+                  custom_fields:
+                    vac:
+                      - justify-content: start
+                      - align-self: start
+                show_state: true
+              - type: custom:button-card
+                template: room_card
+                name: Office
+                icon: mdi:desk
+                variables:
+                  accent_color: var(--room-office)
+                tap_action:
+                  navigation_path: '#room_office'
+                show_label: true
+                show_state: false
+                entity: input_text.office_status
+                label: |
+                  [[[
+                    return states['input_text.office_status'].state
+                  ]]]
+                custom_fields:
+                  btn:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:button-card
+                          template: coffee_room_button
+                          entity: switch.plug_orange
+                          variables:
+                            accent_color: var(--room-office)
+                            tap_action: toggle
+                        - type: custom:button-card
+                          template: room_button
+                          entity: switch.office_wall_l
+                          icon: mdi:desktop-classic
+                          variables:
+                            accent_color: var(--room-office)
+                            tap_action: toggle
+                        - type: custom:button-card
+                          template: fan_room_button
+                          entity: switch.plug_yellow
+                          icon: mdi:fan
+                          variables:
+                            accent_color: var(--room-office)
+                            tap_action: toggle
+              - type: custom:button-card
+                template: room_card
+                name: Lights
+                icon: mdi:ceiling-light-multiple-outline
+                tap_action:
+                  navigation_path: '#room_lights'
+                show_label: true
+                show_state: true
+                variables:
+                  accent_color: var(--room-lights)
+                label: |
+                  [[[
+                    var count = states['sensor.number_of_lights_on'].state;
+                    return 'Lights on: ' + count
+                  ]]]
+                custom_fields:
+                  btn:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:button-card
+                          template: room_button
+                          entity: light.house_lights
+                          icon: mdi:lightbulb-group-outline
+                          variables:
+                            accent_color: var(--room-lights)
+                            tap_action: call-service
+              - type: custom:button-card
+                template: room_card
+                show_state: true
+                name: Garden
+                icon: mdi:flower-tulip-outline
+                variables:
+                  accent_color: var(--room-garden)
+                tap_action:
+                  navigation_path: '#garden'
+                custom_fields:
+                  btn:
+                    card:
+                      type: vertical-stack
+                      cards:
+                        - type: custom:button-card
+                          template: room_button
+                          entity: light.outside_front
+                          icon: phu:stage-spot-light
+                          variables:
+                            accent_color: var(--room-garden)
+                            tap_action: toggle
+                        - type: custom:button-card
+                          template: room_button
+                          entity: switch.tap_water_switch
+                          icon: mdi:water-pump
+                          variables:
+                            accent_color: var(--room-garden)
+                            tap_action: toggle
+              - type: vertical-stack
+                cards:
+                  - type: custom:button-card
+                    template: room_card
+                    variables:
+                      accent_color: var(--room-kitchen)
+                    name: Kitchen
+                    icon: null
+                    show_label: true
+                    label: dishwasher
+                    tap_action:
+                      navigation_path: '#room_kitchen'
+                    styles:
+                      card:
+                        - height: 65px
+                    custom_fields:
+                      btn:
+                        card:
+                          type: vertical-stack
+                          cards:
+                            - type: custom:button-card
+                              entity: >-
+                                switch.012030522493002223_bsh_common_setting_powerstate
+                              name: Internet
+                              show_state: false
+                              show_label: false
+                              show_name: false
+                              icon: mdi:dishwasher-off
+                              styles:
+                                grid:
+                                  - grid-template-areas: '"i n" "i s" '
+                                card:
+                                  - height: 40px
+                                  - border-radius: 10px
+                                img_cell:
+                                  - width: 24px
+                                  - padding: 0px 8px 0px 10px
+                                icon:
+                                  - width: 24px
+                                  - color: pink
+                              state:
+                                - value: 'on'
+                                  icon: mdi:dishwasher
+                                  styles:
+                                    icon:
+                                      - color: var(--room-kitchen)
+                  - type: custom:button-card
+                    template: room_card
+                    variables:
+                      accent_color: var(--room-tech)
+                    name: Tech Stuff
+                    icon: null
+                    tap_action:
+                      navigation_path: '#room_tech'
+                    styles:
+                      card:
+                        - height: 65px
+                    custom_fields:
+                      btn:
+                        card:
+                          type: vertical-stack
+                          cards:
+                            - type: custom:button-card
+                              entity: sensor.x80_wan_status
+                              name: Internet
+                              show_state: false
+                              show_label: false
+                              show_name: false
+                              icon: mdi:close-network-outline
+                              styles:
+                                grid:
+                                  - grid-template-areas: '"i n" "i s" '
+                                card:
+                                  - height: 40px
+                                  - border-radius: 10px
+                                img_cell:
+                                  - width: 24px
+                                  - padding: 0px 8px 0px 10px
+                                icon:
+                                  - width: 24px
+                                  - color: red
+                              state:
+                                - value: Connected
+                                  icon: mdi:check-network-outline
+                                  styles:
+                                    icon:
+                                      - color: var(--room-tech)
+                show_state: true
+                show_label: false
+            columns: 2
+      - type: custom:auto-entities
+        card:
+          type: entities
+          card_mod:
+            style: |
+              ha-card {
+                margin-top: 0px  !important;;
+                padding-left: 0px !important;
+                margin-left: 0px !important;
+                background-color: var(--card-background-color)      }
+        filter:
+          include:
+            - entity_id: '*e10*'
+              options:
+                icon: mdi:gas-station
+                type: custom:template-entity-row
+                color: var(--primary-color)
+                tap_action:
+                  action: navigate
+                  navigation_path: '#petrol'
+                card_mod:
+                  style: |
+                    :host {
+                        font-size: 15px;
+                        color: var(--primary-color);
+                    }
+                    div#wrapper {
+                      min-height: 15px;
+                      height:  12px;
+                      margin-bottom: -1px !important;
+                      margin-left: -12px !important;
+                      margin-top: -1px !important;
+                      padding-bottom: -2px !important;
+                      padding-top: -2px !important;
+                      }
+        sort:
+          method: state
+          ignore_case: true
+          count: 5
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Lounge
+            icon: mdi:sofa
+            hash: '#room_lounge'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                  color: var(--room-lounge);
+                --mdc-icon-size: 40px !important;
+              }       
+              .bubble-header {
+                  color: var(--room-lounge) !important;
+              }      
+            sub_button:
+              main: []
+              bottom: []
+            slider_fill_orientation: left
+            slider_value_position: right
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.lounge_light
+              - name: Lounge Light
+              - icon: mdi:sofa-outline
+              - lock_entity: input_boolean.loungelightlock_switch
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_fan
+                entity: switch.plug_pink_2
+                name: Pedestal Fan
+                icon: mdi:fan
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.plug_purple_2
+                name: Heater
+                icon: mdi:heat-wave
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: sensor.shield_source
+                    state: Netflix
+                card:
+                  type: custom:mini-media-player
+                  entity: media_player.android_tv_10_0_0_26
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: sensor.shield_source
+                    state_not: Netflix
+                card:
+                  type: custom:mini-media-player
+                  entity: media_player.emby_shield
+                  volume_stateless: true
+                  toggle_power: true
+                  group: false
+                  artwork: full-cover
+                  source: full
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Bedroom
+            icon: mdi:bed-outline
+            hash: '#room_bedroom'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                  color: var(--room-bedroom);
+                --mdc-icon-size: 40px !important;
+              }       
+              .bubble-header {
+                  color: var(--room-bedroom) !important;
+              }      
+          - type: custom:gap-card
+            height: 40px
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_fan
+                entity: switch.plug_blue
+                name: Pedestal Fan
+                icon: mdi:fan
+              - type: custom:bubble-card
+                card_type: empty-column
+          - type: custom:bubble-card
+            card_type: separator
+            name: Air Purifier
+            rows: 1
+            styles: >-
+              ha-card {
+                margin-top: 15px;
+                margin-bottom: -10px !important;
+              }
+
+              .bubble-sub-button-1 { color:
+              var(--popup-secondary-text);;background:
+              var(--popup-card-background);}
+
+              .separator-container { color: var(--room-bedroom);}
+
+              .bubble-line { background: var(--room-bedroom); height: 2px }
+
+              .bubble-name { 
+                 color: var(--popup-secondary-text) !important; 
+                font-size:14px !important;
+              }
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: climate
+                name: Purifier
+                entity: fan.core_300s
+                show_state: false
+                show_name: false
+                card_layout: large-2-rows
+                icon: mdi:air-purifier
+                sub_button:
+                  - name: Mode
+                    select_attribute: preset_modes
+                    show_arrow: false
+                    state_background: false
+                    show_name: false
+                  - name: PM2
+                    entity: sensor.core_300s_pm2_5
+                    show_icon: false
+                    show_background: false
+                    show_state: true
+                    show_name: true
+                  - name: AQ
+                    entity: sensor.core_300s_air_quality
+                    show_icon: false
+                    show_background: false
+                    show_state: true
+                    show_name: true
+                  - name: Filter
+                    entity: sensor.core_300s_filter_lifetime
+                    show_icon: false
+                    show_background: false
+                    show_state: true
+                    show_name: true
+                styles: |
+                  .bubble-container {
+                    height: 50px !important;
+                    background-color: var(--card-background-color) !important;
+                    opacity: 1 !important;
+                    border-radius: var(--ha-card-border-radius) !important;
+                    box-shadow: var(--ha-card-box-shadow) !important;
+                  }
+              - type: custom:button-card
+                entity: input_boolean.purifier_vacuum
+                section_mode: null
+                show_name: false
+                icon: |
+                  [[[
+                      if (entity.state == 'on') return 'mdi:vacuum';
+                      else return 'mdi:vacuum-outline';
+                  ]]]
+                styles:
+                  card:
+                    - width: 50px
+                    - height: 50px
+                    - border-radius: 50%
+                    - background: |
+                        [[[
+                          if (entity.state == 'on') return 'red';
+                          else return 'var(--card-background-color)';
+                        ]]]
+                  icon:
+                    - width: 60%
+                    - height: 60%
+                    - color: |
+                        [[[ if (entity.state === "on")
+                             return 'var(--ha-card-background)';
+                            else
+                             return 'var(--accent-color)';
+                         ]]]
+          - type: custom:bubble-card
+            card_type: separator
+            name: Air Conditioner
+            rows: 1
+            styles: >-
+              ha-card {
+                margin-top: 15px;
+                margin-bottom: -10px !important;
+              }
+
+              .bubble-sub-button-1 { color:
+              var(--popup-secondary-text);;background:
+              var(--popup-card-background);}
+
+              .separator-container { color: var(--room-bedroom);}
+
+              .bubble-line { background: var(--room-bedroom); height: 2px }
+
+              .bubble-name { font-size:14px !important;}
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_aircon
+                entity: input_boolean.cool_room
+                name: Aircon Cool
+                icon: mdi:snowflake
+              - type: custom:button-card
+                template: bubble_heater
+                entity: input_boolean.heat_room
+                name: Aircon Warm
+                icon: mdi:radiator
+          - type: custom:bubble-card
+            card_type: climate
+            name: Aircon
+            entity: climate.aircon
+            show_state: true
+            state-background: true
+            card_layout: normal
+            state-color: true
+            sub_button:
+              - name: HVAC modes menu
+                select_attribute: hvac_modes
+                show_arrow: true
+                state_background: true
+            styles: |
+              .bubble-container {
+                height: 50px !important;
+                background-color: var(--card-background-color) !important;
+                opacity: 1 !important;
+                border-radius: 25px !important;
+                box-shadow: var(--ha-card-box-shadow) !important;
+              }
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Office
+            icon: mdi:desk
+            hash: '#room_office'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                --mdc-icon-size: 40px !important;
+                  color: var(--room-office);
+              }       
+              .bubble-header {
+                  color: var(--room-office) !important;
+              }      
+            sub_button:
+              main: []
+              bottom: []
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.hue_filament_bulb_1
+              - name: Office Light
+              - icon: mdi:chair-rolling
+              - lock_entity: input_boolean.officelightlock_switch
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.office_wall_l
+                name: Desk Wall (L)
+                icon: mdi:power-plug-outline
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.office_wall_r
+                name: Desk Wall (R)
+                icon: mdi:power-plug-outline
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.plug_orange
+                name: Fridge and<br/>Coffee
+                icon: mdi:coffee-maker
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: input_boolean.wfh_today
+                name: Working From<br/>Home
+                icon: mdi:chair-rolling
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_fan
+                entity: switch.plug_yellow
+                name: Pedestal Fan
+                icon: mdi:fan
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.plug_purple_2
+                name: Heater
+                icon: mdi:heat-wave
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: House Lights
+            icon: mdi:lightbulb-group
+            hash: '#room_lights'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                --mdc-icon-size: 40px !important;
+                  color: var(--room-lights);
+              }       
+              .bubble-header {
+                  color: var(--room-lights) !important;
+              }      
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.lounge_light
+              - name: Lounge Light
+              - icon: mdi:sofa-outline
+              - lock_entity: input_boolean.loungelightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.downstairs_hallway
+              - name: Foyer
+              - icon: phu:rooms-front-door
+              - lock_entity: input_boolean.foyerlightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.laundry_light
+              - name: Laundry
+              - icon: mdi:washing-machine
+              - lock_entity: input_boolean.laundrylightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.loo_light
+              - name: Downstairs Loo
+              - icon: phu:yeelight-ceiling
+              - lock_entity: input_boolean.loolightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.staircase
+              - name: Stairs
+              - icon: mdi:stairs
+              - lock_entity: input_boolean.stairslightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.hue_ambiance_lamp_1_2
+              - name: Landing
+              - icon: mdi:stairs
+              - lock_entity: input_boolean.landinglightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.hue_filament_bulb_1
+              - name: Office
+              - icon: phu:rooms-office
+              - lock_entity: input_boolean.officelightlock_switch
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.outside_front
+              - name: Front Garden
+              - icon: phu:stage-spot-light
+              - lock_entity: input_boolean.outdoorlightlock_switch
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Weather
+            icon: mdi:sun
+            hash: '#weather'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            show_name: false
+            show_icon: false
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                --mdc-icon-size: 40px !important;
+                  color: var(--room-lights);
+              }       
+              .bubble-header {
+                  color: var(--room-lights) !important;
+              }      
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:button-card
+            entity: weather.ryde_weather
+            show_state: true
+            show_name: false
+            show_icon: false
+            show_label: true
+            tap_action:
+              action: more-info
+            custom_fields:
+              icon:
+                card:
+                  type: custom:button-card
+                  show_name: false
+                  show_state: false
+                  show_entity_picture: true
+                  entity_picture: |
+                    [[[ 
+                      var images = states["weather.ryde"].state; 
+                      return '/local/ic/weather_icons/animated2/'+images+'.svg'
+                    ]]]
+                  styles:
+                    card:
+                      - margin: 0px
+                        padding: 0px
+                        box-shadow: 0 0 0 0;
+                        border: none
+                        background-color: var(--grey400)
+                        width: 170px
+                        height: 100px
+                        margin-right: '-30px'
+                        margin-top: 10px
+                    img_cell:
+                      - padding: 0px
+                        margin: 0px
+                        height: 100px
+                        width: 200px
+                        background-color: transparent;
+            label: |
+              [[[ 
+                return 'Ryde <br/>' + states['sensor.ryde_temp'].state + '°';
+              ]]]
+            styles:
+              grid:
+                - grid-template-areas: '"l icon" "s icon"'
+                  grid-template-rows: auto auto
+                  justify-items: start
+                  align-items: start
+              card:
+                - padding: 0px
+                  margin: 0px
+                  background-color: transparent
+                  border-radius: 0px
+                  box-shadow: none
+                  border: none
+              label:
+                - font-size: 50px
+                  font-weight: 600
+                  color: var(--primary-color)
+                  justify-self: start
+                  align-self: start
+                  padding: 0px
+                  margin: 0px
+              state:
+                - font-size: 20px
+                  font-weight: 600
+                  color: var(--primary-color)
+                  justify-self: start
+                  align-self: start
+                  padding: 0px
+                  margin: 0px
+              custom_fields:
+                icon:
+                  - height: 60px;;
+                  - justify-self: end;
+                  - align-self: start;
+                  - padding-right: 17px
+                  - padding-top: 10px
+          - type: markdown
+            content: |-
+              Feels like {{ states('sensor.ryde_temp_feels_like') }}°
+              {{ states('sensor.ryde_extended_text_0') }}
+            card_mod:
+              style: |
+                ha-card {
+                border: none
+                color: var(--grey300) !important;
+                background-color: transparent;
+                margin: 0px -15px 0px -15px;
+                box-shadow: none;
+                font-size: 16px;
+                }
+          - type: custom:button-card
+            styles:
+              grid:
+                - grid-template-areas: '"chips" "chips"'
+              card:
+                - background: rgba(0, 0, 0, 0)
+                  box-shadow: none;
+                  flex-direction: row
+                  overflow-x: auto
+                  flex-wrap: nowrap
+                  flex-shrink: 0
+                  scrollbar-width: thin
+                  scrollbar-color: rgba(255,255,255, 0.05) rgba(255,255,255, 0)
+                  padding: 2
+                  margin-top: '-10px'
+                  border: none
+            custom_fields:
+              chips:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: |
+                        [[[ 
+                          return states['sensor.ryde_humidity'].state + '%';
+                        ]]]
+                      entity: sensor.ryde_humidity
+                      icon: mdi:water
+                      show_state: false
+                      show_name: true
+                      show_icon: true
+                      tap_action:
+                        action: more-info
+                      styles:
+                        grid:
+                          - grid-template-areas: '"i n"'
+                          - grid-template-columns: min-content min-content;
+                        card:
+                          - justify-self: center
+                          - justify-content: center
+                          - align-self: start
+                          - border-radius: 50px
+                          - width: auto
+                          - height: 35px
+                          - padding-right: 8px
+                        name:
+                          - justify-self: center
+                            font-size: 12px
+                            font-weight: 600
+                            color: var(--primary-text-color)
+                        img_cell:
+                          - width: 30px
+                          - background: transparent
+                          - border-radius: 100%
+                          - justify-content: center
+                          - padding-left: 2px
+                        icon:
+                          - width: 20px
+                          - padding-left: 2px
+                          - color: var(--label-badge-green)
+                    - type: custom:button-card
+                      name: |
+                        [[[ 
+                          return states['sensor.ryde_rain_since_9am'].state + 'mm';
+                        ]]]
+                      entity: sensor.ryde_rain_since_9am
+                      icon: mdi:weather-rainy
+                      show_state: false
+                      show_name: true
+                      show_icon: true
+                      tap_action:
+                        action: more-info
+                      styles:
+                        grid:
+                          - grid-template-areas: '"i n"'
+                          - grid-template-columns: min-content min-content;
+                        card:
+                          - justify-self: center
+                          - justify-content: center
+                          - align-self: start
+                          - border-radius: 50px
+                          - width: auto
+                          - height: 35px
+                          - padding-right: 8px
+                        name:
+                          - justify-self: center
+                            font-size: 12px
+                            font-weight: 600
+                            color: var(--primary-text-color)
+                        img_cell:
+                          - width: 30px
+                          - background: transparent
+                          - border-radius: 100%
+                          - justify-content: center
+                          - padding-left: 2px
+                        icon:
+                          - width: 20px
+                          - padding-left: 2px
+                          - color: var(--label-badge-blue)
+                    - type: custom:button-card
+                      name: |
+                        [[[
+                          var wind_speed = states['sensor.ryde_wind_speed_kilometre'].state + ' km/hr';
+                          var wind_direction_state = states['sensor.ryde_wind_direction'].state;
+                          return wind_speed + ', ' + wind_direction_state;
+                        ]]]
+                      entity: sensor.ryde_wind_speed_kilometre
+                      icon: mdi:weather-windy
+                      show_state: false
+                      show_name: true
+                      show_icon: true
+                      tap_action:
+                        action: more-info
+                      styles:
+                        grid:
+                          - grid-template-areas: '"i n"'
+                          - grid-template-columns: min-content min-content;
+                        card:
+                          - justify-self: center
+                          - justify-content: center
+                          - align-self: start
+                          - border-radius: 50px
+                          - width: auto
+                          - height: 35px
+                          - padding-right: 8px
+                        name:
+                          - justify-self: center
+                            font-size: 12px
+                            font-weight: 600
+                            color: var(--primary-text-color)
+                        img_cell:
+                          - width: 30px
+                          - background: transparent
+                          - border-radius: 100%
+                          - justify-content: center
+                          - padding-left: 2px
+                        icon:
+                          - width: 20px
+                          - color: grey
+                          - padding-left: 2px
+                    - type: custom:button-card
+                      name: |
+                        [[[ 
+                          return states['sensor.ryde_max_temp'].state + '° High';
+                        ]]]
+                      entity: sensor.ryde_max_temp
+                      icon: mdi:thermometer-chevron-up
+                      show_state: false
+                      show_name: true
+                      show_icon: true
+                      tap_action:
+                        action: more-info
+                      styles:
+                        grid:
+                          - grid-template-areas: '"i n"'
+                          - grid-template-columns: min-content min-content;
+                        card:
+                          - justify-self: center
+                          - justify-content: center
+                          - align-self: start
+                          - border-radius: 50px
+                          - width: auto
+                          - height: 35px
+                          - padding-right: 8px
+                        name:
+                          - justify-self: center
+                            font-size: 12px
+                            font-weight: 600
+                            color: var(--primary-text-color)
+                        img_cell:
+                          - width: 30px
+                          - background: transparent
+                          - border-radius: 100%
+                          - justify-content: center
+                          - padding-left: 2px
+                        icon:
+                          - width: 20px
+                          - padding-left: 2px
+                          - color: var(--label-badge-red)
+                    - type: custom:button-card
+                      name: |
+                        [[[ 
+                          return states['sensor.ryde_min_temp'].state + '° Low';
+                        ]]]
+                      entity: sensor.ryde_min_temp
+                      icon: mdi:thermometer-chevron-down
+                      show_state: false
+                      show_name: true
+                      show_icon: true
+                      tap_action:
+                        action: more-info
+                      styles:
+                        grid:
+                          - grid-template-areas: '"i n"'
+                          - grid-template-columns: min-content min-content;
+                        card:
+                          - justify-self: center
+                          - justify-content: center
+                          - align-self: start
+                          - border-radius: 50px
+                          - width: auto
+                          - height: 35px
+                          - padding-right: 8px
+                        name:
+                          - justify-self: center
+                            font-size: 12px
+                            font-weight: 600
+                            color: var(--primary-text-color)
+                        img_cell:
+                          - width: 30px
+                          - background: transparent
+                          - border-radius: 100%
+                          - justify-content: center
+                          - padding-left: 2px
+                        icon:
+                          - width: 20px
+                          - padding-left: 2px
+                          - color: var(--label-badge-blue)
+          - type: custom:swipe-card
+            card_width: 100%
+            card_height: 110%
+            start_card: 1
+            parameters:
+              grabCursor: true
+              centeredSlides: false
+              slidesPerView: 1.2
+              spaceBetween: 15
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: custom:button-card
+                    template: sub_headings
+                    variables:
+                      var_name: |
+                        [[[ 
+                          const currentHour = new Date().getHours();
+
+                          if (currentHour < 12) {
+                            return "Today";
+                          } else if (currentHour < 18) {
+                            return "Today";
+                          } else {
+                            return "This evening";
+                          }
+                        ]]]
+                    styles:
+                      card:
+                        - border: none
+                        - box-shadow: none
+                        - background-colour: var(--gray600)
+                        - margin-top: 0px
+                  - type: custom:button-card
+                    entity: weather.ryde_hourly
+                    show_name: false
+                    show_icon: false
+                    show_label: false
+                    show_state: false
+                    tap_action:
+                      action: more-info
+                    styles:
+                      card:
+                        - padding: 20px
+                        - margin: 0px
+                      grid:
+                        - grid-template-areas: '"icon low high" "div div div" "desc desc desc"'
+                        - grid-template-columns: 35% auto auto
+                        - grid-template-rows: auto auto auto
+                      custom_fields:
+                        icon:
+                          - align-self: start
+                          - justify-self: start
+                        low:
+                          - align-self: start
+                          - justify-self: start
+                          - margin-left: 5px
+                        high:
+                          - align-self: start
+                          - justify-self: start
+                          - margin-left: 5px
+                        desc:
+                          - align-self: start
+                          - justify-self: start
+                          - padding-top: 10px
+                    custom_fields:
+                      icon:
+                        card:
+                          type: custom:button-card
+                          entity: sensor.ryde_temp
+                          entity_picture: |
+                            [[[ 
+                              var images = states["weather.ryde_hourly"].state; 
+                              return '/local/ic/weather_icons/animated2/'+images+'.svg'
+                            ]]]
+                          show_entity_picture: true
+                          tap_action:
+                            action: more-info
+                          show_state: false
+                          show_name: false
+                          show_icon: false
+                          styles:
+                            card:
+                              - border: none
+                              - padding: 0px
+                              - padding-top: 5px
+                              - margin: 0px
+                              - box-shadow: none
+                              - background-color: transparent
+                            icon:
+                              - width: 50px
+                      low:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          name: |
+                            [[[ 
+                              const now = new Date();
+                              const currentHour = now.getHours();
+                              let temp;
+                              
+                              if (currentHour >= 18 || currentHour < 9) {
+                                temp = states['sensor.ryde_now_temp_now'].state;
+                              } else {
+                                temp = states['sensor.ryde_now_temp_later'].state;
+                              }
+                              
+                              temp = temp.replace('°C', '').replace('C', '');
+                              return temp + '°';
+                            ]]]
+                          label: |
+                            [[[ 
+                              const now = new Date();
+                              const currentHour = now.getHours();
+                              let label;
+                              
+                              if (currentHour >= 18 || currentHour < 9) {
+                                label = states['sensor.ryde_now_now_label'].state;
+                              } else {
+                                label = states['sensor.ryde_now_later_label'].state;
+                              }
+                              
+                              label = label.replace('Overnight', '').trim(); // Remove 'Overnight' and trim any extra spaces
+                              
+                              return label;
+                            ]]]
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          styles:
+                            card:
+                              - box-shadow: none
+                              - padding: 0px
+                              - margin: 0px
+                              - background-color: transparent
+                              - border: none
+                              - align-content: start
+                              - justify-content: start
+                              - border-radius: 0px
+                            name:
+                              - font-size: 30px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                              - padding-bottom: 5px
+                            label:
+                              - color: var(--primary-color)
+                              - font-size: 12px
+                              - text-transform: uppercase
+                              - font-weight: 600
+                              - justify-self: start
+                      high:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          name: |
+                            [[[ 
+                              const now = new Date();
+                              const currentHour = now.getHours();
+                              let temp;
+                              
+                              if (currentHour >= 9 && currentHour < 18) {
+                                temp = states['sensor.ryde_now_temp_now'].state;
+                              } else {
+                                temp = states['sensor.ryde_now_temp_later'].state;
+                              }
+                              
+                              temp = temp.replace('°C', '').replace('C', '');
+                              return temp + '°';
+                            ]]]
+                          label: |
+                            [[[ 
+                              const now = new Date();
+                              const currentHour = now.getHours();
+                              let label;
+                              
+                              if (currentHour >= 9 && currentHour < 18) {
+                                label = states['sensor.ryde_now_now_label'].state;
+                              } else {
+                                label = states['sensor.ryde_now_later_label'].state;
+                              }
+                              
+                              label = label.replace('Overnight', '').trim(); // Remove 'Overnight' and trim any extra spaces
+                              
+                              return label;
+                            ]]]
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          styles:
+                            card:
+                              - padding: 0px
+                              - margin: 0px
+                              - background-color: transparent
+                              - align-content: start
+                              - border: none
+                              - justify-content: start
+                              - border-radius: 0px
+                              - box-shadow: none
+                            name:
+                              - font-size: 30px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                              - padding-bottom: 5px
+                            label:
+                              - font-size: 12px
+                              - text-transform: uppercase
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                      desc:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          name: |
+
+                            [[[ 
+                              return states['sensor.ryde_short_text_0'].state;
+                            ]]]
+                          label: |
+                            [[[
+                              const rainChance = parseInt(states['sensor.ryde_rain_chance_1'].state);
+                              const rainAmountMax = states['sensor.ryde_rain_amount_max_1'].state;
+                              if (rainChance <= 10) {
+                                return 'Small chance of rain, 0-1mm';
+                              } else {
+                                return `${rainChance}% chance of rain, ${rainAmountMax}mm`;
+                              }
+                            ]]]
+                          styles:
+                            card:
+                              - padding: 0px
+                              - margin: 0px
+                              - background-color: transparent
+                              - box-shadow: none
+                              - border-radius: 0px
+                              - border: none
+                            name:
+                              - font-size: 16px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                            label:
+                              - font-size: 14px
+                              - padding-top: 5px
+                              - font-weight: 500
+                              - color: color(secondary-color)
+                              - justify-self: start
+              - type: vertical-stack
+                cards:
+                  - type: custom:button-card
+                    template: sub_headings
+                    variables:
+                      var_name: Tomorrow
+                    styles:
+                      card:
+                        - margin-top: 0px
+                        - box-shadow: none
+                        - border: none
+                  - type: custom:button-card
+                    entity: weather.ryde_hourly
+                    show_name: false
+                    show_icon: false
+                    show_label: false
+                    show_state: false
+                    tap_action:
+                      action: more-info
+                    styles:
+                      card:
+                        - padding: 20px
+                        - margin: 0px
+                      grid:
+                        - grid-template-areas: '"icon low high" "div div div" "desc desc desc"'
+                        - grid-template-columns: 35% auto auto
+                        - grid-template-rows: auto auto auto
+                      custom_fields:
+                        icon:
+                          - align-self: start
+                          - justify-self: start
+                        low:
+                          - align-self: start
+                          - justify-self: start
+                          - margin-left: 5px
+                        high:
+                          - align-self: start
+                          - justify-self: start
+                          - margin-left: 5px
+                        desc:
+                          - align-self: start
+                          - justify-self: start
+                          - padding-top: 10px
+                    custom_fields:
+                      icon:
+                        card:
+                          type: custom:button-card
+                          entity: sensor.ryde_temp
+                          entity_picture: |
+                            [[[ 
+                              var images = states["weather.ryde"].state; 
+                              return '/local/ic/weather_icons/animated2/'+images+'.svg'
+                            ]]]
+                          show_entity_picture: true
+                          tap_action:
+                            action: more-info
+                          show_state: false
+                          show_name: false
+                          show_icon: false
+                          styles:
+                            card:
+                              - padding: 0px
+                              - padding-top: 5px
+                              - margin: 0px
+                              - box-shadow: none
+                              - background-color: transparent
+                              - border: none
+                            icon:
+                              - width: 50px
+                              - border: none
+                      low:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          name: |
+                            [[[ 
+                              let temp = states['sensor.ryde_temp_min_1'].state;
+                              temp = temp.replace('°C', '').replace('C', '');
+                              return temp + '°';
+                            ]]]
+                          label: Low
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          styles:
+                            card:
+                              - padding: 0px
+                              - margin: 0px
+                              - background-color: transparent
+                              - box-shadow: none
+                              - align-content: start
+                              - justify-content: start
+                              - border-radius: 0px
+                              - border: none
+                            name:
+                              - font-size: 30px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                              - padding-bottom: 5px
+                            label:
+                              - font-size: 12px
+                              - text-transform: uppercase
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                      high:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          name: |
+                            [[[ 
+                              let temp = states['sensor.ryde_temp_max_1'].state;
+                              temp = temp.replace('°C', '').replace('C', '');
+                              return temp + '°';
+                            ]]]
+                          label: High
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          styles:
+                            card:
+                              - padding: 0px
+                              - margin: 0px
+                              - background-color: transparent
+                              - align-content: start
+                              - justify-content: start
+                              - border-radius: 0px
+                              - box-shadow: none
+                              - border: none
+                            name:
+                              - font-size: 30px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                              - padding-bottom: 5px
+                            label:
+                              - font-size: 12px
+                              - text-transform: uppercase
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                      desc:
+                        card:
+                          type: custom:button-card
+                          entity: weather.ryde_hourly
+                          tap_action:
+                            action: more-info
+                          show_state: false
+                          show_name: true
+                          show_icon: false
+                          show_label: true
+                          name: |
+
+                            [[[ 
+                              return states['sensor.ryde_short_text_1'].state;
+                            ]]]
+                          label: |
+                            [[[
+                              const rainChance = parseInt(states['sensor.ryde_rain_chance_1'].state);
+                              const rainAmountMax = states['sensor.ryde_rain_amount_max_1'].state;
+                              if (rainChance <= 10) {
+                                return 'Small chance of rain, 0-1mm';
+                              } else {
+                                return `${rainChance}% chance of rain, ${rainAmountMax}mm`;
+                              }
+                            ]]]
+                          styles:
+                            card:
+                              - padding: 0px
+                              - margin: 0px
+                              - box-shadow: none
+                              - background-color: transparent
+                              - border-radius: 0px
+                              - border: none
+                            name:
+                              - font-size: 16px
+                              - font-weight: 600
+                              - color: var(--primary-color)
+                              - justify-self: start
+                            label:
+                              - font-size: 14px
+                              - padding-top: 5px
+                              - font-weight: 500
+                              - color: var(--secondary-color)
+                              - justify-self: start
+              - type: custom:button-card
+                show_name: false
+                show_icon: false
+                show_state: false
+                styles:
+                  card:
+                    - background-color: blue
+                    - padding: 0px
+                    - margin: 0px
+                    - height: 0px
+                    - box-shadow: none
+                    - border: none
+            card_mod:
+              style: |
+                ha_card {
+                  height: 110% !important;
+                  background: transparent !important;
+                }
+          - type: custom:button-card
+            template: sub_headings
+            variables:
+              var_name: Hourly
+            styles:
+              card:
+                - border: none
+                - box-shadow: none;
+                - margin-top: 0px
+          - show_current: false
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.ryde_hourly
+            forecast_type: hourly
+            theme: ios
+            card_mod:
+              style: |
+                ha-card {
+                border: none
+                box-shadow: none;
+                background-color: transparent;
+                margin: 0px 0px 0px 0px}
+          - type: custom:button-card
+            template: sub_headings
+            variables:
+              var_name: Forecast
+            styles:
+              card:
+                - border: none
+                - box-shadow: none
+                - margin-top: 0px
+          - type: custom:clock-weather-card
+            entity: weather.ryde
+            sun_entity: sun.sun
+            temperature_sensor: sensor.outdoor_temp
+            humidity_sensor: sensor.outdoor_humidity
+            weather_icon_type: line
+            animated_icon: true
+            forecast_rows: 5
+            locale: en-GB
+            time_pattern: HH:mm
+            time_format: 24
+            date_pattern: ccc, d.MM.yy
+            hide_today_section: true
+            hide_forecast_section: false
+            show_humidity: false
+            hide_clock: false
+            hide_date: false
+            hourly_forecast: false
+            use_browser_time: false
+            time_zone: null
+            show_decimal: false
+            apparent_sensor: sensor.real_feel_temperature
+            aqi_sensor: sensor.air_quality_index
+            card_mod:
+              style: |
+                ha-card {
+                box-shadow: none;
+                background-color: transparent;
+                margin: 0px 0px -15px 0px}
+          - type: custom:button-card
+            template: sub_headings
+            variables:
+              var_name: Recent
+            styles:
+              card:
+                - border: none
+                - box-shadow: none
+                - margin-top: 0px
+          - type: custom:mini-graph-card
+            name: Ryde
+            entities:
+              - entity: sensor.ryde_temp_feels_like
+                name: Feels Like
+                color: lightgreen
+              - entity: sensor.ryde_temp
+                name: Actual
+            color_thresholds:
+              - value: 5
+                color: white
+              - value: 10
+                color: '#68ce67'
+              - value: 20
+                color: '#3478f6'
+              - value: 25
+                color: '#a358d7'
+              - value: 30
+                color: '#eb4838'
+              - value: 35
+                color: '#f6ce46'
+            show:
+              icon: true
+              name: true
+              state: true
+              fill: fade
+            styles:
+              card:
+                border: none
+            card_mod:
+              style: |
+                ha-card {
+                  -webkit-backdrop-filter: blur(10px); !important;
+                }
+          - type: custom:button-card
+            template: sub_headings
+            variables:
+              var_name: Sun
+            styles:
+              card:
+                - box-shadow: none
+                - border: none
+                - margin-top: 0px
+          - type: custom:horizon-card
+            moon: true
+            refresh_period: 60
+            fields:
+              sunrise: true
+              sunset: true
+              dawn: true
+              noon: true
+              dusk: true
+            southern_flip: false
+            moon_phase_rotation: -10
+            language: en
+            time_format: language
+            number_format: language
+            card_mod:
+              style: |
+                ha-card {
+                  -webkit-backdrop-filter: blur(10px); !important;
+                }
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Petrol Prices
+            icon: mdi:gas-station
+            hash: '#petrol'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                  color: var(--room-petrol);
+                --mdc-icon-size: 40px !important;
+              }       
+              .bubble-header {
+                  color: var(--room-petrol) !important;
+              }      
+          - type: custom:gap-card
+            height: 10px
+          - type: custom:auto-entities
+            card:
+              type: custom:apexcharts-card
+              graph_span: 30d
+              chart_type: line
+              show:
+                last_updated: true
+              header:
+                show: true
+                title: Last 30 days Prices
+              apex_config:
+                chart:
+                  height: 450
+                stroke:
+                  width: 2
+                  curve: smooth
+            series:
+              show:
+                legend_value: false
+            filter:
+              include:
+                - entity_id: '*e10*'
+            sort:
+              method: state
+              ignore_case: true
+              count: 7
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Garden
+            icon: mdi:flower
+            hash: '#garden'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                --mdc-icon-size: 40px !important;
+                  color: var(--room-garden);
+              }       
+              .bubble-header {
+                  color: var(--room-garden) !important;
+              }      
+            sub_button:
+              main: []
+              bottom: []
+          - type: custom:gap-card
+            height: 40px
+          - type: custom:decluttering-card
+            template: light_row
+            variables:
+              - entity: light.hue_filament_bulb_1
+              - name: Outside Front Light
+              - icon: mdi:outdoor-lamp
+              - lock_entity: input_boolean.outdoorlightlock_switch
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: bubble_lookalike
+                entity: switch.tap_water_switch
+                name: Outdoor Tap
+                icon: mdi:water-pump
+              - type: custom:bubble-card
+                card_type: empty-column
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Tech Stuff
+            icon: mdi:devices
+            hash: '#room_tech'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                --mdc-icon-size: 40px !important;
+                  color: var(--room-tech);
+              }       
+              .bubble-header {
+                  color: var(--room-tech) !important;
+              }      
+            sub_button:
+              main: []
+              bottom: []
+            slider_fill_orientation: left
+            slider_value_position: right
+          - type: custom:gap-card
+            height: 40px
+          - type: conditional
+            conditions:
+              - entity: sensor.low_batteries_count
+                state_not: '0'
+            card:
+              type: custom:stack-in-card
+              mode: vertical
+              cards:
+                - type: markdown
+                  content: |
+                    # Low Batteries
+                  card_mod:
+                    style: |
+                      ha-card {
+                        border: none !important;
+                        box-shadow: none !important;
+                      }
+
+                      ha-markdown {
+                        font-size: 10px;
+                        font-weight: 500;
+                        color: var(--room-tech);
+                        margin-top: 5px;
+                        padding: 10px 0px 0px 15px !important;
+                      }
+                - type: custom:auto-entities
+                  card:
+                    type: entities
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background: transparent;
+                          box-shadow: none;
+                          border: none;
+                          padding: 0;
+                        }
+                  filter:
+                    include:
+                      - options:
+                          type: custom:button-card
+                          entity: this.entity_id
+                          show_icon: false
+                          show_state: true
+                          custom_fields:
+                            bar: |
+                              [[[
+                                const state = Number(entity.state);
+
+                                let color = "#5f8f6a"; // high battery (default)
+
+                                if (state <= 15)      color = "#c74b4b"; // red
+                                else if (state <= 30) color = "#d17a4a"; // orange
+                                else if (state <= 45) color = "#d1b04a"; // amber
+                                else if (state <= 60) color = "#a8b85a"; // olive
+                                else if (state <= 75) color = "#7fa36a"; // muted green
+
+                                const width = isNaN(state) ? 0 : Math.min(Math.max(state, 0), 100);
+                                
+                                return `
+                                  <div class="battery-track">
+                                    <div
+                                      class="battery-fill"
+                                      style="width:${state}%; background:${color};"
+                                    ></div>
+                                  </div>
+                                `;
+                              ]]]
+                          styles:
+                            grid:
+                              - grid-template-areas: '"n s" "bar bar"'
+                              - grid-template-columns: 1fr min-content
+                              - grid-template-rows: min-content min-content 1fr
+                              - grid-template-rows: min-content min-content
+                            card:
+                              - padding: 1px 1px 1px 1px
+                              - border: none;
+                              - box-shadow: none
+                              - border-radius: 10px
+                              - background: var(--card-background-color);
+                            name:
+                              - justify-self: start
+                              - text-align: left
+                              - font-size: 12px
+                              - padding: 0px 4px 6px 0px
+                              - color: var(--primary-color)
+                            state:
+                              - justify-self: start
+                              - text-align: left
+                              - font-size: 12px
+                              - padding: 0px 4px 6px 0px
+                              - color: var(--primary-color)
+                              - opacity: 0.7
+                            custom_fields:
+                              bar:
+                                - width: 100%
+                                - height: 12px
+                                - justify-self: stretch
+                          card_mod:
+                            style: |
+                              .battery-track {
+                                width: 100%;
+                                height: 12px;
+                                background: var(--battery_slider_background);
+                                border-radius: 50px;
+                                overflow: hidden;
+                                box-shadow: inset -3px -1px 2px 0px rgba(255,255,255,.1);                
+                                }
+
+                              .battery-fill {
+                                height: 100%;
+                                border-radius: 50px;
+                                box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.5);
+                              }
+                        entity_id: '*battery*'
+                    exclude:
+                      - options: {}
+                        state: '> 80'
+                      - options: {}
+                        state: 'off'
+                      - options: {}
+                        state: unavailable
+                      - options: {}
+                        state: Unavailable
+                      - options: {}
+                        state: unknown
+                      - options: {}
+                        entity_id: '*state*'
+                      - options: {}
+                        entity_id: '*906*'
+                      - options: {}
+                        entity_id: '*926*'
+                  sort:
+                    method: state
+                    numeric: true
+                    reverse: false
+                    count: 55
+          - type: custom:button-card
+            name: Infinity
+            icon: mdi:server-network
+            show_label: true
+            entity: sensor.infinity_volume_used_media_volume
+            label: QNAP NAS
+            custom_fields:
+              btn:
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          entity: sensor.infinity_memory_usage
+                          name: Memory
+                          show_state: true
+                          styles:
+                            grid:
+                              - grid-template-areas: '"i n" "i s" '
+                              - grid-template-columns: 0.2fr 1fr
+                            card:
+                              - height: 40px
+                              - border-radius: 10px
+                            name:
+                              - justify-self: start
+                              - font-size: 11px
+                            state:
+                              - justify-self: start
+                              - font-size: 10px
+                            img_cell:
+                              - justify-self: start
+                              - width: 24px
+                              - height: 24px
+                              - padding: 0px 8px 0px 10px
+                            icon:
+                              - width: 24px
+                              - color: var(--primary-color)
+                        - type: custom:button-card
+                          entity: sensor.infinity_cpu_temperature
+                          name: CPU
+                          show_state: true
+                          styles:
+                            grid:
+                              - grid-template-areas: '"i n" "i s" '
+                              - grid-template-columns: 0.2fr 1fr
+                            card:
+                              - height: 40px
+                              - border-radius: 10px
+                            name:
+                              - justify-self: start
+                              - font-size: 11px
+                            state:
+                              - justify-self: start
+                              - font-size: 10px
+                            img_cell:
+                              - justify-self: start
+                              - width: 24px
+                              - height: 24px
+                              - padding: 0px 8px 0px 10px
+                            icon:
+                              - width: 24px
+                              - color: var(--primary-color)
+                        - type: custom:button-card
+                          entity: sensor.infinity_status
+                          name: State
+                          show_state: true
+                          styles:
+                            grid:
+                              - grid-template-areas: '"i n" "i s" '
+                              - grid-template-columns: 0.2fr 1fr
+                            card:
+                              - height: 40px
+                              - border-radius: 10px
+                            name:
+                              - justify-self: start
+                              - font-size: 11px
+                            state:
+                              - justify-self: start
+                              - font-size: 10px
+                            img_cell:
+                              - justify-self: start
+                              - width: 24px
+                              - height: 24px
+                              - padding: 0px 8px 0px 10px
+                            icon:
+                              - width: 24px
+                              - color: var(--primary-color)
+                    - type: custom:button-card
+                      icon: mdi:harddisk
+                      name: App Volume
+                      entity: sensor.infinity_volume_used_appvolume
+                      custom_fields:
+                        bar: |
+                          [[[            
+                            var color = "#7fa36a";
+                            var state = states['sensor.infinity_volume_used_appvolume'].state;
+                            if (state >=75 )      color = "#c74b4b"; // red
+                            else if (state >=60 ) color = "#d17a4a"; // orange
+                            else if (state >=45) color = "#d1b04a"; // amber
+                            else if (state >=30) color = "#a8b85a"; // olive
+                            else color = "#7fa36a"; // muted green                
+                            return `
+                            <div>
+                             <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+                             </div>
+                            </div>
+                            `
+                          ]]]
+                        stat1: |
+                          [[[
+                            const originalValue = states['sensor.infinity_used_space_appvolume'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Used"
+                          ]]]
+                        stat2: |
+                          [[[
+                            const originalValue = states['sensor.infinity_free_space_appvolume'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Free"
+                          ]]]
+                        stat3: 411 GB Total
+                      styles:
+                        custom_fields:
+                          bar:
+                            - overflow: hidden;
+                            - box-shadow: >-
+                                inset -3px -1px 2px 0px
+                                rgba(255,255,255,.1);                }
+                            - background: var(--battery_slider_background);
+                            - justify-self: start
+                            - width: 100%
+                            - height: 12px
+                            - border-radius: 10px
+                          stat1:
+                            - justify-self: start
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat2:
+                            - justify-self: center
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat3:
+                            - justify-self: end
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                        grid:
+                          - grid-template-areas: >-
+                              "i n n n" "bar bar bar bar" "stat1 stat1 stat2
+                              stat3"
+                          - grid-template-columns: 0.3fr 1fr 1fr 1fr
+                        card:
+                          - padding: 10px
+                          - border-radius: 10px
+                        img_cell:
+                          - justify-self: start
+                          - width: 24px
+                          - height: 24px
+                          - padding-bottom: 5px
+                          - margin-left: '-3px'
+                        icon:
+                          - width: 24px
+                          - color: var(--primary-color)
+                        name:
+                          - justify-self: start
+                          - font-size: 12px
+                          - opacity: 0.9
+                          - padding-bottom: 5px
+                    - type: custom:button-card
+                      icon: mdi:harddisk
+                      name: Media Volume
+                      entity: sensor.infinity_volume_used_media_volume
+                      custom_fields:
+                        bar: |
+                          [[[
+                            var state = states['sensor.infinity_volume_used_media_volume'].state;
+                            var color = "#7fa36a";
+                            if (state >=75 )      color = "#c74b4b"; // red
+                            else if (state >=60 ) color = "#d17a4a"; // orange
+                            else if (state >=45) color = "#d1b04a"; // amber
+                            else if (state >=30) color = "#a8b85a"; // olive
+                            else color = "#7fa36a"; // muted green                
+                            return `
+                            <div>
+                             <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+                             </div>
+                            </div>
+                            `
+                          ]]]
+                        stat1: |
+                          [[[
+                            const originalValue = states['sensor.infinity_used_space_media_volume'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Used"
+                          ]]]
+                        stat2: |
+                          [[[
+                            const originalValue = states['sensor.infinity_free_space_media_volume'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Free"
+                          ]]]
+                        stat3: 7.3 TB Total
+                      styles:
+                        custom_fields:
+                          bar:
+                            - overflow: hidden;
+                            - box-shadow: inset -3px -1px 2px 0px rgba(255,255,255,.1)
+                            - background: var(--battery_slider_background);
+                            - justify-self: start
+                            - width: 100%
+                            - height: 12px
+                            - border-radius: 10px
+                          stat1:
+                            - justify-self: start
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat2:
+                            - justify-self: center
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat3:
+                            - justify-self: end
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                        grid:
+                          - grid-template-areas: >-
+                              "i n n n" "bar bar bar bar" "stat1 stat1 stat2
+                              stat3"
+                          - grid-template-columns: 0.3fr 1fr 1fr 1fr
+                        card:
+                          - padding: 10px
+                          - border-radius: 10px
+                        img_cell:
+                          - justify-self: start
+                          - width: 24px
+                          - height: 24px
+                          - padding-bottom: 5px
+                          - margin-left: '-3px'
+                        icon:
+                          - width: 24px
+                          - color: var(--primary-color)
+                        name:
+                          - justify-self: start
+                          - font-size: 12px
+                          - opacity: 0.9
+                          - padding-bottom: 5px
+                    - type: custom:button-card
+                      icon: mdi:harddisk
+                      name: Shield Internal Volume
+                      entity: sensor.system_monitor_disk_use_share_shield_internal
+                      custom_fields:
+                        bar: |
+                          [[[            
+                            var color = "#7fa36a";
+                            var state = states['sensor.system_monitor_disk_usage_share_shield_internal'].state;
+                            if (state >=75 )      color = "#c74b4b"; // red
+                            else if (state >=60 ) color = "#d17a4a"; // orange
+                            else if (state >=45) color = "#d1b04a"; // amber
+                            else if (state >=30) color = "#a8b85a"; // olive
+                            else color = "#7fa36a"; // muted green                
+                            return `
+                            <div>
+                             <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+                             </div>
+                            </div>
+                            `
+                          ]]]
+                        stat1: |
+                          [[[
+                            const originalValue = states['sensor.system_monitor_disk_use_share_shield_internal'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Used"
+                          ]]]
+                        stat2: |
+                          [[[
+                            const originalValue = states['sensor.system_monitor_disk_free_share_shield_internal'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Free"
+                          ]]]
+                        stat3: 11.6 GB Total
+                      styles:
+                        custom_fields:
+                          bar:
+                            - overflow: hidden;
+                            - box-shadow: >-
+                                inset -3px -1px 2px 0px
+                                rgba(255,255,255,.1);                }
+                            - background: var(--battery_slider_background);
+                            - justify-self: start
+                            - width: 100%
+                            - height: 12px
+                            - border-radius: 10px
+                          stat1:
+                            - justify-self: start
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat2:
+                            - justify-self: center
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat3:
+                            - justify-self: end
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                        grid:
+                          - grid-template-areas: >-
+                              "i n n n" "bar bar bar bar" "stat1 stat1 stat2
+                              stat3"
+                          - grid-template-columns: 0.3fr 1fr 1fr 1fr
+                        card:
+                          - padding: 10px
+                          - border-radius: 10px
+                        img_cell:
+                          - justify-self: start
+                          - width: 24px
+                          - height: 24px
+                          - padding-bottom: 5px
+                          - margin-left: '-3px'
+                        icon:
+                          - width: 24px
+                          - color: var(--primary-color)
+                        name:
+                          - justify-self: start
+                          - font-size: 12px
+                          - opacity: 0.9
+                          - padding-bottom: 5px
+                    - type: custom:button-card
+                      icon: mdi:harddisk
+                      name: Shield Media Volume
+                      entity: sensor.system_monitor_disk_use_share_shield_media
+                      custom_fields:
+                        bar: |
+                          [[[            
+                            var color = "#7fa36a";
+                            var state = states['sensor.system_monitor_disk_usage_share_shield_media'].state;
+                            if (state >=75 )      color = "#c74b4b"; // red
+                            else if (state >=60 ) color = "#d17a4a"; // orange
+                            else if (state >=45) color = "#d1b04a"; // amber
+                            else if (state >=30) color = "#a8b85a"; // olive
+                            else color = "#7fa36a"; // muted green                
+                            return `
+                            <div>
+                             <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+                             </div>
+                            </div>
+                            `
+                          ]]]
+                        stat1: |
+                          [[[
+                            const originalValue = states['sensor.system_monitor_disk_use_share_shield_media'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Used"
+                          ]]]
+                        stat2: |
+                          [[[
+                            const originalValue = states['sensor.system_monitor_disk_free_share_shield_media'].state; // e.g., 4.687 or "1.5"
+                            const roundedString = parseFloat(originalValue).toFixed(0);    
+                            return roundedString + " GB Free"
+                          ]]]
+                        stat3: 1.8 TB Total
+                      styles:
+                        custom_fields:
+                          bar:
+                            - overflow: hidden;
+                            - box-shadow: >-
+                                inset -3px -1px 2px 0px
+                                rgba(255,255,255,.1);                }
+                            - background: var(--battery_slider_background);
+                            - justify-self: start
+                            - width: 100%
+                            - height: 12px
+                            - border-radius: 10px
+                          stat1:
+                            - justify-self: start
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat2:
+                            - justify-self: center
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                          stat3:
+                            - justify-self: end
+                            - font-size: 10px
+                            - opacity: 0.7
+                            - padding-top: 5px
+                        grid:
+                          - grid-template-areas: >-
+                              "i n n n" "bar bar bar bar" "stat1 stat1 stat2
+                              stat3"
+                          - grid-template-columns: 0.3fr 1fr 1fr 1fr
+                        card:
+                          - padding: 10px
+                          - border-radius: 10px
+                        img_cell:
+                          - justify-self: start
+                          - width: 24px
+                          - height: 24px
+                          - padding-bottom: 5px
+                          - margin-left: '-3px'
+                        icon:
+                          - width: 24px
+                          - color: var(--primary-color)
+                        name:
+                          - justify-self: start
+                          - font-size: 12px
+                          - opacity: 0.9
+                          - padding-bottom: 5px
+            styles:
+              grid:
+                - grid-template-areas: '"n l" "btn btn" "btn btn"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 2em 1fr
+              card:
+                - padding: 15px 15px 45px 15px
+              custom_fields:
+                btn:
+                  - justify-content: end
+                  - align-self: end
+                  - margin: 0 0 -27px 0
+              name:
+                - justify-self: start
+                - align-self: start
+                - font-size: 19px
+                - font-weight: 500
+                - color: var(--room-tech)
+              label:
+                - padding-right: 6px
+                - text-align: right
+                - justify-self: end
+                - font-size: 19px
+                - font-weight: 500
+                - color: var(--room-tech)
+                - opacity: 0.6
+                - word-break: break-word
+                - white-space: normal
+            show_icon: false
+          - type: conditional
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity: sensor.hp_color_laserjet_mfp_m277dw
+                    state_not: Unavailable
+                  - condition: state
+                    entity: sensor.hp_color_laserjet_mfp_m277dw
+                    state_not: unavailable
+            card:
+              type: custom:stack-in-card
+              mode: vertical
+              cards:
+                - type: markdown
+                  content: |
+                    # Printer
+                  card_mod:
+                    style: |
+                      ha-card {
+                        border: none !important;
+                        box-shadow: none !important;
+                      }
+
+                      ha-markdown {
+                        font-size: 9px;
+                        font-weight: 500;
+                        color: var(--room-tech);
+                        margin-top: 5px;
+                        padding: 10px 0px 0px 15px !important;
+                      }  
+                - type: custom:button-card
+                  view_layout:
+                    grid-area: two
+                  entity: sensor.hp_color_laserjet_mfp_m277dw
+                  name: null
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:printer
+                  show_name: false
+                  styles:
+                    card:
+                      - width: 100%
+                      - background: var(--popup-card-background)
+                      - border-style: none
+                      - box-shadow: none
+                    grid:
+                      - grid-template-areas: '" i c m y k" "n s s s s"'
+                      - grid-template-columns: 1% 1fr 1fr 1fr 1fr
+                      - grid-template-rows: auto
+                    custom_fields:
+                      k:
+                        - width: 80%
+                        - margin: auto
+                      c:
+                        - width: 80%
+                        - margin: auto
+                      m:
+                        - width: 80%
+                        - margin: auto
+                      'y':
+                        - width: 80%
+                        - margin: auto
+                  custom_fields:
+                    k:
+                      card:
+                        type: custom:button-card
+                        template: inkwell
+                        entity: >-
+                          sensor.hp_color_laserjet_mfp_m277dw_black_cartridge_hp_cf400a
+                        variables:
+                          color: black
+                    c:
+                      card:
+                        type: custom:button-card
+                        template: inkwell
+                        entity: >-
+                          sensor.hp_color_laserjet_mfp_m277dw_cyan_cartridge_hp_cf401a
+                        variables:
+                          color: cyan
+                    m:
+                      card:
+                        type: custom:button-card
+                        template: inkwell
+                        entity: >-
+                          sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403a
+                        variables:
+                          color: magenta
+                    'y':
+                      card:
+                        type: custom:button-card
+                        template: inkwell
+                        entity: >-
+                          sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402a
+                        variables:
+                          color: yellow
+      - type: vertical-stack
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            name: Kitchen
+            icon: mdi:stove
+            hash: '#room_kitchen'
+            is_sidebar_hidden: true
+            margin_top_mobile: '-30px'
+            margin_top_desktop: '-30px'
+            button_type: name
+            show_header: true
+            styles: |
+              .bubble-pop-up-background {
+                background: var(--popup-header-background) !important;
+              }
+              .bubble-button-background {
+                background: var(--popup-header-background) !important; 
+              } 
+              .bubble-close-icon {
+                  color: var(--room-kitchen);
+                --mdc-icon-size: 40px !important;
+              }       
+              .bubble-header {
+                  color: var(--room-kitchen) !important;
+              }      
+            sub_button:
+              main: []
+              bottom: []
+            slider_fill_orientation: left
+            slider_value_position: right
+          - type: custom:button-card
+            name: Dishwasher
+            icon: mdi:dishwasher
+            show_label: true
+            entity: switch.012030522493002223_bsh_common_setting_powerstate
+            label: Bosch
+            styles:
+              grid:
+                - grid-template-areas: '"n l" "btn btn" "btn btn"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 2em 1fr
+              card:
+                - padding: 15px 15px 45px 15px
+              custom_fields:
+                btn:
+                  - justify-content: end
+                  - align-self: end
+                  - margin: 0 0 -27px 0
+              name:
+                - justify-self: start
+                - align-self: start
+                - font-size: 19px
+                - font-weight: 500
+                - color: var(--room-kitchen)
+              label:
+                - padding-right: 6px
+                - text-align: right
+                - justify-self: end
+                - font-size: 19px
+                - font-weight: 500
+                - color: var(--room-kitchen)
+                - opacity: 0.6
+                - word-break: break-word
+                - white-space: normal
+            show_icon: false
+    background:
+      opacity: 33
+      alignment: center
+      size: cover
+      repeat: repeat
+      attachment: fixed

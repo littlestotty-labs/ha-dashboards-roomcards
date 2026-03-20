@@ -1,0 +1,744 @@
+[
+    {
+        "id": "86274b4960cab99e",
+        "type": "tab",
+        "label": "Petrol",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "47b8c58d9985f751",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.7_eleven_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 230,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3facc18c13ac0cf",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.7_eleven_west_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 240,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e8982436bca48cd",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.7_eleven_north_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 250,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae0168ab54a76857",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.coles_express_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 240,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e6fee6d70a3f93d",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.eg_ampol_west_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 250,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e95355951b3bd7c",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.metro_fuel_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da6fa43e6f949dae",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.shell_reddy_express_marsfield_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bed9cba2e9733419",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.metro_petroleum_epping_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 260,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df099f7225d9e428",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.ampol_foodary_north_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 260,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebae31c3d8bd515d",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.apex_petroleum_west_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 270,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aebf3a0428d999a1",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.coles_express_west_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 260,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "726411856fa3d887",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.shell_reddy_express_north_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a3e52f175d7e087",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.shell_reddy_express_north_ryde_wicks_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 300,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35bbb2c3a4b770e7",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.speedway_kent_road_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 250,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7688bac9f63a90b6",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.speedway_west_ryde_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 250,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfd5642b895c2719",
+        "type": "poll-state",
+        "z": "86274b4960cab99e",
+        "name": "",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "updateInterval": "3",
+        "updateIntervalType": "num",
+        "updateIntervalUnits": "minutes",
+        "outputInitially": false,
+        "outputOnChanged": false,
+        "entityId": "sensor.costco_auburn_members_only_e10",
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputs": 1,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "178754b9.fedf4b",
+        "type": "server",
+        "name": "Home Assistant",
+        "addon": true
+    },
+    {
+        "id": "3312b9efa86b1672",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-home-assistant-websocket": "0.80.3"
+        }
+    }
+]

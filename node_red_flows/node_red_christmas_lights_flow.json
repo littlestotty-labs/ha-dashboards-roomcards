@@ -1,0 +1,322 @@
+[
+    {
+        "id": "f2ea6431a37600e5",
+        "type": "tab",
+        "label": "Christmas Lights",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "19d300d46a72e7fa",
+        "type": "eztimer",
+        "z": "f2ea6431a37600e5",
+        "name": "",
+        "debug": false,
+        "autoname": "23:30:00",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "-33.796386",
+        "lon": "151.112123",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "2",
+        "ontimesun": "dawn",
+        "ontimetod": "23:30:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "3",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "97f64ebe05a1cedb"
+            ]
+        ]
+    },
+    {
+        "id": "84f2d123398964bf",
+        "type": "eztimer",
+        "z": "f2ea6431a37600e5",
+        "name": "",
+        "debug": false,
+        "autoname": "goldenHour",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "-33.796386",
+        "lon": "151.112123",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "1",
+        "ontimesun": "goldenHour",
+        "ontimetod": "00:00:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "str",
+        "onvalue": "on",
+        "onoffset": "-60",
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "3",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "9b3ec3c81d6fcaeb"
+            ]
+        ]
+    },
+    {
+        "id": "8de1e38303a922ad",
+        "type": "api-call-service",
+        "z": "f2ea6431a37600e5",
+        "name": "Turn on xmas plugs",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.xmas"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 650,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a803fc0048c3d04",
+        "type": "server-state-changed",
+        "z": "f2ea6431a37600e5",
+        "name": "Xmas Mode on?",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.xmas_switch"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "Whatsapp",
+                "valueType": "str"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "8de1e38303a922ad"
+            ],
+            [
+                "97f64ebe05a1cedb"
+            ]
+        ]
+    },
+    {
+        "id": "9b3ec3c81d6fcaeb",
+        "type": "api-call-service",
+        "z": "f2ea6431a37600e5",
+        "name": "Turn on xmas Boolean",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.xmas_switch"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 380,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2b2b5762f73defe8",
+        "type": "api-call-service",
+        "z": "f2ea6431a37600e5",
+        "name": "turn off xmas switch",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.xmas_switch"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97f64ebe05a1cedb",
+        "type": "api-call-service",
+        "z": "f2ea6431a37600e5",
+        "name": "Turn off xmas plugs ",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.xmas"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "2b2b5762f73defe8"
+            ]
+        ]
+    },
+    {
+        "id": "178754b9.fedf4b",
+        "type": "server",
+        "name": "Home Assistant",
+        "addon": true
+    },
+    {
+        "id": "d361bc919a1dc974",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-eztimer": "1.2.7",
+            "node-red-contrib-home-assistant-websocket": "0.80.3"
+        }
+    }
+]

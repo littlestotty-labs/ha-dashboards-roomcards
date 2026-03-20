@@ -1,0 +1,53 @@
+sensor.0xa4c1380ce7f7b699_battery:
+  friendly_name: Office Motion Battery
+sensor.0xa4c13878fe0e5f3e_battery:
+  friendly_name: Landing Far Motion Battery
+sensor.downstairs_loo_motion_battery:
+  friendly_name: Downstairs Loo Motion Battery
+sensor.front_door_inside_sensor_battery:
+  friendly_name: Front Door Motion Battery
+sensor.hue_dimmer_switch_1_battery:
+  friendly_name: Hue dimmer switch 1 Battery
+sensor.hue_outdoor_motion_sensor_1_battery:
+  friendly_name: Outside Motion Battery
+sensor.laundry_motion_blue2_battery:
+  friendly_name: Laundry Motion Battery
+sensor.loungemotion_purple2_battery:
+  friendly_name: Lounge Motion Battery
+sensor.luxsensor_battery:
+  friendly_name: Lux Outdoor Battery
+sensor.piryun_dong_chuan_gan_qi_2_battery:
+  friendly_name: PIR运动传感器 2 Battery
+sensor.piryun_dong_chuan_gan_qi_3_battery:
+  friendly_name: PIR运动传感器 3 Battery
+sensor.piryun_dong_chuan_gan_qi_battery:
+  friendly_name: PIR运动传感器 4 Battery
+sensor.stairs_motion_battery:
+  friendly_name: Stairs Motion Battery
+sensor.tap_battery:
+  friendly_name: Garden Tap Battery
+sensor.temp_sensor_battery:
+  friendly_name: Temp/Humidity Battery
+sensor.upstairs_sensor_battery:
+  friendly_name: Landing (Nr Loo) Motion Battery
+
+sensor.ampol_foodary_north_ryde_e10:
+  friendly_name: Ampol, Epping Rd
+sensor.apex_petroleum_west_ryde_e10:
+  friendly_name: Apex, Victoria Rd
+sensor.coles_express_ryde_e10:
+  friendly_name: Coles Express, Ryde
+sensor.costco_auburn_members_only_e10:
+  friendly_name: Costco, Lidcombe
+sensor.eg_ampol_west_ryde_e10:
+  friendly_name: Ampol, Victoria Rd
+sensor.metro_fuel_e10:
+  friendly_name: Metro Fuel, Lane Cove Rd
+sensor.metro_fuel_homebush_e10:
+  friendly_name: Metro Fuel, Homebush
+sensor.metro_petroleum_epping_e10:
+  friendly_name: Metro Fuel, Epping
+sensor.speedway_kent_road_e10:
+  friendly_name: Speedway, Kent Road
+sensor.speedway_west_ryde_e10:
+  friendly_name: Speedway, Victoria Rd

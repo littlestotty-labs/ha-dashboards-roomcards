@@ -1,0 +1,100 @@
+- sensor:
+    - unique_id: shield_source
+      name: Shield TV Source
+      default_entity_id: sensor.shield_source
+      state: '{{ states.media_player.android_tv_10_0_0_26.attributes["source"] }}'
+
+    - unique_id: tv_source
+      name: Living Room TV Source
+      default_entity_id: sensor.tv_source
+      state: '{{ states.media_player.lg_webos_smart_tv.attributes["source"] }}'
+
+    - unique_id: shield_source
+      name: Shield TV Source
+      default_entity_id: sensor.shield_source
+      state: '{{ states.media_player.android_tv_10_0_0_26.attributes["source"] }}'
+
+    - unique_id: soundbar_volume
+      name: Soundbar Volume
+      default_entity_id: sensor.soundbar_volume
+      state: '{{ states.media_player.soundbar.attributes["volume_level"] }}'
+
+    - unique_id: tv_volume
+      name: LG TV Volume
+      default_entity_id: sensor.tv_volume
+      state: '{{ states.media_player.lg_tv.attributes["volume_level"] }}'
+
+    - unique_id: plug_green_power
+      name: Green Plug Power
+      default_entity_id: sensor.plug_green_power
+      state: "{{ states.sensor.green_plug_power }}"
+      unit_of_measurement: W
+      device_class: power
+
+    #    - unique_id: plug_pink_2_power
+    #      name: pink_2 Plug Power
+    #      default_entity_id: sensor.plug_pink_2_power
+    #      state: "{{ states.sensor.smart_plug_2_power }}"
+    #      unit_of_measurement: W
+    #      device_class: power
+
+    - unique_id: plug_yellow_2_power
+      name: yellow_2 Plug Power
+      default_entity_id: sensor.plug_yellow_2_power
+      state: "{{ states.sensor.yellow_2_power }}"
+      unit_of_measurement: W
+      device_class: power
+
+    - unique_id: plug_peach_2_power
+      name: peach_2 Plug Power
+      default_entity_id: sensor.plug_peach_2_power
+      state: "{{ states.sensor.peach_2_power }}"
+      unit_of_measurement: W
+      device_class: power
+
+    - unique_id: plug_purple_2_power
+      name: purple_2 Plug Power
+      default_entity_id: sensor.plug_purple_2_power
+      state: "{{ states.sensor.purple_2_power }}"
+      unit_of_measurement: W
+      device_class: power
+
+    - unique_id: ryde_temperature
+      name: Ryde Current Temperature
+      default_entity_id: sensor.ryde_temperature
+      state: '{{ states.weather.ryde.attributes["temperature"] }}'
+      device_class: temperature
+
+    - unique_id: number_of_lights_on
+      name: Number of House Lights On
+      default_entity_id: sensor.number_of_lights_on
+      state: |
+        {% set lights = [ states.light.downstairs_hallway,
+                          states.light.outside_front,
+                          states.light.hue_ambiance_lamp_1_2,
+                          states.light.hue_filament_bulb_1, 
+                          states.light.laundry_light,
+                          states.light.living_room,
+                          states.light.loo_light ,
+                          states.light.upstairs_landing_bedroom ] %}
+        {{ lights | selectattr('state', 'eq', 'on') | list | count }}
+      unit_of_measurement: "lights on"
+      device_class: volume
+
+    - unique_id: low_batteries_count
+      name: "Low Batteries Count"
+      icon: mdi:battery-alert
+      state: >
+        {% set threshold = 40 %}
+        {% set batteries = states.sensor
+          | selectattr('entity_id', 'search', 'battery')
+          | rejectattr('state', 'in', ['unavailable', 'unknown'])
+          | rejectattr('entity_id', 'search', 'state')
+          | rejectattr('entity_id', 'search', '906')
+          | rejectattr('entity_id', 'search', '926')
+          | map(attribute='state')
+          | map('float', 100)
+          | select('lt', threshold)
+          | list
+        %}
+        {{ batteries | count }}

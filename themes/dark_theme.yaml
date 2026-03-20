@@ -1,0 +1,69 @@
+grahams-dark:
+  card-mod-theme: "grahams-dark"
+  # -----------------------------------------------------
+  # Base
+  # -----------------------------------------------------
+
+  primary-font-family: "'Space Grotesk', sans-serif"
+
+  # -----------------------------------------------------
+  # Backgrounds
+  # -----------------------------------------------------
+  primary-background-color: "#121416"
+  secondary-background-color: "#181B1F"
+
+  card-background-color: "#27292dff"
+  ha-card-background: var(--card-background-color)
+  battery_slider_background: "#2b2e34"
+
+  # -----------------------------------------------------
+  # Text
+  # -----------------------------------------------------
+  primary-color: "#6fa9cdff"
+  primary-text-color: "#E6E9ED"
+
+  # -----------------------------------------------------
+  # Divider / Outline
+  # -----------------------------------------------------
+  divider-color: "rgba(255, 255, 255, 0.06)"
+
+  # -----------------------------------------------------
+  # Cards
+  # -----------------------------------------------------
+  ha-card-border-radius: "12px"
+  ha-card-box-shadow: >
+    0 8px 18px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24)
+  # -----------------------------------------------------
+  # Accent / State
+  # -----------------------------------------------------
+  accent-color: "#7cb7dcff"
+  state-icon-color: "#7FA6BC"
+  bubble-accent-color: linear-gradient(145deg, rgba(86, 130, 155, 1) -10%, rgba(117, 160, 185, 1) 100%)
+  bubble-light-opacity: 0.6
+
+  # -----------------------------------------------------
+  # Icons
+  # -----------------------------------------------------
+  scene-active-background: "#6a99bd" # background for large scene button
+  selected-color: "#494c50ff" # used for small room buttons
+  scene-selected-color: var(--card-background-color) # icon and text of large scene button
+
+  # -----------------------------------------------------
+  # Bubble Card
+  # -----------------------------------------------------
+
+  bubble-border-radius: "18px"
+  popup-header-background: rgb(35,38,42,1)
+
+  # -----------------------------------------------------
+  # Room Accent Colors (Dark tuned)
+  # -----------------------------------------------------
+  room-lounge: "#d19c51ff"
+  room-bedroom: "#3a9ff8ff"
+  room-office: "#78b78fff"
+  room-lights: "#ba7171ff"
+  room-petrol: "#c9c687ff"
+  room-garden: "#c387c9ff"
+  room-tech: "#c9ab87ff"
+  room-kitchen: "#5f88adff"

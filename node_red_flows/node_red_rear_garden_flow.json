@@ -1,0 +1,159 @@
+[
+    {
+        "id": "d8cee1a611ada608",
+        "type": "tab",
+        "label": "Rear Garden",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "378b8ccee30dc225",
+        "type": "inject",
+        "z": "d8cee1a611ada608",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "fe453e6974bab1c5",
+                "ec6a6b9a4cdc4c9e"
+            ]
+        ]
+    },
+    {
+        "id": "fe453e6974bab1c5",
+        "type": "api-current-state",
+        "z": "d8cee1a611ada608",
+        "name": "ryde temp now",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.ryde_now_temp_now",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "da6f3d07aed97211"
+            ]
+        ]
+    },
+    {
+        "id": "da6f3d07aed97211",
+        "type": "debug",
+        "z": "d8cee1a611ada608",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ec6a6b9a4cdc4c9e",
+        "type": "api-current-state",
+        "z": "d8cee1a611ada608",
+        "name": "ryde temp later",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.ryde_now_temp_later",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "da6f3d07aed97211"
+            ]
+        ]
+    },
+    {
+        "id": "178754b9.fedf4b",
+        "type": "server",
+        "name": "Home Assistant",
+        "addon": true
+    },
+    {
+        "id": "27f0bd8346c3b310",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-home-assistant-websocket": "0.80.3"
+        }
+    }
+]

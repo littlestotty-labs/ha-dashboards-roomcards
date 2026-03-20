@@ -1,0 +1,65 @@
+grahams-light:
+  card-mod-theme: "grahams-light"
+  # -----------------------------------------------------
+  # Base
+  # -----------------------------------------------------
+
+  primary-font-family: "'Space Grotesk', sans-serif"
+
+  # -----------------------------------------------------
+  # Backgrounds
+  # -----------------------------------------------------
+  primary-background-color: "#c2c6c9ff"
+  secondary-background-color: "#eaedf0ff"
+
+  card-background-color: "#eaedf0ff"
+  ha-card-background: var(--card-background-color)
+  battery_slider_background: "#cfcfcf"
+
+  # -----------------------------------------------------
+  # Text
+  # -----------------------------------------------------
+  primary-color: "#536263ff"
+  primary-text-color: "#000000"
+
+  # -----------------------------------------------------
+  # Divider / Outline
+  # -----------------------------------------------------
+  divider-color:
+    "rgba(51,51,51,.12)"
+
+    # -----------------------------------------------------
+  # Cards
+  # -----------------------------------------------------
+  ha-card-border-radius: "12px"
+  ha-card-box-shadow: >
+    0px 3px 7px 0px rgba(0,0,0,0.56)
+
+  accent-color: rgba(86, 130, 155, 1)
+  state-icon-color: rgba(51,51,51,1)
+  bubble-accent-color: var(--accent-color)
+  bubble-light-opacity: 0.6
+
+  # Google-yellow: "#FF9101"
+  scene-active-background: "#fce8d0ff"
+  scene-selected-color: "#FF9101"
+  selected-color: var(--card-background-color)
+
+  # -----------------------------------------------------
+  # Bubble Card
+  # -----------------------------------------------------
+
+  bubble-border-radius: "18px"
+  popup-header-background: rgba(234, 234, 234, 1)
+
+  # -----------------------------------------------------
+  # Room Accent Colors (light tuned)
+  # -----------------------------------------------------
+  room-lounge: "#ce8d3eff"
+  room-bedroom: "#4b738dff"
+  room-office: "#678f66ff"
+  room-lights: "#E07A7A"
+  room-petrol: "#c9c687ff"
+  room-garden: "#c387c9ff"
+  room-tech: "#947d61ff"
+  room-kitchen: "#4b738dff"

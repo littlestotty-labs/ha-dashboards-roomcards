@@ -1,0 +1,40 @@
+# Home Assistant local files to ignore
+.secrets*
+secrets.yaml
+.storage/
+home-assistant.log*
+home-assistant_v2.db*
+*.db
+*.db-
+*.db-shm
+*.db-wal
+*.backup
+*.tmp
+*.log
+*.lock
+.ha_run.lock
+.HA_VERSION
+
+# Local credentials and tokens
+*.pem
+*.key
+
+# Calendar file with personal IDs
+google_calendars.yaml
+
+# Add custom directories that should remain local
+deps/
+esphome/
+
+#added additional folders to ignore
+www/
+zigbee2mqtt/
+ui_lovelace_minimalist/
+image/
+tts/
+custom_components/
+custom_templates/
+blueprints/
+.cloud/
+deps/
+

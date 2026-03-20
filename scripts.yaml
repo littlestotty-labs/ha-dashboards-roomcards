@@ -1,0 +1,47 @@
+Script_spotify:
+  alias: activate_chrome_audio
+  sequence:
+    - service: spotcast.start
+      data:
+        force_playback: true
+        random_song: true
+        repeat: "off"
+        shuffle: true
+        offset: 0
+        ignore_fully_played: false
+        device_name: f944c8c1faf7cc3350666074b0b53ae8
+        country: EN
+        account: "{{ states('input_select.spotify_accounts_list')|lower }}"
+  mode: single
+  icon: mdi:google-chrome
+
+script_tap:
+  alias: set_total_duration_then_start_watering
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: /homeassistant/config_from_ha
+        payload: '{"tag":"total_duration","id":"DF404121004B1200","value":123}'
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.tap_water_switch
+  mode: single
+
+speed_test:
+  sequence:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.speedtest_download
+          state: unavailable
+    - service: homeassistant.reload_config_entry
+      data:
+        entity_id: sensor.speedtest_download
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 20
+        milliseconds: 0
+  alias: Speedtest update
+  mode: single
