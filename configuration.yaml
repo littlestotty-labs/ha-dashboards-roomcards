@@ -11,6 +11,7 @@ homeassistant:
   customize: !include customize.yaml
   external_url: "https://home.gstott.com"
   internal_url: "http://10.0.0.20:8123"
+
 http:
   use_x_forwarded_for: true
   trusted_proxies:
@@ -20,14 +21,66 @@ http:
     - 0.0.0.0
 
 lovelace:
-  mode: storage
+  resource_mode: yaml
   dashboards:
-    yaml-dashboard:
+    lovelace:
       mode: yaml
-      title: YAML Dashboard
-      icon: mdi:code-tags
+      title: Home Dashboard
+      icon: mdi:home-automation
       show_in_sidebar: true
       filename: dashboards/ui-lovelace.yaml
+  resources:
+    - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
+      type: module
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+      type: module
+#    - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
+    - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+#    - url: /hacsfiles/android-tv-card/universal-remote-card.min.js
+    - url: /hacsfiles/kiosk-mode/kiosk-mode.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/rollup.config.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+#    - url: /hacsfiles/light-entity-card/light-entity-card.js
+#    - url: /hacsfiles/hass-swipe-navigation/swipe-navigation.js
+#    - url: /hacsfiles/power-table-card/powertable-card.js
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/Bubble-Card/bubble-pop-up-fix.js
+      type: module
+    - url: /hacsfiles/Bubble-Card/bubble-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+#    - url: /hacsfiles/my-cards/my-button.js
+#    - url: /hacsfiles/my-cards/my-slider-v2.js
+#    - url: /hacsfiles/my-cards/my-slider.js
+#    - url: /hacsfiles/my-cards/my-cards.js
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
+      type: module
+#    - url: /hacsfiles/lovelace-template-entity-row/rollup.config.js
+    - url: /hacsfiles/decluttering-card/decluttering-card.js
+      type: module
+    - url: /hacsfiles/swipe-card/swipe-card.js
+      type: module
+    - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
+    - url: /hacsfiles/clock-weather-card/clock-weather-card.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+#    - url: /hacsfiles/bom-radar-card/bom-radar-card.js
+    - url: /hacsfiles/custom-brand-icons/custom-brand-icons.js
+      type: module
+
+#button_card_templates: !include_dir_merge_named /hacsfiles/creative-button-card-templates/
 
 automation: !include automations.yaml
 script: !include scripts.yaml
