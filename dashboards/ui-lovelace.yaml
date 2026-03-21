@@ -13,6 +13,8 @@ kiosk_mode:
     - entity:
         input_boolean.kiosk_mode: 'off'
       hide_header: false
+button_card_templates: !include_dir_merge_named creative-button-card-templates/
+
 decluttering_templates:
   light_row:
     card:
