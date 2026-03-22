@@ -1,0 +1,22 @@
+  fan:
+    styles:
+      icon:
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+
+              const base = entity.entity_id.split('.')[1];
+              const powerSensor = `sensor.${base}_power`;
+              const s = states[powerSensor];
+
+              let watts = s ? parseFloat(s.state) : NaN;
+              if (isNaN(watts)) watts = 20;
+
+              const duration = Math.min(7, Math.max(.2, 8 - watts * 0.23));
+              return `rotating ${duration}s linear infinite`;
+            ]]]
+    extra_styles: |
+      @keyframes rotating {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }

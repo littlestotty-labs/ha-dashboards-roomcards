@@ -1,0 +1,39 @@
+type: custom:auto-entities
+card:
+  type: entities
+  card_mod:
+    style: |
+      ha-card {
+        margin-top: 0px  !important;;
+        padding-left: 0px !important;
+        margin-left: 0px !important;
+        background-color: var(--card-background-color)      }
+filter:
+  include:
+    - entity_id: '*e10*'
+      options:
+        icon: mdi:gas-station
+        type: custom:template-entity-row
+        color: var(--primary-color)
+        tap_action:
+          action: navigate
+          navigation_path: '#petrol'
+        card_mod:
+          style: |
+            :host {
+                font-size: 15px;
+                color: var(--primary-color);
+            }
+            div#wrapper {
+              min-height: 15px;
+              height:  12px;
+              margin-bottom: -1px !important;
+              margin-left: -12px !important;
+              margin-top: -1px !important;
+              padding-bottom: -2px !important;
+              padding-top: -2px !important;
+              }
+sort:
+  method: state
+  ignore_case: true
+  count: 5

@@ -1,0 +1,31 @@
+  heat:
+    styles:
+      icon:
+        - color: |
+            [[[
+              if (entity.state === 'on') return 'orange';
+              return variables.accent_color;
+            ]]]           
+        - animation: |
+            [[[
+              if (entity.state !== 'on') return 'none';
+              return 'heat-shimmer 2.5s ease-in-out infinite';
+            ]]]   
+    extra_styles: |
+      @keyframes heat-shimmer {
+        0% {
+          transform: translate(0px, 0px) skewX(0deg);
+        }
+        25% {
+          transform: translate(0.6px, -0.8px) skewX(2deg);
+        }
+        50% {
+          transform: translate(-0.6px, -1.2px) skewX(-2deg);
+        }
+        75% {
+          transform: translate(0.4px, -0.6px) skewX(0.6deg);
+        }
+        100% {
+          transform: translate(0px, 0px) skewX(0deg);
+        }
+      }

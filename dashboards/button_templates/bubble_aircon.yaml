@@ -1,0 +1,4 @@
+  bubble_aircon:
+    template:
+      - bubble_base
+      - aircon

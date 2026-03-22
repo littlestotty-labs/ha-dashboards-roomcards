@@ -1,0 +1,4 @@
+  bubble_fan:
+    template:
+      - bubble_base
+      - fan

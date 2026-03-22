@@ -1,0 +1,4 @@
+  bubble_heater:
+    template:
+      - bubble_base
+      - heat

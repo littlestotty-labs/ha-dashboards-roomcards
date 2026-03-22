@@ -1,0 +1,31 @@
+  room_button:
+    tap_action:
+      action: '[[[return variables.tap_action]]]'
+      navigation_path: '[[navigation_path]]'
+      service: light.turn_off
+      target:
+        entity_id: light.house_lights
+    entity: '[[entity]]'
+    icon: '[[[ return variables.icon]]]'
+    show_name: false
+    state:
+      - value: 'on'
+        styles:
+          icon:
+            - color: var(--selected-color)
+            - opacity: 1
+          card:
+            - background-color: '[[[ return variables.accent_color]]]'
+    styles:
+      card:
+        - padding: 2px
+        - width: 44px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - background-color: var(--selected-color)
+      icon:
+        - width: 30px
+        - color: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ",
+            transparent 40%)"; ]]]
+        - opacity: 0.8

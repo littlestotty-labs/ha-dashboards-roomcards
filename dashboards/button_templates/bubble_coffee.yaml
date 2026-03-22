@@ -1,0 +1,4 @@
+  bubble_coffee:
+    template:
+      - bubble_base
+      - coffee

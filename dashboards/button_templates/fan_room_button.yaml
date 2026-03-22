@@ -1,0 +1,4 @@
+  fan_room_button:
+    template:
+      - room_button
+      - fan

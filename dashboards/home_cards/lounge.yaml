@@ -1,0 +1,61 @@
+type: custom:button-card
+template: room_card
+variables:
+  accent_color: var(--room-lounge)
+name: Lounge
+icon: mdi:sofa
+tap_action:
+  navigation_path: '#room_lounge'
+show_label: true
+label: |
+  [[[
+    var lounge = ' ';
+    var movie = states['input_boolean.movie_switch'].state;
+    var wii = states['input_boolean.wii_switch'].state;
+    var chill = states['input_boolean.lounge_chill_switch'].state;
+    var spotify = states['input_boolean.reading_switch'].state;
+    var whatsapp = states['input_boolean.whatsapp_switch'].state;
+
+    if (movie == 'on') {
+      lounge = 'Movie Time';
+    } else if (wii == 'on') {
+      lounge = 'Play Time';
+    } else if (chill == 'on') {
+      lounge = 'Just Chilling';
+    } else if (spotify == 'on') {
+      lounge = 'Music time';
+    } else if (whatsapp == 'on') {
+      lounge = 'Family Catchups';
+    } else {
+      lounge = ' ';
+    }
+      return lounge;
+  ]]]
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: room_button
+          variables:
+            accent_color: var(--room-lounge)
+            tap_action: toggle
+          entity: light.lounge_light
+          icon: mdi:lightbulb-outline
+        - type: custom:button-card
+          template: room_button
+          variables:
+            accent_color: var(--room-lounge)
+            tap_action: navigate
+            navigation_path: '#room_lounge'
+          entity: media_player.shield_2
+          icon: mdi:television-speaker
+        - type: custom:button-card
+          template: fan_room_button
+          variables:
+            accent_color: var(--room-lounge)
+            tap_action: toggle
+          entity: switch.plug_pink_2
+          icon: mdi:fan
+show_state: true

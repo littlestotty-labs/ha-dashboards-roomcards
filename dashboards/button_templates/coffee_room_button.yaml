@@ -1,0 +1,4 @@
+  coffee_room_button:
+    template:
+      - room_button
+      - coffee

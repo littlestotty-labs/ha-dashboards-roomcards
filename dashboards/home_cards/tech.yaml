@@ -1,0 +1,43 @@
+type: custom:button-card
+template: room_card
+variables:
+  accent_color: var(--room-tech)
+name: Tech Stuff
+icon: null
+tap_action:
+  navigation_path: '#room_tech'
+styles:
+  card:
+    - height: 65px
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          entity: sensor.x80_wan_status
+          name: Internet
+          show_state: false
+          show_label: false
+          show_name: false
+          icon: mdi:close-network-outline
+          styles:
+            grid:
+              - grid-template-areas: '"i n" "i s" '
+            card:
+              - height: 40px
+              - border-radius: 10px
+            img_cell:
+              - width: 24px
+              - padding: 0px 8px 0px 10px
+            icon:
+              - width: 24px
+              - color: red
+          state:
+            - value: Connected
+              icon: mdi:check-network-outline
+              styles:
+                icon:
+                  - color: var(--room-tech)
+show_state: true
+show_label: false

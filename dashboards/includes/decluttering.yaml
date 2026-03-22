@@ -1,0 +1,136 @@
+light_row:
+  card:
+    type: custom:bubble-card
+    card_type: button
+    button_type: slider
+    sub_button:
+      main:
+        - entity: '[[entity]]'
+          name: percent
+          scrolling_effect: false
+          show_background: false
+          light_background: false
+          show_icon: false
+          show_state: false
+          show_attribute: true
+          attribute: brightness
+        - entity: '[[lock_entity]]'
+          scrolling_effect: false
+          show_icon: true
+          show_background: true
+          state_background: true
+          use_accent_color: true
+          show_state: false
+          tap_action:
+            action: toggle
+          hide_when_parent_unavailable: true
+          content_layout: icon-left
+          name: lock
+      bottom: []
+    entity: '[[entity]]'
+    name: '[[name]]'
+    icon: '[[icon]]'
+    scrolling_effect: false
+    use_accent_color: false
+    show_state: false
+    show_attribute: false
+    attribute: brightness
+    min_value: 0
+    max_value: 100
+    step: 1
+    slider_live_update: true
+    allow_light_slider_to_0: true
+    light_transition: true
+    tap_action:
+      action: none
+    hold_action:
+      action: more-info
+    styles: |-
+      .bubble-container {
+        height: 50px !important;
+        background-color: var(--card-background-color) !important;
+        opacity: 1 !important;
+        border-radius: var(--ha-card-border-radius) !important;
+        box-shadow: var(--ha-card-box-shadow) !important;
+      }
+      * {
+        --bubble-button-border-radius: 12px;
+      }
+      .bubble-range-fill {
+        opacity: var(--bubble-light-opacity) !important;
+        background-color: var(--accent-color) !important;
+        right: 100 !important;
+        left: 10 !important;
+        transform-origin: left center !important;
+      }
+      ${
+        (() => {
+          const sub = card.querySelector('.lock');
+          if (!sub) return;
+          const entity = sub.getAttribute('data-entity');
+          const state = hass.states[entity]?.state;
+          sub.style.backgroundColor = state === 'on' ? 'green' : '';
+        })()
+      }
+
+      ${
+        (() => {
+          const lock = card.querySelector('.lock');
+          const fill = card.querySelector('.bubble-range-fill');
+          if (!lock || !fill) return;
+
+          const entity = lock.getAttribute('data-entity');
+          const locked = hass.states[entity]?.state === 'on';
+
+          fill.style.filter = locked ? 'saturate(0.3)' : '';
+          fill.style.boxShadow = locked
+                ? 'inset 0 0 0px 1px rgba(0, 150, 0, 0.4)'
+                : '';
+        })()
+      }       
+
+      ${
+        (() => {
+          const lock = card.querySelector('.lock');
+          if (!lock) return;
+
+          const entity = lock.getAttribute('data-entity');
+          const locked = hass.states[entity]?.state === 'on';
+
+          lock.style.opacity = locked ? '1' : '0.6';
+          lock.style.transform = locked ? 'scale(1)' : 'scale(0.85)';
+        })()
+      }        
+scene_button:
+  card:
+    type: custom:button-card
+    entity: '[[entity]]'
+    name: '[[name]]'
+    icon: '[[icon]]'
+    styles:
+      card:
+        - margin-top: '-12px'
+        - margin-bottom: '-12px'
+        - margin-left: '-7px'
+        - border-radius: var(--ha-card-border-radius)
+      icon:
+        - width: 80%
+        - height: 80%
+        - color: var(--primary-color)
+      img_cell:
+        - border-radius: 50%
+        - width: 80%
+        - height: 80%
+      name:
+        - font-size: 12px
+        - font-weight: 500
+        - color: var(--primary-color)
+    state:
+      - value: 'on'
+        styles:
+          icon:
+            - color: var(--scene-selected-color)
+          card:
+            - background-color: var(--scene-active-background)
+          name:
+            - color: var(--scene-selected-color)

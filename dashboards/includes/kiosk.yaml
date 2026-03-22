@@ -1,0 +1,14 @@
+mobile_settings:
+  hide_header: true
+  ignore_entity_settings: true
+non_admin_settings:
+  hide_header: true
+  hide_menubutton: true
+  ignore_entity_settings: true
+entity_settings:
+  - entity:
+      input_boolean.kiosk_mode: 'on'
+    hide_header: true
+  - entity:
+      input_boolean.kiosk_mode: 'off'
+    hide_header: false
