@@ -1,0 +1,22 @@
+  sub_headings:
+    variables:
+      var_name: name
+    name: '[[[ return variables.var_name]]]'
+    styles:
+      grid:
+        - grid-template-areas: '"n"'
+      card:
+        - background: transparent
+        - height: 40px
+        - border-radius: 0px
+        - margin-top: 20px
+      name:
+        - justify-self: start
+        - font-size: 18px
+        - font-weight: 500
+        - color: var(--primary-text-color)
+        - font-weight: bold
+        - margin-bottom: '-15px'
+    show_state: false
+    show_name: true
+    show_icon: false

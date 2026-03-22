@@ -1,0 +1,28 @@
+type: custom:button-card
+template: room_card
+show_state: true
+name: Garden
+icon: mdi:flower-tulip-outline
+variables:
+  accent_color: var(--room-garden)
+tap_action:
+  navigation_path: '#garden'
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: room_button
+          entity: light.outside_front
+          icon: phu:stage-spot-light
+          variables:
+            accent_color: var(--room-garden)
+            tap_action: toggle
+        - type: custom:button-card
+          template: room_button
+          entity: switch.tap_water_switch
+          icon: mdi:water-pump
+          variables:
+            accent_color: var(--room-garden)
+            tap_action: toggle

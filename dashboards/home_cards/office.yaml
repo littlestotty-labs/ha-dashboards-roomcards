@@ -1,0 +1,40 @@
+type: custom:button-card
+template: room_card
+name: Office
+icon: mdi:desk
+variables:
+  accent_color: var(--room-office)
+tap_action:
+  navigation_path: '#room_office'
+show_label: true
+show_state: false
+entity: input_text.office_status
+label: |
+  [[[
+    return states['input_text.office_status'].state
+  ]]]
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: coffee_room_button
+          entity: switch.plug_orange
+          variables:
+            accent_color: var(--room-office)
+            tap_action: toggle
+        - type: custom:button-card
+          template: room_button
+          entity: switch.office_wall_l
+          icon: mdi:desktop-classic
+          variables:
+            accent_color: var(--room-office)
+            tap_action: toggle
+        - type: custom:button-card
+          template: fan_room_button
+          entity: switch.plug_yellow
+          icon: mdi:fan
+          variables:
+            accent_color: var(--room-office)
+            tap_action: toggle

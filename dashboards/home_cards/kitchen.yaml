@@ -1,0 +1,44 @@
+type: custom:button-card
+template: room_card
+variables:
+  accent_color: var(--room-kitchen)
+name: Kitchen
+icon: null
+show_label: true
+label: dishwasher
+tap_action:
+  navigation_path: '#room_kitchen'
+styles:
+  card:
+    - height: 65px
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          entity: >-
+            switch.012030522493002223_bsh_common_setting_powerstate
+          name: Internet
+          show_state: false
+          show_label: false
+          show_name: false
+          icon: mdi:dishwasher-off
+          styles:
+            grid:
+              - grid-template-areas: '"i n" "i s" '
+            card:
+              - height: 40px
+              - border-radius: 10px
+            img_cell:
+              - width: 24px
+              - padding: 0px 8px 0px 10px
+            icon:
+              - width: 24px
+              - color: pink
+          state:
+            - value: 'on'
+              icon: mdi:dishwasher
+              styles:
+                icon:
+                  - color: var(--room-kitchen)

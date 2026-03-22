@@ -1,0 +1,86 @@
+type: custom:button-card
+template: room_card
+variables:
+  accent_color: var(--room-bedroom)
+name: Bedroom
+icon: mdi:bed
+tap_action:
+  navigation_path: '#room_bedroom'
+show_label: true
+label: |
+  [[[
+    return states['sensor.temp_sensor_temperature'].state + "°C • " + states['sensor.temp_sensor_humidity'].state + "%"
+  ]]]
+custom_fields:
+  vac:
+    card:
+      type: vertical-stack
+      cards:
+        - type: conditional
+          conditions:
+            - condition: and
+              conditions:
+                - condition: state
+                  entity: input_boolean.purifier_vacuum
+                  state: 'on'
+          card:
+            type: custom:button-card
+            icon: mdi:vacuum
+            entity: input_boolean.purifier_vacuum
+            tap_action:
+              action: navigate
+              navigation_path: '#room_bedroom'
+            styles:
+              card:
+                - animation: blink 2s ease infinite
+                - height: 30px
+                - width: 30px
+                - border: none
+                - box-shadow: none
+                - border-style: none
+                - border-radius: 100%
+                - margin-right: 5px
+                - margin-top: '-54px'
+              img_cell:
+                - border-radius: 100%
+                - background: rgba(180,60,60,1)
+              icon:
+                - color: white
+                - height: 18px
+                - width: 18px
+            show_name: false
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: fan_room_button
+          icon: mdi:fan
+          entity: switch.plug_blue
+          variables:
+            accent_color: var(--room-bedroom)
+            tap_action: toggle
+        - type: custom:button-card
+          template: aircon_room_button
+          entity: input_boolean.cool_room
+          icon: mdi:snowflake
+          variables:
+            accent_color: var(--room-bedroom)
+            tap_action: toggle
+        - type: custom:button-card
+          template: heater_room_button
+          entity: input_boolean.heat_room
+          icon: mdi:radiator
+          variables:
+            accent_color: var(--room-bedroom)
+            tap_action: toggle
+styles:
+  grid:
+    - grid-template-areas: '"n n btn" "l l btn" "i vac btn"'
+    - grid-template-columns: 1fr 0.3fr min-content
+    - grid-template-rows: min-content min-content 1fr
+  custom_fields:
+    vac:
+      - justify-content: start
+      - align-self: start
+show_state: true

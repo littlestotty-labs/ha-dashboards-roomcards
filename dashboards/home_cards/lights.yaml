@@ -1,0 +1,27 @@
+type: custom:button-card
+template: room_card
+name: Lights
+icon: mdi:ceiling-light-multiple-outline
+tap_action:
+  navigation_path: '#room_lights'
+show_label: true
+show_state: true
+variables:
+  accent_color: var(--room-lights)
+label: |
+  [[[
+    var count = states['sensor.number_of_lights_on'].state;
+    return 'Lights on: ' + count
+  ]]]
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: room_button
+          entity: light.house_lights
+          icon: mdi:lightbulb-group-outline
+          variables:
+            accent_color: var(--room-lights)
+            tap_action: call-service

@@ -1,0 +1,220 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    tap_action:
+      action: call-service
+      service: |
+        [[[
+          this.dispatchEvent(new Event('hass-toggle-menu', { bubbles: true, composed: true}));
+          return none;
+        ]]]
+    hold_action:
+      action: url
+      url_path: null
+    icon: mdi:menu
+    color: var(--primary-color)
+    show_name: false
+    styles:
+      card:
+        - margin: 10px 0px -5px 3px
+        - width: 33px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: none
+        - background-color: transparent
+        - background: transparent
+      icon:
+        - width: 90%
+  - type: custom:gap-card
+    styles: null
+    card:
+      - margin: 0px 0px -5px 0px
+      - width: 3px
+  - type: custom:button-card
+    entity: weather.ryde
+    tap_action:
+      action: navigate
+      navigation_path: '#weather'
+    icon: ''
+    label: |
+      [[[
+        var state1 = states['sensor.ryde_temp'].state;
+        var state2 = states['weather.ryde'].state;
+
+        // Replace hyphens with spaces and convert to title case
+        state2 = state2.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+        return "Ryde: " + state1 + " °C<br/>" + state2;
+      ]]]
+    show_icon: false
+    show_name: false
+    show_label: true
+    styles:
+      grid:
+        - grid-template-areas: |
+            "i l" "i l"
+        - grid-template-columns: 27% 73%
+        - grid-template-rows: 1fr
+      label:
+        - font-size: 0.60em
+        - font-weight: 500
+        - color: var(--primary-color)
+        - text-align: left
+        - justify-sef: start
+      card:
+        - margin: 10px 0px -5px 3px
+        - height: 36px
+        - width: 115px
+        - background: var(--card-background-color)
+        - background-image: |
+            [[[ 
+              var images = states["weather.ryde"].state; 
+              return 'url(/local/ic/weather_icons/animated2/'+images+'.svg)'
+            ]]]        
+        - background-repeat: no-repeat
+        - background-size: 32%
+        - background-position-x: 4px
+        - background-position-y: center
+        - background-origin: border-box
+  - type: custom:button-card
+    entity: sensor.temp_sensor_temperature
+    icon: mdi:thermometer
+    show_icon: true
+    label: |
+      [[[
+        var state1 = states['sensor.temp_sensor_temperature'].state;
+        return "Indoor <br/> " + state1 + " °C ";
+      ]]]
+    show_name: false
+    show_label: true
+    styles:
+      card:
+        - margin: 10px -3px -5px 0px !important;
+        - height: 36px
+        - width: 82px
+      grid:
+        - grid-template-areas: |
+            "i l" "i l"
+        - grid-template-columns: 35% 65%
+      label:
+        - font-size: 0.60em
+        - font-weight: 500
+        - color: var(--primary-color)
+        - text-align: left
+        - justify-self: start
+      icon:
+        - height: 100%
+        - width: 65%
+        - color: |
+            [[[
+              const t = parseFloat(states['sensor.temp_sensor_temperature']?.state);
+              if (isNaN(t)) return '#4D8DF7';
+
+              const ease = x => Math.pow(Math.min(Math.max(x, 0), 1), 0.8);
+
+              const blend = (c1, c2, x) => {
+                const r1 = parseInt(c1.substr(1,2), 16);
+                const g1 = parseInt(c1.substr(3,2), 16);
+                const b1 = parseInt(c1.substr(5,2), 16);
+                const r2 = parseInt(c2.substr(1,2), 16);
+                const g2 = parseInt(c2.substr(3,2), 16);
+                const b2 = parseInt(c2.substr(5,2), 16);
+
+                const k = ease(x);
+
+                const r = Math.round(r1 + (r2 - r1) * k);
+                const g = Math.round(g1 + (g2 - g1) * k);
+                const b = Math.round(b1 + (b2 - b1) * k);
+
+                return `rgb(${r}, ${g}, ${b})`;
+              };
+
+              if (t < 10) {
+                return '#4D8DF7';
+
+              } else if (t < 17) {
+                return blend('#4D8DF7', '#68DA6A', (t - 10) / 7);
+
+              } else if (t < 23) {
+                return blend('#68DA6A', '#CAFA4F', (t - 17) / 6);
+
+              } else if (t < 26) {
+                return blend('#CAFA4F', '#E4BE49', (t - 23) / 3);
+
+              } else if (t < 30) {
+                return blend('#E4BE49', '#EA4237', (t - 26) / 4);
+
+              } else {
+                return '#EA4237';
+              }
+            ]]]
+  - type: custom:button-card
+    entity: sensor.temp_sensor_humidity
+    icon: mdi:water-percent
+    show_icon: true
+    label: |
+      [[[
+        const h = states['sensor.temp_sensor_humidity']?.state;
+        return `Humidity<br/>${h} %`;
+      ]]]
+    show_name: false
+    show_label: true
+    styles:
+      grid:
+        - grid-template-areas: |
+            "i l" "i l"
+        - grid-template-columns: 35% 65%
+      label:
+        - font-size: 0.60em
+        - font-weight: 500
+        - color: var(--primary-color)
+        - text-align: left
+        - justify-self: start
+      card:
+        - margin: 10px 9px -5px 0px !important;
+        - height: 36px
+        - width: 80px
+      icon:
+        - height: 100%
+        - width: 65%
+        - color: |
+            [[[
+              const h = parseFloat(states['sensor.temp_sensor_humidity']?.state);
+              if (isNaN(h)) return '#27c45e';
+
+              // Same perceptual easing used in your temperature icon
+              const ease = x => Math.pow(Math.min(Math.max(x, 0), 1), 0.8);
+
+              const blend = (c1, c2, x) => {
+                const r1 = parseInt(c1.substr(1, 2), 16);
+                const g1 = parseInt(c1.substr(3, 2), 16);
+                const b1 = parseInt(c1.substr(5, 2), 16);
+                const r2 = parseInt(c2.substr(1, 2), 16);
+                const g2 = parseInt(c2.substr(3, 2), 16);
+                const b2 = parseInt(c2.substr(5, 2), 16);
+
+                const k = ease(x);
+
+                const r = Math.round(r1 + (r2 - r1) * k);
+                const g = Math.round(g1 + (g2 - g1) * k);
+                const b = Math.round(b1 + (b2 - b1) * k);
+
+                return `rgb(${r}, ${g}, ${b})`;
+              };
+
+              if (h < 10) {
+                return blend('#ef4a46', '#f8a44b', h / 10);
+
+              } else if (h < 35) {
+                return blend('#f8a44b', '#27c45e', (h - 10) / 25);
+
+              } else if (h < 65) {
+                return blend('#27c45e', '#f8a44b', (h - 35) / 30);
+
+              } else if (h < 80) {
+                return blend('#f8a44b', '#ef4a46', (h - 65) / 20);
+
+              } else {
+                return '#ef4a46';
+              }
+            ]]]

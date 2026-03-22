@@ -1,0 +1,60 @@
+  room_card:
+    variables:
+      show_state: false
+      show_label: false
+      accent_color: blue
+    name: '[[[ return variables.name]]]'
+    icon: '[[[ return variables.icon]]]'
+    label: '[[[ return variables.label]]]'
+    tap_action:
+      action: navigate
+    styles:
+      grid:
+        - grid-template-areas: '"n btn" "l btn" "i btn"'
+        - grid-template-columns: 1fr min-content
+        - grid-template-rows: min-content min-content 1fr
+      card:
+        - height: 140px
+        - padding: 10px 10px 15px 15px
+      custom_fields:
+        btn:
+          - justify-content: end
+          - align-self: start
+      name:
+        - justify-self: start
+        - align-self: start
+        - font-size: 16px
+        - font-weight: 600
+        - color: '[[[return variables.accent_color]]]'
+      label:
+        - min-height: 80px
+        - text-align: left
+        - justify-content: start
+        - justify-self: start
+        - align-self: start
+        - font-size: 12px
+        - font-weight: 700
+        - color: '[[[return variables.accent_color]]]'
+        - opacity: 0.6
+        - word-break: break-word
+        - white-space: normal
+      img_cell:
+        - justify-content: start
+        - position: absolute
+        - width: 105px
+        - height: 105px
+        - left: 0
+        - bottom: 0
+        - margin: 0 0 -20px -20px
+        - background: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ",
+            transparent 40%)"; ]]]
+        - border-radius: 500px
+      icon:
+        - margin-left: 25px
+        - width: 50px
+        - color: >
+            [[[ return "color-mix(in srgb, " + variables.accent_color + ", black
+            70%)"; ]]]
+        - opacity: '0.3'
+    show_state: true

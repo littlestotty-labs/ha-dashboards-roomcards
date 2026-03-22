@@ -2,8 +2,10 @@
 
 This repository contains my personal configuration for Home Assistant, focused on a clean, room-based dashboard and modular YAML structure.
 
-**Version:** v1.0 (Initial public release)
-
+**Version:** v1.1 
+ - separation of templates and room card complete
+ - still to split bubble-card popups into modular arrangement
+**Version:** V1.0 (initial public release)
 ---
 
 ## 🖥️ Dashboard Screenshots
@@ -30,6 +32,22 @@ This repository contains my personal configuration for Home Assistant, focused o
 ```text
 /config
   /dashboards
+    /button_templates
+      ** all button-card templates here **
+    /home_cards
+      banner.yaml
+      bedroom.yaml
+      garden.yaml
+      kitchen.yaml
+      lights.yaml
+      lounge.yaml
+      office.yaml
+      petrol.yaml
+      scenes.yaml
+      tech.yaml
+    /includes
+      decluttering.yaml
+      kiosk.yaml
     ui-lovelace.yaml
   /node_red
     node_red_all_flows.json

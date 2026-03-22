@@ -1,0 +1,4 @@
+  aircon_room_button:
+    template:
+      - room_button
+      - aircon

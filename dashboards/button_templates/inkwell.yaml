@@ -1,0 +1,53 @@
+  inkwell:
+    show_name: false
+    show_state: true
+    extra_styles: |
+      [[[ return `
+        @keyframes pulse {
+          0% {
+            background-color: ${variables.color};
+          }
+          50% {
+            background-color: transparent;
+          }
+          100% {
+            background-color: ${variables.color};
+          }
+        }
+      `]]]
+    styles:
+      icon:
+        - opacity: 0.7
+        - color: '[[[ return variables.color ]]]'
+      state:
+        - font-size: 0.7em
+        - font-weight: normal
+        - color: |
+            [[[
+             var color = variables.color;
+             if (color == 'black') return 'white';
+             if (color == 'yellow') return 'black';
+             else return 'var(--grey800)';
+             ]]]
+      card:
+        - border: solid 1px VAR(--grey600)
+        - border-radius: 6px 6px 15px 15px
+        - background: |
+            [[[
+              var level = entity.state;
+              var color = variables.color;
+              var ink_color = 'black'; // Added quotes and fixed semicolon
+
+              if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+              if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+              if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+              if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+              return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+            ]]]
+        - animation: |
+            [[[
+              return (0 + entity.state) < 10
+                ? 'pulse 3s ease-in-out infinite'
+                : 'none'
+            ]]]

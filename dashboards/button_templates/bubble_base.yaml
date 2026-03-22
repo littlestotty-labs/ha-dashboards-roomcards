@@ -1,0 +1,57 @@
+  bubble_base:
+    variables:
+      show_state: false
+    name: '[[[ return variables.name]]]'
+    entity: '[[[ return variables.entity]]]'
+    icon: '[[[ return variables.icon]]]'
+    show_state: '[[[ return variables.show_state]]]'
+    tap_action:
+      action: toggle
+    state:
+      - value: 'off'
+        styles:
+          card:
+            - background: var(--card-background-color)
+          img_cell:
+            - background: var(--grey1150)
+          icon:
+            - color: var(--primary-color)
+          name:
+            - color: var(--primary-color)
+          state:
+            - color: var(--primary-color)
+      - value: 'on'
+        styles:
+          card:
+            - background: var(--bubble-accent-color)
+          img_cell:
+            - background: var(--card-background-color)
+          icon:
+            - color: var(--bubble-accent-color)
+          name:
+            - color: var(--card-background-color)
+    styles:
+      card:
+        - padding: 5px 0px 5px 6px
+        - height: 50px
+        - border-radius: var(--ha-card-border-radius)
+      grid:
+        - grid-template-areas: |
+            "i n"
+        - grid-template-columns: 33% 67%
+      img_cell:
+        - justify-self: start
+        - align-self: start
+        - padding: 9px
+        - border-radius: 500%
+        - width: 21px
+        - height: 20px
+      icon:
+        - width: 70%
+        - height: 70%
+      name:
+        - justify-self: start
+        - text-align: left
+        - font-size: 12px
+        - font-weight: 600
+        - color: var(--disabled-text-color)
