@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# fan_room_button.yaml
+# Composed template — room_button + fan mixin for room card
+# fan toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   fan_room_button:
     template:
       - room_button

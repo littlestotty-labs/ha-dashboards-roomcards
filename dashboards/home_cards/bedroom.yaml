@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bedroom.yaml
+# Room card — Bedroom tile with temp/humidity label, fan,
+# aircon, heater buttons, and vacuum alert overlay.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 variables:

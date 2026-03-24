@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# kiosk.yaml
+# Kiosk-mode configuration — hides header/menu on mobile
+# and non-admin users, toggleable via input_boolean.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 mobile_settings:
   hide_header: true
   ignore_entity_settings: true

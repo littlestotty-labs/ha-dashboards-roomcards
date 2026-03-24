@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# lounge.yaml
+# Room card — Lounge tile with scene-aware label, light
+# toggle, media button, and fan button.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 variables:

@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# ui-lovelace.yaml
+# Main dashboard — single-page room-centric layout with
+# Bubble Card pop-ups (inline), room grid, and scene bar.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 kiosk_mode: !include includes/kiosk.yaml
 
 decluttering_templates: !include includes/decluttering.yaml

@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# inkwell.yaml
+# Ink level display template — gradient fill showing printer
+# cartridge level with pulsing low-ink alert animation.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   inkwell:
     show_name: false
     show_state: true

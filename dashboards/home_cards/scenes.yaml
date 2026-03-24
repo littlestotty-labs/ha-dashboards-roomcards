@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# scenes.yaml
+# Scene bar — grid row of decluttering-card scene buttons
+# (Movie, Wii, Chat, Music, Chill, seasonal Xmas).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:layout-card
 layout_type: custom:grid-layout
 layout:

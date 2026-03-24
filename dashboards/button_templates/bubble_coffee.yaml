@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bubble_coffee.yaml
+# Composed template — bubble_base + coffee mixin for pop-up
+# coffee maker toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_coffee:
     template:
       - bubble_base

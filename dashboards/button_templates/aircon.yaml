@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# aircon.yaml
+# Device mixin — slow rotating icon animation for air
+# conditioning entities when on.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   aircon:
     styles:
       icon:

@@ -1,0 +1,7 @@
+# -----------------------------------------------------------
+# scenes.yaml
+# Home Assistant scenes — currently empty; scenes are managed
+# via input_booleans and Node-RED flows.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------

@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# heat.yaml
+# Device mixin — heat-shimmer CSS animation and orange icon
+# color when entity is on.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   heat:
     styles:
       icon:

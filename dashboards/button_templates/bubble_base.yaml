@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bubble_base.yaml
+# Base button-card template for Bubble Card pop-up toggles —
+# theme-aware on/off styling with accent color states.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_base:
     variables:
       show_state: false

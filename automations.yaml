@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# automations.yaml
+# Home Assistant YAML automations (minimal — most automations
+# are handled by Node-RED flows).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 - id: "1726401543952"
   alias: WFH Today
   description: ""

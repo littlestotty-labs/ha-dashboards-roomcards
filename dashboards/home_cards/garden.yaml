@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# garden.yaml
+# Room card — Garden tile with outside light and water tap
+# toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 show_state: true

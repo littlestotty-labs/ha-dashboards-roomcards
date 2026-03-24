@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# google_calendars.example.yaml
+# Template for google_calendars.yaml — example Google Calendar
+# integration entries with placeholder IDs.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 # Example Google Calendar entries (do NOT commit private calendar IDs)
 # Copy to google_calendars.yaml for your local instance
 - cal_id: your_primary_calendar_id@group.calendar.google.com

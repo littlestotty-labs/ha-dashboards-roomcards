@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# kitchen.yaml
+# Room card — Kitchen half-height tile with dishwasher
+# status button.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 variables:

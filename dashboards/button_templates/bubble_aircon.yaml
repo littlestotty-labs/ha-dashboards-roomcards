@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bubble_aircon.yaml
+# Composed template — bubble_base + aircon mixin for pop-up
+# air conditioning toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_aircon:
     template:
       - bubble_base

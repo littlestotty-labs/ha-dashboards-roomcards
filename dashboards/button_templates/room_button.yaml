@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# room_button.yaml
+# Small 44x35px toggle button template — sits inside a room
+# card's btn slot; accent color highlights on 'on' state.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   room_button:
     tap_action:
       action: '[[[return variables.tap_action]]]'

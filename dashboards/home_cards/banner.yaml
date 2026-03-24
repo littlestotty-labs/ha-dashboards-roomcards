@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# banner.yaml
+# Top banner bar — hamburger menu, weather summary, battery
+# alerts, and WFH indicator.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: horizontal-stack
 cards:
   - type: custom:button-card

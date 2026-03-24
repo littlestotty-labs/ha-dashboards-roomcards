@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# coffee.yaml
+# Device mixin — coffee maker icon swap and clip-path
+# "brewing" CSS animation when on.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   coffee:
     icon: |
       [[[

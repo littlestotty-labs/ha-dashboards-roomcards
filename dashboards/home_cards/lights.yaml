@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# lights.yaml
+# Room card — Lights tile with "lights on" count label and
+# house-lights group toggle button.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 name: Lights

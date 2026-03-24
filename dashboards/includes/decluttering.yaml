@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# decluttering.yaml
+# Decluttering-card templates — reusable parameterized cards
+# (light_row slider with lock, scene_button toggle).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 light_row:
   card:
     type: custom:bubble-card
