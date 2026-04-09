@@ -14,6 +14,9 @@ home-assistant_v2.db*
 *.lock
 .ha_run.lock
 .HA_VERSION
+.ha_*
+.prettierrc.yaml
+AGENTS.md
 
 # Local credentials and tokens
 *.pem
@@ -23,18 +26,20 @@ home-assistant_v2.db*
 google_calendars.yaml
 
 # Add custom directories that should remain local
-deps/
+# added additional folders to ignore
 esphome/
-
-#added additional folders to ignore
 www/
 zigbee2mqtt/
 ui_lovelace_minimalist/
 image/
 tts/
+bin/
 custom_components/
 custom_templates/
 blueprints/
 .cloud/
 deps/
 .cache/
+ha_vibecode_git/
+
+

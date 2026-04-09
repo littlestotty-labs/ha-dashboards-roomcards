@@ -26,6 +26,7 @@ cards:
       - icon: mdi:nintendo-wii
       - entity: input_boolean.wii_switch
       - lmargin: '-5px'
+
   - type: custom:decluttering-card
     template: scene_button
     variables:
@@ -33,13 +34,15 @@ cards:
       - icon: mdi:whatsapp
       - entity: input_boolean.whatsapp_switch
       - lmargin: '-5px'
+
   - type: custom:decluttering-card
     template: scene_button
     variables:
       - name: Music
       - icon: mdi:music
-      - entity: input_boolean.spoti_switch
-      - lmargin: '-5px'
+      - entity: input_boolean.reading_switch
+      - lmargin: "-5px"
+
   - type: custom:decluttering-card
     template: scene_button
     variables:

@@ -6943,7 +6943,7 @@
         "deviceId": [],
         "entityId": [],
         "labelId": [],
-        "data": "{    \"account\": \"01K8YPZQ93CH2RA0EY3CGNTRJS\",    \"spotify_uri\": \"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",    \"media_player\": {        \"entity_id\": \"media_player.living_room_speaker\"    }    \"shuffle\":\"enable_shuffle\"}",
+        "data": "{\"account\":\"obfuscated\",\"spotify_uri\":\"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\"media_player\":{\"entity_id\":\"media_player.living_room_speaker\"},\"shuffle\":\"enable_shuffle\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -16685,7 +16685,7 @@
         ]
     },
     {
-        "id": "d1ab3637114d4743",
+        "id": "163770cc5bc4c8d4",
         "type": "global-config",
         "env": [],
         "modules": {

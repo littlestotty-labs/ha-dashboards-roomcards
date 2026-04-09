@@ -115,6 +115,8 @@ scene_button:
     entity: '[[entity]]'
     name: '[[name]]'
     icon: '[[icon]]'
+    tap_action:
+      action: toggle
     styles:
       card:
         - margin-top: '-12px'

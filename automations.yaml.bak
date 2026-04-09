@@ -1,0 +1,62 @@
+# -----------------------------------------------------------
+# automations.yaml
+# Home Assistant YAML automations (minimal — most automations
+# are handled by Node-RED flows).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+- id: "1726401543952"
+  alias: WFH Today
+  description: ""
+  triggers:
+    - at: 03:10:00
+      trigger: time
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template:
+                "{%-set event=states.calendar.workingfromhome.attributes.message
+                %} {%- if event == 'Wfh' %}\n  true\n{%- endif -%}"
+          sequence:
+            - action: input_boolean.turn_on
+              metadata: {}
+              data: {}
+              target:
+                entity_id: input_boolean.wfh_today
+        - conditions:
+            - condition: template
+              value_template:
+                "{%-set event=states.calendar.workingfromhome.attributes.message
+                %} {%- if event != 'Wfh' %}\n  true\n{%-endif-%}"
+          sequence:
+            - action: input_boolean.turn_off
+              metadata: {}
+              data: {}
+              target:
+                entity_id: input_boolean.wfh_today
+  mode: single
+
+- id: "1763868085531"
+  alias: Set Office Status
+  description: ""
+  triggers:
+    - at: 03:10:00
+      trigger: time
+  actions:
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.office_status
+      data:
+        value:
+          "{%-set event=states.calendar.workingfromhome.attributes.message %}
+          {%- if event == 'Wfh' %}
+          Home Based
+          {% elif event == 'Cbd' %}
+          City Based
+          {% else %}
+          {{ event }}
+          {%- endif -%}"
+  mode: single
