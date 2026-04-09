@@ -36,18 +36,16 @@ views:
                   - !include home_cards/tech.yaml
             columns: 2
       - !include home_cards/petrol.yaml
-
-
       - type: vertical-stack
         cards:
           - type: custom:bubble-card
             card_type: pop-up
             name: Lounge
             icon: mdi:sofa
-            hash: '#room_lounge'
+            hash: "#room_lounge"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -63,7 +61,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-lounge) !important;
-              }      
+              }
             sub_button:
               main: []
               bottom: []
@@ -121,10 +119,10 @@ views:
             card_type: pop-up
             name: Bedroom
             icon: mdi:bed-outline
-            hash: '#room_bedroom'
+            hash: "#room_bedroom"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -140,7 +138,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-bedroom) !important;
-              }      
+              }
           - type: custom:gap-card
             height: 40px
           - type: horizontal-stack
@@ -302,10 +300,10 @@ views:
             card_type: pop-up
             name: Office
             icon: mdi:desk
-            hash: '#room_office'
+            hash: "#room_office"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -321,7 +319,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-office) !important;
-              }      
+              }
             sub_button:
               main: []
               bottom: []
@@ -376,10 +374,10 @@ views:
             card_type: pop-up
             name: House Lights
             icon: mdi:lightbulb-group
-            hash: '#room_lights'
+            hash: "#room_lights"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -395,7 +393,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-lights) !important;
-              }      
+              }
           - type: custom:gap-card
             height: 40px
           - type: custom:decluttering-card
@@ -460,10 +458,10 @@ views:
             card_type: pop-up
             name: Weather
             icon: mdi:sun
-            hash: '#weather'
+            hash: "#weather"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             show_name: false
@@ -481,7 +479,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-lights) !important;
-              }      
+              }
           - type: custom:gap-card
             height: 40px
           - type: custom:button-card
@@ -513,7 +511,7 @@ views:
                         background-color: var(--grey400)
                         width: 170px
                         height: 100px
-                        margin-right: '-30px'
+                        margin-right: "-30px"
                         margin-top: 10px
                     img_cell:
                       - padding: 0px
@@ -589,7 +587,7 @@ views:
                   scrollbar-width: thin
                   scrollbar-color: rgba(255,255,255, 0.05) rgba(255,255,255, 0)
                   padding: 2
-                  margin-top: '-10px'
+                  margin-top: "-10px"
                   border: none
             custom_fields:
               chips:
@@ -1345,15 +1343,15 @@ views:
               - value: 5
                 color: white
               - value: 10
-                color: '#68ce67'
+                color: "#68ce67"
               - value: 20
-                color: '#3478f6'
+                color: "#3478f6"
               - value: 25
-                color: '#a358d7'
+                color: "#a358d7"
               - value: 30
-                color: '#eb4838'
+                color: "#eb4838"
               - value: 35
-                color: '#f6ce46'
+                color: "#f6ce46"
             show:
               icon: true
               name: true
@@ -1401,10 +1399,10 @@ views:
             card_type: pop-up
             name: Petrol Prices
             icon: mdi:gas-station
-            hash: '#petrol'
+            hash: "#petrol"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -1420,7 +1418,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-petrol) !important;
-              }      
+              }
           - type: custom:gap-card
             height: 10px
           - type: custom:auto-entities
@@ -1444,7 +1442,7 @@ views:
                 legend_value: false
             filter:
               include:
-                - entity_id: '*e10*'
+                - entity_id: "*e10*"
             sort:
               method: state
               ignore_case: true
@@ -1455,10 +1453,10 @@ views:
             card_type: pop-up
             name: Garden
             icon: mdi:flower
-            hash: '#garden'
+            hash: "#garden"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -1474,7 +1472,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-garden) !important;
-              }      
+              }
             sub_button:
               main: []
               bottom: []
@@ -1502,10 +1500,10 @@ views:
             card_type: pop-up
             name: Tech Stuff
             icon: mdi:devices
-            hash: '#room_tech'
+            hash: "#room_tech"
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -1521,7 +1519,7 @@ views:
               }       
               .bubble-header {
                   color: var(--room-tech) !important;
-              }      
+              }
             sub_button:
               main: []
               bottom: []
@@ -1532,7 +1530,7 @@ views:
           - type: conditional
             conditions:
               - entity: sensor.low_batteries_count
-                state_not: '0'
+                state_not: "0"
             card:
               type: custom:stack-in-card
               mode: vertical
@@ -1642,12 +1640,12 @@ views:
                                 border-radius: 50px;
                                 box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.5);
                               }
-                        entity_id: '*battery*'
+                        entity_id: "*battery*"
                     exclude:
                       - options: {}
-                        state: '> 80'
+                        state: "> 80"
                       - options: {}
-                        state: 'off'
+                        state: "off"
                       - options: {}
                         state: unavailable
                       - options: {}
@@ -1655,11 +1653,11 @@ views:
                       - options: {}
                         state: unknown
                       - options: {}
-                        entity_id: '*state*'
+                        entity_id: "*state*"
                       - options: {}
-                        entity_id: '*906*'
+                        entity_id: "*906*"
                       - options: {}
-                        entity_id: '*926*'
+                        entity_id: "*926*"
                   sort:
                     method: state
                     numeric: true
@@ -1827,7 +1825,7 @@ views:
                           - width: 24px
                           - height: 24px
                           - padding-bottom: 5px
-                          - margin-left: '-3px'
+                          - margin-left: "-3px"
                         icon:
                           - width: 24px
                           - color: var(--primary-color)
@@ -1908,7 +1906,7 @@ views:
                           - width: 24px
                           - height: 24px
                           - padding-bottom: 5px
-                          - margin-left: '-3px'
+                          - margin-left: "-3px"
                         icon:
                           - width: 24px
                           - color: var(--primary-color)
@@ -1991,7 +1989,7 @@ views:
                           - width: 24px
                           - height: 24px
                           - padding-bottom: 5px
-                          - margin-left: '-3px'
+                          - margin-left: "-3px"
                         icon:
                           - width: 24px
                           - color: var(--primary-color)
@@ -2074,7 +2072,7 @@ views:
                           - width: 24px
                           - height: 24px
                           - padding-bottom: 5px
-                          - margin-left: '-3px'
+                          - margin-left: "-3px"
                         icon:
                           - width: 24px
                           - color: var(--primary-color)
@@ -2142,7 +2140,7 @@ views:
                         color: var(--room-tech);
                         margin-top: 5px;
                         padding: 10px 0px 0px 15px !important;
-                      }  
+                      }
                 - type: custom:button-card
                   view_layout:
                     grid-area: two
@@ -2172,7 +2170,7 @@ views:
                       m:
                         - width: 80%
                         - margin: auto
-                      'y':
+                      "y":
                         - width: 80%
                         - margin: auto
                   custom_fields:
@@ -2200,7 +2198,7 @@ views:
                           sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403a
                         variables:
                           color: magenta
-                    'y':
+                    "y":
                       card:
                         type: custom:button-card
                         template: inkwell
@@ -2208,16 +2206,23 @@ views:
                           sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402a
                         variables:
                           color: yellow
+
       - type: vertical-stack
         cards:
+          # -----------------------------------------------------------
+          # dishwasher.yaml
+          # Dishwasher Room Card - replaces #room_kitchen popup
+          # Uses Bubble Card with kitchen accent color from theme
+          # -----------------------------------------------------------
+
           - type: custom:bubble-card
             card_type: pop-up
+            hash: "#kitchen"
             name: Kitchen
-            icon: mdi:stove
-            hash: '#room_kitchen'
+            icon: mdi:dishwasher
             is_sidebar_hidden: true
-            margin_top_mobile: '-30px'
-            margin_top_desktop: '-30px'
+            margin_top_mobile: "-30px"
+            margin_top_desktop: "-30px"
             button_type: name
             show_header: true
             styles: |
@@ -2225,56 +2230,290 @@ views:
                 background: var(--popup-header-background) !important;
               }
               .bubble-button-background {
-                background: var(--popup-header-background) !important; 
-              } 
+                background: var(--popup-header-background) !important;
+              }
               .bubble-close-icon {
                   color: var(--room-kitchen);
                 --mdc-icon-size: 40px !important;
-              }       
+              }
               .bubble-header {
                   color: var(--room-kitchen) !important;
-              }      
+              }
             sub_button:
               main: []
               bottom: []
-            slider_fill_orientation: left
-            slider_value_position: right
-          - type: custom:button-card
-            name: Dishwasher
-            icon: mdi:dishwasher
-            show_label: true
-            entity: switch.012030522493002223_bsh_common_setting_powerstate
-            label: Bosch
-            styles:
-              grid:
-                - grid-template-areas: '"n l" "btn btn" "btn btn"'
-                - grid-template-columns: 1fr 1fr
-                - grid-template-rows: 2em 1fr
-              card:
-                - padding: 15px 15px 45px 15px
-              custom_fields:
-                btn:
-                  - justify-content: end
-                  - align-self: end
-                  - margin: 0 0 -27px 0
-              name:
-                - justify-self: start
-                - align-self: start
-                - font-size: 19px
-                - font-weight: 500
-                - color: var(--room-kitchen)
-              label:
-                - padding-right: 6px
-                - text-align: right
-                - justify-self: end
-                - font-size: 19px
-                - font-weight: 500
-                - color: var(--room-kitchen)
-                - opacity: 0.6
-                - word-break: break-word
-                - white-space: normal
-            show_icon: false
- 
+          - type: custom:gap-card
+            height: 20px
+
+          # Status Card
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: custom:button-card
+                entity: sensor.012030522493002223_bsh_common_status_operationstate
+                name: Status
+                icon: mdi:washing-machine
+                show_label: true
+                label: |
+                  [[[ return states['sensor.012030522493002223_bsh_common_status_operationstate'].state.replace('BSH.Common.EnumType.OperationState.', '') || 'Unknown' ]]]
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                  label:
+                    - color: var(--room-kitchen)
+                    - font-weight: bold
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.012030522493002223_selected_program
+                    name: Program
+                    icon: mdi:format-list-bulleted
+                    show_label: true
+                    show_state: true
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 11px
+
+                  - type: custom:button-card
+                    entity: sensor.012030522493002223_bsh_common_option_remainingprogramtime
+                    name: Remaining
+                    icon: mdi:timer-outline
+                    show_label: true
+                    show_state: true
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 11px
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.012030522493002223_bsh_common_option_energyforecast
+                    name: Energy
+                    icon: mdi:lightning-bolt
+                    show_label: true
+                    label: "[[[ return states['sensor.012030522493002223_bsh_common_option_energyforecast']?.state + ' kWh' || '--' ]]]"
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 11px
+
+                  - type: custom:button-card
+                    entity: sensor.012030522493002223_bsh_common_option_waterforecast
+                    name: Water
+                    icon: mdi:water
+                    show_label: true
+                    label: "[[[ return states['sensor.012030522493002223_bsh_common_option_waterforecast']?.state + ' L' || '--' ]]]"
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 11px
+
+          - type: custom:gap-card
+            height: 15px
+
+          # Program Selection Card
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: custom:button-card
+                name: Select Program
+                icon: mdi:format-list-bulleted
+                show_label: false
+                show_state: true
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  service_data:
+                    entity_id: select.012030522493002223_programs
+                    option: "Dishcare.Dishwasher.Program.Intensiv70"
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - color: var(--room-kitchen)
+                    - font-weight: 500
+                entity: select.012030522493002223_programs
+
+              - type: custom:button-card
+                entity: select.012030522493002223_programs
+                name: Intensive 70
+                icon: mdi:water-plus
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  service_data:
+                    entity_id: select.012030522493002223_programs
+                    option: "Dishcare.Dishwasher.Program.Intensiv70"
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - width: 100%
+                    - margin: 0px
+                  icon:
+                    - color: var(--room-kitchen)
+
+              - type: custom:button-card
+                entity: select.012030522493002223_programs
+                name: Auto 45-65
+                icon: mdi:autorenew
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  service_data:
+                    entity_id: select.012030522493002223_programs
+                    option: "Dishcare.Dishwasher.Program.Auto2"
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - width: 100%
+                    - margin: 0px
+
+              - type: custom:button-card
+                entity: select.012030522493002223_programs
+                name: Quick 45
+                icon: mdi:lightning-bolt
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  service_data:
+                    entity_id: select.012030522493002223_programs
+                    option: "Dishcare.Dishwasher.Program.Quick45"
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - width: 100%
+                    - margin: 0px
+
+          - type: custom:gap-card
+            height: 15px
+
+          # Options Card
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: custom:button-card
+                name: Options
+                icon: mdi:cog
+                show_label: false
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - color: var(--room-kitchen)
+                    - font-weight: 500
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: switch.012030522493002223_dishcare_dishwasher_option_extradry
+                    name: Extra Dry
+                    icon: mdi:fire
+                    show_label: true
+                    label: Extra Dry
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+                      icon:
+                        - color: >
+                            {% if is_state('switch.012030522493002223_dishcare_dishwasher_option_extradry', 'on') %} var(--room-kitchen)
+                            {% else %} var(--primary-color)
+                            {% endif %}
+
+                  - type: custom:button-card
+                    entity: switch.012030522493002223_dishcare_dishwasher_option_hygieneplus
+                    name: Hygiene+
+                    icon: mdi:shield-check
+                    show_label: true
+                    label: Hygiene+
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+                      icon:
+                        - color: >
+                            {% if is_state('switch.012030522493002223_dishcare_dishwasher_option_hygieneplus', 'on') %} var(--room-kitchen)
+                            {% else %} var(--primary-color)
+                            {% endif %}
+
+                  - type: custom:button-card
+                    entity: switch.012030522493002223_dishcare_dishwasher_option_variospeed
+                    name: Speed
+                    icon: mdi:flash
+                    show_label: true
+                    label: SpeedPerfect
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+                      icon:
+                        - color: >
+                            {% if is_state('switch.012030522493002223_dishcare_dishwasher_option_variospeed', 'on') %} var(--room-kitchen)
+                            {% else %} var(--primary-color)
+                            {% endif %}
+
+          - type: custom:gap-card
+            height: 15px
+
+          # Info Card
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: custom:button-card
+                name: Info
+                icon: mdi:information-outline
+                show_label: false
+                styles:
+                  card:
+                    - background: var(--card-background-color)
+                    - color: var(--room-kitchen)
+                    - font-weight: 500
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: binary_sensor.012030522493002223_bsh_common_status_doorstate
+                    name: Door
+                    icon: mdi:door-closed
+                    show_label: true
+                    show_state: true
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+
+                  - type: custom:button-card
+                    entity: binary_sensor.012030522493002223_bsh_common_setting_childlock
+                    name: Lock
+                    icon: mdi:lock
+                    show_label: true
+                    show_state: true
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+
+                  - type: custom:button-card
+                    entity: binary_sensor.012030522493002223_connected
+                    name: WiFi
+                    icon: mdi:wifi
+                    show_label: true
+                    show_state: true
+                    styles:
+                      card:
+                        - background: var(--card-background-color)
+                      label:
+                        - font-size: 10px
+                      icon:
+                        - color: |
+                            [[[ return states['binary_sensor.012030522493002223_connected']?.state === 'on' ? 'var(--success-color)' : 'var(--error-color)' ]]]
+
     background:
       opacity: 33
       alignment: center

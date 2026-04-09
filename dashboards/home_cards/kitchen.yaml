@@ -15,7 +15,7 @@ icon: null
 show_label: true
 label: dishwasher
 tap_action:
-  navigation_path: '#room_kitchen'
+  navigation_path: "#kitchen"
 styles:
   card:
     - height: 65px
@@ -45,7 +45,7 @@ custom_fields:
               - width: 24px
               - color: pink
           state:
-            - value: 'on'
+            - value: "on"
               icon: mdi:dishwasher
               styles:
                 icon:

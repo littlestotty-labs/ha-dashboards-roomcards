@@ -17,9 +17,7 @@
     - choose:
         - conditions:
             - condition: template
-              value_template:
-                "{%-set event=states.calendar.workingfromhome.attributes.message
-                %} {%- if event == 'Wfh' %}\n  true\n{%- endif -%}"
+              value_template: "{{ 'Wfh' in states.calendar.workingfromhome.attributes.message }}"
           sequence:
             - action: input_boolean.turn_on
               metadata: {}
@@ -28,9 +26,7 @@
                 entity_id: input_boolean.wfh_today
         - conditions:
             - condition: template
-              value_template:
-                "{%-set event=states.calendar.workingfromhome.attributes.message
-                %} {%- if event != 'Wfh' %}\n  true\n{%-endif-%}"
+              value_template: "{{ 'Wfh' not in states.calendar.workingfromhome.attributes.message }}"
           sequence:
             - action: input_boolean.turn_off
               metadata: {}
@@ -50,13 +46,83 @@
       target:
         entity_id: input_text.office_status
       data:
-        value:
-          "{%-set event=states.calendar.workingfromhome.attributes.message %}
-          {%- if event == 'Wfh' %}
-          Home Based
-          {% elif event == 'Cbd' %}
-          City Based
-          {% else %}
-          {{ event }}
-          {%- endif -%}"
+        value: "{{ 'Home Based' if states.calendar.workingfromhome.attributes.message == 'Wfh' else ('City Based' if states.calendar.workingfromhome.attributes.message == 'Cbd' else states.calendar.workingfromhome.attributes.message) }}"
   mode: single
+
+- id: "1764763200001"
+  alias: Police Lights Effect
+  description: Alternates red and blue between two G10 outside lights
+  trigger:
+    - platform: state
+      entity_id: input_boolean.police_lights
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.police_lights
+              state: "on"
+          sequence:
+            - repeat:
+                while:
+                  - condition: state
+                    entity_id: input_boolean.police_lights
+                    state: "on"
+                sequence:
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.0xb40ecfd1a09f0000
+                    data:
+                      rgb_color:
+                        - 255
+                        - 0
+                        - 0
+                      brightness: 255
+                      transition: 0
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.0xb40ecfd2d0440000
+                    data:
+                      rgb_color:
+                        - 0
+                        - 0
+                        - 255
+                      brightness: 255
+                      transition: 0
+                  - delay:
+                      hours: 0
+                      minutes: 0
+                      seconds: 0
+                      milliseconds: 500
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.0xb40ecfd1a09f0000
+                    data:
+                      rgb_color:
+                        - 0
+                        - 0
+                        - 255
+                  - action: light.turn_on
+                    target:
+                      entity_id: light.0xb40ecfd2d0440000
+                    data:
+                      rgb_color:
+                        - 255
+                        - 0
+                        - 0
+                  - delay:
+                      hours: 0
+                      minutes: 0
+                      seconds: 0
+                      milliseconds: 500
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.police_lights
+              state: "off"
+          sequence:
+            - action: light.turn_off
+              target:
+                entity_id:
+                  - light.0xb40ecfd1a09f0000
+                  - light.0xb40ecfd2d0440000
+  mode: restart

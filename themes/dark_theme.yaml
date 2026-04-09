@@ -13,7 +13,36 @@ grahams-dark:
   # -----------------------------------------------------
 
   primary-font-family: "'Space Grotesk', sans-serif"
+  mdc-text-field-fill-color: "#aca381ff" # background of the input
+  mdc-text-field-label-ink-color: "#201f1fff" # label colour
+  mdc-text-field-idle-line-color: "#585656ff" # underline/border when idle
+  mdc-text-field-hover-line-color: "#666666" # underline/border when hovering
+  mdc-text-field-outlined-idle-border-color: "#999999"
+  mdc-text-field-outlined-hover-border-color: "#666666"
+  mdc-text-field-focused-label-color: "#03a9f4" # label when focused
+  mdc-text-field-focused-ink-color: "#000000" # text when focused
+  mdc-text-field-ink-color: "#000000"
+  mdc-text-field-placeholder-ink-color: "#242323ff"
+  # Developer tools / editor fields
+  codemirror-background: "#ffffff"
+  codemirror-text-color: "#000000"
+  code-editor-background-color: "#353533ff"
+  code-editor-text-color: "#000000"
+  code-editor-gutter-color: "#ffffff"
 
+  # Background color of the input box
+  input-fill-color: "#FF0000" # Example: Red background
+  # Text color inside the input box
+  input-ink-color: "#FFFFFF" # Example: White text
+  # Color of the label text
+  input-label-ink-color: "#CCCCCC" # Example: Light grey label
+  # Color of the bottom border when idle
+  input-idle-line-color: "#FFFFFF" # Example: White border
+  # Color of the bottom border when hovered
+  input-hover-line-color: "#00FF00" # Example: Green border on hover
+  # For outlined input styles (if used)
+  input-outlined-idle-border-color: "#FFFFFF"
+  input-outlined-hover-border-color: "#00FF00"
   # -----------------------------------------------------
   # Backgrounds
   # -----------------------------------------------------
@@ -23,7 +52,8 @@ grahams-dark:
   card-background-color: "#27292dff"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#2b2e34"
-
+  ha-color-text-secondary: "#000000"
+  -ha-color-fill-primary-quiet-resting: "#000000"
   # -----------------------------------------------------
   # Text
   # -----------------------------------------------------
