@@ -47,12 +47,12 @@ grahams-dark:
   # Backgrounds
   # -----------------------------------------------------
   primary-background-color: "#121416"
-  secondary-background-color: "#181B1F"
+  secondary-background-color: "#2e363dff"
 
   card-background-color: "#27292dff"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#2b2e34"
-  ha-color-text-secondary: "#000000"
+  ha-color-text-secondary: "#6d7ea2ff"
   -ha-color-fill-primary-quiet-resting: "#000000"
   # -----------------------------------------------------
   # Text
