@@ -66,7 +66,7 @@
         "id": "bf6e7bfe4b9ed286",
         "type": "poll-state",
         "z": "6f3a0936b99b07e3",
-        "name": "Poll Emby Server",
+        "name": "Poll Kodi Server",
         "server": "178754b9.fedf4b",
         "version": 3,
         "exposeAsEntityConfig": "",
@@ -75,7 +75,7 @@
         "updateIntervalUnits": "seconds",
         "outputInitially": false,
         "outputOnChanged": false,
-        "entityId": "media_player.emby_shield",
+        "entityId": "media_player.android_tv_10_0_0_26",
         "stateType": "str",
         "ifState": "",
         "ifStateType": "str",
@@ -85,7 +85,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -156,14 +156,14 @@
         "id": "2c31b47dbac43329",
         "type": "server-state-changed",
         "z": "6f3a0936b99b07e3",
-        "name": "Emby Playing",
+        "name": "Kodi Playing",
         "server": "178754b9.fedf4b",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "media_player.emby_shield"
+                "media_player.emby_kodi_10_0_0_26_4"
             ],
             "substring": [],
             "regex": []
@@ -186,7 +186,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -231,7 +231,7 @@
         },
         "outputInitially": false,
         "stateType": "str",
-        "ifState": "on",
+        "ifState": "playing",
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
@@ -247,7 +247,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -276,21 +276,21 @@
         "id": "2ef258fa9e3b7027",
         "type": "api-current-state",
         "z": "6f3a0936b99b07e3",
-        "name": "Emby Playing?",
+        "name": "Kdi Playing?",
         "server": "178754b9.fedf4b",
         "version": 3,
         "outputs": 2,
         "halt_if": "playing",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "media_player.emby_shield",
+        "entity_id": "media_player.android_tv_10_0_0_26",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -308,7 +308,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 700,
+        "x": 690,
         "y": 600,
         "wires": [
             [
@@ -403,7 +403,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 680,
-        "y": 560,
+        "y": 540,
         "wires": [
             [
                 "b8071cf910c4f12b"
@@ -431,7 +431,7 @@
             "light.lounge_light"
         ],
         "labelId": [],
-        "data": "{\"entity_id\":\"light.lounge_light\",\"brightness_pct\": 0, \"kelvin\": 3000, \"transition\": 3 }",
+        "data": "{\"entity_id\":\"light.lounge_light\",\"brightness_pct\":0,\"transition\":3}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -1184,65 +1184,6 @@
         ],
         "x": 170,
         "y": 1180,
-        "wires": [
-            [
-                "327ad6a788aaa37d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "773653acb8c0ee8d",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Reading Mode on?",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_boolean.reading_switch"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "on",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "Reading",
-                "valueType": "str"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 190,
-        "y": 1060,
         "wires": [
             [
                 "327ad6a788aaa37d"
@@ -2169,20 +2110,20 @@
         "server": "178754b9.fedf4b",
         "version": 7,
         "debugenabled": false,
-        "action": "spotcast.play_media",
+        "action": "media_player.play_media",
         "floorId": [],
         "areaId": [],
         "deviceId": [],
         "entityId": [],
         "labelId": [],
-        "data": "{\"account\":\"obfuscated\",\"spotify_uri\":\"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\"media_player\":{\"entity_id\":\"media_player.living_room_speaker\"},\"shuffle\":\"enable_shuffle\"}",
+        "data": "{\"account\":\"01K8YPZQ93CH2RA0EY3CGNTRJS\",\"media_content_id\":\"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\"media_content_type\":\"music\",\"media_player\":{\"entity_id\":\"media_player.living_room_speaker\"}}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "blockInputOverrides": false,
-        "domain": "spotcast",
+        "domain": "media_player",
         "service": "play_media",
         "x": 1420,
         "y": 2400,
@@ -2190,554 +2131,6 @@
             [
                 "a097488bf70aea32"
             ]
-        ]
-    },
-    {
-        "id": "2e8f2faab5d63617",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield Playing",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "playing",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 260,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8e7eb0f993cdcba7",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "TV Being turned on?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.tv_auto_on",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 400,
-        "y": 320,
-        "wires": [
-            [],
-            [
-                "1f20dc674c381676"
-            ]
-        ]
-    },
-    {
-        "id": "aaa23fb433f8f10c",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn on movie",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.movie_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_on",
-        "x": 760,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f20dc674c381676",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Movie Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.movie_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 590,
-        "y": 320,
-        "wires": [
-            [],
-            [
-                "aaa23fb433f8f10c"
-            ]
-        ]
-    },
-    {
-        "id": "6fb7cdde5254f7fb",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield Idle",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "playing",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 160,
-        "y": 320,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "16c527ec93d28a7f",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield off",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "off",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "30",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 160,
-        "y": 200,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "25e265b838fcd398",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "TV Being turned on?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.tv_auto_on",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 880,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "2bf5549ce42a03ae"
-            ]
-        ]
-    },
-    {
-        "id": "2bf5549ce42a03ae",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Movie Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.movie_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1070,
-        "y": 200,
-        "wires": [
-            [
-                "e97e514ed805b683"
-            ],
-            [
-                "ebadc28247c8ebbb"
-            ]
-        ]
-    },
-    {
-        "id": "ebadc28247c8ebbb",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Wii Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.wii_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1240,
-        "y": 220,
-        "wires": [
-            [
-                "909b1c7db30a82cf"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e97e514ed805b683",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn off movie",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.movie_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
-        "x": 1260,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "909b1c7db30a82cf",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn off WII",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.wii_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
-        "x": 1390,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6d01652e88d8949b",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield paused",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "paused",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 166.451416015625,
-        "y": 373.44964599609375,
-        "wires": [
-            [],
-            []
         ]
     },
     {
@@ -2804,96 +2197,6 @@
         "y": 2640,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "3e4d497739a924e6",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Wii Source Selected?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "WII",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.tv_source",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 400,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "b0e9469381299a65"
-            ]
-        ]
-    },
-    {
-        "id": "b0e9469381299a65",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Streaming Source Selected?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "Streaming Box",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.tv_source",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 640,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "25e265b838fcd398"
-            ]
         ]
     },
     {
@@ -5343,7 +4646,7 @@
         "y": 2300,
         "wires": [
             [
-                "c5826f3986c4bb01"
+                "ce117b3c3046f1c7"
             ]
         ]
     },
@@ -5608,13 +4911,251 @@
         "wires": []
     },
     {
+        "id": "8dcd16a9194ab3cb",
+        "type": "server-state-changed",
+        "z": "6f3a0936b99b07e3",
+        "name": "reading Mode on?",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.reading_switch"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "Reading",
+                "valueType": "str"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 1060,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "85b6482f0a644c57",
+        "type": "api-call-service",
+        "z": "6f3a0936b99b07e3",
+        "name": "Play Playlist",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.play_media",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotifyplus_graham"
+        ],
+        "labelId": [],
+        "data": "{\t    \"media_content_id\": \"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\t    \"media_content_type\": \"music\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "media_player",
+        "service": "play_media",
+        "x": 1450,
+        "y": 2340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce117b3c3046f1c7",
+        "type": "api-call-service",
+        "z": "6f3a0936b99b07e3",
+        "name": "select source",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.select_source",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotifyplus_graham"
+        ],
+        "labelId": [],
+        "data": "{\"source\":\"Living Room Speaker\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "media_player",
+        "service": "select_source",
+        "x": 1430,
+        "y": 2280,
+        "wires": [
+            [
+                "85b6482f0a644c57"
+            ]
+        ]
+    },
+    {
+        "id": "63c4fc4bbba27074",
+        "type": "inject",
+        "z": "6f3a0936b99b07e3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "2ff49ed9db7fad44"
+            ]
+        ]
+    },
+    {
+        "id": "777cb39267bbab53",
+        "type": "server-state-changed",
+        "z": "6f3a0936b99b07e3",
+        "name": "Shield Playing",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "media_player.android_tv_10_0_0_26"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "idle",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 610,
+        "y": 680,
+        "wires": [
+            [
+                "a64b29240b5fa3aa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5372502bfa66bcde",
+        "type": "inject",
+        "z": "6f3a0936b99b07e3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "cd7b90ed3dbff638"
+            ]
+        ]
+    },
+    {
         "id": "178754b9.fedf4b",
         "type": "server",
         "name": "Home Assistant",
         "addon": true
     },
     {
-        "id": "3a3e2a0bd59172dc",
+        "id": "e2b883d2d56fd494",
         "type": "global-config",
         "env": [],
         "modules": {

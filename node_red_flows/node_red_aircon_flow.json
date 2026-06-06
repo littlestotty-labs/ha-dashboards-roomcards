@@ -2919,7 +2919,7 @@
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.sm_s906e_charger_type_2"
+                "sensor.sm_s906e_charger_type"
             ],
             "substring": [],
             "regex": []
@@ -3537,7 +3537,7 @@
         "addon": true
     },
     {
-        "id": "05b2c161cf9d0830",
+        "id": "cdbf7ab02a8e8b33",
         "type": "global-config",
         "env": [],
         "modules": {
