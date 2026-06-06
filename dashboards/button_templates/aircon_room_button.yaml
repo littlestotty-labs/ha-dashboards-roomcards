@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# aircon_room_button.yaml
+# Composed template — room_button + aircon mixin for room
+# card air conditioning toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   aircon_room_button:
     template:
       - room_button

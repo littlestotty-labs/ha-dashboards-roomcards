@@ -582,7 +582,7 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_on",
-        "x": 720,
+        "x": 800,
         "y": 80,
         "wires": [
             []
@@ -636,7 +636,7 @@
         "sat": true,
         "sun": true,
         "x": 110,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "e799f574aa0f4e4e"
@@ -669,7 +669,7 @@
         "domain": "switch",
         "service": "turn_off",
         "x": 340,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "18610afe4634fd34"
@@ -683,7 +683,7 @@
         "name": "Office Lighting",
         "info": "",
         "x": 110,
-        "y": 260,
+        "y": 300,
         "wires": []
     },
     {
@@ -724,7 +724,7 @@
             }
         ],
         "x": 970,
-        "y": 280,
+        "y": 320,
         "wires": []
     },
     {
@@ -745,7 +745,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 940,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "761309f9a4dcc918"
@@ -892,8 +892,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 110,
-        "y": 500,
+        "x": 103,
+        "y": 592,
         "wires": [
             [
                 "3148b898f51c8853"
@@ -940,7 +940,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 280,
-        "y": 420,
+        "y": 540,
         "wires": [
             [],
             [
@@ -984,8 +984,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 450,
-        "y": 460,
+        "x": 430,
+        "y": 540,
         "wires": [
             [
                 "2896620de9293e45"
@@ -1027,8 +1027,8 @@
                 "type": "num"
             }
         ],
-        "x": 630,
-        "y": 540,
+        "x": 650,
+        "y": 620,
         "wires": []
     },
     {
@@ -1039,8 +1039,8 @@
         "startTime": "07:00:00",
         "endTime": "14:00:00",
         "outputs": 2,
-        "x": 660,
-        "y": 480,
+        "x": 640,
+        "y": 540,
         "wires": [
             [
                 "409714f28242bf20"
@@ -1076,7 +1076,7 @@
         "domain": "switch",
         "service": "turn_on",
         "x": 880,
-        "y": 440,
+        "y": 540,
         "wires": [
             [
                 "e3aaa77867b66cf1"
@@ -1119,8 +1119,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1120,
-        "y": 440,
+        "x": 1113,
+        "y": 532,
         "wires": [
             [
                 "d5c70cb792f3c68d"
@@ -1145,8 +1145,8 @@
                 "type": "num"
             }
         ],
-        "x": 1460,
-        "y": 440,
+        "x": 1453,
+        "y": 532,
         "wires": []
     },
     {
@@ -1186,7 +1186,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 550,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "59b563d5a6d8ebb4"
@@ -1214,7 +1214,7 @@
         "to": "",
         "reg": false,
         "x": 740,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "a78338e7ce54aa0d",
@@ -1259,8 +1259,8 @@
                 "type": "num"
             }
         ],
-        "x": 910,
-        "y": 520,
+        "x": 870,
+        "y": 600,
         "wires": []
     },
     {
@@ -1269,8 +1269,8 @@
         "z": "2aac704b012aedce",
         "name": "do nothing if desk on",
         "info": "",
-        "x": 450,
-        "y": 400,
+        "x": 443,
+        "y": 492,
         "wires": []
     },
     {
@@ -1294,8 +1294,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 660,
-        "y": 180,
+        "x": 120,
+        "y": 400,
         "wires": [
             [
                 "e799f574aa0f4e4e"
@@ -1356,8 +1356,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 220,
-        "y": 20,
+        "x": 160,
+        "y": 40,
         "wires": [
             [
                 "4436cc43085ae632"
@@ -1385,8 +1385,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 700,
-        "y": 400,
+        "x": 680,
+        "y": 480,
         "wires": [
             [
                 "409714f28242bf20"
@@ -1444,7 +1444,7 @@
             }
         ],
         "x": 100,
-        "y": 740,
+        "y": 860,
         "wires": [
             [],
             []
@@ -1476,7 +1476,7 @@
         "domain": "switch",
         "service": "turn_off",
         "x": 330,
-        "y": 740,
+        "y": 860,
         "wires": [
             []
         ]
@@ -1507,7 +1507,7 @@
         "domain": "switch",
         "service": "turn_off",
         "x": 1200,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "2b1d6aae23eaa3e0"
@@ -1551,7 +1551,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 950,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "85be942e8be803ed"
@@ -1579,7 +1579,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 680,
+        "y": 800,
         "wires": [
             [
                 "088374968eb53905"
@@ -1599,7 +1599,7 @@
         "property": "payload",
         "topi": "topic",
         "x": 540,
-        "y": 680,
+        "y": 800,
         "wires": [
             [
                 "419d208c2a7cd29e"
@@ -1625,7 +1625,7 @@
         "repair": false,
         "outputs": 2,
         "x": 720,
-        "y": 680,
+        "y": 800,
         "wires": [
             [
                 "6154b347b213b442"
@@ -1684,7 +1684,7 @@
             }
         ],
         "x": 110,
-        "y": 680,
+        "y": 800,
         "wires": [
             [
                 "98e88e9919b57555"
@@ -1727,8 +1727,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1290,
-        "y": 440,
+        "x": 1283,
+        "y": 532,
         "wires": [
             [],
             [
@@ -1773,7 +1773,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1090,
-        "y": 320,
+        "y": 360,
         "wires": [
             [],
             [
@@ -1799,7 +1799,7 @@
             }
         ],
         "x": 1260,
-        "y": 320,
+        "y": 360,
         "wires": []
     },
     {
@@ -1838,8 +1838,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 307,
-        "y": 588,
+        "x": 290,
+        "y": 640,
         "wires": [
             [],
             [
@@ -1864,8 +1864,8 @@
                 "type": "num"
             }
         ],
-        "x": 507,
-        "y": 608,
+        "x": 460,
+        "y": 660,
         "wires": []
     },
     {
@@ -1894,7 +1894,7 @@
         "domain": "switch",
         "service": "turn_on",
         "x": 1450,
-        "y": 660,
+        "y": 780,
         "wires": [
             []
         ]
@@ -1950,7 +1950,7 @@
             }
         ],
         "x": 630,
-        "y": 740,
+        "y": 860,
         "wires": [
             [],
             []
@@ -1992,13 +1992,42 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 550,
-        "y": 120,
+        "x": 590,
+        "y": 80,
         "wires": [
             [
                 "7ab02e87277bd129"
             ],
             []
+        ]
+    },
+    {
+        "id": "ab43203d5963c96b",
+        "type": "inject",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 300,
+        "wires": [
+            [
+                "d552cd44f0753f88"
+            ]
         ]
     },
     {
@@ -2008,7 +2037,7 @@
         "addon": true
     },
     {
-        "id": "6a3743ca2b7a8b9c",
+        "id": "acc4cdb1c799fb6d",
         "type": "global-config",
         "env": [],
         "modules": {

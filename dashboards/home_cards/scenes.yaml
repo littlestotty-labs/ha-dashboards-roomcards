@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# scenes.yaml
+# Scene bar — grid row of decluttering-card scene buttons
+# (Movie, Wii, Chat, Music, Chill, seasonal Xmas).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:layout-card
 layout_type: custom:grid-layout
 layout:
@@ -18,6 +26,7 @@ cards:
       - icon: mdi:nintendo-wii
       - entity: input_boolean.wii_switch
       - lmargin: '-5px'
+
   - type: custom:decluttering-card
     template: scene_button
     variables:
@@ -25,13 +34,15 @@ cards:
       - icon: mdi:whatsapp
       - entity: input_boolean.whatsapp_switch
       - lmargin: '-5px'
+
   - type: custom:decluttering-card
     template: scene_button
     variables:
       - name: Music
       - icon: mdi:music
-      - entity: input_boolean.spoti_switch
-      - lmargin: '-5px'
+      - entity: input_boolean.reading_switch
+      - lmargin: "-5px"
+
   - type: custom:decluttering-card
     template: scene_button
     variables:

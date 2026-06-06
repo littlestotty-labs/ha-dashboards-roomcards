@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# office.yaml
+# Room card — Office tile with WFH status label, coffee
+# maker, desktop, and fan buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:button-card
 template: room_card
 name: Office

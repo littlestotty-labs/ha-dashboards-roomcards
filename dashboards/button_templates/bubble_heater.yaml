@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bubble_heater.yaml
+# Composed template — bubble_base + heat mixin for pop-up
+# heater toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_heater:
     template:
       - bubble_base

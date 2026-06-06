@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# fan.yaml
+# Device mixin — rotating icon animation whose speed scales
+# with the plug's power sensor wattage.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   fan:
     styles:
       icon:

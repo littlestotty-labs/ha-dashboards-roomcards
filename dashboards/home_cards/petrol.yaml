@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# petrol.yaml
+# Petrol prices card — auto-entities list of nearby E10
+# fuel stations sorted by price.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 type: custom:auto-entities
 card:
   type: entities

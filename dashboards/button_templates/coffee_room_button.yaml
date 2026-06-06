@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# coffee_room_button.yaml
+# Composed template — room_button + coffee mixin for room
+# card coffee maker toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   coffee_room_button:
     template:
       - room_button

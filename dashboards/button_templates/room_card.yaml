@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# room_card.yaml
+# Base button-card template for room tiles — 140px card with
+# name, label, accent-colored icon circle, and btn slot.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   room_card:
     variables:
       show_state: false

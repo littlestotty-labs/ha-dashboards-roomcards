@@ -18,7 +18,7 @@
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.sm_s906e_charger_type_2"
+                "sensor.sm_s926b_charger_type"
             ],
             "substring": [],
             "regex": []
@@ -57,7 +57,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 230,
+        "x": 220,
         "y": 80,
         "wires": [
             [
@@ -149,7 +149,7 @@
         "addon": true
     },
     {
-        "id": "ae2743c02d67e014",
+        "id": "6a3fe71c227ccddc",
         "type": "global-config",
         "env": [],
         "modules": {

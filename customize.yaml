@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# customize.yaml
+# Entity customizations — friendly names for sensors, battery
+# devices, and fuel station entities.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 sensor.0xa4c1380ce7f7b699_battery:
   friendly_name: Office Motion Battery
 sensor.0xa4c13878fe0e5f3e_battery:

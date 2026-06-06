@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# bubble_fan.yaml
+# Composed template — bubble_base + fan mixin for pop-up
+# fan toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_fan:
     template:
       - bubble_base

@@ -16,17 +16,17 @@
         "env": []
     },
     {
-        "id": "d592c49eef4da304",
+        "id": "2aac704b012aedce",
         "type": "tab",
-        "label": "Aircon",
+        "label": "Office",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "2aac704b012aedce",
+        "id": "d592c49eef4da304",
         "type": "tab",
-        "label": "Office",
+        "label": "Aircon",
         "disabled": false,
         "info": "",
         "env": []
@@ -4834,7 +4834,7 @@
         "id": "bf6e7bfe4b9ed286",
         "type": "poll-state",
         "z": "6f3a0936b99b07e3",
-        "name": "Poll Emby Server",
+        "name": "Poll Kodi Server",
         "server": "178754b9.fedf4b",
         "version": 3,
         "exposeAsEntityConfig": "",
@@ -4843,7 +4843,7 @@
         "updateIntervalUnits": "seconds",
         "outputInitially": false,
         "outputOnChanged": false,
-        "entityId": "media_player.emby_shield",
+        "entityId": "media_player.android_tv_10_0_0_26",
         "stateType": "str",
         "ifState": "",
         "ifStateType": "str",
@@ -4853,7 +4853,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -4924,14 +4924,14 @@
         "id": "2c31b47dbac43329",
         "type": "server-state-changed",
         "z": "6f3a0936b99b07e3",
-        "name": "Emby Playing",
+        "name": "Kodi Playing",
         "server": "178754b9.fedf4b",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "media_player.emby_shield"
+                "media_player.emby_kodi_10_0_0_26_4"
             ],
             "substring": [],
             "regex": []
@@ -4954,7 +4954,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -4999,7 +4999,7 @@
         },
         "outputInitially": false,
         "stateType": "str",
-        "ifState": "on",
+        "ifState": "playing",
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
@@ -5015,7 +5015,7 @@
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -5044,21 +5044,21 @@
         "id": "2ef258fa9e3b7027",
         "type": "api-current-state",
         "z": "6f3a0936b99b07e3",
-        "name": "Emby Playing?",
+        "name": "Kdi Playing?",
         "server": "178754b9.fedf4b",
         "version": 3,
         "outputs": 2,
         "halt_if": "playing",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "media_player.emby_shield",
+        "entity_id": "media_player.android_tv_10_0_0_26",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -5076,7 +5076,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 700,
+        "x": 690,
         "y": 600,
         "wires": [
             [
@@ -5171,7 +5171,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 680,
-        "y": 560,
+        "y": 540,
         "wires": [
             [
                 "b8071cf910c4f12b"
@@ -5199,7 +5199,7 @@
             "light.lounge_light"
         ],
         "labelId": [],
-        "data": "{\"entity_id\":\"light.lounge_light\",\"brightness_pct\": 0, \"kelvin\": 3000, \"transition\": 3 }",
+        "data": "{\"entity_id\":\"light.lounge_light\",\"brightness_pct\":0,\"transition\":3}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -5952,65 +5952,6 @@
         ],
         "x": 170,
         "y": 1180,
-        "wires": [
-            [
-                "327ad6a788aaa37d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "773653acb8c0ee8d",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Reading Mode on?",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_boolean.reading_switch"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "on",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "Reading",
-                "valueType": "str"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 190,
-        "y": 1060,
         "wires": [
             [
                 "327ad6a788aaa37d"
@@ -6937,20 +6878,20 @@
         "server": "178754b9.fedf4b",
         "version": 7,
         "debugenabled": false,
-        "action": "spotcast.play_media",
+        "action": "media_player.play_media",
         "floorId": [],
         "areaId": [],
         "deviceId": [],
         "entityId": [],
         "labelId": [],
-        "data": "{    \"account\": \"01K8YPZQ93CH2RA0EY3CGNTRJS\",    \"spotify_uri\": \"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",    \"media_player\": {        \"entity_id\": \"media_player.living_room_speaker\"    }    \"shuffle\":\"enable_shuffle\"}",
+        "data": "{\"account\":\"01K8YPZQ93CH2RA0EY3CGNTRJS\",\"media_content_id\":\"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\"media_content_type\":\"music\",\"media_player\":{\"entity_id\":\"media_player.living_room_speaker\"}}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "blockInputOverrides": false,
-        "domain": "spotcast",
+        "domain": "media_player",
         "service": "play_media",
         "x": 1420,
         "y": 2400,
@@ -6958,554 +6899,6 @@
             [
                 "a097488bf70aea32"
             ]
-        ]
-    },
-    {
-        "id": "2e8f2faab5d63617",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield Playing",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "playing",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 260,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8e7eb0f993cdcba7",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "TV Being turned on?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.tv_auto_on",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 400,
-        "y": 320,
-        "wires": [
-            [],
-            [
-                "1f20dc674c381676"
-            ]
-        ]
-    },
-    {
-        "id": "aaa23fb433f8f10c",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn on movie",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.movie_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_on",
-        "x": 760,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f20dc674c381676",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Movie Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.movie_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 590,
-        "y": 320,
-        "wires": [
-            [],
-            [
-                "aaa23fb433f8f10c"
-            ]
-        ]
-    },
-    {
-        "id": "6fb7cdde5254f7fb",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield Idle",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "playing",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 160,
-        "y": 320,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "16c527ec93d28a7f",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield off",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "off",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "30",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 160,
-        "y": 200,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "25e265b838fcd398",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "TV Being turned on?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.tv_auto_on",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 880,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "2bf5549ce42a03ae"
-            ]
-        ]
-    },
-    {
-        "id": "2bf5549ce42a03ae",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Movie Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.movie_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1070,
-        "y": 200,
-        "wires": [
-            [
-                "e97e514ed805b683"
-            ],
-            [
-                "ebadc28247c8ebbb"
-            ]
-        ]
-    },
-    {
-        "id": "ebadc28247c8ebbb",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Wii Scene",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.wii_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1240,
-        "y": 220,
-        "wires": [
-            [
-                "909b1c7db30a82cf"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e97e514ed805b683",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn off movie",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.movie_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
-        "x": 1260,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "909b1c7db30a82cf",
-        "type": "api-call-service",
-        "z": "6f3a0936b99b07e3",
-        "name": "turn off WII",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.wii_switch"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
-        "x": 1390,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6d01652e88d8949b",
-        "type": "server-state-changed",
-        "z": "6f3a0936b99b07e3",
-        "name": "Shield paused",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "media_player.android_tv_10_0_0_26"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "paused",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 166.451416015625,
-        "y": 373.44964599609375,
-        "wires": [
-            [],
-            []
         ]
     },
     {
@@ -7572,96 +6965,6 @@
         "y": 2640,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "3e4d497739a924e6",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Wii Source Selected?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "WII",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.tv_source",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 400,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "b0e9469381299a65"
-            ]
-        ]
-    },
-    {
-        "id": "b0e9469381299a65",
-        "type": "api-current-state",
-        "z": "6f3a0936b99b07e3",
-        "name": "Streaming Source Selected?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "Streaming Box",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.tv_source",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 640,
-        "y": 200,
-        "wires": [
-            [],
-            [
-                "25e265b838fcd398"
-            ]
         ]
     },
     {
@@ -10111,7 +9414,7 @@
         "y": 2300,
         "wires": [
             [
-                "c5826f3986c4bb01"
+                "ce117b3c3046f1c7"
             ]
         ]
     },
@@ -10374,6 +9677,1772 @@
         "x": 900,
         "y": 2720,
         "wires": []
+    },
+    {
+        "id": "8dcd16a9194ab3cb",
+        "type": "server-state-changed",
+        "z": "6f3a0936b99b07e3",
+        "name": "reading Mode on?",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.reading_switch"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "Reading",
+                "valueType": "str"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 1060,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "85b6482f0a644c57",
+        "type": "api-call-service",
+        "z": "6f3a0936b99b07e3",
+        "name": "Play Playlist",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.play_media",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotifyplus_graham"
+        ],
+        "labelId": [],
+        "data": "{\t    \"media_content_id\": \"spotify:playlist:37i9dQZF1EIZ0V0T7oWUAc?si=d5e1ddb3c6e044cd\",\t    \"media_content_type\": \"music\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "media_player",
+        "service": "play_media",
+        "x": 1450,
+        "y": 2340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce117b3c3046f1c7",
+        "type": "api-call-service",
+        "z": "6f3a0936b99b07e3",
+        "name": "select source",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.select_source",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotifyplus_graham"
+        ],
+        "labelId": [],
+        "data": "{\"source\":\"Living Room Speaker\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "media_player",
+        "service": "select_source",
+        "x": 1430,
+        "y": 2280,
+        "wires": [
+            [
+                "85b6482f0a644c57"
+            ]
+        ]
+    },
+    {
+        "id": "63c4fc4bbba27074",
+        "type": "inject",
+        "z": "6f3a0936b99b07e3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "2ff49ed9db7fad44"
+            ]
+        ]
+    },
+    {
+        "id": "777cb39267bbab53",
+        "type": "server-state-changed",
+        "z": "6f3a0936b99b07e3",
+        "name": "Shield Playing",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "media_player.android_tv_10_0_0_26"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "idle",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 610,
+        "y": 680,
+        "wires": [
+            [
+                "a64b29240b5fa3aa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5372502bfa66bcde",
+        "type": "inject",
+        "z": "6f3a0936b99b07e3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "cd7b90ed3dbff638"
+            ]
+        ]
+    },
+    {
+        "id": "6c0eb4b2743c994b",
+        "type": "eztimer",
+        "z": "2aac704b012aedce",
+        "name": "7:30 am Monday",
+        "debug": false,
+        "autoname": "7:30",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "-33.796386",
+        "lon": "151.112123",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "2",
+        "ontimesun": "dawn",
+        "ontimetod": "7:30",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "3",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": false,
+        "wed": false,
+        "thu": false,
+        "fri": false,
+        "sat": false,
+        "sun": false,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "4436cc43085ae632"
+            ]
+        ]
+    },
+    {
+        "id": "7ab02e87277bd129",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn On Fridge/Coffee",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [
+            "3e36645b7d8aaf243b6f16b97d663633"
+        ],
+        "entityId": [],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 800,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2923b3fc04f59903",
+        "type": "eztimer",
+        "z": "2aac704b012aedce",
+        "name": "End of Day",
+        "debug": false,
+        "autoname": "17:30:00",
+        "tag": "eztimer",
+        "topic": "",
+        "suspended": false,
+        "sendEventsOnSuspend": false,
+        "latLongSource": "haZone",
+        "latLongHaZone": "zone.home",
+        "lat": "-33.796386",
+        "lon": "151.112123",
+        "timerType": "2",
+        "startupMessage": false,
+        "ontype": "2",
+        "ontimesun": "dawn",
+        "ontimetod": "17:30:00",
+        "onpropertytype": "msg",
+        "onproperty": "payload",
+        "onvaluetype": "num",
+        "onvalue": 1,
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "onsuppressrepeats": false,
+        "offtype": "3",
+        "offtimesun": "dusk",
+        "offtimetod": "dusk",
+        "offduration": "00:01:00",
+        "offpropertytype": "msg",
+        "offproperty": "payload",
+        "offvaluetype": "num",
+        "offvalue": 0,
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "offsuppressrepeats": false,
+        "resend": false,
+        "resendInterval": "0s",
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "e799f574aa0f4e4e"
+            ]
+        ]
+    },
+    {
+        "id": "e799f574aa0f4e4e",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn off Office plugs",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.office_wall_l"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "18610afe4634fd34"
+            ]
+        ]
+    },
+    {
+        "id": "e2cda74f47854c92",
+        "type": "comment",
+        "z": "2aac704b012aedce",
+        "name": "Office Lighting",
+        "info": "",
+        "x": 110,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d552cd44f0753f88",
+        "type": "subflow:e7e0a0a3fe1450ab",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Bright",
+        "env": [
+            {
+                "name": "max_percentage",
+                "value": "90",
+                "type": "num"
+            },
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "kelvin",
+                "value": "3500",
+                "type": "num"
+            },
+            {
+                "name": "transition",
+                "value": "3",
+                "type": "num"
+            },
+            {
+                "name": "min_percentage",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "low_lux_level",
+                "value": "100000",
+                "type": "num"
+            }
+        ],
+        "x": 970,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a78338e7ce54aa0d",
+        "type": "delay",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 940,
+        "y": 360,
+        "wires": [
+            [
+                "761309f9a4dcc918"
+            ]
+        ]
+    },
+    {
+        "id": "d380193a9d0ec4bc",
+        "type": "server-state-changed",
+        "z": "2aac704b012aedce",
+        "name": "Desk Plug off",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "switch.office_wall_l"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": true,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "c9e869127c56316e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c9e869127c56316e",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn off Spotify",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.media_pause",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotify_graham"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "media_pause",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6566cdbcc3d2325",
+        "type": "server-state-changed",
+        "z": "2aac704b012aedce",
+        "name": "Office Motion",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.0xa4c1380ce7f7b699_occupancy"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": true,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 103,
+        "y": 592,
+        "wires": [
+            [
+                "3148b898f51c8853"
+            ],
+            [
+                "ab598cc99ee0c888"
+            ]
+        ]
+    },
+    {
+        "id": "3148b898f51c8853",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Desk On?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.office_wall_l",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 280,
+        "y": 540,
+        "wires": [
+            [],
+            [
+                "6792262db476a171"
+            ]
+        ]
+    },
+    {
+        "id": "6792262db476a171",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "WFH today?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.wfh_today",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "2896620de9293e45"
+            ],
+            [
+                "406075432e2f161c"
+            ]
+        ]
+    },
+    {
+        "id": "406075432e2f161c",
+        "type": "subflow:e7e0a0a3fe1450ab",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Bright",
+        "env": [
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "kelvin",
+                "value": "3500",
+                "type": "num"
+            },
+            {
+                "name": "transition",
+                "value": "3",
+                "type": "num"
+            },
+            {
+                "name": "min_percentage",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "low_lux_level",
+                "value": "100000",
+                "type": "num"
+            }
+        ],
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "2896620de9293e45",
+        "type": "time-of-day",
+        "z": "2aac704b012aedce",
+        "name": "Daytime (7am to 2pm)",
+        "startTime": "07:00:00",
+        "endTime": "14:00:00",
+        "outputs": 2,
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "409714f28242bf20"
+            ],
+            [
+                "6b43622be8f4ba6d"
+            ]
+        ]
+    },
+    {
+        "id": "409714f28242bf20",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn On Office plugs",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.office_wall_l"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 880,
+        "y": 540,
+        "wires": [
+            [
+                "e3aaa77867b66cf1"
+            ]
+        ]
+    },
+    {
+        "id": "e3aaa77867b66cf1",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Office Light On?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.hue_filament_bulb_1",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1113,
+        "y": 532,
+        "wires": [
+            [
+                "d5c70cb792f3c68d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d17df243ad3429ee",
+        "type": "subflow:954d68603b93f059",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Off",
+        "env": [
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "transition",
+                "value": "4",
+                "type": "num"
+            }
+        ],
+        "x": 1453,
+        "y": 532,
+        "wires": []
+    },
+    {
+        "id": "18610afe4634fd34",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "WFH today?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.wfh_today",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "59b563d5a6d8ebb4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "59b563d5a6d8ebb4",
+        "type": "change",
+        "z": "2aac704b012aedce",
+        "name": "Set to 'on' msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "a78338e7ce54aa0d",
+                "d552cd44f0753f88"
+            ]
+        ]
+    },
+    {
+        "id": "6b43622be8f4ba6d",
+        "type": "subflow:e7e0a0a3fe1450ab",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Bright",
+        "env": [
+            {
+                "name": "max_percentage",
+                "value": "90",
+                "type": "num"
+            },
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "kelvin",
+                "value": "3500",
+                "type": "num"
+            },
+            {
+                "name": "transition",
+                "value": "3",
+                "type": "num"
+            },
+            {
+                "name": "min_percentage",
+                "value": "1",
+                "type": "num"
+            },
+            {
+                "name": "low_lux_level",
+                "value": "100000",
+                "type": "num"
+            }
+        ],
+        "x": 870,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "d28255db525e8936",
+        "type": "comment",
+        "z": "2aac704b012aedce",
+        "name": "do nothing if desk on",
+        "info": "",
+        "x": 443,
+        "y": 492,
+        "wires": []
+    },
+    {
+        "id": "e426a68f981ca827",
+        "type": "inject",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            [
+                "e799f574aa0f4e4e"
+            ]
+        ]
+    },
+    {
+        "id": "4436cc43085ae632",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn On Wall Socket",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.office_wall_r"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "8230058f4bb05702"
+            ]
+        ]
+    },
+    {
+        "id": "5f6348a95f6eae71",
+        "type": "inject",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "4436cc43085ae632"
+            ]
+        ]
+    },
+    {
+        "id": "a59bc67225b3bb2f",
+        "type": "inject",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "409714f28242bf20"
+            ]
+        ]
+    },
+    {
+        "id": "fe40b53aa51b6e59",
+        "type": "server-state-changed",
+        "z": "2aac704b012aedce",
+        "name": "Fridge off",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "switch.plug_orange"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": true,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 100,
+        "y": 860,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9a109106f4e1beae",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "Turn off wall socket",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.office_wall_r"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 330,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85be942e8be803ed",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "turn off purple2 plug",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.plug_purple_2"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 1200,
+        "y": 780,
+        "wires": [
+            [
+                "2b1d6aae23eaa3e0"
+            ]
+        ]
+    },
+    {
+        "id": "6154b347b213b442",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Heater On (PurplePlug2)?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "10",
+        "halt_if_type": "num",
+        "halt_if_compare": "gt",
+        "entity_id": "sensor.plug_purple_2_power",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "number",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 950,
+        "y": 780,
+        "wires": [
+            [
+                "85be942e8be803ed"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "98e88e9919b57555",
+        "type": "change",
+        "z": "2aac704b012aedce",
+        "name": ">10W to Boolean",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload > 10 ? true : false",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 800,
+        "wires": [
+            [
+                "088374968eb53905"
+            ]
+        ]
+    },
+    {
+        "id": "088374968eb53905",
+        "type": "rbe",
+        "z": "2aac704b012aedce",
+        "name": "Filter True/False",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload",
+        "topi": "topic",
+        "x": 540,
+        "y": 800,
+        "wires": [
+            [
+                "419d208c2a7cd29e"
+            ]
+        ]
+    },
+    {
+        "id": "419d208c2a7cd29e",
+        "type": "switch",
+        "z": "2aac704b012aedce",
+        "name": "Split True/False",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 720,
+        "y": 800,
+        "wires": [
+            [
+                "6154b347b213b442"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f43b957db18eaa06",
+        "type": "server-state-changed",
+        "z": "2aac704b012aedce",
+        "name": "Coffee Power",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.plug_yellow_power"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "num",
+        "ifState": "",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": true,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "number",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 800,
+        "wires": [
+            [
+                "98e88e9919b57555"
+            ]
+        ]
+    },
+    {
+        "id": "d5c70cb792f3c68d",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Light Lock?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.officelightlock_switch",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1283,
+        "y": 532,
+        "wires": [
+            [],
+            [
+                "d17df243ad3429ee"
+            ]
+        ]
+    },
+    {
+        "id": "761309f9a4dcc918",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Light Lock?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.officelightlock_switch",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1090,
+        "y": 360,
+        "wires": [
+            [],
+            [
+                "69638e3177b87bba"
+            ]
+        ]
+    },
+    {
+        "id": "69638e3177b87bba",
+        "type": "subflow:954d68603b93f059",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Off",
+        "env": [
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "transition",
+                "value": "4",
+                "type": "num"
+            }
+        ],
+        "x": 1260,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "ab598cc99ee0c888",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "Light Lock?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.officelightlock_switch",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [],
+            [
+                "f6084893be8c3075"
+            ]
+        ]
+    },
+    {
+        "id": "f6084893be8c3075",
+        "type": "subflow:954d68603b93f059",
+        "z": "2aac704b012aedce",
+        "name": "Office Light Off",
+        "env": [
+            {
+                "name": "entity_id",
+                "value": "light.hue_filament_bulb_1",
+                "type": "str"
+            },
+            {
+                "name": "transition",
+                "value": "4",
+                "type": "num"
+            }
+        ],
+        "x": 460,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2b1d6aae23eaa3e0",
+        "type": "api-call-service",
+        "z": "2aac704b012aedce",
+        "name": "turn back on purple2 plug",
+        "server": "178754b9.fedf4b",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.plug_purple_2"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 1450,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "123f165766ca9553",
+        "type": "server-state-changed",
+        "z": "2aac704b012aedce",
+        "name": "plug purple 2 Power",
+        "server": "178754b9.fedf4b",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.plug_purple_2_power"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "num",
+        "ifState": "10",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": true,
+        "ignorePrevStateUnknown": true,
+        "ignorePrevStateUnavailable": true,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "number",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 630,
+        "y": 860,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8230058f4bb05702",
+        "type": "api-current-state",
+        "z": "2aac704b012aedce",
+        "name": "WFH today?",
+        "server": "178754b9.fedf4b",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.wfh_today",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 590,
+        "y": 80,
+        "wires": [
+            [
+                "7ab02e87277bd129"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ab43203d5963c96b",
+        "type": "inject",
+        "z": "2aac704b012aedce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 300,
+        "wires": [
+            [
+                "d552cd44f0753f88"
+            ]
+        ]
     },
     {
         "id": "57ad1d6c6ed590bc",
@@ -13287,7 +14356,7 @@
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.sm_s906e_charger_type_2"
+                "sensor.sm_s906e_charger_type"
             ],
             "substring": [],
             "regex": []
@@ -13899,1505 +14968,6 @@
         ]
     },
     {
-        "id": "6c0eb4b2743c994b",
-        "type": "eztimer",
-        "z": "2aac704b012aedce",
-        "name": "7:30 am Monday",
-        "debug": false,
-        "autoname": "7:30",
-        "tag": "eztimer",
-        "topic": "",
-        "suspended": false,
-        "sendEventsOnSuspend": false,
-        "latLongSource": "haZone",
-        "latLongHaZone": "zone.home",
-        "lat": "-33.796386",
-        "lon": "151.112123",
-        "timerType": "2",
-        "startupMessage": false,
-        "ontype": "2",
-        "ontimesun": "dawn",
-        "ontimetod": "7:30",
-        "onpropertytype": "msg",
-        "onproperty": "payload",
-        "onvaluetype": "num",
-        "onvalue": 1,
-        "onoffset": 0,
-        "onrandomoffset": 0,
-        "onsuppressrepeats": false,
-        "offtype": "3",
-        "offtimesun": "dusk",
-        "offtimetod": "dusk",
-        "offduration": "00:01:00",
-        "offpropertytype": "msg",
-        "offproperty": "payload",
-        "offvaluetype": "num",
-        "offvalue": 0,
-        "offoffset": 0,
-        "offrandomoffset": 0,
-        "offsuppressrepeats": false,
-        "resend": false,
-        "resendInterval": "0s",
-        "mon": true,
-        "tue": false,
-        "wed": false,
-        "thu": false,
-        "fri": false,
-        "sat": false,
-        "sun": false,
-        "x": 130,
-        "y": 80,
-        "wires": [
-            [
-                "4436cc43085ae632"
-            ]
-        ]
-    },
-    {
-        "id": "7ab02e87277bd129",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn On Fridge/Coffee",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [
-            "3e36645b7d8aaf243b6f16b97d663633"
-        ],
-        "entityId": [],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 720,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2923b3fc04f59903",
-        "type": "eztimer",
-        "z": "2aac704b012aedce",
-        "name": "End of Day",
-        "debug": false,
-        "autoname": "17:30:00",
-        "tag": "eztimer",
-        "topic": "",
-        "suspended": false,
-        "sendEventsOnSuspend": false,
-        "latLongSource": "haZone",
-        "latLongHaZone": "zone.home",
-        "lat": "-33.796386",
-        "lon": "151.112123",
-        "timerType": "2",
-        "startupMessage": false,
-        "ontype": "2",
-        "ontimesun": "dawn",
-        "ontimetod": "17:30:00",
-        "onpropertytype": "msg",
-        "onproperty": "payload",
-        "onvaluetype": "num",
-        "onvalue": 1,
-        "onoffset": 0,
-        "onrandomoffset": 0,
-        "onsuppressrepeats": false,
-        "offtype": "3",
-        "offtimesun": "dusk",
-        "offtimetod": "dusk",
-        "offduration": "00:01:00",
-        "offpropertytype": "msg",
-        "offproperty": "payload",
-        "offvaluetype": "num",
-        "offvalue": 0,
-        "offoffset": 0,
-        "offrandomoffset": 0,
-        "offsuppressrepeats": false,
-        "resend": false,
-        "resendInterval": "0s",
-        "mon": true,
-        "tue": true,
-        "wed": true,
-        "thu": true,
-        "fri": true,
-        "sat": true,
-        "sun": true,
-        "x": 110,
-        "y": 300,
-        "wires": [
-            [
-                "e799f574aa0f4e4e"
-            ]
-        ]
-    },
-    {
-        "id": "e799f574aa0f4e4e",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn off Office plugs",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.office_wall_l"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "x": 340,
-        "y": 300,
-        "wires": [
-            [
-                "18610afe4634fd34"
-            ]
-        ]
-    },
-    {
-        "id": "e2cda74f47854c92",
-        "type": "comment",
-        "z": "2aac704b012aedce",
-        "name": "Office Lighting",
-        "info": "",
-        "x": 110,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "d552cd44f0753f88",
-        "type": "subflow:e7e0a0a3fe1450ab",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Bright",
-        "env": [
-            {
-                "name": "max_percentage",
-                "value": "90",
-                "type": "num"
-            },
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "kelvin",
-                "value": "3500",
-                "type": "num"
-            },
-            {
-                "name": "transition",
-                "value": "3",
-                "type": "num"
-            },
-            {
-                "name": "min_percentage",
-                "value": "1",
-                "type": "num"
-            },
-            {
-                "name": "low_lux_level",
-                "value": "100000",
-                "type": "num"
-            }
-        ],
-        "x": 970,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "a78338e7ce54aa0d",
-        "type": "delay",
-        "z": "2aac704b012aedce",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "30",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 940,
-        "y": 320,
-        "wires": [
-            [
-                "761309f9a4dcc918"
-            ]
-        ]
-    },
-    {
-        "id": "d380193a9d0ec4bc",
-        "type": "server-state-changed",
-        "z": "2aac704b012aedce",
-        "name": "Desk Plug off",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "switch.office_wall_l"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "off",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": true,
-        "ignorePrevStateUnknown": true,
-        "ignorePrevStateUnavailable": true,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 110,
-        "y": 160,
-        "wires": [
-            [
-                "c9e869127c56316e"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "c9e869127c56316e",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn off Spotify",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "media_player.media_pause",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.spotify_graham"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "media_player",
-        "service": "media_pause",
-        "x": 320,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a6566cdbcc3d2325",
-        "type": "server-state-changed",
-        "z": "2aac704b012aedce",
-        "name": "Office Motion",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "binary_sensor.0xa4c1380ce7f7b699_occupancy"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "on",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": true,
-        "ignorePrevStateUnknown": true,
-        "ignorePrevStateUnavailable": true,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 110,
-        "y": 500,
-        "wires": [
-            [
-                "3148b898f51c8853"
-            ],
-            [
-                "ab598cc99ee0c888"
-            ]
-        ]
-    },
-    {
-        "id": "3148b898f51c8853",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Desk On?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "switch.office_wall_l",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 280,
-        "y": 420,
-        "wires": [
-            [],
-            [
-                "6792262db476a171"
-            ]
-        ]
-    },
-    {
-        "id": "6792262db476a171",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "WFH today?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.wfh_today",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 450,
-        "y": 460,
-        "wires": [
-            [
-                "2896620de9293e45"
-            ],
-            [
-                "406075432e2f161c"
-            ]
-        ]
-    },
-    {
-        "id": "406075432e2f161c",
-        "type": "subflow:e7e0a0a3fe1450ab",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Bright",
-        "env": [
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "kelvin",
-                "value": "3500",
-                "type": "num"
-            },
-            {
-                "name": "transition",
-                "value": "3",
-                "type": "num"
-            },
-            {
-                "name": "min_percentage",
-                "value": "1",
-                "type": "num"
-            },
-            {
-                "name": "low_lux_level",
-                "value": "100000",
-                "type": "num"
-            }
-        ],
-        "x": 630,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "2896620de9293e45",
-        "type": "time-of-day",
-        "z": "2aac704b012aedce",
-        "name": "Daytime (7am to 2pm)",
-        "startTime": "07:00:00",
-        "endTime": "14:00:00",
-        "outputs": 2,
-        "x": 660,
-        "y": 480,
-        "wires": [
-            [
-                "409714f28242bf20"
-            ],
-            [
-                "6b43622be8f4ba6d"
-            ]
-        ]
-    },
-    {
-        "id": "409714f28242bf20",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn On Office plugs",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.office_wall_l"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 880,
-        "y": 440,
-        "wires": [
-            [
-                "e3aaa77867b66cf1"
-            ]
-        ]
-    },
-    {
-        "id": "e3aaa77867b66cf1",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Office Light On?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "light.hue_filament_bulb_1",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1120,
-        "y": 440,
-        "wires": [
-            [
-                "d5c70cb792f3c68d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d17df243ad3429ee",
-        "type": "subflow:954d68603b93f059",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Off",
-        "env": [
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "transition",
-                "value": "4",
-                "type": "num"
-            }
-        ],
-        "x": 1460,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "18610afe4634fd34",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "WFH today?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.wfh_today",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 550,
-        "y": 300,
-        "wires": [
-            [
-                "59b563d5a6d8ebb4"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "59b563d5a6d8ebb4",
-        "type": "change",
-        "z": "2aac704b012aedce",
-        "name": "Set to 'on' msg",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 740,
-        "y": 300,
-        "wires": [
-            [
-                "a78338e7ce54aa0d",
-                "d552cd44f0753f88"
-            ]
-        ]
-    },
-    {
-        "id": "6b43622be8f4ba6d",
-        "type": "subflow:e7e0a0a3fe1450ab",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Bright",
-        "env": [
-            {
-                "name": "max_percentage",
-                "value": "90",
-                "type": "num"
-            },
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "kelvin",
-                "value": "3500",
-                "type": "num"
-            },
-            {
-                "name": "transition",
-                "value": "3",
-                "type": "num"
-            },
-            {
-                "name": "min_percentage",
-                "value": "1",
-                "type": "num"
-            },
-            {
-                "name": "low_lux_level",
-                "value": "100000",
-                "type": "num"
-            }
-        ],
-        "x": 910,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "d28255db525e8936",
-        "type": "comment",
-        "z": "2aac704b012aedce",
-        "name": "do nothing if desk on",
-        "info": "",
-        "x": 450,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "e426a68f981ca827",
-        "type": "inject",
-        "z": "2aac704b012aedce",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 660,
-        "y": 180,
-        "wires": [
-            [
-                "e799f574aa0f4e4e"
-            ]
-        ]
-    },
-    {
-        "id": "4436cc43085ae632",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn On Wall Socket",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.office_wall_r"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 360,
-        "y": 80,
-        "wires": [
-            [
-                "8230058f4bb05702"
-            ]
-        ]
-    },
-    {
-        "id": "5f6348a95f6eae71",
-        "type": "inject",
-        "z": "2aac704b012aedce",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 220,
-        "y": 20,
-        "wires": [
-            [
-                "4436cc43085ae632"
-            ]
-        ]
-    },
-    {
-        "id": "a59bc67225b3bb2f",
-        "type": "inject",
-        "z": "2aac704b012aedce",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 700,
-        "y": 400,
-        "wires": [
-            [
-                "409714f28242bf20"
-            ]
-        ]
-    },
-    {
-        "id": "fe40b53aa51b6e59",
-        "type": "server-state-changed",
-        "z": "2aac704b012aedce",
-        "name": "Fridge off",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "switch.plug_orange"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "off",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": true,
-        "ignorePrevStateUnknown": true,
-        "ignorePrevStateUnavailable": true,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 100,
-        "y": 740,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "9a109106f4e1beae",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "Turn off wall socket",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.office_wall_r"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "x": 330,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "85be942e8be803ed",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "turn off purple2 plug",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.plug_purple_2"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "x": 1200,
-        "y": 660,
-        "wires": [
-            [
-                "2b1d6aae23eaa3e0"
-            ]
-        ]
-    },
-    {
-        "id": "6154b347b213b442",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Heater On (PurplePlug2)?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "10",
-        "halt_if_type": "num",
-        "halt_if_compare": "gt",
-        "entity_id": "sensor.plug_purple_2_power",
-        "state_type": "num",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "number",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 950,
-        "y": 660,
-        "wires": [
-            [
-                "85be942e8be803ed"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "98e88e9919b57555",
-        "type": "change",
-        "z": "2aac704b012aedce",
-        "name": ">10W to Boolean",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload > 10 ? true : false",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 680,
-        "wires": [
-            [
-                "088374968eb53905"
-            ]
-        ]
-    },
-    {
-        "id": "088374968eb53905",
-        "type": "rbe",
-        "z": "2aac704b012aedce",
-        "name": "Filter True/False",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "septopics": false,
-        "property": "payload",
-        "topi": "topic",
-        "x": 540,
-        "y": 680,
-        "wires": [
-            [
-                "419d208c2a7cd29e"
-            ]
-        ]
-    },
-    {
-        "id": "419d208c2a7cd29e",
-        "type": "switch",
-        "z": "2aac704b012aedce",
-        "name": "Split True/False",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 720,
-        "y": 680,
-        "wires": [
-            [
-                "6154b347b213b442"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "f43b957db18eaa06",
-        "type": "server-state-changed",
-        "z": "2aac704b012aedce",
-        "name": "Coffee Power",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 1,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "sensor.plug_yellow_power"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "num",
-        "ifState": "",
-        "ifStateType": "num",
-        "ifStateOperator": "gt",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": true,
-        "ignorePrevStateUnknown": true,
-        "ignorePrevStateUnavailable": true,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "number",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 110,
-        "y": 680,
-        "wires": [
-            [
-                "98e88e9919b57555"
-            ]
-        ]
-    },
-    {
-        "id": "d5c70cb792f3c68d",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Light Lock?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.officelightlock_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1290,
-        "y": 440,
-        "wires": [
-            [],
-            [
-                "d17df243ad3429ee"
-            ]
-        ]
-    },
-    {
-        "id": "761309f9a4dcc918",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Light Lock?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.officelightlock_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1090,
-        "y": 320,
-        "wires": [
-            [],
-            [
-                "69638e3177b87bba"
-            ]
-        ]
-    },
-    {
-        "id": "69638e3177b87bba",
-        "type": "subflow:954d68603b93f059",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Off",
-        "env": [
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "transition",
-                "value": "4",
-                "type": "num"
-            }
-        ],
-        "x": 1260,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "ab598cc99ee0c888",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "Light Lock?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.officelightlock_switch",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 307,
-        "y": 588,
-        "wires": [
-            [],
-            [
-                "f6084893be8c3075"
-            ]
-        ]
-    },
-    {
-        "id": "f6084893be8c3075",
-        "type": "subflow:954d68603b93f059",
-        "z": "2aac704b012aedce",
-        "name": "Office Light Off",
-        "env": [
-            {
-                "name": "entity_id",
-                "value": "light.hue_filament_bulb_1",
-                "type": "str"
-            },
-            {
-                "name": "transition",
-                "value": "4",
-                "type": "num"
-            }
-        ],
-        "x": 507,
-        "y": 608,
-        "wires": []
-    },
-    {
-        "id": "2b1d6aae23eaa3e0",
-        "type": "api-call-service",
-        "z": "2aac704b012aedce",
-        "name": "turn back on purple2 plug",
-        "server": "178754b9.fedf4b",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.plug_purple_2"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 1450,
-        "y": 660,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "123f165766ca9553",
-        "type": "server-state-changed",
-        "z": "2aac704b012aedce",
-        "name": "plug purple 2 Power",
-        "server": "178754b9.fedf4b",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "sensor.plug_purple_2_power"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "num",
-        "ifState": "10",
-        "ifStateType": "num",
-        "ifStateOperator": "gt",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": true,
-        "ignorePrevStateUnknown": true,
-        "ignorePrevStateUnavailable": true,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "number",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 630,
-        "y": 740,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8230058f4bb05702",
-        "type": "api-current-state",
-        "z": "2aac704b012aedce",
-        "name": "WFH today?",
-        "server": "178754b9.fedf4b",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.wfh_today",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 550,
-        "y": 120,
-        "wires": [
-            [
-                "7ab02e87277bd129"
-            ],
-            []
-        ]
-    },
-    {
         "id": "f2149d9159bf96e7",
         "type": "server-state-changed",
         "z": "0ed3545c4583e0cf",
@@ -15408,7 +14978,7 @@
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.sm_s906e_charger_type_2"
+                "sensor.sm_s926b_charger_type"
             ],
             "substring": [],
             "regex": []
@@ -15447,7 +15017,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 230,
+        "x": 220,
         "y": 80,
         "wires": [
             [
@@ -16685,7 +16255,7 @@
         ]
     },
     {
-        "id": "d1ab3637114d4743",
+        "id": "c7a72decf34dd0d0",
         "type": "global-config",
         "env": [],
         "modules": {

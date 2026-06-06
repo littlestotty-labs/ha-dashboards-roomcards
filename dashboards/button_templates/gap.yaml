@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# gap.yaml
+# Gap/spacer template — transparent invisible card for layout
+# spacing. Based on CreativeBC template.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 ####{ CreativeBC }####| Gap Card Template |####[ github.com/wfurphy/creative-button-card-templates ]####>
 gap:
   template: 

@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# template.yaml
+# Jinja2 template sensors — media sources, plug power,
+# weather, light counts, and battery monitoring.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 - sensor:
     - unique_id: shield_source
       name: Shield TV Source

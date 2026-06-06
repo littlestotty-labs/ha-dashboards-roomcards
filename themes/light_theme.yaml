@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# light_theme.yaml
+# grahams-light theme — light backgrounds, accent colors,
+# Bubble Card styling, and per-room color variables.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 grahams-light:
   card-mod-theme: "grahams-light"
   # -----------------------------------------------------

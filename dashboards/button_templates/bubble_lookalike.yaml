@@ -1,2 +1,10 @@
+# -----------------------------------------------------------
+# bubble_lookalike.yaml
+# Composed template — bubble_base only (no device mixin);
+# generic pop-up toggle matching bubble styling.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   bubble_lookalike:
     template: bubble_base

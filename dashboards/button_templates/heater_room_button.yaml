@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# heater_room_button.yaml
+# Composed template — room_button + heat mixin for room card
+# heater toggle buttons.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   heater_room_button:
     template:
       - room_button

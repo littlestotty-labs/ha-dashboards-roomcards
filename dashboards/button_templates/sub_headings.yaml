@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+# sub_headings.yaml
+# Section heading template — transparent card displaying a
+# bold text label for pop-up content sections.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
   sub_headings:
     variables:
       var_name: name
