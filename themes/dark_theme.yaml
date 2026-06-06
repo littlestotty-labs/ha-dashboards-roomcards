@@ -11,29 +11,33 @@ grahams-dark:
   # -----------------------------------------------------
   # Base
   # -----------------------------------------------------
-
+  ha-color-form-background: "#2f2f2f"
+  ha-color-form-background-hover: "#2a2a2a"
+  ha-color-form-background-disabled: "#111111"
+  ha-color-fill-color: "#1e1e1e"
+  ha-color-ink-color: "#e0e0e0"
+  mdc-text-field-background: "#2f2f2f"
   primary-font-family: "'Space Grotesk', sans-serif"
-  mdc-text-field-fill-color: "#aca381ff" # background of the input
-  mdc-text-field-label-ink-color: "#201f1fff" # label colour
+  mdc-text-field-fill-color: "#1e1e1e" # background of the input
+  mdc-text-field-label-ink-color: "#999999" # label colour
   mdc-text-field-idle-line-color: "#585656ff" # underline/border when idle
   mdc-text-field-hover-line-color: "#666666" # underline/border when hovering
   mdc-text-field-outlined-idle-border-color: "#999999"
   mdc-text-field-outlined-hover-border-color: "#666666"
   mdc-text-field-focused-label-color: "#03a9f4" # label when focused
   mdc-text-field-focused-ink-color: "#000000" # text when focused
-  mdc-text-field-ink-color: "#000000"
-  mdc-text-field-placeholder-ink-color: "#242323ff"
+  mdc-text-field-ink-color: "#e0e0e0"
+  mdc-text-field-placeholder-ink-color: "#888888"
   # Developer tools / editor fields
-  codemirror-background: "#ffffff"
+  codemirror-background: "#ed0f0fff"
   codemirror-text-color: "#000000"
   code-editor-background-color: "#353533ff"
   code-editor-text-color: "#000000"
   code-editor-gutter-color: "#ffffff"
 
   # Background color of the input box
-  input-fill-color: "#FF0000" # Example: Red background
-  # Text color inside the input box
-  input-ink-color: "#FFFFFF" # Example: White text
+  input-fill-color: "#1e1e1e"
+  input-ink-color: "#e0e0e0"
   # Color of the label text
   input-label-ink-color: "#CCCCCC" # Example: Light grey label
   # Color of the bottom border when idle
@@ -53,7 +57,7 @@ grahams-dark:
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#2b2e34"
   ha-color-text-secondary: "#6d7ea2ff"
-  -ha-color-fill-primary-quiet-resting: "#000000"
+  ha-color-fill-primary-quiet-resting: "#000000"
   # -----------------------------------------------------
   # Text
   # -----------------------------------------------------

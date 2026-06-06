@@ -1681,7 +1681,7 @@ views:
                       rows: 1
                       styles: >-
                         ha-card {
-                          margin-top: -10px;
+                          margin-top: -5px;
                           margin-left: -14px;
                           margin-bottom: -20px !important;
                         }
@@ -1697,7 +1697,7 @@ views:
                         .bubble-line { background: transparent; height: 2px }
 
                         .bubble-name { 
-                          color: black !important; 
+                          color:  var(--popup-secondary-text) !important; 
                           font-size:12px !important;
                         }
                     - type: custom:button-card
@@ -1764,7 +1764,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -1834,7 +1834,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -1846,7 +1846,7 @@ views:
                       rows: 1
                       styles: >-
                         ha-card {
-                          margin-top: -10px;
+                          margin-top: 0px;
                           margin-left: -14px;
                           margin-bottom: -20px !important;
                         }
@@ -1862,7 +1862,7 @@ views:
                         .bubble-line { background: transparent; height: 2px }
 
                         .bubble-name { 
-                          color: black !important; 
+                          color:  var(--popup-secondary-text) !important; 
                           font-size:12px !important;
                         }
                     - type: custom:button-card
@@ -1929,7 +1929,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -1999,7 +1999,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -2011,7 +2011,7 @@ views:
                       rows: 1
                       styles: >-
                         ha-card {
-                          margin-top: -10px;
+                          margin-top: 0px;
                           margin-left: -14px;
                           margin-bottom: -20px !important;
                         }
@@ -2027,7 +2027,7 @@ views:
                         .bubble-line { background: transparent; height: 2px }
 
                         .bubble-name { 
-                          color: black !important; 
+                          color:  var(--popup-secondary-text) !important; 
                           font-size:12px !important;
                         }
                     - type: custom:button-card
@@ -2094,7 +2094,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -2164,7 +2164,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
@@ -2239,7 +2239,7 @@ views:
                             - padding-right: 2px
                         grid:
                           - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
-                          - grid-template-columns: 0.4fr 1fr 1fr 1fr
+                          - grid-template-columns: 0.6fr 1fr 1fr 1fr
                         name:
                           - justify-self: start
                           - font-size: 11px
