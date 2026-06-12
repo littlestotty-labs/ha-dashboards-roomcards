@@ -1,0 +1,82 @@
+# -----------------------------------------------------------
+# popup_cards/lounge.yaml
+# Standalone bubble-card pop-up for the Lounge room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Lounge
+icon: mdi:sofa
+hash: "#room_lounge"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-icon {
+      color: var(--room-lounge);
+    --mdc-icon-size: 40px !important;
+  }       
+  .bubble-header {
+      color: var(--room-lounge) !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+slider_fill_orientation: left
+slider_value_position: right
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.lounge_light
+      - name: Lounge Light
+      - icon: mdi:sofa-outline
+      - lock_entity: input_boolean.loungelightlock_switch
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        entity: switch.plug_pink_2
+        name: Pedestal Fan
+        icon: mdi:fan
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.plug_purple_2
+        name: Heater
+        icon: mdi:heat-wave
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.shield_source
+            state: Netflix
+        card:
+          type: custom:mini-media-player
+          entity: media_player.nvidia_shield
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.shield_source
+            state_not: Netflix
+        card:
+          type: custom:mini-media-player
+          entity: media_player.nvidia_shield
+          volume_stateless: true
+          toggle_power: true
+          group: false
+          artwork: full-cover
+          source: full

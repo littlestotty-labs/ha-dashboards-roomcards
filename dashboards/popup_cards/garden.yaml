@@ -1,0 +1,54 @@
+# -----------------------------------------------------------
+# popup_cards/garden.yaml
+# Standalone bubble-card pop-up for the Garden room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Garden
+icon: mdi:flower
+hash: "#garden"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+    color: var(--room-garden);
+  }
+  .bubble-header {
+    color: var(--room-garden) !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.hue_filament_bulb_1
+      - name: Outside Front Light
+      - icon: mdi:outdoor-lamp
+      - lock_entity: input_boolean.outdoorlightlock_switch
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.tap_water_switch
+        name: Outdoor Tap
+        icon: mdi:water-pump
+      - type: custom:bubble-card
+        card_type: empty-column

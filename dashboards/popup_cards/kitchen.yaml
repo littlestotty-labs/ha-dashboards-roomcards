@@ -1,0 +1,156 @@
+# -----------------------------------------------------------
+# popup_cards/kitchen.yaml
+# Standalone bubble-card pop-up for the Kitchen room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+hash: "#kitchen"
+name: Kitchen
+icon: mdi:dishwasher
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-close-icon {
+      color: var(--room-kitchen);
+    --mdc-icon-size: 40px !important;
+  }
+  .bubble-header {
+      color: var(--room-kitchen) !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+cards:
+  - type: custom:gap-card
+    height: 20px
+  - type: custom:bubble-card
+    button_type: switch
+    card_type: button
+    entity: sensor.012030522493002223_bsh_common_option_remainingprogramtime
+    icon: mdi:dishwasher
+    name: Dishwasher
+    rows: 2.406
+    scrolling_effect: false
+    show_attribute: false
+    show_state: true
+    header_status: >-
+      {{ (states("sensor.012030522493002223_bsh_common_option_remainingprogramtime")
+      | as_datetime - now()).total_seconds() / 60 | round(0) if
+      states("sensor.012030522493002223_bsh_common_option_remainingprogramtime") |
+      as_datetime > now() else 0 }} min
+    sub_button:
+      bottom:
+        - buttons_layout: inline
+          group:
+            - content_layout: icon-left
+              entity: switch.012030522493002223_dishcare_dishwasher_option_hygieneplus
+              fill_width: true
+              icon: mdi:shield-check
+              name: Hygiene+
+              show_name: true
+            - content_layout: icon-left
+              entity: switch.012030522493002223_dishcare_dishwasher_option_variospeed
+              fill_width: true
+              icon: mdi:run-fast
+              name: Speed+
+              show_name: true
+            - content_layout: icon-left
+              entity: switch.012030522493002223_dishcare_dishwasher_option_extradry
+              fill_width: true
+              icon: mdi:wind-power
+              name: ExtraDry
+              show_name: true
+          justify_content: space-evenly
+          name: Options
+        - buttons_layout: inline
+          group:
+            - content_layout: icon-left
+              entity: select.012030522493002223_programs
+              fill_width: true
+              name: Program
+              show_background: true
+              show_name: false
+              show_state: true
+              sub_button_type: select
+            - content_layout: icon-top
+              entity: sensor.012030522493002223_bsh_common_option_energyforecast
+              fill_width: false
+              icon: mdi:lightning-bolt
+              name: Energy
+              show_background: false
+              show_name: true
+              show_state: true
+            - content_layout: icon-top
+              entity: sensor.012030522493002223_bsh_common_option_waterforecast
+              fill_width: false
+              icon: mdi:water
+              name: Water
+              show_background: false
+              show_name: true
+              show_state: true
+          justify_content: space-evenly
+          name: Info
+      bottom_layout: rows
+      main:
+        - buttons_layout: inline
+          group:
+            - content_layout: icon-top
+              entity: binary_sensor.012030522493002223_bsh_common_status_doorstate
+              fill_width: false
+              icon: mdi:door
+              name: Door
+              show_name: true
+            - content_layout: icon-top
+              entity: binary_sensor.012030522493002223_bsh_common_setting_childlock
+              fill_width: false
+              icon: mdi:lock
+              name: Lock
+              show_name: true
+            - content_layout: icon-top
+              entity: binary_sensor.012030522493002223_connected
+              fill_width: true
+              icon: mdi:wifi
+              name: Wifi
+              show_name: true
+          justify_content: right
+    styles: >-
+      .bubble-sub-button-3 > ha-icon {   color:
+      ${hass.states['binary_sensor.012030522493002223_connected'].state === 'on' ?
+      'green' : 'red'}!important;
+      }
+      .bubble-sub-button-3 {   background: pink !important; }
+
+
+      .bubble-sub-button-4 {   background-color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_hygieneplus'].state
+      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_hygieneplus'].state
+      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
+      .bubble-sub-button-5 {   background-color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_variospeed'].state
+      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_variospeed'].state
+      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
+      .bubble-sub-button-6 {  
+      background-color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_extradry'].state
+      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
+      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_extradry'].state
+      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
+      .bubble-container {
+        background-color: var(--card-background-color) !important;
+        opacity: 1 !important;
+        border-radius: var(--ha-card-border-radius) !important;
+        box-shadow: var(--ha-card-box-shadow) !important;
+      }

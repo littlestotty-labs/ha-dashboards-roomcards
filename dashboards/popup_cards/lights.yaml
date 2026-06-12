@@ -1,0 +1,89 @@
+# -----------------------------------------------------------
+# popup_cards/lights.yaml
+# Standalone bubble-card pop-up for House Lights.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: House Lights
+icon: mdi:lightbulb-group
+hash: "#room_lights"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-lights);
+  }       
+  .bubble-header {
+      color: var(--room-lights) !important;
+  }
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.lounge_light
+      - name: Lounge Light
+      - icon: mdi:sofa-outline
+      - lock_entity: input_boolean.loungelightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.downstairs_hallway
+      - name: Foyer
+      - icon: phu:rooms-front-door
+      - lock_entity: input_boolean.foyerlightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.laundry_light
+      - name: Laundry
+      - icon: mdi:washing-machine
+      - lock_entity: input_boolean.laundrylightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.loo_light
+      - name: Downstairs Loo
+      - icon: phu:yeelight-ceiling
+      - lock_entity: input_boolean.loolightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.staircase
+      - name: Stairs
+      - icon: mdi:stairs
+      - lock_entity: input_boolean.stairslightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.hue_ambiance_lamp_1_2
+      - name: Landing
+      - icon: mdi:stairs
+      - lock_entity: input_boolean.landinglightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.hue_filament_bulb_1
+      - name: Office
+      - icon: phu:rooms-office
+      - lock_entity: input_boolean.officelightlock_switch
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.outside_front
+      - name: Front Garden
+      - icon: phu:stage-spot-light
+      - lock_entity: input_boolean.outdoorlightlock_switch

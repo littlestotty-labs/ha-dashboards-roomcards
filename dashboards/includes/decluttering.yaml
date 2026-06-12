@@ -13,7 +13,7 @@ light_row:
     button_type: slider
     sub_button:
       main:
-        - entity: '[[entity]]'
+        - entity: "[[entity]]"
           name: percent
           scrolling_effect: false
           show_background: false
@@ -22,7 +22,7 @@ light_row:
           show_state: false
           show_attribute: true
           attribute: brightness
-        - entity: '[[lock_entity]]'
+        - entity: "[[lock_entity]]"
           scrolling_effect: false
           show_icon: true
           show_background: true
@@ -35,9 +35,9 @@ light_row:
           content_layout: icon-left
           name: lock
       bottom: []
-    entity: '[[entity]]'
-    name: '[[name]]'
-    icon: '[[icon]]'
+    entity: "[[entity]]"
+    name: "[[name]]"
+    icon: "[[icon]]"
     scrolling_effect: false
     use_accent_color: false
     show_state: false
@@ -108,20 +108,60 @@ light_row:
           lock.style.opacity = locked ? '1' : '0.6';
           lock.style.transform = locked ? 'scale(1)' : 'scale(0.85)';
         })()
-      }        
+      }
+weather_chip:
+  card:
+    type: custom:button-card
+    name: |
+      [[[ [[name_template]] ]]]
+    entity: "[[entity]]"
+    icon: "[[icon]]"
+    show_state: false
+    show_name: true
+    show_icon: true
+    tap_action:
+      action: more-info
+    styles:
+      grid:
+        - grid-template-areas: '"i n"'
+        - grid-template-columns: min-content min-content
+      card:
+        - justify-self: center
+        - justify-content: center
+        - align-self: start
+        - border-radius: 50px
+        - width: auto
+        - height: 35px
+        - padding-right: 8px
+      name:
+        - justify-self: center
+        - font-size: 12px
+        - font-weight: 600
+        - color: var(--primary-text-color)
+      img_cell:
+        - width: 30px
+        - background: transparent
+        - border-radius: 100%
+        - justify-content: center
+        - padding-left: 2px
+      icon:
+        - width: 20px
+        - padding-left: 2px
+        - color: "[[icon_color]]"
+
 scene_button:
   card:
     type: custom:button-card
-    entity: '[[entity]]'
-    name: '[[name]]'
-    icon: '[[icon]]'
+    entity: "[[entity]]"
+    name: "[[name]]"
+    icon: "[[icon]]"
     tap_action:
       action: toggle
     styles:
       card:
-        - margin-top: '-12px'
-        - margin-bottom: '-12px'
-        - margin-left: '-7px'
+        - margin-top: "-12px"
+        - margin-bottom: "-12px"
+        - margin-left: "-7px"
         - border-radius: var(--ha-card-border-radius)
       icon:
         - width: 80%
@@ -136,7 +176,7 @@ scene_button:
         - font-weight: 500
         - color: var(--primary-color)
     state:
-      - value: 'on'
+      - value: "on"
         styles:
           icon:
             - color: var(--scene-selected-color)
@@ -144,3 +184,99 @@ scene_button:
             - background-color: var(--scene-active-background)
           name:
             - color: var(--scene-selected-color)
+
+storage_separator:
+  card:
+    type: custom:bubble-card
+    card_type: separator
+    name: "[[name]]"
+    rows: 1
+    styles: >-
+      ha-card {
+        margin-top: [[margin_top]];
+        margin-left: -14px;
+        margin-bottom: -20px !important;
+      }
+
+      .bubble-sub-button-1 { color:
+      var(--popup-secondary-text);;
+      background:
+      var(--popup-card-background);
+      }
+
+      .separator-container {color: var(--room-tech);}
+
+      .bubble-line { background: transparent; height: 2px }
+
+      .bubble-name {
+        color:  var(--popup-secondary-text) !important;
+        font-size:12px !important;
+      }
+
+storage_bar:
+  card:
+    type: custom:button-card
+    show_icon: false
+    name: "[[name]]"
+    entity: "[[entity]]"
+    custom_fields:
+      bar: |
+        [[[
+          var state = states['[[entity]]'].state;
+          var color = "#a36a80ff";
+          if (state >=85 )      color = "#a36a80ff";
+          else if (state >=70 ) color = "#a36a80ff";
+          else if (state >=60) color = "#a36a80ff";
+          else if (state >=50) color = "#a36a80ff";
+          return `
+          <div>
+          <div style="border-radius: 10px;background: ${color}; height: 15px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+          </div>
+          </div>
+          `
+        ]]]
+      stat1: |
+        [[[ [[stat1]] ]]]
+      stat2: |
+        [[[ [[stat2]] ]]]
+      stat3: |
+        [[[ [[stat3]] ]]]
+    styles:
+      card:
+        - background: transparent
+        - box-shadow: none
+        - border: none
+        - padding: 0px 15px 0px 2px
+        - margin-left: 1px
+        - margin-top: 0px
+        - margin-bottom: -5px
+      custom_fields:
+        bar:
+          - overflow: hidden
+          - box-shadow: inset -3px -1px 2px 0px rgba(255,255,255,.1)
+          - background: var(--battery_slider_background)
+          - justify-self: start
+          - width: 100%
+          - height: 15px
+          - border-radius: 10px
+        stat1:
+          - justify-self: start
+          - font-size: 10px
+          - opacity: 0.7
+        stat2:
+          - justify-self: center
+          - font-size: 10px
+          - opacity: 0.7
+        stat3:
+          - justify-self: end
+          - font-size: 10px
+          - opacity: 0.7
+          - padding-right: 2px
+      grid:
+        - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
+        - grid-template-columns: 0.6fr 1fr 1fr 1fr
+      name:
+        - justify-self: start
+        - font-size: 11px
+        - opacity: 0.9
+        - padding-left: 0px

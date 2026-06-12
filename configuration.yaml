@@ -59,8 +59,6 @@ lovelace:
     #    - url: /hacsfiles/power-table-card/powertable-card.js
     - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: module
-    - url: /hacsfiles/Bubble-Card/bubble-pop-up-fix.js
-      type: module
     - url: /hacsfiles/Bubble-Card/bubble-card.js
       type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js

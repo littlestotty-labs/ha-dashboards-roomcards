@@ -1,0 +1,79 @@
+# -----------------------------------------------------------
+# popup_cards/office.yaml
+# Standalone bubble-card pop-up for the Office room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Office
+icon: mdi:desk
+hash: "#room_office"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-office);
+  }       
+  .bubble-header {
+      color: var(--room-office) !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: light_row
+    variables:
+      - entity: light.hue_filament_bulb_1
+      - name: Office Light
+      - icon: mdi:chair-rolling
+      - lock_entity: input_boolean.officelightlock_switch
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.office_wall_l
+        name: Desk Wall (L)
+        icon: mdi:power-plug-outline
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.office_wall_r
+        name: Desk Wall (R)
+        icon: mdi:power-plug-outline
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.plug_orange
+        name: Fridge and<br/>Coffee
+        icon: mdi:coffee-maker
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: input_boolean.wfh_today
+        name: Working From<br/>Home
+        icon: mdi:chair-rolling
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        entity: switch.plug_yellow
+        name: Pedestal Fan
+        icon: mdi:fan
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.plug_purple_2
+        name: Heater
+        icon: mdi:heat-wave
