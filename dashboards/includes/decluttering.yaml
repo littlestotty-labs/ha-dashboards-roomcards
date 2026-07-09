@@ -1,114 +1,117 @@
 # -----------------------------------------------------------
 # decluttering.yaml
 # Decluttering-card templates — reusable parameterized cards
-# (light_row slider with lock, scene_button toggle).
+# (light_row_v2 button-card grid, scene_button toggle).
 # Author: Graham Stott (littlestotty-labs)
-# Version: 1.0
+# Version: 2.0
 # -----------------------------------------------------------
 
-light_row:
+light_row_v2:
   card:
-    type: custom:bubble-card
-    card_type: button
-    button_type: slider
-    sub_button:
-      main:
-        - entity: "[[entity]]"
-          name: percent
-          scrolling_effect: false
-          show_background: false
-          light_background: false
-          show_icon: false
-          show_state: false
-          show_attribute: true
-          attribute: brightness
-        - entity: "[[lock_entity]]"
-          scrolling_effect: false
-          show_icon: true
-          show_background: true
-          state_background: true
-          use_accent_color: true
-          show_state: false
-          tap_action:
-            action: toggle
-          hide_when_parent_unavailable: true
-          content_layout: icon-left
-          name: lock
-      bottom: []
+    type: custom:button-card
     entity: "[[entity]]"
-    name: "[[name]]"
-    icon: "[[icon]]"
-    scrolling_effect: false
-    use_accent_color: false
+    show_name: false
+    show_icon: false
+    show_label: false
+    display: grid
     show_state: false
-    show_attribute: false
-    attribute: brightness
-    min_value: 0
-    max_value: 100
-    step: 1
-    slider_live_update: true
-    allow_light_slider_to_0: true
-    light_transition: true
-    tap_action:
-      action: none
-    hold_action:
-      action: more-info
-    styles: |-
-      .bubble-container {
-        height: 50px !important;
-        background-color: var(--card-background-color) !important;
-        opacity: 1 !important;
-        border-radius: var(--ha-card-border-radius) !important;
-        box-shadow: var(--ha-card-box-shadow) !important;
-      }
-      * {
-        --bubble-button-border-radius: 12px;
-      }
-      .bubble-range-fill {
-        opacity: var(--bubble-light-opacity) !important;
-        background-color: var(--accent-color) !important;
-        right: 100 !important;
-        left: 10 !important;
-        transform-origin: left center !important;
-      }
-      ${
-        (() => {
-          const sub = card.querySelector('.lock');
-          if (!sub) return;
-          const entity = sub.getAttribute('data-entity');
-          const state = hass.states[entity]?.state;
-          sub.style.backgroundColor = state === 'on' ? 'green' : '';
-        })()
-      }
+    styles:
+      grid:
+        - grid-template-areas: |
+            "power lock slider motion"
+        - grid-template-columns: 13% 13% 67% 10%
+        - grid-template-rows: 1fr
+      card:
+        - border-radius: var(--ha-card-border-radius)
+        - padding-left: 12px
+        - padding-right: 20px
+        - padding-top: 0px
+        - padding-bottom: 0px
+        - height: 55px
+      custom_fields:
+        motion:
+          - justify-self: end
+    custom_fields:
+      power:
+        card:
+          type: custom:button-card
+          show_name: false
+          show_label: false
+          show_state: false
+          icon: mdi:power
+          entity: "[[entity]]"
+          styles:
+            card:
+              - width: 40px
+              - height: 35px
+              - border-radius: 30%
+            icon:
+              - width: 30px
 
-      ${
-        (() => {
-          const lock = card.querySelector('.lock');
-          const fill = card.querySelector('.bubble-range-fill');
-          if (!lock || !fill) return;
+      lock:
+        card:
+          type: custom:button-card
+          show_name: false
+          show_label: false
+          show_state: false
+          icon: mdi:lock-open-outline
+          entity: "[[lock_entity]]"
+          state:
+            - value: "on"
+              icon: mdi:lock-outline
+              styles:
+                icon:
+                  - color: lightgreen
+          styles:
+            card:
+              - width: 40px
+              - height: 35px
+              - border-radius: 30%
+            icon:
+              - width: 30px
+      slider:
+        card:
+          type: custom:bubble-card
+          card_type: button
+          button_type: slider
+          entity: "[[entity]]"
+          min_value: 0
+          max_value: 100
+          relative_slide: false
+          slider_live_update: true
+          allow_light_slider_to_0: true
+          light_transition: false
+          button_action:
+            tap_action:
+              action: more-info
+          show_icon: false
+          show_name: true
+          name: "[[name]]"
+          scrolling_effect: false
+          show_attribute: false
+          attribute: brightness
+          styles: |
+            .bubble-container {
+              text-align: start;
+              height: 35px !important;
+              background: var(--bubble-slider-background) !important;
+              opacity: 1 !important;
+              border-radius: 35px !important;
+              box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
+            }
+            * {
+              --bubble-button-border-radius: 12px;
+            }
+      motion: |
+        [[[
+          var m = '[[motion_entity]]';
+          if (!m) return '';
+          var s = states[m];
+          if (!s) return '';
+          var on = s.state === 'on';
+          return '<ha-icon icon="mdi:motion-sensor" style="--mdc-icon-size:22px;color:' + (on?'red':'var(--secondary-text-color)') + ';opacity:' + (on?'1':'0.35') + ';"></ha-icon>';
+        ]]]
 
-          const entity = lock.getAttribute('data-entity');
-          const locked = hass.states[entity]?.state === 'on';
-
-          fill.style.filter = locked ? 'saturate(0.3)' : '';
-          fill.style.boxShadow = locked
-                ? 'inset 0 0 0px 1px rgba(0, 150, 0, 0.4)'
-                : '';
-        })()
-      }       
-
-      ${
-        (() => {
-          const lock = card.querySelector('.lock');
-          if (!lock) return;
-
-          const entity = lock.getAttribute('data-entity');
-          const locked = hass.states[entity]?.state === 'on';
-
-          lock.style.opacity = locked ? '1' : '0.6';
-          lock.style.transform = locked ? 'scale(1)' : 'scale(0.85)';
-        })()
-      }
 weather_chip:
   card:
     type: custom:button-card
@@ -195,7 +198,7 @@ storage_separator:
       ha-card {
         margin-top: [[margin_top]];
         margin-left: -14px;
-        margin-bottom: -20px !important;
+        margin-bottom: -10px !important;
       }
 
       .bubble-sub-button-1 { color:
@@ -222,15 +225,15 @@ storage_bar:
     custom_fields:
       bar: |
         [[[
-          var state = states['[[entity]]'].state;
-          var color = "#a36a80ff";
-          if (state >=85 )      color = "#a36a80ff";
-          else if (state >=70 ) color = "#a36a80ff";
-          else if (state >=60) color = "#a36a80ff";
-          else if (state >=50) color = "#a36a80ff";
+          var state = states['[[bar_entity]]'].state;
+          var color = "#7fa36a";
+          if (state >=85 )      color = "#c74b4b";
+          else if (state >=70 ) color = "#d17a4a";
+          else if (state >=60) color = "#d1b04a";
+          else if (state >=50) color = "#a8b85a";
           return `
           <div>
-          <div style="border-radius: 10px;background: ${color}; height: 15px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+          <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
           </div>
           </div>
           `
@@ -245,6 +248,7 @@ storage_bar:
       card:
         - background: transparent
         - box-shadow: none
+        - border-radius: 0px
         - border: none
         - padding: 0px 15px 0px 2px
         - margin-left: 1px
@@ -257,7 +261,7 @@ storage_bar:
           - background: var(--battery_slider_background)
           - justify-self: start
           - width: 100%
-          - height: 15px
+          - height: 12px
           - border-radius: 10px
         stat1:
           - justify-self: start

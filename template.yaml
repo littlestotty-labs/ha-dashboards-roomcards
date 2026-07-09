@@ -106,3 +106,10 @@
           | list
         %}
         {{ batteries | count }}
+- binary_sensor:
+    - unique_id: landing_motion_combined
+      name: "Landing Motion Combined"
+      device_class: motion
+      state: >
+        {{ is_state('binary_sensor.upstairs_sensor_occupancy', 'on')
+           or is_state('binary_sensor.0xa4c13878fe0e5f3e_occupancy', 'on') }}

@@ -37,12 +37,13 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.lounge_light
       - name: Lounge Light
       - icon: mdi:sofa-outline
       - lock_entity: input_boolean.loungelightlock_switch
+      - motion_entity: binary_sensor.loungemotion_purple2_occupancy
   - type: horizontal-stack
     cards:
       - type: custom:button-card

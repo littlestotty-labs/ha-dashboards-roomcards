@@ -96,6 +96,7 @@ grahams-dark:
   # -----------------------------------------------------
 
   bubble-border-radius: "18px"
+  bubble-slider-background: "linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.12) 100%)"
   popup-header-background: rgb(35,38,42,1)
 
   # -----------------------------------------------------

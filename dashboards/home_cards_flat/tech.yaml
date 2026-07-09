@@ -13,7 +13,7 @@ variables:
 name: Tech Stuff
 icon: null
 tap_action:
-  navigation_path: "#room_tech"
+  navigation_path: '#room_tech'
 styles:
   card:
     - height: 65px
@@ -23,7 +23,7 @@ custom_fields:
       type: vertical-stack
       cards:
         - type: custom:button-card
-          entity: binary_sensor.living_room_deco_internet_online
+          entity: sensor.x80_wan_status
           name: Internet
           show_state: false
           show_label: false
@@ -42,7 +42,7 @@ custom_fields:
               - width: 24px
               - color: red
           state:
-            - value: "on"
+            - value: Connected
               icon: mdi:check-network-outline
               styles:
                 icon:

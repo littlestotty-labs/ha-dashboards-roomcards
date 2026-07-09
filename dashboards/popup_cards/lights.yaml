@@ -32,58 +32,66 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.lounge_light
       - name: Lounge Light
       - icon: mdi:sofa-outline
       - lock_entity: input_boolean.loungelightlock_switch
+      - motion_entity: binary_sensor.loungemotion_purple2_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.downstairs_hallway
       - name: Foyer
       - icon: phu:rooms-front-door
       - lock_entity: input_boolean.foyerlightlock_switch
+      - motion_entity: binary_sensor.front_door_inside_sensor_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.laundry_light
       - name: Laundry
       - icon: mdi:washing-machine
       - lock_entity: input_boolean.laundrylightlock_switch
+      - motion_entity: binary_sensor.laundry_motion_blue2_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.loo_light
       - name: Downstairs Loo
       - icon: phu:yeelight-ceiling
       - lock_entity: input_boolean.loolightlock_switch
+      - motion_entity: binary_sensor.downstairs_loo_motion_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
-      - entity: light.staircase
+      - entity: light.upstairs_landing_bedroom
       - name: Stairs
       - icon: mdi:stairs
       - lock_entity: input_boolean.stairslightlock_switch
+      - motion_entity: binary_sensor.stairs_motion_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.hue_ambiance_lamp_1_2
       - name: Landing
       - icon: mdi:stairs
       - lock_entity: input_boolean.landinglightlock_switch
+      - motion_entity: binary_sensor.landing_motion_combined
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.hue_filament_bulb_1
       - name: Office
       - icon: phu:rooms-office
       - lock_entity: input_boolean.officelightlock_switch
+      - motion_entity: binary_sensor.0xa4c1380ce7f7b699_occupancy
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.outside_front
       - name: Front Garden
       - icon: phu:stage-spot-light
       - lock_entity: input_boolean.outdoorlightlock_switch
+      - motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion

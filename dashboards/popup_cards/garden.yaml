@@ -37,12 +37,13 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.hue_filament_bulb_1
       - name: Outside Front Light
       - icon: mdi:outdoor-lamp
       - lock_entity: input_boolean.outdoorlightlock_switch
+      - motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
   - type: horizontal-stack
     cards:
       - type: custom:button-card

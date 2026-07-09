@@ -35,12 +35,13 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row
+    template: light_row_v2
     variables:
       - entity: light.hue_filament_bulb_1
       - name: Office Light
       - icon: mdi:chair-rolling
       - lock_entity: input_boolean.officelightlock_switch
+      - motion_entity: binary_sensor.0xa4c1380ce7f7b699_occupancy
   - type: horizontal-stack
     cards:
       - type: custom:button-card

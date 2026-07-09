@@ -19,15 +19,16 @@ grahams-light:
   # -----------------------------------------------------
   primary-background-color: "#c2c6c9ff"
   secondary-background-color: "#eaedf0ff"
-
-  card-background-color: "#eaedf0ff"
+  # F2F3F4
+  #  card-background-color: "#eaedf0ff"
+  card-background-color: "#F2F3F4"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#cfcfcf"
 
   # -----------------------------------------------------
   # Text
   # -----------------------------------------------------
-  primary-color: "#536263ff"
+  primary-color: "#354142ff"
   primary-text-color: "#000000"
 
   # -----------------------------------------------------
@@ -47,6 +48,7 @@ grahams-light:
   state-icon-color: rgba(51,51,51,1)
   bubble-accent-color: var(--accent-color)
   bubble-light-opacity: 0.6
+  bubble-slider-background: "linear-gradient(90deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.10) 100%)"
 
   # Google-yellow: "#FF9101"
   scene-active-background: "#fce8d0ff"

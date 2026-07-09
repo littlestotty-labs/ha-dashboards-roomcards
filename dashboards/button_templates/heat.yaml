@@ -9,11 +9,11 @@
 heat:
   styles:
     icon:
-      - color: |
-          [[[
-            if (entity.state === 'on') return 'orange';
-            return variables.accent_color;
-          ]]]
+      #      - color: |
+      #          [[[
+      #            if (entity.state === 'on') return 'orange';
+      #            return variables.accent_color;
+      #          ]]]
       - animation: |
           [[[
             if (entity.state !== 'on') return 'none';

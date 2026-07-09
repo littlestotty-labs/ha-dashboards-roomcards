@@ -191,6 +191,7 @@ cards:
               variables:
                 - name: App
                 - entity: sensor.infinity_volume_used_appvolume
+                - bar_entity: sensor.infinity_volume_used_appvolume
                 - stat1: "const v = parseFloat(states['sensor.infinity_used_space_appvolume'].state); return v.toFixed(0) + ' GB Used';"
                 - stat2: "const v = parseFloat(states['sensor.infinity_free_space_appvolume'].state); return v.toFixed(0) + ' GB Free';"
                 - stat3: "return '411 GB Total';"
@@ -199,6 +200,7 @@ cards:
               variables:
                 - name: Media
                 - entity: sensor.infinity_volume_used_media_volume
+                - bar_entity: sensor.infinity_volume_used_media_volume
                 - stat1: "const v = parseFloat(states['sensor.infinity_used_space_media_volume'].state); return v.toFixed(0) + ' GB Used';"
                 - stat2: "const v = parseFloat(states['sensor.infinity_free_space_media_volume'].state); return v.toFixed(0) + ' GB Free';"
                 - stat3: "return '7.3 TB Total';"
@@ -212,6 +214,7 @@ cards:
               variables:
                 - name: Internal
                 - entity: sensor.system_monitor_disk_use_share_shield_internal
+                - bar_entity: sensor.system_monitor_disk_usage_share_shield_internal
                 - stat1: "const v = parseFloat(states['sensor.system_monitor_disk_use_share_shield_internal'].state); return v.toFixed(0) + ' GB Used';"
                 - stat2: "const v = parseFloat(states['sensor.system_monitor_disk_free_share_shield_internal'].state); return v.toFixed(0) + ' GB Free';"
                 - stat3: "return '11.6 GB Total';"
@@ -220,6 +223,7 @@ cards:
               variables:
                 - name: Media
                 - entity: sensor.system_monitor_disk_use_share_shield_media
+                - bar_entity: sensor.system_monitor_disk_usage_share_shield_media
                 - stat1: "const v = parseFloat(states['sensor.system_monitor_disk_use_share_shield_media'].state); return v.toFixed(0) + ' GB Used';"
                 - stat2: "const v = parseFloat(states['sensor.system_monitor_disk_free_share_shield_media'].state); return v.toFixed(0) + ' GB Free';"
                 - stat3: "return '1.8 TB Total';"
@@ -230,16 +234,18 @@ cards:
             - type: custom:decluttering-card
               template: storage_bar
               variables:
-                - name: Volume 1
+                - name: Vol 1
                 - entity: sensor.synology_volume_1_volume_used
+                - bar_entity: sensor.synology_volume_1_volume_used
                 - stat1: "const tb = parseFloat(states['sensor.synology_volume_1_used_space'].state); return Math.round(tb * 1024) + ' GB Used';"
                 - stat2: "const free = parseFloat(states['sensor.synology_volume_1_total_size'].state) - parseFloat(states['sensor.synology_volume_1_used_space'].state); return Math.round(free * 1024) + ' GB Free';"
                 - stat3: "return '3.9 TB Total';"
             - type: custom:decluttering-card
               template: storage_bar
               variables:
-                - name: Volume 2
+                - name: Vol 2
                 - entity: sensor.synology_volume_2_volume_used
+                - bar_entity: sensor.synology_volume_2_volume_used
                 - stat1: "const tb = parseFloat(states['sensor.synology_volume_2_used_space'].state); return Math.round(tb * 1024) + ' GB Used';"
                 - stat2: "const free = parseFloat(states['sensor.synology_volume_2_total_size'].state) - parseFloat(states['sensor.synology_volume_2_used_space'].state); return Math.round(free * 1024) + ' GB Free';"
                 - stat3: "return '3.9 TB Total';"
@@ -248,6 +254,7 @@ cards:
               variables:
                 - name: USB
                 - entity: sensor.synology_usb_disk_2_partition_1_partition_used
+                - bar_entity: sensor.synology_usb_disk_2_partition_1_partition_used
                 - stat1: "const v = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_used_space'].state); return v.toFixed(1) + ' GB Used';"
                 - stat2: "const total = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_size'].state); const used = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_used_space'].state); return Math.round(total - used) + ' GB Free';"
                 - stat3: "const total = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_size'].state); return (total / 1024).toFixed(1) + ' TB Total';"
