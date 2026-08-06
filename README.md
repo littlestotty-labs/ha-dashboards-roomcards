@@ -12,7 +12,7 @@ This repository contains my personal configuration for Home Assistant, focused o
   Light Theme             |  Dark Theme
 :-------------------------:|:-------------------------:
 ![Light themed dashboard](./screenshots/dashboard-light.png)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.png)
-
+![Light themed popup example](./screenshots/office-popup-light.png)  |  ![Dark themed popup example](./screenshots/office-popup-dark.png)
 ---
 
 
