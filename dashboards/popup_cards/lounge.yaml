@@ -1,0 +1,111 @@
+# -----------------------------------------------------------
+# popup_cards/lounge.yaml
+# Standalone bubble-card pop-up for the Lounge room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Lounge
+icon: mdi:sofa
+hash: "#room_lounge"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-lounge);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-lounge) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+slider_fill_orientation: left
+slider_value_position: right
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Lights
+      - text_colour: var(--room-lounge)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.lounge_light
+      name: Lounge Light
+      icon: mdi:sofa-outline
+      lock_entity: input_boolean.loungelightlock_switch
+      motion_entity: binary_sensor.loungemotion_purple2_occupancy
+
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Switches
+      - text_colour: var(--room-lounge)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        entity: switch.plug_pink_2
+        name: Pedestal Fan
+        icon: mdi:fan
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.plug_purple_2
+        name: Heater
+        icon: mdi:heat-wave
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.shield_source
+            state: Netflix
+        card:
+          type: custom:mini-media-player
+          entity: media_player.nvidia_shield
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.shield_source
+            state_not: Netflix
+        card:
+          type: custom:mini-media-player
+          entity: media_player.nvidia_shield
+          volume_stateless: true
+          toggle_power: true
+          group: false
+          artwork: full-cover
+          source: full

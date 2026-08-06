@@ -1,146 +1,319 @@
 # -----------------------------------------------------------
 # decluttering.yaml
 # Decluttering-card templates — reusable parameterized cards
-# (light_row slider with lock, scene_button toggle).
+# (light_row_v2 button-card grid, scene_button toggle).
 # Author: Graham Stott (littlestotty-labs)
-# Version: 1.0
+# Version: 2.0
 # -----------------------------------------------------------
-
-light_row:
+light_row_v2:
   card:
-    type: custom:bubble-card
-    card_type: button
-    button_type: slider
-    sub_button:
-      main:
-        - entity: '[[entity]]'
-          name: percent
-          scrolling_effect: false
-          show_background: false
-          light_background: false
-          show_icon: false
+    type: custom:button-card
+    entity: "[[entity]]"
+    section_mode: true
+    show_name: false
+    show_icon: false
+    grid_options:
+      rows: 2
+      columns: 6
+    styles:
+      grid:
+        - grid-template-areas: |
+            "slider slider slider slider"
+            "power lock motion slider_colour"
+        - grid-template-columns: 21% 21% 21% 37%
+        - grid-template-rows: 50% 50%
+      card:
+        - height: 86%
+        - padding: 5px 7px 5px 7px
+        - margin-top: 8px
+        # - box-shadow: >
+        #     0 2px 7px rgba(4, 4, 4, 0.25),
+        #     inset 0px 1px 0 rgba(255, 255, 255, 0.2)
+        # - border-style: none
+    custom_fields:
+      power:
+        card:
+          type: custom:button-card
+          show_name: false
+          show_label: false
           show_state: false
-          show_attribute: true
-          attribute: brightness
-        - entity: '[[lock_entity]]'
-          scrolling_effect: false
-          show_icon: true
-          show_background: true
-          state_background: true
-          use_accent_color: true
+          icon: mdi:power
+          entity: "[[entity]]"
+          styles:
+            card:
+              - width: 30px
+              - height: 30px
+              - margin: 5px 0px 0px 0px
+              - box-shadow: >
+                  0px 4px 8px 0px rgba(0, 0, 0, 0.25), inset 0px 1px 0 rgba(255, 255, 255,0.24)
+            icon:
+              - width: 33px
+      lock:
+        card:
+          type: custom:button-card
+          show_name: false
+          show_label: false
           show_state: false
-          tap_action:
-            action: toggle
-          hide_when_parent_unavailable: true
-          content_layout: icon-left
-          name: lock
-      bottom: []
-    entity: '[[entity]]'
-    name: '[[name]]'
-    icon: '[[icon]]'
-    scrolling_effect: false
-    use_accent_color: false
-    show_state: false
-    show_attribute: false
-    attribute: brightness
-    min_value: 0
-    max_value: 100
-    step: 1
-    slider_live_update: true
-    allow_light_slider_to_0: true
-    light_transition: true
-    tap_action:
-      action: none
-    hold_action:
-      action: more-info
-    styles: |-
-      .bubble-container {
-        height: 50px !important;
-        background-color: var(--card-background-color) !important;
-        opacity: 1 !important;
-        border-radius: var(--ha-card-border-radius) !important;
-        box-shadow: var(--ha-card-box-shadow) !important;
-      }
-      * {
-        --bubble-button-border-radius: 12px;
-      }
-      .bubble-range-fill {
-        opacity: var(--bubble-light-opacity) !important;
-        background-color: var(--accent-color) !important;
-        right: 100 !important;
-        left: 10 !important;
-        transform-origin: left center !important;
-      }
-      ${
-        (() => {
-          const sub = card.querySelector('.lock');
-          if (!sub) return;
-          const entity = sub.getAttribute('data-entity');
-          const state = hass.states[entity]?.state;
-          sub.style.backgroundColor = state === 'on' ? 'green' : '';
-        })()
-      }
+          icon: mdi:lock-open-outline
+          entity: "[[lock_entity]]"
+          state:
+            - value: "on"
+              icon: mdi:lock-outline
+              styles:
+                icon:
+                  - color: lightgreen
+                img_cell:
+                  - background-color: rgba(0, 255, 0, 0.1)
+          styles:
+            card:
+              - width: 30px
+              - height: 30px
+              - margin: 5px 0px 0px 0px
+              - box-shadow: >
+                  0px 2px 8px 0px rgba(0, 0, 0, 0.25), inset 0px 1px 0 rgba(255, 255, 255,0.24)
+            icon:
+              - width: 23px
+      slider:
+        card:
+          type: custom:mushroom-light-card
+          entity: "[[entity]]"
+          show_color_temp_control: false
+          show_color_control: false
+          use_light_color: true
+          collapsible_controls: false
+          fill_container: false
+          icon: " "
+          name: "[[name]]"
+          primary_info: name
+          secondary_info: none
+          icon_type: none
+          show_brightness_control: true
+          card_mod:
+            style:
+              mushroom-light-brightness-control$: |
+                mushroom-slider {
+                  --control-height: 27px !important;
+                }
+              .: |
+                ha-card {
+                  box-shadow: none !important;
+                  border-color: transparent;
+                  padding: 0px !important;
+                  position: relative;
+                  height: 27px !important;
+                  margin-top: 5px
+                }
+                mushroom-state-info {
+                  position: absolute !important;
+                  left: 15px !important;
+                  top: 5px !important;
+                  z-index: 2 !important;
+                  --card-primary-font-size: 10px;
+                  pointer-events: none !important;
+                }
+                mushroom-light-brightness-control {
+                  position: absolute;
+                  left: 0px;
+                  right: 0px;
+                  border-radius: 12px !important;
+                  top: 0px;
+                  z-index: 1;
+                  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
+                  background: linear-gradient(145deg, rgba(255, 255, 255, .05) 0%, rgba(238, 212, 169, 0.3) 60%,rgba(248, 226, 192, 0.1) 100%) !important;
+                  width: calc(100% - 0px);
+                }
 
-      ${
-        (() => {
-          const lock = card.querySelector('.lock');
-          const fill = card.querySelector('.bubble-range-fill');
-          if (!lock || !fill) return;
+      slider_colour:
+        card:
+          type: custom:mushroom-light-card
+          entity: "[[entity]]"
+          show_color_temp_control: false
+          show_color_control: true
+          use_light_color: true
+          collapsible_controls: true
+          fill_container: false
+          icon: " "
+          primary_info: none
+          secondary_info: none
+          icon_type: none
+          styles:
+            card:
+              height: 75px
+          card_mod:
+            style: |
+              ha-card {
+                box-shadow: none !important;
+                border-color: transparent;
+                padding: 5px 0px 0px 0px !important;
+                --control-height: 1.4em; 
+                --control-radius: 0px;
+                }
+      motion:
+        card:
+          type: custom:button-card
+          entity: "[[motion_entity]]"
+          show_name: false
+          icon: mdi:motion-sensor
+          styles:
+            card:
+              - justify-self: start
+              - width: 35px
+              - height: 35px
+              - margin: 5px 0px 0px 0px
+              - background: transparent
+              - border-color: transparent
+              - box-shadow: none
+            icon:
+              - width: 22px
+          state:
+            - value: "on"
+              styles:
+                icon:
+                  - color: red
+                  - opacity: 1
+            - value: "off"
+              styles:
+                icon:
+                  - color: var(--secondary-text-color)
+                  - opacity: 0.35
 
-          const entity = lock.getAttribute('data-entity');
-          const locked = hass.states[entity]?.state === 'on';
-
-          fill.style.filter = locked ? 'saturate(0.3)' : '';
-          fill.style.boxShadow = locked
-                ? 'inset 0 0 0px 1px rgba(0, 150, 0, 0.4)'
-                : '';
-        })()
-      }       
-
-      ${
-        (() => {
-          const lock = card.querySelector('.lock');
-          if (!lock) return;
-
-          const entity = lock.getAttribute('data-entity');
-          const locked = hass.states[entity]?.state === 'on';
-
-          lock.style.opacity = locked ? '1' : '0.6';
-          lock.style.transform = locked ? 'scale(1)' : 'scale(0.85)';
-        })()
-      }        
 scene_button:
   card:
     type: custom:button-card
-    entity: '[[entity]]'
-    name: '[[name]]'
-    icon: '[[icon]]'
+    entity: "[[entity]]"
+    name: "[[name]]"
+    icon: "[[icon]]"
     tap_action:
       action: toggle
     styles:
       card:
-        - margin-top: '-12px'
-        - margin-bottom: '-12px'
-        - margin-left: '-7px'
+        - margin-top: "-12px"
+        - margin-bottom: "-12px"
+        - margin-left: "-7px"
         - border-radius: var(--ha-card-border-radius)
       icon:
         - width: 80%
         - height: 80%
-        - color: var(--primary-color)
+        - color: "[[color_on]]"
       img_cell:
         - border-radius: 50%
         - width: 80%
         - height: 80%
       name:
         - font-size: 12px
-        - font-weight: 500
-        - color: var(--primary-color)
+        - font-weight: 600
+        - color: "#626262ff"
     state:
-      - value: 'on'
+      - value: "on"
         styles:
           icon:
-            - color: var(--scene-selected-color)
+            - color: "[[color_on]]"
           card:
             - background-color: var(--scene-active-background)
           name:
-            - color: var(--scene-selected-color)
+            - color: var(--primary-text-color)
+#            - color: "#585757ff"
+separator:
+  card:
+    type: custom:bubble-card
+    card_type: separator
+    name: "[[name]]"
+    rows: 1
+    styles: >-
+      ha-card {
+        margin-top: [[margin_top]];
+        margin-left: -14px;
+        margin-bottom: -10px !important;
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        
+      }
+
+      .bubble-sub-button-1 { color:
+      var(--popup-secondary-text);;
+      background: var(--popup-card-background);
+      }
+
+      .separator-container {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+
+        color: [[text_colour]];}
+
+      .bubble-line { background: transparent; height: 2px }
+
+      .bubble-name {
+        color:  var(--popup-secondary-text) !important;
+        font-size:14px !important;
+      }
+
+storage_bar:
+  card:
+    type: custom:button-card
+    show_icon: false
+    name: "[[name]]"
+    entity: "[[entity]]"
+    custom_fields:
+      bar: |
+        [[[
+          var state = states['[[bar_entity]]'].state;
+          var color = "#7fa36a";
+          if (state >=85 )      color = "#c74b4b";
+          else if (state >=70 ) color = "#d17a4a";
+          else if (state >=60) color = "#d1b04a";
+          else if (state >=50) color = "#a8b85a";
+          return `
+          <div>
+          <div style="border-radius: 10px;background: ${color}; height: 12px; width: ${state}%; box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.3);">
+          </div>
+          </div>
+          `
+        ]]]
+      stat1: |
+        [[[ [[stat1]] ]]]
+      stat2: |
+        [[[ [[stat2]] ]]]
+      stat3: |
+        [[[ [[stat3]] ]]]
+    styles:
+      card:
+        - background: transparent
+        - box-shadow: none
+        - border-radius: 0px
+        - border: none
+        - padding: 0px 15px 0px 2px
+        - margin-left: 1px
+        - margin-top: 0px
+        - margin-bottom: -5px
+      custom_fields:
+        bar:
+          - overflow: hidden
+          - box-shadow: inset -3px -1px 2px 0px rgba(255,255,255,.1)
+          - background: var(--battery_slider_background)
+          - justify-self: start
+          - width: 100%
+          - height: 12px
+          - border-radius: 10px
+        stat1:
+          - justify-self: start
+          - font-size: 10px
+          - opacity: 0.7
+        stat2:
+          - justify-self: center
+          - font-size: 10px
+          - opacity: 0.7
+        stat3:
+          - justify-self: end
+          - font-size: 10px
+          - opacity: 0.7
+          - padding-right: 2px
+      grid:
+        - grid-template-areas: '"n bar bar bar" ". stat1 stat2 stat3"'
+        - grid-template-columns: 0.6fr 1fr 1fr 1fr
+      name:
+        - justify-self: start
+        - font-size: 11px
+        - opacity: 0.9
+        - padding-left: 0px

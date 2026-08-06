@@ -1,0 +1,146 @@
+light:
+  grid_options:
+    columns: 12
+    rows: 1
+  layout_options:
+    grid_columns: 12
+
+  name: "[[[ return variables.name ]]]"
+  show_state: "[[[ return variables.show_state ]]]"
+  tap_action:
+    action: toggle
+  entity: "[[[ return variables.entity]]]"
+  icon: "[[[ return variables.icon]]]"
+  styles:
+    card:
+      - padding: 5px;
+    grid:
+      - grid-template-areas: |
+          "i lock slider motion"
+      - grid-template-columns: 10% 10% 70% 10%
+      - grid-template-rows: 1fr
+  custom_fields:
+    lock:
+      card:
+        type: custom:button-card
+        show_name: false
+        show_label: false
+        show_state: false
+        icon: mdi:lock-open-outline
+        entity: "[[lock_entity]]"
+        state:
+          - value: "on"
+            icon: mdi:lock
+            styles:
+              icon:
+                - color: lightgreen
+              card:
+                - background-color: rgba(0, 120, 0, 1)
+                - box-shadow: >-
+                    inset 0px 3px 3px rgba(47, 47, 47, .5), inset 0px 1px 3px
+                    rgba(207, 207, 207, 0.2)
+          - value: "off"
+            icon: mdi:lock-open-outline
+            styles:
+              icon:
+                - color: var(--bubble-icon-color-off)
+              card:
+                - background-color: var(--bubble-icon-background-color)
+        styles:
+          card:
+            - box-shadow: none
+            - border: none
+            - border-radius: 50%
+            - margin-top: "-1px"
+            - width: 39px
+            - height: 39px
+          icon:
+            - height: 25px
+            - width: 25px
+    slider:
+      card:
+        type: custom:bubble-card
+        card_type: button
+        button_type: slider
+        sub_button:
+          main:
+            - entity: "[[entity]]"
+              name: percent
+              scrolling_effect: false
+              show_background: false
+              light_background: false
+              show_icon: false
+              show_state: false
+              show_attribute: true
+              attribute: brightness
+          bottom: []
+        entity: "[[entity]]"
+        name: "[[name]]"
+        icon: " "
+        show_icon: false
+        scrolling_effect: false
+        use_accent_color: false
+        show_state: false
+        show_attribute: false
+        attribute: brightness
+        min_value: 0
+        max_value: 100
+        step: 1
+        slider_live_update: true
+        allow_light_slider_to_0: true
+        light_transition: true
+        tap_action:
+          action: none
+        hold_action:
+          action: more-info
+        styles: |-
+          .bubble-container {
+            height: 38px !important;
+            background-color: ${hass.states['[[entity]]'].state === 'on' ? 'white' : 'var(--bubble-icon-background-color)'} !important;
+            opacity: 1 !important;
+            border-radius: var(--ha-card-border-radius) !important;
+            box-shadow: var(--bubble-slider-box-shadow) !important;
+          }
+          * {
+            --bubble-button-border-radius: var(--ha-card-border-radius) !important;
+          }
+          .bubble-range-fill {
+            background: var(--bubble-slider-background) !important;
+            opacity: var(--bubble-light-opacity) !important;
+            right: 100 !important;
+            left: 10 !important;
+            transform-origin: left center !important;
+            box-shadow: var(--bubble-slider-box-shadow) !important;
+          }
+          .bubble-name-container { 
+            justify-content: flex-start !important;
+            text-align: left !important; 
+          }.bubble-name { 
+            text-align: left !important; 
+            color: var(--primary-color) !important;
+            justify-content: flex-start !important; 
+          }
+    motion:
+      card:
+        type: custom:button-card
+        entity: "[[motion_entity]]"
+        show_name: false
+        icon: mdi:motion-sensor
+        styles:
+          card:
+            - background: transparent
+            - border-color: transparent
+            - box-shadow: none
+          icon:
+            - width: 25px
+        state:
+          - value: "on"
+            styles:
+              icon:
+                - color: red
+                - opacity: 1
+          - value: "off"
+            styles:
+              icon:
+                - color: var(--secondary-text-color)
+                - opacity: 0.35

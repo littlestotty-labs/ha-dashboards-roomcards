@@ -1,0 +1,191 @@
+# -----------------------------------------------------------
+# popup_cards/bedroom.yaml
+# Standalone bubble-card pop-up for the Bedroom room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Bedroom
+icon: mdi:bed-outline
+hash: "#room_bedroom"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-bedroom);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-bedroom) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        entity: switch.plug_blue
+        name: Pedestal Fan
+        icon: mdi:fan
+        variables:
+          attribute_entity: sensor.plug_blue_power
+      - type: custom:bubble-card
+        card_type: empty-column
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Purifier
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: climate
+        name: Purifier
+        entity: fan.core_300s
+        show_state: false
+        show_name: false
+        card_layout: large-2-rows
+        icon: mdi:air-purifier
+        sub_button:
+          - name: Mode
+            select_attribute: preset_modes
+            show_arrow: false
+            state_background: false
+            show_name: false
+          - name: PM2
+            entity: sensor.core_300s_pm2_5
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+          - name: AQ
+            entity: sensor.core_300s_air_quality
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+          - name: Filter
+            entity: sensor.core_300s_filter_lifetime
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+        styles: |
+          .bubble-container {
+            height: 50px !important;
+            background-color: var(--card-background-color) !important;
+            opacity: 1 !important;
+            border-radius: var(--ha-card-border-radius) !important;
+            box-shadow: var(--ha-card-box-shadow) !important;
+          }
+      - type: custom:button-card
+        entity: input_boolean.purifier_vacuum
+        section_mode: null
+        show_name: false
+        icon: |
+          [[[
+              if (entity.state == 'on') return 'mdi:vacuum';
+              else return 'mdi:vacuum-outline';
+          ]]]
+        styles:
+          card:
+            - width: 50px
+            - height: 50px
+            - border-radius: 10px
+            - padding: 5px 0px 5px 5px
+            - background: |
+                [[[
+                  if (entity.state == 'on') return 'red';
+                  else return 'var(--card-background-color)';
+                ]]]
+          img_cell:
+            - background-color: |
+                [[[ if (entity.state === "on")
+                     return 'red';
+                    else
+                     return 'var(--bubble-icon-background-color)';
+                 ]]]
+            - justify-self: start
+            - align-self: start
+            - padding: 2px
+            - border-radius: 500%
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 60%
+            - height: 60%
+            - color: |
+                [[[ if (entity.state === "on")
+                     return 'var(--ha-card-background)';
+                    else
+                     return 'var(--primary-color)';
+                 ]]]
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Conditioner
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_aircon
+        entity: input_boolean.cool_room
+        name: Aircon Cool
+        icon: mdi:snowflake
+        variables:
+          attribute_entity: climate.aircon
+      - type: custom:button-card
+        template: bubble_heater
+        entity: input_boolean.heat_room
+        name: Aircon Warm
+        icon: mdi:radiator
+        variables:
+          attribute_entity: climate.aircon
+  - type: custom:bubble-card
+    card_type: climate
+    name: Aircon
+    entity: climate.aircon
+    show_state: true
+    state-background: true
+    card_layout: normal
+    state-color: true
+    sub_button:
+      - name: HVAC modes menu
+        select_attribute: hvac_modes
+        show_arrow: true
+        state_background: true
+    styles: |
+      .bubble-container {
+        height: 50px !important;
+        background-color: var(--card-background-color) !important;
+        opacity: 1 !important;
+        border-radius: var(--ha-card-border-radius) !important;
+        box-shadow: var(--ha-card-box-shadow) !important;
+      }

@@ -1,0 +1,73 @@
+# -----------------------------------------------------------
+# popup_cards/petrol.yaml
+# Standalone bubble-card pop-up for Petrol Prices.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Petrol Prices
+icon: mdi:gas-station
+hash: "#petrol"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--popup-text);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--popup-text) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }  
+cards:
+  - type: custom:gap-card
+    height: 10px
+  - type: custom:auto-entities
+    card:
+      type: custom:apexcharts-card
+      graph_span: 30d
+      chart_type: line
+      show:
+        last_updated: true
+      header:
+        show: true
+        title: Last 30 days Prices
+      apex_config:
+        chart:
+          height: 450
+        stroke:
+          width: 2
+          curve: smooth
+    series:
+      show:
+        legend_value: false
+    filter:
+      include:
+        - entity_id: "*e10*"
+    sort:
+      method: state
+      ignore_case: true
+      count: 7

@@ -8,19 +8,41 @@
 
 type: custom:button-card
 template: room_card
-name: Office
+name: |
+  [[[
+    const temp = parseFloat(states['sensor.office_temp_humidity_temperature'].state).toFixed(1);
+    const hum = parseFloat(states['sensor.office_temp_humidity_humidity'].state).toFixed(1);
+    let emoji_temp = '';
+    if (temp >= 27) emoji_temp = '🔥';
+    else if (temp<17) emoji_temp = '❄️';
+   let emoji_hum = '';
+    if (hum >= 70 ) emoji_hum= '💧';
+    return `<span style="display: inline-flex; align-items: center; font-size: 16px;">
+      <span >Office&nbsp;</span>
+      <span style="font-size: 9px;">${emoji_temp}${emoji_hum}</span>
+    </span>`;
+  ]]]
 icon: mdi:desk
 variables:
   accent_color: var(--room-office)
 tap_action:
-  navigation_path: '#room_office'
+  navigation_path: "#room_office"
 show_label: true
 show_state: false
 entity: input_text.office_status
 label: |
   [[[
-    return states['input_text.office_status'].state
+    const temp = parseFloat(states['sensor.office_temp_humidity_temperature'].state).toFixed(1);
+    const hum = parseFloat(states['sensor.office_temp_humidity_humidity'].state).toFixed(1);
+    let tempColor = 'inherit';
+    if (temp >= 29) tempColor = 'red';
+    else if (temp >= 27) tempColor = '#f58f01ff';
+    else if (temp < 17) tempColor = '#25a6f1ff';
+    let humColor = 'inherit';
+    if (hum >= 70) humColor = 'red';
+    return `<span>${temp}°C </span> • <span ">${hum}%</span>`;
   ]]]
+
 custom_fields:
   btn:
     card:

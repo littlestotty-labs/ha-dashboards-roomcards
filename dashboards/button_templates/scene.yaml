@@ -1,0 +1,38 @@
+scene:
+  show_state: false
+  styles:
+    grid:
+      - grid-template-areas: |
+          "i"
+          "n"
+      - grid-template-columns: auto
+      - grid-template-rows: 70% 30%
+    card:
+      - height: 63px
+      #      - width: 90px
+      - padding: 5px 0px 5px 0px # Top, Right, Bottom, Left = 20px
+    icon:
+      - width: 1.7em
+      - height: 1.7em
+    name:
+      - justify-self: center
+      - font-size: 14px
+      - font-weight: 600
+      - color: white
+    img_cell:
+      - width: 2em
+      - height: 2em
+      - justify-self: center
+      - border-radius: 50%
+      - background: white
+
+  state:
+    - id: state_off
+      styles:
+        icon:
+          - color: "[[[ return variables.colour ]]]"
+
+    - id: state_on
+      styles:
+        icon:
+          - color: "[[[ return variables.colour ]]]"
