@@ -18,40 +18,38 @@ grahams-light:
   # Backgrounds
   # -----------------------------------------------------
   primary-background-color: "#c2c6c9ff"
-  secondary-background-color: "#eaedf0ff"
+  secondary-background-color: "#b7bdc2ff"
   # F2F3F4
   #  card-background-color: "#eaedf0ff"
   card-background-color: "#F2F3F4"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#cfcfcf"
-
+  light-button-background: radial-gradient(circle farthest-side at 25% 30%, rgba(245, 245, 245, 1) 17%, rgba(204, 204, 204, 1))
   # -----------------------------------------------------
   # Text
   # -----------------------------------------------------
-  primary-color: "#354142ff"
+  primary-color: "#343c3dff"
   primary-text-color: "#000000"
 
   # -----------------------------------------------------
   # Divider / Outline
   # -----------------------------------------------------
-  divider-color:
-    "rgba(51,51,51,.12)"
+  divider-color: "rgba(51,51,51,.12)"
 
-    # -----------------------------------------------------
+  # -----------------------------------------------------
   # Cards
   # -----------------------------------------------------
-  ha-card-border-radius: "12px"
+  ha-card-border-radius: "10px"
   ha-card-box-shadow: >
     0px 3px 7px 0px rgba(0,0,0,0.56)
+  ha-card-box-shadow-on: >
+    0px 2px 3px 0px rgba(0,0,0,0.3)
 
   accent-color: rgba(86, 130, 155, 1)
   state-icon-color: rgba(51,51,51,1)
-  bubble-accent-color: var(--accent-color)
-  bubble-light-opacity: 0.6
-  bubble-slider-background: "linear-gradient(90deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.10) 100%)"
 
   # Google-yellow: "#FF9101"
-  scene-active-background: "#fce8d0ff"
+  scene-active-background: "#f3e6acff"
   scene-selected-color: "#FF9101"
   selected-color: var(--card-background-color)
 
@@ -59,17 +57,40 @@ grahams-light:
   # Bubble Card
   # -----------------------------------------------------
 
-  bubble-border-radius: "18px"
   popup-header-background: rgba(234, 234, 234, 1)
+  popup-text: "#5f5f5fff"
+  bubble-border-radius: var(--ha-card-border-radius)
+  bubble-main-background-color: var(--card-background-color)
+  bubble-secondary-background-color: "#dedfe1ff"
+  bubble-icon-border-radius: 50%
+  bubble-icon-background-color: rgba(227, 225, 225, 1)
+  bubble-icon-background-color-on: white
+  bubble-icon-color-off: var(--primary-color)
+  bubble-icon-color-on: "rgba(255, 111, 34, 1)"
+  bubble-icon-glow-on: "rgba(255, 111, 34, 1)"
+  bubble-sub-button-border-radius: var(--ha-card-border-radius)
+  bubble-sub-button-background-color: var(--bubble-main-background-color)
+  bubble-box-shadow: var(--ha-card-box-shadow)
+  bubble-border: var(--ha-card-border-color)
+  bubble-switch-text-off: var(--primary-color)
+  bubble-switch-text-on: white
+  bubble-switch-status-off: var(--primary-text-color)
+  bubble-switch-status-on: rgba(0,0,0,1)
+  bubble-slider-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, .4), rgba(255, 255, 255, .1) -1px -1px 2px 0px inset
+  bubble-accent-color: var(--accent-color)
+  bubble-light-opacity: 0.5
+  bubble-slider-background: linear-gradient(to right, rgba(255, 111, 34 ,.6) 0%,rgba(255, 111, 34, 1)100%)
+  bubble-slider-on: "linear-gradient(90deg, bubble-icon-glow-on) 0%, rgba(0,0,0,0.10) 100%)"
+  lock_background_light_on: "#c9c9c9ff"
 
   # -----------------------------------------------------
   # Room Accent Colors (light tuned)
   # -----------------------------------------------------
-  room-lounge: "#ce8d3eff"
   room-bedroom: "#4b738dff"
-  room-office: "#678f66ff"
-  room-lights: "#E07A7A"
+  room-office: "#539352ff"
+  room-lights: "#ed3a3aff"
   room-petrol: "#c9c687ff"
-  room-garden: "#c387c9ff"
-  room-tech: "#947d61ff"
+  room-garden: "#c674cdff"
+  room-tech: "#795d3bff"
   room-kitchen: "#4b738dff"
+  room-lounge: "#d87f02ff"

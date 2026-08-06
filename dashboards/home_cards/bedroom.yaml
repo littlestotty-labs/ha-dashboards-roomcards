@@ -10,14 +10,43 @@ type: custom:button-card
 template: room_card
 variables:
   accent_color: var(--room-bedroom)
-name: Bedroom
+name: |
+  [[[
+    const temp = parseFloat(states['sensor.temp_sensor_temperature'].state).toFixed(1);
+    const hum = parseFloat(states['sensor.temp_sensor_humidity'].state).toFixed(1);
+    const air = states['sensor.core_300s_pm2_5'].state;
+    let emoji_air = '';
+    
+    if (air >=10) emoji_air = '🤢';
+    else if (air<=2) emoji_air = '🌳';
+    
+    let emoji_temp = '';
+    if (temp >= 27) emoji_temp = '🔥';
+    else if (temp<17) emoji_temp = '❄️';
+   let emoji_hum = '';
+    if (hum >= 70 ) emoji_hum= '💧';
+    return `<span style="display: inline-flex; align-items: center; font-size: 16px;">
+      <span>Bedroom&nbsp;</span>
+      <span style="font-size: 9px;">${emoji_temp}${emoji_hum}${emoji_air}</span>
+    </span>`;
+  ]]]
 icon: mdi:bed
 tap_action:
-  navigation_path: '#room_bedroom'
+  navigation_path: "#room_bedroom"
 show_label: true
+
 label: |
   [[[
-    return states['sensor.temp_sensor_temperature'].state + "°C • " + states['sensor.temp_sensor_humidity'].state + "%"
+    const temp = parseFloat(states['sensor.temp_sensor_temperature'].state).toFixed(1);
+    const hum = parseFloat(states['sensor.temp_sensor_humidity'].state).toFixed(1);
+    let tempColor = 'inherit';
+    if (temp >= 29) tempColor = 'red';
+    else if (temp >= 27) tempColor = '#f58f01ff';
+    else if (temp < 17) tempColor = '#25a6f1ff';
+
+    let humColor = 'inherit';
+    if (hum >= 70) humColor = 'red';
+    return `<span style="color: ${tempColor}">${temp}°C </span> • <span style="color: ${humColor}">${hum}%</span>`;
   ]]]
 custom_fields:
   vac:
@@ -30,14 +59,14 @@ custom_fields:
               conditions:
                 - condition: state
                   entity: input_boolean.purifier_vacuum
-                  state: 'on'
+                  state: "on"
           card:
             type: custom:button-card
             icon: mdi:vacuum
             entity: input_boolean.purifier_vacuum
             tap_action:
               action: navigate
-              navigation_path: '#room_bedroom'
+              navigation_path: "#room_bedroom"
             styles:
               card:
                 - animation: blink 2s ease infinite
@@ -48,7 +77,7 @@ custom_fields:
                 - border-style: none
                 - border-radius: 100%
                 - margin-right: 5px
-                - margin-top: '-54px'
+                - margin-top: "-54px"
               img_cell:
                 - border-radius: 100%
                 - background: rgba(180,60,60,1)

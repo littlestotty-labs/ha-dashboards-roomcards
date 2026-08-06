@@ -23,13 +23,27 @@ styles: |
   .bubble-button-background {
     background: var(--popup-header-background) !important; 
   } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
   .bubble-close-icon {
     --mdc-icon-size: 40px !important;
       color: var(--room-tech);
+      background: var(--popup-header-background) !important; 
   }       
   .bubble-header {
       color: var(--room-tech) !important;
+      background: var(--popup-header-background) !important; 
   }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }  
 sub_button:
   main: []
   bottom: []
@@ -151,7 +165,7 @@ cards:
               entity_id: "*battery*"
           exclude:
             - options: {}
-              state: "> 80"
+              state: "> 30"
             - options: {}
               state: "off"
             - options: {}
@@ -182,30 +196,7 @@ cards:
           type: vertical-stack
           cards:
             - type: custom:decluttering-card
-              template: storage_separator
-              variables:
-                - name: QNAP
-                - margin_top: "-5px"
-            - type: custom:decluttering-card
-              template: storage_bar
-              variables:
-                - name: App
-                - entity: sensor.infinity_volume_used_appvolume
-                - bar_entity: sensor.infinity_volume_used_appvolume
-                - stat1: "const v = parseFloat(states['sensor.infinity_used_space_appvolume'].state); return v.toFixed(0) + ' GB Used';"
-                - stat2: "const v = parseFloat(states['sensor.infinity_free_space_appvolume'].state); return v.toFixed(0) + ' GB Free';"
-                - stat3: "return '411 GB Total';"
-            - type: custom:decluttering-card
-              template: storage_bar
-              variables:
-                - name: Media
-                - entity: sensor.infinity_volume_used_media_volume
-                - bar_entity: sensor.infinity_volume_used_media_volume
-                - stat1: "const v = parseFloat(states['sensor.infinity_used_space_media_volume'].state); return v.toFixed(0) + ' GB Used';"
-                - stat2: "const v = parseFloat(states['sensor.infinity_free_space_media_volume'].state); return v.toFixed(0) + ' GB Free';"
-                - stat3: "return '7.3 TB Total';"
-            - type: custom:decluttering-card
-              template: storage_separator
+              template: separator
               variables:
                 - name: NVIDIA SHIELD
                 - margin_top: "0px"
@@ -218,19 +209,19 @@ cards:
                 - stat1: "const v = parseFloat(states['sensor.system_monitor_disk_use_share_shield_internal'].state); return v.toFixed(0) + ' GB Used';"
                 - stat2: "const v = parseFloat(states['sensor.system_monitor_disk_free_share_shield_internal'].state); return v.toFixed(0) + ' GB Free';"
                 - stat3: "return '11.6 GB Total';"
+            # - type: custom:decluttering-card
+            #   template: storage_bar
+            #   variables:
+            #     - name: Media
+            #     - entity: sensor.system_monitor_disk_use_share_shield_media
+            #     - bar_entity: sensor.system_monitor_disk_usage_share_shield_media
+            #     - stat1: "const v = parseFloat(states['sensor.system_monitor_disk_use_share_shield_media'].state); return v.toFixed(0) + ' GB Used';"
+            #     - stat2: "const v = parseFloat(states['sensor.system_monitor_disk_free_share_shield_media'].state); return v.toFixed(0) + ' GB Free';"
+            #     - stat3: "return '1.8 TB Total';"
             - type: custom:decluttering-card
-              template: storage_bar
+              template: separator
               variables:
-                - name: Media
-                - entity: sensor.system_monitor_disk_use_share_shield_media
-                - bar_entity: sensor.system_monitor_disk_usage_share_shield_media
-                - stat1: "const v = parseFloat(states['sensor.system_monitor_disk_use_share_shield_media'].state); return v.toFixed(0) + ' GB Used';"
-                - stat2: "const v = parseFloat(states['sensor.system_monitor_disk_free_share_shield_media'].state); return v.toFixed(0) + ' GB Free';"
-                - stat3: "return '1.8 TB Total';"
-            - type: custom:decluttering-card
-              template: storage_separator
-              variables:
-                - name: SYNOLOGY
+                - name: SYNOLOGY (DS216+II)
             - type: custom:decluttering-card
               template: storage_bar
               variables:
@@ -258,6 +249,29 @@ cards:
                 - stat1: "const v = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_used_space'].state); return v.toFixed(1) + ' GB Used';"
                 - stat2: "const total = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_size'].state); const used = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_used_space'].state); return Math.round(total - used) + ' GB Free';"
                 - stat3: "const total = parseFloat(states['sensor.synology_usb_disk_2_partition_1_partition_size'].state); return (total / 1024).toFixed(1) + ' TB Total';"
+            - type: custom:decluttering-card
+              template: separator
+              variables:
+                - name: QNAP (TS-264)
+                - margin_top: "-5px"
+            - type: custom:decluttering-card
+              template: storage_bar
+              variables:
+                - name: App
+                - entity: sensor.infinity_volume_used_appvolume
+                - bar_entity: sensor.infinity_volume_used_appvolume
+                - stat1: "const v = parseFloat(states['sensor.infinity_used_space_appvolume'].state); return v.toFixed(0) + ' GB Used';"
+                - stat2: "const v = parseFloat(states['sensor.infinity_free_space_appvolume'].state); return v.toFixed(0) + ' GB Free';"
+                - stat3: "return '411 GB Total';"
+            - type: custom:decluttering-card
+              template: storage_bar
+              variables:
+                - name: Media
+                - entity: sensor.infinity_volume_used_media_volume
+                - bar_entity: sensor.infinity_volume_used_media_volume
+                - stat1: "const v = parseFloat(states['sensor.infinity_used_space_media_volume'].state); return v.toFixed(0) + ' GB Used';"
+                - stat2: "const v = parseFloat(states['sensor.infinity_free_space_media_volume'].state); return v.toFixed(0) + ' GB Free';"
+                - stat3: "return '7.3 TB Total';"
     styles:
       grid:
         - grid-template-areas: '"n l" "btn btn" "btn btn"'

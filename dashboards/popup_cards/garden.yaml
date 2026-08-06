@@ -21,14 +21,28 @@ styles: |
     background: var(--popup-header-background) !important;
   }
   .bubble-button-background {
-    background: var(--popup-header-background) !important;
-  }
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
   .bubble-close-icon {
     --mdc-icon-size: 40px !important;
-    color: var(--room-garden);
-  }
+      color: var(--room-garden);
+      background: var(--popup-header-background) !important; 
+  }       
   .bubble-header {
-    color: var(--room-garden) !important;
+      color: var(--room-garden) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
   }
 sub_button:
   main: []
@@ -37,13 +51,48 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row_v2
+    template: separator
     variables:
-      - entity: light.hue_filament_bulb_1
-      - name: Outside Front Light
-      - icon: mdi:outdoor-lamp
-      - lock_entity: input_boolean.outdoorlightlock_switch
-      - motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+      - name: Lights
+      - text_colour: var(--room-garden)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.0xb40ecfd1a09f0000
+      name: Outside G10 Lamp 1
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.0xb40ecfd2d0440000
+      name: Outside G10 Lamp 2
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.front_garden_light
+      name: Outside Porch Light
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Switches
+      - text_colour: var(--room-garden)
+      - margin_top: "-5px"
+
   - type: horizontal-stack
     cards:
       - type: custom:button-card
@@ -53,3 +102,135 @@ cards:
         icon: mdi:water-pump
       - type: custom:bubble-card
         card_type: empty-column
+  - type: custom:gap-card
+    height: 12px
+
+  - type: custom:button-card
+    color_type: blank
+    name: "Waste Collection Schedule"
+    show_name: true
+    styles:
+      card:
+        - background: transparent
+        - box-shadow: none
+        - border: none
+        - padding: 0px
+        - margin-top: 10px
+      name:
+        - justify-self: start
+        - font-size: 14px
+        - font-weight: bold
+        - color: var(--room-garden)
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        entity: sensor.waste_collection_schedule_general_waste
+        name: General Waste
+        show_name: true
+        show_state: true
+        show_icon: false
+        styles:
+          img_cell:
+            - padding: -5px
+          entity_picture:
+            - padding: 0px
+            - size: 200%
+          card:
+            - background-image: |
+                [[[ 
+                  var images = 'red_general_waste'; 
+                  return 'url(/local/icons/wastebins/'+images+'.png)'
+                ]]]
+            - background-repeat: no-repeat
+            - background-size: 15%
+            - background-position-x: 3px
+            - background-position-y: center
+            - background-origin: border-box
+            - padding-left: 80px
+            - padding-right: 20px
+            - padding-top: 20px
+            - padding-bottom: 0px
+            - height: 70px
+          name:
+            - justify-self: start
+            - font-size: 13px
+            - font-weight: 500
+          state:
+            - justify-self: end
+            - font-size: 13px
+            - font-weight: 500
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: sensor.waste_collection_schedule_recycling
+        name: Recycling
+        show_name: true
+        show_state: true
+        show_icon: false
+        styles:
+          img_cell:
+            - padding: -5px
+          entity_picture:
+            - padding: 0px
+            - size: 200%
+          card:
+            - background-image: |
+                [[[ 
+                  var images = 'recycling'; 
+                  return 'url(/local/icons/wastebins/'+images+'.png)'
+                ]]]
+            - background-repeat: no-repeat
+            - background-size: 15%
+            - background-position-x: 3px
+            - background-position-y: center
+            - background-origin: border-box
+            - padding-left: 80px
+            - padding-right: 20px
+            - padding-top: 20px
+            - padding-bottom: 0px
+            - height: 70px
+          name:
+            - justify-self: start
+            - font-size: 13px
+            - font-weight: 500
+          state:
+            - justify-self: end
+            - font-size: 13px
+            - font-weight: 500
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: sensor.waste_collection_schedule_garden_organics
+        name: Organics
+        show_name: true
+        show_state: true
+        show_icon: false
+        styles:
+          img_cell:
+            - padding: -5px
+          entity_picture:
+            - padding: 0px
+            - size: 200%
+          card:
+            - background-image: |
+                [[[ 
+                  var images = 'organics'; 
+                  return 'url(/local/icons/wastebins/'+images+'.png)'
+                ]]]
+            - background-repeat: no-repeat
+            - background-size: 15%
+            - background-position-x: 3px
+            - background-position-y: center
+            - background-origin: border-box
+            - padding-left: 80px
+            - padding-right: 20px
+            - padding-top: 20px
+            - padding-bottom: 0px
+            - height: 70px
+          name:
+            - justify-self: start
+            - font-size: 13px
+            - font-weight: 500
+          state:
+            - justify-self: end
+            - font-size: 13px
+            - font-weight: 500
+            - color: var(--secondary-text-color)

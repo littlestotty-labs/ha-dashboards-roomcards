@@ -1,0 +1,35 @@
+# -----------------------------------------------------------
+# banner.yaml
+# Top banner bar — hamburger menu, weather summary, battery
+# alerts, and WFH indicator.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    tap_action:
+      action: call-service
+      service: |
+        [[[
+          this.dispatchEvent(new Event('hass-toggle-menu', { bubbles: true, composed: true}));
+          return none;
+        ]]]
+    hold_action:
+      action: url
+      url_path: null
+    icon: mdi:menu
+    color: var(--primary-color)
+    show_name: false
+    styles:
+      card:
+        - margin: 10px 0px -5px 3px
+        - width: 33px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: none
+        - background-color: transparent
+        - background: transparent
+      icon:
+        - width: 90%

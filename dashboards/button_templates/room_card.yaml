@@ -22,8 +22,8 @@ room_card:
       - grid-template-columns: 1fr min-content
       - grid-template-rows: min-content min-content 1fr
     card:
-      - height: 140px
-      - padding: 10px 10px 15px 15px
+      - height: 155px
+      - padding: 6px 10px 15px 15px
     custom_fields:
       btn:
         - justify-content: end
@@ -49,20 +49,20 @@ room_card:
     img_cell:
       - justify-content: start
       - position: absolute
-      - width: 105px
-      - height: 105px
+      - width: 125px
+      - height: 125px
       - left: 0
       - bottom: 0
       - margin: 0 0 -20px -20px
       - background: >
           [[[ return "color-mix(in srgb, " + variables.accent_color + ",
-          transparent 60%)"; ]]]
+          transparent 80%)"; ]]]
       - border-radius: 500px
     icon:
       - margin-left: 25px
-      - width: 50px
+      - width: 80px
       - color: >
           [[[ return "color-mix(in srgb, " + variables.accent_color + ", black
-          70%)"; ]]]
+          10%)"; ]]]
       - opacity: "0.3"
   show_state: true

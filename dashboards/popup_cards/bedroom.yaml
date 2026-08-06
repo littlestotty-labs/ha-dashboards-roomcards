@@ -21,12 +21,26 @@ styles: |
   .bubble-button-background {
     background: var(--popup-header-background) !important; 
   } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
   .bubble-close-icon {
-      color: var(--room-bedroom);
     --mdc-icon-size: 40px !important;
+      color: var(--room-bedroom);
+      background: var(--popup-header-background) !important; 
   }       
   .bubble-header {
       color: var(--room-bedroom) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
   }
 cards:
   - type: custom:gap-card
@@ -38,30 +52,16 @@ cards:
         entity: switch.plug_blue
         name: Pedestal Fan
         icon: mdi:fan
+        variables:
+          attribute_entity: sensor.plug_blue_power
       - type: custom:bubble-card
         card_type: empty-column
-  - type: custom:bubble-card
-    card_type: separator
-    name: Air Purifier
-    rows: 1
-    styles: >-
-      ha-card {
-        margin-top: 15px;
-        margin-bottom: -10px !important;
-      }
-
-      .bubble-sub-button-1 { color:
-      var(--popup-secondary-text);;background:
-      var(--popup-card-background);}
-
-      .separator-container { color: var(--room-bedroom);}
-
-      .bubble-line { background: var(--room-bedroom); height: 2px }
-
-      .bubble-name { 
-         color: var(--popup-secondary-text) !important; 
-        font-size:14px !important;
-      }
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Purifier
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
   - type: horizontal-stack
     cards:
       - type: custom:bubble-card
@@ -117,12 +117,26 @@ cards:
           card:
             - width: 50px
             - height: 50px
-            - border-radius: 50%
+            - border-radius: 10px
+            - padding: 5px 0px 5px 5px
             - background: |
                 [[[
                   if (entity.state == 'on') return 'red';
                   else return 'var(--card-background-color)';
                 ]]]
+          img_cell:
+            - background-color: |
+                [[[ if (entity.state === "on")
+                     return 'red';
+                    else
+                     return 'var(--bubble-icon-background-color)';
+                 ]]]
+            - justify-self: start
+            - align-self: start
+            - padding: 2px
+            - border-radius: 500%
+            - width: 35px
+            - height: 35px
           icon:
             - width: 60%
             - height: 60%
@@ -130,27 +144,14 @@ cards:
                 [[[ if (entity.state === "on")
                      return 'var(--ha-card-background)';
                     else
-                     return 'var(--accent-color)';
+                     return 'var(--primary-color)';
                  ]]]
-  - type: custom:bubble-card
-    card_type: separator
-    name: Air Conditioner
-    rows: 1
-    styles: >-
-      ha-card {
-        margin-top: 15px;
-        margin-bottom: -10px !important;
-      }
-
-      .bubble-sub-button-1 { color:
-      var(--popup-secondary-text);;background:
-      var(--popup-card-background);}
-
-      .separator-container { color: var(--room-bedroom);}
-
-      .bubble-line { background: var(--room-bedroom); height: 2px }
-
-      .bubble-name { font-size:14px !important;}
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Conditioner
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
   - type: horizontal-stack
     cards:
       - type: custom:button-card
@@ -158,11 +159,15 @@ cards:
         entity: input_boolean.cool_room
         name: Aircon Cool
         icon: mdi:snowflake
+        variables:
+          attribute_entity: climate.aircon
       - type: custom:button-card
         template: bubble_heater
         entity: input_boolean.heat_room
         name: Aircon Warm
         icon: mdi:radiator
+        variables:
+          attribute_entity: climate.aircon
   - type: custom:bubble-card
     card_type: climate
     name: Aircon

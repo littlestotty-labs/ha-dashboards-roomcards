@@ -60,12 +60,12 @@
       unit_of_measurement: W
       device_class: power
 
-    - unique_id: plug_purple_2_power
-      name: purple_2 Plug Power
-      default_entity_id: sensor.plug_purple_2_power
-      state: "{{ states.sensor.purple_2_power }}"
-      unit_of_measurement: W
-      device_class: power
+    # - unique_id: plug_purple_2_power
+    #   name: purple_2 Plug Power
+    #   default_entity_id: sensor.plug_purple_2_power
+    #   state: "{{ states.plug_purple_2_power_2}}"
+    #   unit_of_measurement: W
+    #   device_class: power
 
     - unique_id: ryde_temperature
       name: Ryde Current Temperature
@@ -77,12 +77,12 @@
       name: Number of House Lights On
       default_entity_id: sensor.number_of_lights_on
       state: |
-        {% set lights = [ states.light.downstairs_hallway,
+        {% set lights = [ states.light.lobby_light,
                           states.light.outside_front,
-                          states.light.hue_ambiance_lamp_1_2,
-                          states.light.hue_filament_bulb_1, 
+                          states.light.stairs_light,
+                          states.light.office_light, 
                           states.light.laundry_light,
-                          states.light.living_room,
+                          states.light.lounge_light,
                           states.light.loo_light ,
                           states.light.upstairs_landing_bedroom ] %}
         {{ lights | selectattr('state', 'eq', 'on') | list | count }}
@@ -106,6 +106,18 @@
           | list
         %}
         {{ batteries | count }}
+
+    - unique_id: next_bins_type
+      name: Next Bins Type
+      state: >
+        {% if states('sensor.waste_collection_schedule_recycling') == states('sensor.waste_collection_schedule_general_waste') %}
+          recycling
+        {% elif states('sensor.waste_collection_schedule_garden_organics') == states('sensor.waste_collection_schedule_general_waste') %}
+          organics
+        {% else %}
+          none
+        {% endif %}
+
 - binary_sensor:
     - unique_id: landing_motion_combined
       name: "Landing Motion Combined"

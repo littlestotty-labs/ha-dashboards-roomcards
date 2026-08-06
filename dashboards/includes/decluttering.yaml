@@ -5,32 +5,31 @@
 # Author: Graham Stott (littlestotty-labs)
 # Version: 2.0
 # -----------------------------------------------------------
-
 light_row_v2:
   card:
     type: custom:button-card
     entity: "[[entity]]"
+    section_mode: true
     show_name: false
     show_icon: false
-    show_label: false
-    display: grid
-    show_state: false
+    grid_options:
+      rows: 2
+      columns: 6
     styles:
       grid:
         - grid-template-areas: |
-            "power lock slider motion"
-        - grid-template-columns: 13% 13% 67% 10%
-        - grid-template-rows: 1fr
+            "slider slider slider slider"
+            "power lock motion slider_colour"
+        - grid-template-columns: 21% 21% 21% 37%
+        - grid-template-rows: 50% 50%
       card:
-        - border-radius: var(--ha-card-border-radius)
-        - padding-left: 12px
-        - padding-right: 20px
-        - padding-top: 0px
-        - padding-bottom: 0px
-        - height: 55px
-      custom_fields:
-        motion:
-          - justify-self: end
+        - height: 86%
+        - padding: 5px 7px 5px 7px
+        - margin-top: 8px
+        # - box-shadow: >
+        #     0 2px 7px rgba(4, 4, 4, 0.25),
+        #     inset 0px 1px 0 rgba(255, 255, 255, 0.2)
+        # - border-style: none
     custom_fields:
       power:
         card:
@@ -42,12 +41,13 @@ light_row_v2:
           entity: "[[entity]]"
           styles:
             card:
-              - width: 40px
-              - height: 35px
-              - border-radius: 30%
-            icon:
               - width: 30px
-
+              - height: 30px
+              - margin: 5px 0px 0px 0px
+              - box-shadow: >
+                  0px 4px 8px 0px rgba(0, 0, 0, 0.25), inset 0px 1px 0 rgba(255, 255, 255,0.24)
+            icon:
+              - width: 33px
       lock:
         card:
           type: custom:button-card
@@ -62,95 +62,120 @@ light_row_v2:
               styles:
                 icon:
                   - color: lightgreen
+                img_cell:
+                  - background-color: rgba(0, 255, 0, 0.1)
           styles:
             card:
-              - width: 40px
-              - height: 35px
-              - border-radius: 30%
-            icon:
               - width: 30px
+              - height: 30px
+              - margin: 5px 0px 0px 0px
+              - box-shadow: >
+                  0px 2px 8px 0px rgba(0, 0, 0, 0.25), inset 0px 1px 0 rgba(255, 255, 255,0.24)
+            icon:
+              - width: 23px
       slider:
         card:
-          type: custom:bubble-card
-          card_type: button
-          button_type: slider
+          type: custom:mushroom-light-card
           entity: "[[entity]]"
-          min_value: 0
-          max_value: 100
-          relative_slide: false
-          slider_live_update: true
-          allow_light_slider_to_0: true
-          light_transition: false
-          button_action:
-            tap_action:
-              action: more-info
-          show_icon: false
-          show_name: true
+          show_color_temp_control: false
+          show_color_control: false
+          use_light_color: true
+          collapsible_controls: false
+          fill_container: false
+          icon: " "
           name: "[[name]]"
-          scrolling_effect: false
-          show_attribute: false
-          attribute: brightness
-          styles: |
-            .bubble-container {
-              text-align: start;
-              height: 35px !important;
-              background: var(--bubble-slider-background) !important;
-              opacity: 1 !important;
-              border-radius: 35px !important;
-              box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
-            }
-            * {
-              --bubble-button-border-radius: 12px;
-            }
-      motion: |
-        [[[
-          var m = '[[motion_entity]]';
-          if (!m) return '';
-          var s = states[m];
-          if (!s) return '';
-          var on = s.state === 'on';
-          return '<ha-icon icon="mdi:motion-sensor" style="--mdc-icon-size:22px;color:' + (on?'red':'var(--secondary-text-color)') + ';opacity:' + (on?'1':'0.35') + ';"></ha-icon>';
-        ]]]
+          primary_info: name
+          secondary_info: none
+          icon_type: none
+          show_brightness_control: true
+          card_mod:
+            style:
+              mushroom-light-brightness-control$: |
+                mushroom-slider {
+                  --control-height: 27px !important;
+                }
+              .: |
+                ha-card {
+                  box-shadow: none !important;
+                  border-color: transparent;
+                  padding: 0px !important;
+                  position: relative;
+                  height: 27px !important;
+                  margin-top: 5px
+                }
+                mushroom-state-info {
+                  position: absolute !important;
+                  left: 15px !important;
+                  top: 5px !important;
+                  z-index: 2 !important;
+                  --card-primary-font-size: 10px;
+                  pointer-events: none !important;
+                }
+                mushroom-light-brightness-control {
+                  position: absolute;
+                  left: 0px;
+                  right: 0px;
+                  border-radius: 12px !important;
+                  top: 0px;
+                  z-index: 1;
+                  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
+                  background: linear-gradient(145deg, rgba(255, 255, 255, .05) 0%, rgba(238, 212, 169, 0.3) 60%,rgba(248, 226, 192, 0.1) 100%) !important;
+                  width: calc(100% - 0px);
+                }
 
-weather_chip:
-  card:
-    type: custom:button-card
-    name: |
-      [[[ [[name_template]] ]]]
-    entity: "[[entity]]"
-    icon: "[[icon]]"
-    show_state: false
-    show_name: true
-    show_icon: true
-    tap_action:
-      action: more-info
-    styles:
-      grid:
-        - grid-template-areas: '"i n"'
-        - grid-template-columns: min-content min-content
-      card:
-        - justify-self: center
-        - justify-content: center
-        - align-self: start
-        - border-radius: 50px
-        - width: auto
-        - height: 35px
-        - padding-right: 8px
-      name:
-        - justify-self: center
-        - font-size: 12px
-        - font-weight: 600
-        - color: var(--primary-text-color)
-      img_cell:
-        - width: 30px
-        - background: transparent
-        - border-radius: 100%
-        - justify-content: center
-        - padding-left: 2px
-      icon:
-        - width: 20px
-        - padding-left: 2px
-        - color: "[[icon_color]]"
+      slider_colour:
+        card:
+          type: custom:mushroom-light-card
+          entity: "[[entity]]"
+          show_color_temp_control: false
+          show_color_control: true
+          use_light_color: true
+          collapsible_controls: true
+          fill_container: false
+          icon: " "
+          primary_info: none
+          secondary_info: none
+          icon_type: none
+          styles:
+            card:
+              height: 75px
+          card_mod:
+            style: |
+              ha-card {
+                box-shadow: none !important;
+                border-color: transparent;
+                padding: 5px 0px 0px 0px !important;
+                --control-height: 1.4em; 
+                --control-radius: 0px;
+                }
+      motion:
+        card:
+          type: custom:button-card
+          entity: "[[motion_entity]]"
+          show_name: false
+          icon: mdi:motion-sensor
+          styles:
+            card:
+              - justify-self: start
+              - width: 35px
+              - height: 35px
+              - margin: 5px 0px 0px 0px
+              - background: transparent
+              - border-color: transparent
+              - box-shadow: none
+            icon:
+              - width: 22px
+          state:
+            - value: "on"
+              styles:
+                icon:
+                  - color: red
+                  - opacity: 1
+            - value: "off"
+              styles:
+                icon:
+                  - color: var(--secondary-text-color)
+                  - opacity: 0.35
 
 scene_button:
   card:
@@ -169,26 +194,26 @@ scene_button:
       icon:
         - width: 80%
         - height: 80%
-        - color: var(--primary-color)
+        - color: "[[color_on]]"
       img_cell:
         - border-radius: 50%
         - width: 80%
         - height: 80%
       name:
         - font-size: 12px
-        - font-weight: 500
-        - color: var(--primary-color)
+        - font-weight: 600
+        - color: "#626262ff"
     state:
       - value: "on"
         styles:
           icon:
-            - color: var(--scene-selected-color)
+            - color: "[[color_on]]"
           card:
             - background-color: var(--scene-active-background)
           name:
-            - color: var(--scene-selected-color)
-
-storage_separator:
+            - color: var(--primary-text-color)
+#            - color: "#585757ff"
+separator:
   card:
     type: custom:bubble-card
     card_type: separator
@@ -199,21 +224,29 @@ storage_separator:
         margin-top: [[margin_top]];
         margin-left: -14px;
         margin-bottom: -10px !important;
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        
       }
 
       .bubble-sub-button-1 { color:
       var(--popup-secondary-text);;
-      background:
-      var(--popup-card-background);
+      background: var(--popup-card-background);
       }
 
-      .separator-container {color: var(--room-tech);}
+      .separator-container {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+
+        color: [[text_colour]];}
 
       .bubble-line { background: transparent; height: 2px }
 
       .bubble-name {
         color:  var(--popup-secondary-text) !important;
-        font-size:12px !important;
+        font-size:14px !important;
       }
 
 storage_bar:

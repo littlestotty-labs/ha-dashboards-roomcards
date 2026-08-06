@@ -17,7 +17,6 @@ views:
   - title: Home
     path: home
     cards:
-      - !include home_cards/banner.yaml
       - !include home_cards/scenes.yaml
       - type: vertical-stack
         cards:
@@ -36,19 +35,14 @@ views:
                   - !include home_cards/tech.yaml
             columns: 2
       - !include home_cards/petrol.yaml
+      #      - !include home_cards/scenes.yaml
+      - !include home_cards/menu.yaml
+
       - !include popup_cards/lounge.yaml
       - !include popup_cards/bedroom.yaml
       - !include popup_cards/office.yaml
       - !include popup_cards/lights.yaml
-      - !include popup_cards/weather.yaml
       - !include popup_cards/petrol.yaml
       - !include popup_cards/garden.yaml
       - !include popup_cards/tech.yaml
-
       - !include popup_cards/kitchen.yaml
-    background:
-      opacity: 33
-      alignment: center
-      size: cover
-      repeat: repeat
-      attachment: fixed

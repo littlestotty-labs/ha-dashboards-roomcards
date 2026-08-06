@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.0] — 2026-08-06
+
+### Added
+- Waste collection card and `waste_day_button` template (`waste_collection_schedule`, Ryde NSW)
+- Menu card for dashboard navigation
+- Light and scene button templates (`light`, `scene`, `bubble_light`, `bubble_scene`)
+- `custom-brand-icons` and Mushroom Better Sliders Lovelace resources
+
+### Changed
+- Screenshots replaced with PNG versions
+- Light entity references renamed (lobby, stairs, office, lounge)
+
+### Removed
+- `home_cards_flat/` flat dashboard variant (11 files)
+- `grahams_dash.yaml`, `room_card_flat.yaml`
+- `popup_cards/weather.yaml`
+- Stale `.bak` files (`automations.yaml.bak`, `ui-lovelace.yaml.bak`)
+
 ## [2.0.0] — 2026-06-12
 
 ### Added

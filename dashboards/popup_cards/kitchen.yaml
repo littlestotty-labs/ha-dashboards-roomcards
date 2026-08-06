@@ -19,15 +19,29 @@ styles: |
     background: var(--popup-header-background) !important;
   }
   .bubble-button-background {
-    background: var(--popup-header-background) !important;
-  }
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
   .bubble-close-icon {
-      color: var(--room-kitchen);
     --mdc-icon-size: 40px !important;
-  }
+      color: var(--room-kitchen);
+      background: var(--popup-header-background) !important; 
+  }       
   .bubble-header {
       color: var(--room-kitchen) !important;
+      background: var(--popup-header-background) !important; 
   }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }  
 sub_button:
   main: []
   bottom: []

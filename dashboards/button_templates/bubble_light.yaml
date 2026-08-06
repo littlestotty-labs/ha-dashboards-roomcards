@@ -1,0 +1,234 @@
+bubble_light:
+  variables:
+    show_state: true
+    name: ""
+    attribute_entity: ""
+    entity_id: ""
+    lock_entity: ""
+    motion_entity: ""
+  name: "[[[ return variables.name ]]]"
+  show_state: "[[[ return variables.show_state ]]]"
+  tap_action:
+    action: toggle
+  entity: "[[[ return variables.entity_id ]]]"
+  icon: "[[[ return variables.icon ]]]"
+  state:
+    - value: "off"
+      styles:
+        img_cell:
+          - background: var(--bubble-icon-background-color)
+        card:
+          - background: var(--card-background-color)
+          - padding: 5px 0px 5px 5px
+        icon:
+          - color: var(--bubble-icon-color-off)
+    - value: "on"
+      styles:
+        card:
+          - background: var(--bubble-icon-color-on)
+          - padding: 5px 0px 5px 5px
+        img_cell:
+          - box-shadow: >-
+              inset 0px 3px 3px rgba(147, 147, 147, 0.88), inset 0px 1px 3px
+              rgba(207, 207, 207, 0.2)
+          - background: var(--bubble-icon-background-color-on)
+        icon:
+          - color: var(--bubble-icon-color-on)
+  styles:
+    grid:
+      - grid-template-areas: |
+          "i lock slider motion"
+      - grid-template-columns: 12% 12% 66% 10%
+      - grid-template-rows: 1fr
+    card:
+      - padding: 5px 0px 5px 5px
+      - height: 50px
+
+      - border-radius: var(--ha-card-border-radius)
+    img_cell:
+      - justify-self: start
+      - align-self: start
+      - padding: 2px
+      - border-radius: 500%
+      - width: 35px
+      - height: 35px
+    icon:
+      - width: 70%
+      - height: 70%
+      - color: rgba(100,100,100,.7)
+  custom_fields:
+    lock:
+      card:
+        type: custom:button-card
+        show_name: false
+        show_label: false
+        show_state: false
+        icon: mdi:lock-open-outline
+        entity: "[[[ return variables.lock_entity ]]]"
+        state:
+          - value: "on"
+            icon: mdi:lock
+            styles:
+              icon:
+                - color: lightgreen
+              card:
+                - background-color: rgba(0, 120, 0, 1)
+                - box-shadow: >-
+                    inset 0px 3px 3px rgba(47, 47, 47, .5), inset 0px 1px 3px
+                    rgba(207, 207, 207, 0.2)
+          - value: "off"
+            icon: mdi:lock-open-outline
+            styles:
+              icon:
+                - color: var(--bubble-icon-color-off)
+              card:
+                - background-color: >-
+                    [[[ 
+                      return states[variables.entity_id]?.state === 'on' ?  'var(--lock_background_light_on)' : 'var(--bubble-icon-background-color)';
+                    ]]]
+
+        styles:
+          card:
+            - box-shadow: none
+            - border: none
+            - border-radius: 50%
+            - margin-top: "0px"
+            - width: 39px
+            - height: 39px
+          icon:
+            - height: 25px
+            - width: 25px
+    slider:
+      card:
+        type: custom:bubble-card
+        card_type: button
+        button_type: slider
+        entity: "[[[ return variables.entity_id ]]]"
+        name: "[[[ return variables.name ]]]"
+        icon: " "
+        show_icon: false
+        scrolling_effect: false
+        use_accent_color: false
+        show_state: false
+        show_attribute: false
+        min_value: 0
+        max_value: 100
+        step: 1
+        slider_live_update: true
+        allow_light_slider_to_0: true
+        light_transition: true
+        tap_action:
+          action: none
+        hold_action:
+          action: more-info
+        sub_button:
+          main:
+            - entity: "[[[ return variables.entity_id ]]]"
+              name: percent
+              scrolling_effect: false
+              show_background: false
+              light_background: false
+              show_icon: false
+              show_state: false
+              show_attribute: true
+              attribute: brightness
+          bottom: []
+        styles: >-
+          .bubble-container {
+            height: 38px !important;
+            /* FIXED: Replaced 'variables.entity_id' with 'entity' so Bubble Card can read it natively */
+            background-color: ${hass.states[entity].state === 'on' ? 'white' : 'var(--bubble-icon-background-color)'} !important;
+            opacity: 1 !important;
+            border-radius: var(--ha-card-border-radius) !important;
+            box-shadow: var(--bubble-slider-box-shadow) !important;
+          }
+
+          * {
+            --bubble-button-border-radius: var(--ha-card-border-radius) !important;
+          }
+
+          .bubble-range-fill {
+            background: var(--bubble-slider-background) !important;
+            opacity: var(--bubble-light-opacity) !important;
+            right: 100 !important;
+            left: 10 !important;
+            transform-origin: left center !important;
+            box-shadow: var(--bubble-slider-box-shadow) !important;
+          }
+
+          .bubble-name-container { 
+            justify-content: flex-start !important;
+            text-align: left !important; 
+          }
+
+          .bubble-name { 
+            text-align: left !important; 
+            /* FIXED: Replaced variables hook with native entity tracking */
+            color: ${hass.states[entity].state === 'on' ? 'black' : 'color: var(--primary-color)'} !important;
+            justify-content: flex-start !important; 
+          }
+
+          /* BULLETPROOF FIX: Sweeps out ALL standard state indicators to kill
+          the double percentage bug */
+
+          .bubble-state, .bubble-state-container, .bubble-sub-button-container
+          + .bubble-state {
+            display: none !important;
+            opacity: 0 !important;
+            width: 0px !important;
+          }
+
+          /* Style rule specifically forcing the sub-button custom text layout
+          to remain black and visible */
+
+          .bubble-sub-button {
+            color: black !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+          }
+    motion:
+      card:
+        type: custom:button-card
+        entity: "[[[ return variables.motion_entity ]]]"
+        show_name: false
+        icon: mdi:motion-sensor
+        # Isolated extra_styles to prevent parent card layout leaks
+        extra_styles: |
+          @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+          }
+        #   @keyframes motion-pulse {
+        #     0% {
+        #       transform: scale(0.8); /* Shrunk slightly to protect box boundaries */
+        #     }
+        #     50% {
+        #       transform: scale(1); /* Expands to full native size safely without clipping */
+        #     }
+        #     100% {
+        #       transform: scale(0.8);
+        #     }
+        #   }
+        styles:
+          card:
+            - background: transparent
+            - border-color: transparent
+            - box-shadow: none
+            - transform-origin: center center
+          icon:
+            - width: 25px
+            - color: >-
+                [[[ 
+                  if (states[variables.motion_entity]?.state === 'on') {
+                    return states[variables.entity_id]?.state === 'on' ? '#ffffff' : '#ff3d00';
+                  }
+                  return 'var(--secondary-text-color)';
+                ]]]
+            - opacity: >-
+                [[[ 
+                  return states[variables.motion_entity]?.state === 'on' ? '1' : '0.35';
+                ]]]
+            - animation: >-
+                [[[ 
+                  return states[variables.motion_entity]?.state === 'on' ? 'blink 2s infinite ease-in-out' : 'none';
+                ]]]

@@ -27,8 +27,8 @@ room_button:
   styles:
     card:
       - padding: 2px
-      - width: 42px
-      - height: 35px
+      - width: 45px
+      - height: 42px
       - border-radius: var(--ha-card-border-radius)
       - background-color: var(--selected-color)
     icon:

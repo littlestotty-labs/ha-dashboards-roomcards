@@ -7,6 +7,11 @@
 # -----------------------------------------------------------
 
 heat:
+  icon: |
+    [[[
+      if (entity.state !== 'on') return 'mdi:power-plug-off';
+      return 'mdi:heat-wave';
+    ]]]
   styles:
     icon:
       #      - color: |

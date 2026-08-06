@@ -42,4 +42,9 @@ deps/
 .cache/
 ha_vibecode_git/
 
+# OpenCode add-on local artifacts
+AGENTS.local.md.example
+AGENTS.md.bak
+.opencode_agents_md.sha256
+
 

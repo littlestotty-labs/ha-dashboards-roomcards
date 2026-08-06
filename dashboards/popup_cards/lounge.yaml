@@ -21,12 +21,26 @@ styles: |
   .bubble-button-background {
     background: var(--popup-header-background) !important; 
   } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
   .bubble-close-icon {
-      color: var(--room-lounge);
     --mdc-icon-size: 40px !important;
+      color: var(--room-lounge);
+      background: var(--popup-header-background) !important; 
   }       
   .bubble-header {
       color: var(--room-lounge) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
   }
 sub_button:
   main: []
@@ -37,13 +51,27 @@ cards:
   - type: custom:gap-card
     height: 40px
   - type: custom:decluttering-card
-    template: light_row_v2
+    template: separator
     variables:
-      - entity: light.lounge_light
-      - name: Lounge Light
-      - icon: mdi:sofa-outline
-      - lock_entity: input_boolean.loungelightlock_switch
-      - motion_entity: binary_sensor.loungemotion_purple2_occupancy
+      - name: Lights
+      - text_colour: var(--room-lounge)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.lounge_light
+      name: Lounge Light
+      icon: mdi:sofa-outline
+      lock_entity: input_boolean.loungelightlock_switch
+      motion_entity: binary_sensor.loungemotion_purple2_occupancy
+
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Switches
+      - text_colour: var(--room-lounge)
+      - margin_top: "-5px"
   - type: horizontal-stack
     cards:
       - type: custom:button-card

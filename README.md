@@ -2,16 +2,16 @@
 
 This repository contains my personal configuration for Home Assistant, focused on a clean, room-based dashboard and modular YAML structure.
 
-**Version:** v1.1 
- - separation of templates and room card complete
- - still to split bubble-card popups into modular arrangement
+**Version:** v2.1.0
+ - v2 dashboard refactor: modular room and popup cards, light row grid, waste collection
+ - v1.1: separation of templates and room cards complete
 **Version:** V1.0 (initial public release)
 ---
 
 ## 🖥️ Dashboard Screenshots
   Light Theme             |  Dark Theme
 :-------------------------:|:-------------------------:
-![Light themed dashboard](./screenshots/dashboard-light.jpg)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.jpg)
+![Light themed dashboard](./screenshots/dashboard-light.png)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.png)
 
 ---
 
@@ -41,17 +41,31 @@ This repository contains my personal configuration for Home Assistant, focused o
       kitchen.yaml
       lights.yaml
       lounge.yaml
+      menu.yaml
       office.yaml
       petrol.yaml
       scenes.yaml
+      tech.yaml
+      waste.yaml
+    /popup_cards
+      bedroom.yaml
+      garden.yaml
+      kitchen.yaml
+      lights.yaml
+      lounge.yaml
+      office.yaml
+      petrol.yaml
       tech.yaml
     /includes
       decluttering.yaml
       kiosk.yaml
     ui-lovelace.yaml
-  /node_red
+  /node_red_flows
     node_red_all_flows.json
-    + json flows for each area/room 
+    + json flows for each area/room
+  /screenshots
+    dashboard-light.png
+    dashboard-dark.png
   /themes
     dark_theme.yaml
     light_theme.yaml
@@ -63,6 +77,8 @@ This repository contains my personal configuration for Home Assistant, focused o
   secrets_example.yaml
   scenes.yaml
   google_calendars.example.yaml
+  CHANGELOG.md
+  VERSION
 ```
 
 ---
@@ -144,20 +160,9 @@ Screenshots are stored in the `/screenshots` directory and referenced using rela
 
 * Add detail on how my instance is configured (HAOS/Zigbee etc)
 * Further modularisation of dashboard components
-* Dashboards are to be split into **modular card files** for easier maintenance and cleaner Git diffs.
-* Each room or section is defined independently and included in the main dashboard.
-    /cards 
-      lounge.yaml
-      bedroom.yaml
-      office.yaml
-      lights.yaml
-      garden.yaml
-      kitchen.yaml
-      tech.yaml
-      fuel.yaml
 * Template standardisation for reusable card styles
 * Optional Git-based deployment workflow
-* Complete a kitchen popup card for white-good automation
+* Expand kitchen popup card for white-good automation
 * and no doubt many more tweaks and updates as my journey evolves.
 
 ## 🛠️ Getting Started

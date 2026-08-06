@@ -38,12 +38,13 @@ cards:
     card:
       - margin: 0px 0px -5px 0px
       - width: 3px
+
   - type: custom:button-card
     entity: weather.ryde
     tap_action:
       action: navigate
-      navigation_path: '#weather'
-    icon: ''
+      navigation_path: "#weather"
+    icon: ""
     label: |
       [[[
         var state1 = states['sensor.ryde_temp'].state;
@@ -78,7 +79,7 @@ cards:
             [[[ 
               var images = states["weather.ryde"].state; 
               return 'url(/local/ic/weather_icons/animated2/'+images+'.svg)'
-            ]]]        
+            ]]]
         - background-repeat: no-repeat
         - background-size: 32%
         - background-position-x: 4px
