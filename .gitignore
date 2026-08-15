@@ -47,4 +47,5 @@ AGENTS.local.md.example
 AGENTS.md.bak
 .opencode_agents_md.sha256
 
-
+# OpenCode and mcp install
+opencode/
