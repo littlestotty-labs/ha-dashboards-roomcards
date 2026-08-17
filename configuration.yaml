@@ -21,15 +21,6 @@ homeassistant:
   external_url: "https://home.gstott.com"
   internal_url: "http://10.0.0.20:8123"
 
-http:
-  use_x_forwarded_for: true
-  server_host:
-    - 0.0.0.0
-  trusted_proxies:
-    - 172.17.0.0/16 # Retain: Standard Docker bridge network
-    - 10.0.0.21 # Retain: Likely your old NAS IP or another local service
-    - 10.0.0.27 # Add: Your current NAS / cloudflared IP
-
 lovelace:
   resource_mode: yaml
   dashboards:

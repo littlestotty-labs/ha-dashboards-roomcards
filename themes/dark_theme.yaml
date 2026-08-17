@@ -104,7 +104,7 @@ grahams-dark:
 
   bubble-sub-button-light-background-color: var(--card-background-color)
 
-  bubble-sub-button-background-color: var(--card-background-color)
+  # bubble-sub-button-background-color: var(--card-background-color)
 
 
 
@@ -145,5 +145,5 @@ grahams-dark:
   room-lights: "#cd5a5aff"
   room-petrol: "#c9c687ff"
   room-garden: "#d290d8ff"
-  room-tech: "#e3c199ff"
+  room-tech: "rgb(157, 126, 90)"
   room-kitchen: "#76a3cbff"

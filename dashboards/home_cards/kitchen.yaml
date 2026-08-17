@@ -13,7 +13,18 @@ variables:
 name: Kitchen
 icon: null
 show_label: true
-label: dishwasher
+label: |
+  [[[
+    var power = states['switch.012030522493002223_bsh_common_setting_powerstate'].state;
+    if (power == 'on') {
+      var prog = states['sensor.012030522493002223_bsh_common_option_programname'].state;
+      var end = new Date(states['sensor.012030522493002223_bsh_common_option_remainingprogramtime'].state);
+      var mins = Math.max(0, Math.round((end - new Date()) / 60000));
+      var remain = mins >= 60 ? Math.floor(mins / 60) + 'h ' + (mins % 60) + 'm' : mins + 'm';
+      return prog + '\n' + remain;
+    }
+    return 'Dishwasher is off';
+  ]]]
 tap_action:
   navigation_path: "#kitchen"
 styles:
