@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.1] - 2026-08-17
+
+### Removed
+- Node-RED flow JSON files moved out of this repo into their own repository ([node-red-flows](https://github.com/littlestotty-labs/node-red-flows)) — this instance is primarily driven by Node-RED automation, and that repo now holds the flow files.
+
+### Added 
+- New dev environment in fedora/vscode to access ha and opencode via openChamber and ssh-remote extensions.
+- Migration of opencode, hab, ha-mcp-server and zigporter from opencode addon to ssh addon
+- inclusion of init-command symlinks via root so all migration survives updates and resets.
+
+### Changed
+- Minor tweak to Kitchen room to accomodate dishwasher status.
+
 ## [2.1.0] — 2026-08-06
 
 ### Added

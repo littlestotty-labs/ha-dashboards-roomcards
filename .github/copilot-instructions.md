@@ -1,7 +1,7 @@
 # Copilot Instructions — ha-dashboards-roomcards
 
 ## Project Overview
-This is a **Home Assistant YAML-mode dashboard configuration** built around a single-page, room-centric card layout. Automations live in Node-RED (JSON flows), not HA YAML automations. The dashboard uses Bubble Card pop-ups (hash navigation like `#room_lounge`) instead of multi-page navigation.
+This is a **Home Assistant YAML-mode dashboard configuration** built around a single-page, room-centric card layout. Automations live in Node-RED (JSON flows), not HA YAML automations, and the flow files are versioned in the separate [node-red-flows](https://github.com/littlestotty-labs/node-red-flows) repo. The dashboard uses Bubble Card pop-ups (hash navigation like `#room_lounge`) instead of multi-page navigation.
 
 ## Architecture & File Relationships
 

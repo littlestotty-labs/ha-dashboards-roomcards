@@ -21,7 +21,7 @@ This repository contains my personal configuration for Home Assistant, focused o
 * **Platform:** Home Assistant
 * **Dashboard Mode:** YAML (modular, Git-managed)
 * **Design Approach:** Room-centric cards (not multi-page navigation)
-* **Automation:** Primarily Node-Red (json flows added)
+* **Automation:** Primarily Node-RED — the JSON flows live in the separate [node-red-flows](https://github.com/littlestotty-labs/node-red-flows) repo (HA YAML automations are minimal)
 
 * **Goal:** Maintainable, version-controlled smart home setup
 
@@ -60,9 +60,6 @@ This repository contains my personal configuration for Home Assistant, focused o
       decluttering.yaml
       kiosk.yaml
     ui-lovelace.yaml
-  /node_red_flows
-    node_red_all_flows.json
-    + json flows for each area/room
   /screenshots
     dashboard-light.png
     dashboard-dark.png
