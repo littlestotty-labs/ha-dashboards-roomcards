@@ -49,3 +49,6 @@ AGENTS.md.bak
 
 # OpenCode and mcp install
 opencode/
+
+# Node-RED flows backup (own git repo -> littlestotty-labs/node-red-flows)
+node_red_flows/
