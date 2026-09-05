@@ -67,6 +67,7 @@ grahams-light:
   bubble-icon-background-color-on: white
   bubble-icon-color-off: var(--primary-color)
   bubble-icon-color-on: "rgba(255, 111, 34, 1)"
+  bubble-options-card-on: "rgba(95, 164, 243,1)"
   bubble-icon-glow-on: "rgba(255, 111, 34, 1)"
   bubble-sub-button-border-radius: var(--ha-card-border-radius)
   bubble-sub-button-background-color: var(--bubble-main-background-color)

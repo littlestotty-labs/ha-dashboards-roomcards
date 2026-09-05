@@ -118,6 +118,115 @@
           none
         {% endif %}
 
+    - unique_id: dishwasher_program_name
+      name: Dishwasher Program Name
+      icon: mdi:dishwasher
+      state: >
+        {% set programs = {
+          'Dishcare.Dishwasher.Program.Normal45': 'Eco Wash',
+          'Dishcare.Dishwasher.Program.Auto2': 'Auto Wash',
+          'Dishcare.Dishwasher.Program.Auto1': 'Auto Gentle',
+          'Dishcare.Dishwasher.Program.Quick65': 'Quick 1h',
+          'Dishcare.Dishwasher.Program.Quick45': 'Express Wash',
+          'Dishcare.Dishwasher.Program.NightWash': 'Extra Quiet',
+          'Dishcare.Dishwasher.Program.MachineCare': 'Machine Care',
+          'Dishcare.Dishwasher.Program.Intensiv70': 'Pots / Pans',
+          'Dishcare.Dishwasher.Program.PreRinse': 'Pre-rinse',
+          'Dishcare.Dishwasher.Program.Kurz60': 'Short 60°C'
+        } %}
+        {{ programs.get(states('select.012030522493002223_programs'), 'Unknown') }}
+
+    - unique_id: dishwasher_program_description
+      name: Dishwasher Program Description
+      icon: mdi:text-box-outline
+      state: >
+        {% set programs = {
+          'Dishcare.Dishwasher.Program.Normal45': 'Mixed tableware & cutlery',
+          'Dishcare.Dishwasher.Program.Auto2': 'Mixed tableware & cutlery',
+          'Dishcare.Dishwasher.Program.Auto1': 'Delicate items, plastics, glasses',
+          'Dishcare.Dishwasher.Program.Quick65': 'Mixed tableware & cutlery',
+          'Dishcare.Dishwasher.Program.Quick45': 'Delicate items, plastics, glasses',
+          'Dishcare.Dishwasher.Program.NightWash': 'Mixed tableware & cutlery',
+          'Dishcare.Dishwasher.Program.MachineCare': 'Maintenance cycle only',
+          'Dishcare.Dishwasher.Program.Intensiv70': 'Pots, pans, non-fragile tableware',
+          'Dishcare.Dishwasher.Program.PreRinse': 'Cold water rinse without detergent',
+          'Dishcare.Dishwasher.Program.Kurz60': 'Optimised for normal dishes'
+        } %}
+        {{ programs.get(states('select.012030522493002223_programs'), '') }}
+
+    - unique_id: dishwasher_program_icon
+      name: Dishwasher Program Icon
+      state: >
+        {% set icons = {
+          'Dishcare.Dishwasher.Program.Normal45': 'mdi:leaf',
+          'Dishcare.Dishwasher.Program.Auto2': 'mdi:auto-fix',
+          'Dishcare.Dishwasher.Program.Auto1': 'mdi:glass-fragile',
+          'Dishcare.Dishwasher.Program.Quick65': 'mdi:timer-outline',
+          'Dishcare.Dishwasher.Program.Quick45': 'mdi:flash',
+          'Dishcare.Dishwasher.Program.NightWash': 'mdi:volume-off',
+          'Dishcare.Dishwasher.Program.MachineCare': 'mdi:wrench',
+          'Dishcare.Dishwasher.Program.Intensiv70': 'mdi:pot',
+          'Dishcare.Dishwasher.Program.PreRinse': 'mdi:water',
+          'Dishcare.Dishwasher.Program.Kurz60': 'mdi:clock-fast'
+        } %}
+        {{ icons.get(states('select.012030522493002223_programs'), 'mdi:dishwasher') }}
+
+    # Dishwasher local-helpers sync — mirrors actual state to helpers
+    - unique_id: dishwasher_synced_program
+      name: "Dishwasher Synced Program"
+      state: >
+        {{ states('select.012030522493002223_programs') }}
+
+    - unique_id: dishwasher_synced_extradry
+      name: "Dishwasher Synced Extra Dry"
+      state: >
+        {{ states('switch.012030522493002223_dishcare_dishwasher_option_extradry') }}
+
+    - unique_id: dishwasher_synced_hygieneplus
+      name: "Dishwasher Synced HygienePlus"
+      state: >
+        {{ states('switch.012030522493002223_dishcare_dishwasher_option_hygieneplus') }}
+
+    - unique_id: dishwasher_synced_variospeed
+      name: "Dishwasher Synced SpeedPerfect"
+      state: >
+        {{ states('binary_sensor.012030522493002223_dishcare_dishwasher_option_variospeed') }}
+
+    - unique_id: dishwasher_quiet_now
+      name: Dishwasher Quiet Now
+      icon: mdi:volume-off
+      state: >
+        {% set state = states('switch.012030522493002223_dishcare_dishwasher_option_silenceondemand') %}
+        {% if state == 'on' %}
+          On
+        {% elif state == 'off' %}
+          Off
+        {% else %}
+          Unavailable
+        {% endif %}
+
+    - unique_id: dishwasher_start_time
+      name: Dishwasher Start Time
+      icon: mdi:clock-start
+      state: >
+        {{ states('sensor.012030522493002223_bsh_common_option_startinrelative') }}
+
+    - unique_id: dishwasher_status
+      name: Dishwasher Status
+      icon: mdi:dishwasher
+      state: >
+        {% set power = states('switch.012030522493002223_bsh_common_setting_powerstate') %}
+        {% set opState = states('sensor.012030522493002223_bsh_common_status_operationstate') %}
+        {% if power == 'on' %}
+          {% if opState and 'Run' in opState %}
+            running
+          {% else %}
+            idle
+          {% endif %}
+        {% else %}
+          off
+        {% endif %}
+
 - binary_sensor:
     - unique_id: landing_motion_combined
       name: "Landing Motion Combined"

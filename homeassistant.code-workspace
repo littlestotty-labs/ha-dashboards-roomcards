@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://ssh-remote+7b22686f73744e616d65223a22486f6d65417373697374616e74227d/homeassistant"
+		}
+	],
+	"remoteAuthority": "ssh-remote+7b22686f73744e616d65223a22486f6d65417373697374616e74227d",
+	"settings": {
+		"files.associations": {
+			"*.yaml": "home-assistant",
+			"compose.yml": "yaml",
+			"compose.yaml": "yaml",
+			"compose.*.yml": "yaml",
+			"compose.*.yaml": "yaml",
+			"docker-compose.yml": "yaml",
+			"docker-compose.yaml": "yaml",
+			"docker-compose.*.yml": "yaml",
+			"docker-compose.*.yaml": "yaml",
+			"esphome/**/*.yml": "esphome",
+			"esphome/**/*.yaml": "esphome"
+		},
+		"openchamber.apiUrl": ""
+	}
+}
