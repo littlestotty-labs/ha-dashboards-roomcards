@@ -1,0 +1,125 @@
+# -----------------------------------------------------------
+# bubble_base.yaml
+# Base button-card template for Bubble Card pop-up toggles —
+# theme-aware on/off styling with accent color states.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+bubble_dishwash_opts:
+  variables:
+    show_state: false
+    name: ""
+    attribute_entity: ""
+    colour: "white"
+
+  show_state: false
+  grid_options:
+    columns: 6
+    rows: 1
+  layout_options:
+    grid_columns: 6
+
+  name: "[[[ return variables.name ]]]"
+#  show_state: "[[[ return variables.show_state ]]]"
+
+  tap_action:
+    action: toggle
+  entity: "[[[ return variables.entity]]]"
+#  icon: null
+  # state_display: |
+  #   [[[
+  #     if (entity.state === 'unavailable' || entity.state === 'unknown') return 'Offline';
+
+  #     // 1. If main entity is missing or turned off, immediately return 'Off'
+  #     if (!entity || entity.state == 'off') return 'Off';
+      
+  #     const attrEnt = variables.attribute_entity;
+      
+  #     // 2. If attribute_entity exists and is registered in HA
+  #     if (attrEnt && hass.states[attrEnt]) {
+  #       const attrState = hass.states[attrEnt].state;
+        
+  #       // If the sensor itself is turned off, just show 'On'
+  #       if (attrState === 'off') return 'On';
+        
+  #       // If the sensor is on (for binary sensors) or has a value, show it
+  #       if (attrState === 'on') return 'On';
+        
+  #       // Fetch the unit of measurement attribute dynamically, fallback to empty string if missing
+  #       const unit = hass.states[attrEnt].attributes.unit_of_measurement || '';
+        
+  #       // Return the sensor value with its native unit (trimmed to clean up extra spaces)
+  #       return 'On (' + `${attrState} ${unit}`.trim() + ')';
+  #     }
+      
+  #     // 3. Fallback: If attribute_entity is missing, use the main entity's state text
+  #     if (entity.state === 'on') {return 'On';}
+  #     return entity.state;
+  #   ]]]
+  state:
+    - value: "unavailable"
+      id: state_unavailable
+      styles:
+        card:
+          - opacity: 0.5
+        icon:
+          - color: grey
+        name:
+          - color: grey
+    - operator: template
+      value: "[[[ return entity && ['off', 'Weekend','City Based' ].includes(entity.state); ]]]"
+      id: state_off
+      styles:
+        icon:
+          - color: var(--bubble-switch-text-off)
+        card:
+          - background: var(--card-background-color)
+        name:
+          - color: var(--bubble-switch-text-off)
+        state:
+          - color: var(--bubble-switch-status-off)
+    - operator: template
+      value: "[[[ return entity && ['on', 'Home Based'].includes(entity.state); ]]]"
+      id: state_on
+      styles:
+        icon:
+          - color: var(--bubble-switch-text-on)
+        card:
+          - background: var(--bubble-options-card-on)
+        name:
+          - color: var(--bubble-switch-text-on)
+        state:
+          - color: var(--bubble-switch-status-on)
+
+  styles:
+    card:
+      - padding: 0px 0px 0px 0px
+      - height: 50px
+      - border-radius: var(--ha-card-border-radius)
+    grid:
+      - grid-template-areas: |
+          "i n"
+      - grid-template-columns: 30% 70%
+      - grid-template-rows: 1fr
+    name:
+      - justify-self: start
+      - margin-left: 4px
+      - text-align: left
+      - font-size: 11px
+      - font-weight: 600
+      - padding-top: 0px
+      - color: rgba(100,100,100,.7)
+
+    img_cell:
+      - justify-content: center
+      - margin-left: 5px
+      - width: 20px
+      - height: 20px
+      - border-radius: 50%
+      - background: transparent
+
+    icon:
+      - width: 80%
+      - height: 80%
+      - color: rgba(100,100,100,.7)

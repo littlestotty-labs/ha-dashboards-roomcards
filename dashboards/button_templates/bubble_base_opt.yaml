@@ -1,0 +1,60 @@
+# -----------------------------------------------------------
+# bubble_base.yaml
+# Base button-card template for Bubble Card pop-up toggles —
+# theme-aware on/off styling with accent color states.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+bubble_base_opt:
+  variables:
+    show_state: true
+    name: ""
+    attribute_entity: ""
+    colour: "white"
+  template:
+    - bubble_base
+
+  state:
+    - value: "unavailable"
+      id: state_unavailable
+      styles:
+        card:
+          - opacity: 0.5
+        icon:
+          - color: grey
+        name:
+          - color: grey
+    - operator: template
+      value: "[[[ return entity && ['off', 'Weekend','City Based' ].includes(entity.state); ]]]"
+      id: state_off
+      styles:
+        img_cell:
+          - background: var(--bubble-icon-background-color)
+        card:
+          - background: var(--card-background-color)
+        icon:
+          - color: var(--bubble-icon-color-off)
+        name:
+          - color: var(--bubble-switch-text-off)
+        state:
+          - color: var(--bubble-switch-status-off)
+    - operator: template
+      value: "[[[ return entity && ['on', 'Home Based'].includes(entity.state); ]]]"
+      id: state_on
+      styles:
+        card:
+          - background: var(--bubble-options-card-on)
+          # - box-shadow: var(--ha-card-box-shadow-on)
+        img_cell:
+          - box-shadow: >-
+              inset 0px 3px 3px rgba(81, 79, 79, 0.38), inset 0px 1px 3px
+              rgba(207, 207, 207, 0.07)
+          - background: var(--ubble-options-card-on)
+        icon:
+          - color: var(--bubble-switch-text-on)
+        name:
+          - color: var(--bubble-switch-text-on)
+        state:
+          - color: var(--bubble-switch-text-on)
+

@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.2.0] - 2026-09-05
+
+### Added
+- Dishwasher program sensors (name, description, icon) from Home Connect entity mappings
+- Dishwasher state-sync template sensors for program, extra dry, hygiene plus, speed perfect
+- `dishwasher_start` script for selecting program and options, then starting the dishwasher
+- Kitchen popup card expanded with dishwasher controls, program selection, and status display
+- New `bottom_tools.yaml` hamburger menu card with sidebar toggle and tech room navigation
+- Decluttering templates for dishwasher control rows and status displays
+
+### Changed
+- Replaced `menu.yaml` with `bottom_tools.yaml` for bottom toolbar navigation
+- Reformatted automations for consistent indentation and style
+- Updated kitchen dashboard card with dishwasher integration
+- Minor theme tweaks (dark and light)
+
+### Removed
+- `dashboards/home_cards/menu.yaml` (replaced by `bottom_tools.yaml`)
+
 ## [2.1.1] - 2026-08-17
 
 ### Removed

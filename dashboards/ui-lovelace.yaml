@@ -29,14 +29,14 @@ views:
               - !include home_cards/lights.yaml
               - !include home_cards/garden.yaml
 
-              - type: vertical-stack
-                cards:
-                  - !include home_cards/kitchen.yaml
-                  - !include home_cards/tech.yaml
+ #             - type: vertical-stack
+ #               cards:
+              - !include home_cards/kitchen.yaml
+#                  - !include home_cards/tech.yaml
             columns: 2
       - !include home_cards/petrol.yaml
       #      - !include home_cards/scenes.yaml
-      - !include home_cards/menu.yaml
+      - !include home_cards/bottom_tools.yaml
 
       - !include popup_cards/lounge.yaml
       - !include popup_cards/bedroom.yaml

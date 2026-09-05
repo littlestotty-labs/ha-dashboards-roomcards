@@ -13,14 +13,14 @@ light_row_v2:
     show_name: false
     show_icon: false
     grid_options:
-      rows: 2
+      rows: 1
       columns: 6
     styles:
       grid:
         - grid-template-areas: |
             "slider slider slider slider"
             "power lock motion slider_colour"
-        - grid-template-columns: 21% 21% 21% 37%
+        - grid-template-columns: 20% 20% 40% 20%
         - grid-template-rows: 50% 50%
       card:
         - height: 86%
@@ -214,6 +214,13 @@ scene_button:
             - color: var(--primary-text-color)
 #            - color: "#585757ff"
 separator:
+  default:
+    - margin_top: -10px
+    - margin_bottom: -10px
+    - font_size: -14px
+    - font_weight: 400
+    - seperator_line_color: transparent
+    - separator_width: 250px
   card:
     type: custom:bubble-card
     card_type: separator
@@ -223,7 +230,8 @@ separator:
       ha-card {
         margin-top: [[margin_top]];
         margin-left: -14px;
-        margin-bottom: -10px !important;
+        margin-bottom: [[margin_bottom]] !important;
+        width: [[separator_width]] !important;
         border: none !important;
         box-shadow: none !important;
         background-color: transparent !important;
@@ -239,14 +247,14 @@ separator:
         border: none !important;
         box-shadow: none !important;
         background-color: transparent !important;
-
         color: [[text_colour]];}
 
-      .bubble-line { background: transparent; height: 2px }
+      .bubble-line { background: [[seperator_line_color]]; height: 1px }
 
       .bubble-name {
         color:  var(--popup-secondary-text) !important;
         font-size:14px !important;
+        font-weight: [[font_weight]] !important;
       }
 
 storage_bar:
@@ -317,3 +325,136 @@ storage_bar:
         - font-size: 11px
         - opacity: 0.9
         - padding-left: 0px
+
+dishwasher_program_card:
+  card:
+    type: custom:button-card
+    entity: input_select.dishwasher_program
+    tap_action:
+      action: call-service
+      service: input_select.select_option
+      target:
+        entity_id: input_select.dishwasher_program
+      service_data:
+        option: "[[ha_value]]"
+    show_name: true
+    show_icon: true
+    name: "[[display_name]]"
+    icon: "[[icon]]"
+    state:
+      - value: "[[ha_value]]"
+        styles:
+          card:
+            - background-color: >-
+                color-mix(in srgb, var(--bubble-icon-glow-on) 5%,
+                var(--card-background-color)) !important
+            - border: 2px solid var(--bubble-icon-glow-on) !important
+    styles:
+      card:
+        - height: 140px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: rgba(--var(--ha-card-box-shadow),1)
+        - background-color: var(--card-background-color) !important
+        - padding: 12px
+        - margin: 4px
+        - border-radius: var(--ha-card-border-radius)
+        - display: flex
+        - flex-direction: column
+        - justify-content: space-between
+        - border: 1px solid var(--divider-color)
+        - transition: all 0.2s ease      
+      grid:
+        - grid-template-areas: |
+            "i n stats"
+            "desc desc stats"
+            "soiling soiling soiling"
+            "routines routines routines"
+        - grid-template-columns: 20% 80% auto
+        - grid-template-rows: auto auto auto auto auto
+      img_cell:
+        - background-color: transparent
+        - border-radius: 50%
+        - height: 25px
+        - display: flex
+        - align-items: left
+        - justify-content: left
+      icon:
+        - color: var(--primary-color)
+        - width: 25px
+        - height: 25px
+      name:
+        - margin-left: -15px
+        - font-size: 18px
+        - font-weight: 600
+        - color: var(--primary-color)
+        - justify-self: start
+        - white-space: nowrap
+        - overflow: hidden
+        - text-overflow: ellipsis
+
+      custom_fields:
+        stats:
+          - align-items: right
+          - margin-left: -80px
+          - justify-self: end
+          - gap: 16px
+          - font-size: 12px
+          - color: var(--primary-text-color)
+          - opacity: 0.8
+          - line-height: 1.5
+          - text-align: right
+          - justify-self: end 
+        desc:
+          - display: flex
+          - font-size: 12px
+          - color: green
+          - margin-top: 2px
+        soiling:
+          - display: flex
+          - font-size: 12px
+          - color: var(--primary-text-color)
+          - margin-top: 10px
+          - font-style: normal
+          - text-align: left 
+          - max-width: 80ch
+          - white-space: normal
+          - word-break: break-word 
+          - display: inline-block
+          - justify-self: start
+          - align-items: left
+          - line-height: 1
+          - padding-bottom: 8px
+        routines:
+          - line-height: 1
+          - padding-bottom: 8px
+          - padding-bottom: 3px
+          - text-align: left 
+          - max-width: 80ch
+          - white-space: normal
+          - word-break: break-word 
+          - display: inline-block
+          - justify-self: start
+          - align-items: left
+          - display: flex
+          - font-size: 12px
+          - color: var(--primary-text-color)
+          - margin-top: 5px
+          - opacity: 0.8
+          - font-style: italic
+    custom_fields:
+      stats: |
+        [[[
+          return `[[duration]] 🕒<br>[[energy]] ⚡<br>[[water]] 💧`;
+        ]]]
+      desc: |
+        [[[
+          return `[[description]]`;
+        ]]]
+      soiling: |
+        [[[
+          return `[[soiling]]`;
+        ]]]
+      routines: |
+        [[[
+          return `[[routines]]`;
+        ]]]

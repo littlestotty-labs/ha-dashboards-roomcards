@@ -48,123 +48,588 @@ sub_button:
 cards:
   - type: custom:gap-card
     height: 20px
-  - type: custom:bubble-card
-    button_type: switch
-    card_type: button
-    entity: sensor.012030522493002223_bsh_common_option_remainingprogramtime
-    icon: mdi:dishwasher
-    name: Dishwasher
-    rows: 2.406
-    scrolling_effect: false
-    show_attribute: false
-    show_state: true
-    header_status: >-
-      {{ (states("sensor.012030522493002223_bsh_common_option_remainingprogramtime")
-      | as_datetime - now()).total_seconds() / 60 | round(0) if
-      states("sensor.012030522493002223_bsh_common_option_remainingprogramtime") |
-      as_datetime > now() else 0 }} min
-    sub_button:
-      bottom:
-        - buttons_layout: inline
-          group:
-            - content_layout: icon-left
-              entity: switch.012030522493002223_dishcare_dishwasher_option_hygieneplus
-              fill_width: true
-              icon: mdi:shield-check
-              name: Hygiene+
-              show_name: true
-            - content_layout: icon-left
-              entity: switch.012030522493002223_dishcare_dishwasher_option_variospeed
-              fill_width: true
-              icon: mdi:run-fast
-              name: Speed+
-              show_name: true
-            - content_layout: icon-left
-              entity: switch.012030522493002223_dishcare_dishwasher_option_extradry
-              fill_width: true
-              icon: mdi:wind-power
-              name: ExtraDry
-              show_name: true
-          justify_content: space-evenly
-          name: Options
-        - buttons_layout: inline
-          group:
-            - content_layout: icon-left
-              entity: select.012030522493002223_programs
-              fill_width: true
-              name: Program
-              show_background: true
-              show_name: false
-              show_state: true
-              sub_button_type: select
-            - content_layout: icon-top
-              entity: sensor.012030522493002223_bsh_common_option_energyforecast
-              fill_width: false
-              icon: mdi:lightning-bolt
-              name: Energy
-              show_background: false
-              show_name: true
-              show_state: true
-            - content_layout: icon-top
-              entity: sensor.012030522493002223_bsh_common_option_waterforecast
-              fill_width: false
-              icon: mdi:water
-              name: Water
-              show_background: false
-              show_name: true
-              show_state: true
-          justify_content: space-evenly
-          name: Info
-      bottom_layout: rows
-      main:
-        - buttons_layout: inline
-          group:
-            - content_layout: icon-top
-              entity: binary_sensor.012030522493002223_bsh_common_status_doorstate
-              fill_width: false
-              icon: mdi:door
-              name: Door
-              show_name: true
-            - content_layout: icon-top
-              entity: binary_sensor.012030522493002223_bsh_common_setting_childlock
-              fill_width: false
-              icon: mdi:lock
-              name: Lock
-              show_name: true
-            - content_layout: icon-top
-              entity: binary_sensor.012030522493002223_connected
-              fill_width: true
-              icon: mdi:wifi
-              name: Wifi
-              show_name: true
-          justify_content: right
-    styles: >-
-      .bubble-sub-button-3 > ha-icon {   color:
-      ${hass.states['binary_sensor.012030522493002223_connected'].state === 'on' ?
-      'green' : 'red'}!important;
-      }
-      .bubble-sub-button-3 {   background: pink !important; }
 
 
-      .bubble-sub-button-4 {   background-color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_hygieneplus'].state
-      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_hygieneplus'].state
-      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
-      .bubble-sub-button-5 {   background-color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_variospeed'].state
-      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_variospeed'].state
-      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
-      .bubble-sub-button-6 {  
-      background-color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_extradry'].state
-      === 'on' ? 'var(--bubble-accent-color)' : 'transparent' }!important; color:
-      ${hass.states['switch.012030522493002223_dishcare_dishwasher_option_extradry'].state
-      === 'on' ? 'var(--selected-color)' : 'var(--primary-color)' }!important; }
-      .bubble-container {
-        background-color: var(--card-background-color) !important;
-        opacity: 1 !important;
-        border-radius: var(--ha-card-border-radius) !important;
-        box-shadow: var(--ha-card-box-shadow) !important;
-      }
+  ### RUNNING STATE (optimistic - instant feedback)
+  - type: conditional
+    conditions:
+      - entity: input_boolean.dishwasher_starting
+        state: "on"
+      - entity: sensor.dishwasher_status
+        state_not: running
+    card:
+      type: custom:button-card
+      name: Dishwasher
+      entity: null
+      custom_fields:
+        btn:
+          card:
+            type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: Starting...
+                          - margin_top: 5px
+                          - margin_bottom: -15px
+                          - font_size: 12px
+                          - font_weight: 400
+                        
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: |-
+                              [[[
+                                return states['input_select.dishwasher_program'].state.split('.').pop() || 'Please wait';
+                              ]]]
+                          - margin_top: -20px
+                          - margin_bottom: 0px
+                          - font_size: 12px
+                          - font_weight: 700
+                          - text_colour: yellow
+
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Options Set
+                  - margin_top: -15px
+                  - seperator_line_color: var(--secondary-text-color)
+                  - separator_width: 100%
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:wind-power
+                    name: ExtraDry
+                    show_name: true
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_extradry'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:run-fast
+                    name: Speed+
+                    show_name: true
+                    show_state: false
+                    entity: input_boolean.dishwasher_option_variospeed
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_variospeed'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:shield-check
+                    name: Hygiene+
+                    show_name: true
+                    show_state: false
+                    entity: input_boolean.dishwasher_option_hygieneplus
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_hygieneplus'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n" "btn"
+          - grid-template-columns: 1fr
+        card:
+          - padding: 15px 15px 45px 15px
+        name:
+          - justify-self: start
+          - align-self: start
+          - font-size: 18px
+          - font-weight: 600
+          - color: var(--room-tech)
+      show_icon: false
+      show_label: false
+
+  ### RUNNING STATE (real - cloud data)
+  - type: conditional
+    conditions:
+      - entity: sensor.dishwasher_status
+        state: running
+    card:
+      type: custom:button-card
+      name: Dishwasher
+      entity: null
+      custom_fields:
+        btn:
+          card:
+            type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: Current Program
+                          - margin_top: 5px
+                          - margin_bottom: -15px
+                          - font_size: 12px
+                          - font_weight: 400
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: |-
+                              [[[
+                                return states['sensor.dishwasher_program_name'].state || 'Running';
+                              ]]]
+                          - margin_top: -20px
+                          - margin_bottom: 0px
+                          - font_size: 12px
+                          - font_weight: 700
+                          - text_colour: green
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - font_size: 12px
+                          - name: Remaining time
+                          - margin_top: -25px
+                          - margin_bottom: -35px
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: |-
+                              [[[
+                                var end = new Date(states['sensor.012030522493002223_bsh_common_option_remainingprogramtime'].state);
+                                if (isNaN(end.getTime())) return '--';
+                                var mins = Math.max(0, Math.round((end - new Date()) / 60000));
+                                return mins >= 60 ? Math.floor(mins / 60) + 'h ' + (mins % 60) + 'm' : mins + 'm';
+                              ]]]
+                          - margin_top: -40px
+                          - margin_bottom: -10px
+                          - font_size: 12px
+                          - font_weight: 700
+                          - text_colour: green
+
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:button-card
+                        template: bubble_base
+                        entity: switch.012030522493002223_bsh_common_setting_powerstate
+                        show_state: true
+                        name: Power
+                        attribute_entity: ''
+                        colour: white
+                        icon: mdi:power
+
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Options Set
+                  - margin_top: -15px
+                  - seperator_line_color: var(--secondary-text-color)
+                  - separator_width: 100%
+
+              - type: horizontal-stack
+                cards:
+
+
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:wind-power
+                    name: ExtraDry
+                    show_name: true
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_extradry'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:run-fast
+                    name: Speed+
+                    show_name: true
+                    show_state: false
+                    entity: input_boolean.dishwasher_option_variospeed
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_variospeed'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    icon: mdi:shield-check
+                    name: Hygiene+
+                    show_name: true
+                    show_state: false
+                    entity: input_boolean.dishwasher_option_hygieneplus
+                    tap_action:
+                      action: none
+                    styles:
+                      name:
+                        - font-size: 10px
+                        - color: |-
+                            [[[
+                              return states['input_boolean.dishwasher_option_hygieneplus'].state == 'on'
+                                ? 'var(--success-color)' : 'var(--secondary-text-color)';
+                            ]]]
+
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n" "btn"
+          - grid-template-columns: 1fr
+        card:
+          - padding: 15px 15px 45px 15px
+        name:
+          - justify-self: start
+          - align-self: start
+          - font-size: 18px
+          - font-weight: 600
+          - color: var(--room-tech)
+      show_icon: false
+      show_label: false
+
+  ### STOPPED / IDLE STATE
+  - type: conditional
+    conditions:
+      - entity: sensor.dishwasher_status
+        state_not: running
+      - entity: input_boolean.dishwasher_starting
+        state: "off"
+    card:
+      type: custom:button-card
+      name: Dishwasher
+      entity: null
+      custom_fields:
+        btn:
+          card:
+            type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: Current Program
+                          - margin_top: 5px
+                          - margin_bottom: -15px
+                          - font_size: 12px
+                          - font_weight: 400
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: |-
+                              [[[
+                                var power = states['switch.012030522493002223_bsh_common_setting_powerstate'].state;
+                                if (power == 'on') {
+                                  var key = states['input_select.dishwasher_program'].state;
+                                  var programs = {
+                                    'Dishcare.Dishwasher.Program.Normal45': 'Eco Wash',
+                                    'Dishcare.Dishwasher.Program.Auto2': 'Auto Wash',
+                                    'Dishcare.Dishwasher.Program.Auto1': 'Auto Gentle',
+                                    'Dishcare.Dishwasher.Program.Intensiv70': 'Pots / Pans',
+                                    'Dishcare.Dishwasher.Program.Quick65': 'Quick 1h',
+                                    'Dishcare.Dishwasher.Program.Quick45': 'Express Wash',
+                                    'Dishcare.Dishwasher.Program.NightWash': 'Extra Quiet',
+                                    'Dishcare.Dishwasher.Program.MachineCare': 'Machine Care',
+                                    'Dishcare.Dishwasher.Program.PreRinse': 'Pre-rinse',
+                                    'Dishcare.Dishwasher.Program.Kurz60': 'Short 60°C'
+                                  };
+                                  return programs[key] || key || 'Ready';
+                                }
+                                return 'Off';
+                              ]]]
+                          - margin_top: -20px
+                          - margin_bottom: 0px
+                          - font_size: 16px
+                          - font_weight: 700
+                          - text_colour: green
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: Remaining time
+                          - margin_top: -25px
+                          - margin_bottom: -35px
+
+                      - type: custom:decluttering-card
+                        template: separator
+                        variables:
+                          - name: '--'
+                          - margin_top: -40px
+                          - margin_bottom: -10px
+                          - font_size: 16px
+                          - font_weight: 700
+                          - text_colour: green
+
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:button-card
+                        template: bubble_base
+                        entity: switch.012030522493002223_bsh_common_setting_powerstate
+                        show_state: true
+                        name: Power
+                        attribute_entity: ''
+                        colour: white
+                        icon: mdi:power
+
+                      - type: custom:button-card
+                        template: bubble_base_opt
+                        entity: switch.012030522493002223_bsh_common_setting_powerstate
+                        icon: mdi:play-circle-outline
+                        name: "Start"
+                        show_name: true
+                        show_state: true
+                        state_display: "Dishwasher"
+                        tap_action:
+                          action: call-service
+                          service: script.dishwasher_start
+                        style:
+                          - height: 50px
+                          - padding: 5px 0px 5px 6px
+                        styles:
+                          name:
+                            - font-size: 13px
+                            - font-weight: 600
+                            - padding-top: 2px
+                            - padding-bottom: 0px
+                          state:
+                            - font-size: 13px
+                            - font-weight: 600
+                            - padding-top: 0px
+                            - justify-self: start
+                            - text-align: left
+
+
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Select Options
+                  - margin_top: -15px
+                  - seperator_line_color: var(--secondary-text-color)
+                  - separator_width: 100%
+
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    entity: input_boolean.dishwasher_option_extradry
+                    icon: mdi:wind-power
+                    name: ExtraDry
+                    show_state: false
+                    attribute_entity: ''
+                    colour: white
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    entity: input_boolean.dishwasher_option_variospeed
+                    icon: mdi:run-fast
+                    name: Speed+
+                    show_state: false
+                    attribute_entity: ''
+                    colour: white
+                  - type: custom:button-card
+                    template: bubble_dishwash_opts
+                    entity: input_boolean.dishwasher_option_hygieneplus
+                    icon: mdi:shield-check
+                    name: Hygiene+
+                    show_state: false
+                    attribute_entity: ''
+                    colour: white
+
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Select Program
+                  - margin_top: 0px
+                  - seperator_line_color: var(--secondary-text-color)
+
+              - type: custom:expander-card
+                title: Wash Programs (tap to expand/collapse)
+                expanded: false
+                icon: mdi:arrow-down-bold
+                animation: true
+                style: |-
+                  .expander-card.animation.open,
+                  .expander-card.animation.opening {
+                    padding: 0px;
+                  }
+                  .expander-card.animation.close,
+                  .expander-card.animation.closing {
+                    padding: 0px;
+                  }
+                cards:
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Eco Wash"
+                      - ha_value: "Dishcare.Dishwasher.Program.Normal45"
+                      - icon: "mdi:leaf"
+                      - duration: "3h 15m"
+                      - energy: "0.85 kWh"
+                      - water: "11.0 L"
+                      - description: "Mixed tableware & cutlery"
+                      - soiling: "Normally soiled load • Most economical wash"
+                      - routines: "Pre-Rinse → 45°C → Intermediate → Final 46°C → Dry"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Pots / Pans"
+                      - ha_value: "Dishcare.Dishwasher.Program.Intensiv70"
+                      - icon: "mdi:pot"
+                      - duration: "2h 25m"
+                      - energy: "1.35 kWh"
+                      - water: "13.5 L"
+                      - description: "Pots, pans, non-fragile tableware"
+                      - soiling: "Stubborn burned/dried-on starch & protein"
+                      - routines: "Pre-Rinse → 70°C → Intermediate → Final 69°C → Dry"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Auto Wash"
+                      - ha_value: "Dishcare.Dishwasher.Program.Auto2"
+                      - icon: "mdi:auto-fix"
+                      - duration: "2h 35m"
+                      - energy: "1.15 kWh"
+                      - water: "12.5 L"
+                      - description: "Mixed tableware & cutlery"
+                      - soiling: "Common household food remnants lightly dried on"
+                      - routines: "Sensor-controlled 45-65°C • Optimised by soiling sensors"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Auto Gentle"
+                      - ha_value: "Dishcare.Dishwasher.Program.Auto1"
+                      - icon: "mdi:glass-fragile"
+                      - duration: "1h 47m"
+                      - energy: "0.80 kWh"
+                      - water: "13.5 L"
+                      - description: "Delicate items, plastics, glasses"
+                      - soiling: "Lightly adhering fresh food remnants"
+                      - routines: "Sensor-controlled 35-45°C • Optimised by soiling sensors"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Quick 1h"
+                      - ha_value: "Dishcare.Dishwasher.Program.Quick65"
+                      - icon: "mdi:timer-outline"
+                      - duration: "1h 5m"
+                      - energy: "1.15 kWh"
+                      - water: "10.0 L"
+                      - description: "Mixed tableware & cutlery"
+                      - soiling: "Common household food remnants lightly dried on"
+                      - routines: "Time-optimised 65°C → Intermediate → Final 69°C → Dry"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Short 60°C"
+                      - ha_value: "Dishcare.Dishwasher.Program.Kurz60"
+                      - icon: "mdi:clock-fast"
+                      - duration: "15 min"
+                      - energy: "0.05 kWh"
+                      - water: "4.0 L"
+                      - description: "Optimised for normal dishes"
+                      - soiling: "Common household food remnants lightly dried on"
+                      - routines: "Sensor-controlled • Optimised by soiling sensors"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Express Wash"
+                      - ha_value: "Dishcare.Dishwasher.Program.Quick45"
+                      - icon: "mdi:flash"
+                      - duration: "29 min"
+                      - energy: "0.80 kWh"
+                      - water: "10.5 L"
+                      - description: "Delicate items, plastics, glasses"
+                      - soiling: "Lightly adhering fresh food remnants"
+                      - routines: "Time-optimised 45°C → Intermediate → Final 55°C"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Extra Quiet"
+                      - ha_value: "Dishcare.Dishwasher.Program.NightWash"
+                      - icon: "mdi:volume-off"
+                      - duration: "4h 5m"
+                      - energy: "1.15 kWh"
+                      - water: "10.5 L"
+                      - description: "Mixed tableware & cutlery"
+                      - soiling: "Common household food remnants lightly dried on"
+                      - routines: "Reduced noise • Pre-Rinse → 50°C → Final 63°C → Dry"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Machine Care"
+                      - ha_value: "Dishcare.Dishwasher.Program.MachineCare"
+                      - icon: "mdi:wrench"
+                      - duration: "2h 10m"
+                      - energy: "1.50 kWh"
+                      - water: "15.5 L"
+                      - description: "Run with machine cleaner"
+                      - soiling: "Maintenance cycle with empty machine"
+                      - routines: "Machine Care 70°C"
+                  - type: custom:decluttering-card
+                    template: dishwasher_program_card
+                    variables:
+                      - display_name: "Pre-rinse"
+                      - ha_value: "Dishcare.Dishwasher.Program.PreRinse"
+                      - icon: "mdi:water"
+                      - duration: "15 min"
+                      - energy: "0.05 kWh"
+                      - water: "4.0 L"
+                      - description: "Cold water rinse without detergent"
+                      - soiling: "N/A — Pre-wash only"
+                      - routines: "Pre-Rinse"
+
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n" "btn"
+          - grid-template-columns: 1fr
+        card:
+          - padding: 15px 15px 45px 15px
+        name:
+          - justify-self: start
+          - align-self: start
+          - font-size: 18px
+          - font-weight: 600
+          - color: var(--room-tech)
+      show_icon: false
+      show_label: false

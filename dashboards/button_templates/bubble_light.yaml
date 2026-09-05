@@ -38,7 +38,7 @@ bubble_light:
     grid:
       - grid-template-areas: |
           "i lock slider motion"
-      - grid-template-columns: 12% 12% 66% 10%
+      - grid-template-columns: 15% 15% 60% 10%
       - grid-template-rows: 1fr
     card:
       - padding: 5px 0px 5px 5px

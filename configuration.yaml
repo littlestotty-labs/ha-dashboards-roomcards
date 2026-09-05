@@ -12,9 +12,6 @@ default_config:
 # Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
-  extra_module_url:
-    - /local/card-mod.js
-    - /local/custom-brand-icons.js
 
 homeassistant:
   customize: !include customize.yaml
@@ -49,8 +46,6 @@ lovelace:
     #    - url: /hacsfiles/android-tv-card/universal-remote-card.min.js
     - url: /hacsfiles/kiosk-mode/kiosk-mode.js
       type: module
-    - url: /hacsfiles/lovelace-layout-card/rollup.config.js
-      type: module
     - url: /hacsfiles/lovelace-layout-card/layout-card.js
       type: module
     #    - url: /hacsfiles/light-entity-card/light-entity-card.js
@@ -73,7 +68,7 @@ lovelace:
     #    - url: /hacsfiles/lovelace-template-entity-row/rollup.config.js
     - url: /hacsfiles/decluttering-card/decluttering-card.js
       type: module
-    - url: /hacsfiles/swipe-card/swipe-card.js
+    - url: /hacsfiles/lovelace-expander-card/expander-card.js
       type: module
     - url: /hacsfiles/stack-in-card/stack-in-card.js
       type: module
@@ -198,6 +193,23 @@ input_number:
     max: 100
     step: 5
 
+input_select:
+  dishwasher_program:
+    name: "Dishwasher Program"
+    icon: mdi:dishwasher
+    options:
+      - "Dishcare.Dishwasher.Program.Normal45"
+      - "Dishcare.Dishwasher.Program.Auto2"
+      - "Dishcare.Dishwasher.Program.Auto1"
+      - "Dishcare.Dishwasher.Program.Intensiv70"
+      - "Dishcare.Dishwasher.Program.Quick65"
+      - "Dishcare.Dishwasher.Program.Quick45"
+      - "Dishcare.Dishwasher.Program.NightWash"
+      - "Dishcare.Dishwasher.Program.MachineCare"
+      - "Dishcare.Dishwasher.Program.PreRinse"
+      - "Dishcare.Dishwasher.Program.Kurz60"
+    initial: "Dishcare.Dishwasher.Program.Intensiv70"
+
 input_boolean:
   its_christmas:
     name: Enable_Christmas
@@ -299,6 +311,18 @@ input_boolean:
   lights_manual:
     name: No Motion Lights
     initial: off
+  dishwasher_option_extradry:
+    name: "Dishwasher Extra Dry"
+    icon: mdi:wind-power
+  dishwasher_option_hygieneplus:
+    name: "Dishwasher HygienePlus"
+    icon: mdi:shield-check
+  dishwasher_option_variospeed:
+    name: "Dishwasher SpeedPerfect"
+    icon: mdi:run-fast
+  dishwasher_starting:
+    name: "Dishwasher Starting"
+    icon: mdi:progress-clock
 
 wake_on_lan:
 

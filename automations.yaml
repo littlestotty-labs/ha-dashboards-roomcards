@@ -1,128 +1,155 @@
-# -----------------------------------------------------------
-# automations.yaml
-# Home Assistant YAML automations (minimal — most automations
-# are handled by Node-RED flows).
-# Author: Graham Stott (littlestotty-labs)
-# Version: 1.0
-# -----------------------------------------------------------
-
-- id: "1726401543952"
+- id: '1726401543952'
   alias: WFH Today
-  description: ""
+  description: ''
   triggers:
-    - at: 03:10:00
-      trigger: time
+  - at: 03:10:00
+    trigger: time
   condition: []
   action:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: "{{ 'Wfh' in states.calendar.workingfromhome.attributes.message }}"
-          sequence:
-            - action: input_boolean.turn_on
-              metadata: {}
-              data: {}
-              target:
-                entity_id: input_boolean.wfh_today
-        - conditions:
-            - condition: template
-              value_template: "{{ 'Wfh' not in states.calendar.workingfromhome.attributes.message }}"
-          sequence:
-            - action: input_boolean.turn_off
-              metadata: {}
-              data: {}
-              target:
-                entity_id: input_boolean.wfh_today
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ ''Wfh'' in states.calendar.workingfromhome.attributes.message
+          }}'
+      sequence:
+      - action: input_boolean.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.wfh_today
+    - conditions:
+      - condition: template
+        value_template: '{{ ''Wfh'' not in states.calendar.workingfromhome.attributes.message
+          }}'
+      sequence:
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.wfh_today
   mode: single
-
-- id: "1763868085531"
+- id: '1763868085531'
   alias: Set Office Status
-  description: ""
+  description: ''
   triggers:
-    - at: 03:10:00
-      trigger: time
+  - at: 03:11:00
+    trigger: time
   actions:
-    - action: input_text.set_value
-      target:
-        entity_id: input_text.office_status
-      data:
-        value: "{{ 'Home Based' if states.calendar.workingfromhome.attributes.message == 'Wfh' else ('City Based' if states.calendar.workingfromhome.attributes.message == 'Cbd' else states.calendar.workingfromhome.attributes.message) }}"
+  - action: input_text.set_value
+    target:
+      entity_id: input_text.office_status
+    data:
+      value: '{{ ''Home Based'' if states.calendar.workingfromhome.attributes.message
+        == ''Wfh'' else (''City Based'' if states.calendar.workingfromhome.attributes.message
+        == ''Cbd'' else states.calendar.workingfromhome.attributes.message) }}'
   mode: single
-
-- id: "1764763200001"
+- id: '1764763200001'
   alias: Police Lights Effect
   description: Alternates red and blue between two G10 outside lights
   trigger:
-    - platform: state
-      entity_id: input_boolean.police_lights
+  - platform: state
+    entity_id: input_boolean.police_lights
   condition: []
   action:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.police_lights
-              state: "on"
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.police_lights
+        state: 'on'
+      sequence:
+      - repeat:
+          while:
+          - condition: state
+            entity_id: input_boolean.police_lights
+            state: 'on'
           sequence:
-            - repeat:
-                while:
-                  - condition: state
-                    entity_id: input_boolean.police_lights
-                    state: "on"
-                sequence:
-                  - action: light.turn_on
-                    target:
-                      entity_id: light.0xb40ecfd1a09f0000
-                    data:
-                      rgb_color:
-                        - 255
-                        - 0
-                        - 0
-                      brightness: 255
-                      transition: 0
-                  - action: light.turn_on
-                    target:
-                      entity_id: light.0xb40ecfd2d0440000
-                    data:
-                      rgb_color:
-                        - 0
-                        - 0
-                        - 255
-                      brightness: 255
-                      transition: 0
-                  - delay:
-                      hours: 0
-                      minutes: 0
-                      seconds: 0
-                      milliseconds: 500
-                  - action: light.turn_on
-                    target:
-                      entity_id: light.0xb40ecfd1a09f0000
-                    data:
-                      rgb_color:
-                        - 0
-                        - 0
-                        - 255
-                  - action: light.turn_on
-                    target:
-                      entity_id: light.0xb40ecfd2d0440000
-                    data:
-                      rgb_color:
-                        - 255
-                        - 0
-                        - 0
-                  - delay:
-                      hours: 0
-                      minutes: 0
-                      seconds: 0
-                      milliseconds: 500
-        - conditions:
-            - condition: state
-              entity_id: input_boolean.police_lights
-              state: "off"
-          sequence:
-            - action: light.turn_off
-              target:
-                entity_id:
-                  - light.0xb40ecfd1a09f0000
-                  - light.0xb40ecfd2d0440000
+          - action: light.turn_on
+            target:
+              entity_id: light.0xb40ecfd1a09f0000
+            data:
+              rgb_color:
+              - 255
+              - 0
+              - 0
+              brightness: 255
+              transition: 0
+          - action: light.turn_on
+            target:
+              entity_id: light.0xb40ecfd2d0440000
+            data:
+              rgb_color:
+              - 0
+              - 0
+              - 255
+              brightness: 255
+              transition: 0
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 500
+          - action: light.turn_on
+            target:
+              entity_id: light.0xb40ecfd1a09f0000
+            data:
+              rgb_color:
+              - 0
+              - 0
+              - 255
+          - action: light.turn_on
+            target:
+              entity_id: light.0xb40ecfd2d0440000
+            data:
+              rgb_color:
+              - 255
+              - 0
+              - 0
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 0
+              milliseconds: 500
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.police_lights
+        state: 'off'
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.0xb40ecfd1a09f0000
+          - light.0xb40ecfd2d0440000
   mode: restart
+- id: dishwasher_sync_state_to_helpers
+  alias: 'Dishwasher: Sync state to input helpers'
+  description: When the dishwasher becomes Ready or powers off, update input helpers
+    to match the actual appliance state so the UI stays accurate.
+  triggers:
+  - platform: state
+    entity_id: sensor.012030522493002223_bsh_common_status_operationstate
+    to: BSH.Common.EnumType.OperationState.Ready
+  - platform: state
+    entity_id: switch.012030522493002223_bsh_common_setting_powerstate
+    to: "off"
+  actions:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.dishwasher_starting
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.dishwasher_program
+    data:
+      option: '{{ states(''select.012030522493002223_programs'') }}'
+  - action: input_boolean.turn_{{ 'on' if is_state('switch.012030522493002223_dishcare_dishwasher_option_extradry',
+      'on') else 'off' }}
+    target:
+      entity_id: input_boolean.dishwasher_option_extradry
+  - action: input_boolean.turn_{{ 'on' if is_state('switch.012030522493002223_dishcare_dishwasher_option_hygieneplus',
+      'on') else 'off' }}
+    target:
+      entity_id: input_boolean.dishwasher_option_hygieneplus
+  - action: input_boolean.turn_{{ 'on' if is_state('binary_sensor.012030522493002223_dishcare_dishwasher_option_variospeed',
+      'on') else 'off' }}
+    target:
+      entity_id: input_boolean.dishwasher_option_variospeed
+  mode: single
