@@ -71,7 +71,7 @@ dishwasher_start:
             value: "{{ is_state('input_boolean.dishwasher_option_extradry', 'on') }}"
           - key: "Dishcare.Dishwasher.Option.HygienePlus"
             value: "{{ is_state('input_boolean.dishwasher_option_hygieneplus', 'on') }}"
-          - key: "Dishcare.Dishwasher.Option.VarioSpeed"
+          - key: "Dishcare.Dishwasher.Option.VarioSpeedPlus"
             value: "{{ is_state('input_boolean.dishwasher_option_variospeed', 'on') }}"
     - action: home_connect_alt.start_program
       data:
