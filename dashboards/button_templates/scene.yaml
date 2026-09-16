@@ -10,18 +10,19 @@ scene:
     card:
       - height: 63px
       #      - width: 90px
-      - padding: 5px 0px 5px 0px # Top, Right, Bottom, Left = 20px
+      - padding: 0px 0px 5px 0px # Top, Right, Bottom, Left = 20px
     icon:
-      - width: 1.7em
-      - height: 1.7em
+      - width: 1.5em
+      - height: 1.5em
     name:
       - justify-self: center
       - font-size: 14px
       - font-weight: 600
       - color: white
     img_cell:
-      - width: 2em
-      - height: 2em
+      - width: 2.2em              # 2. Hard-code a size or use a percentage
+      - height: 2.2em              # 2. Hard-code a size or use a percentage
+#      - aspect-ratio: 1.3 / 1      # 3. Forces height to always match the width perfectly
       - justify-self: center
       - border-radius: 50%
       - background: white
