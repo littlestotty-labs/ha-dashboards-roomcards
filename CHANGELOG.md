@@ -3,7 +3,7 @@
 ## [2.2.1] - 2026-09-16
 
 ### Fixed
-- Rewrote `dishwasher_start` script to set options individually via `set_program_option` after program selection — options bundled in `select_program` were not being applied
+- Rewrote `dishwasher_start` script to pass options directly to `start_program` — options were not available when set separately via `set_program_option`
 
 ## [2.2.0] - 2026-09-05
 
