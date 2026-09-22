@@ -65,6 +65,8 @@ dishwasher_start:
       data:
         device_id: cbc483dd378433abf4426eb26e91b4cb
         program_key: "{{ states('input_select.dishwasher_program') }}"
+    - delay:
+        seconds: 2
     - action: home_connect_alt.set_program_option
       data:
         device_id: cbc483dd378433abf4426eb26e91b4cb
