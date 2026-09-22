@@ -56,8 +56,7 @@ speed_test:
 dishwasher_start:
   alias: "Dishwasher: Start with selected program and options"
   description: >-
-    Reads the input helpers for program and options, sends a single
-    home_connect_alt.select_program call, then starts the dishwasher.
+    Selects the program, sets each option individually, then starts.
   sequence:
     - action: input_boolean.turn_on
       target:
@@ -66,13 +65,21 @@ dishwasher_start:
       data:
         device_id: cbc483dd378433abf4426eb26e91b4cb
         program_key: "{{ states('input_select.dishwasher_program') }}"
-        options:
-          - key: "Dishcare.Dishwasher.Option.ExtraDry"
-            value: "{{ is_state('input_boolean.dishwasher_option_extradry', 'on') }}"
-          - key: "Dishcare.Dishwasher.Option.HygienePlus"
-            value: "{{ is_state('input_boolean.dishwasher_option_hygieneplus', 'on') }}"
-          - key: "Dishcare.Dishwasher.Option.VarioSpeedPlus"
-            value: "{{ is_state('input_boolean.dishwasher_option_variospeed', 'on') }}"
+    - action: home_connect_alt.set_program_option
+      data:
+        device_id: cbc483dd378433abf4426eb26e91b4cb
+        key: "Dishcare.Dishwasher.Option.ExtraDry"
+        value: "{{ is_state('input_boolean.dishwasher_option_extradry', 'on') }}"
+    - action: home_connect_alt.set_program_option
+      data:
+        device_id: cbc483dd378433abf4426eb26e91b4cb
+        key: "Dishcare.Dishwasher.Option.HygienePlus"
+        value: "{{ is_state('input_boolean.dishwasher_option_hygieneplus', 'on') }}"
+    - action: home_connect_alt.set_program_option
+      data:
+        device_id: cbc483dd378433abf4426eb26e91b4cb
+        key: "Dishcare.Dishwasher.Option.VarioSpeed"
+        value: "{{ is_state('input_boolean.dishwasher_option_variospeed', 'on') }}"
     - action: home_connect_alt.start_program
       data:
         device_id: cbc483dd378433abf4426eb26e91b4cb

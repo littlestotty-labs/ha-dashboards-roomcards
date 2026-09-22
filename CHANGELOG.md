@@ -3,7 +3,7 @@
 ## [2.2.1] - 2026-09-16
 
 ### Fixed
-- Corrected `VarioSpeed` key to `VarioSpeedPlus` in `dishwasher_start` script — SpeedPerfect option was silently ignored because the Home Connect API key was wrong
+- Rewrote `dishwasher_start` script to set options individually via `set_program_option` after program selection — options bundled in `select_program` were not being applied
 
 ## [2.2.0] - 2026-09-05
 
