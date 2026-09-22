@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.3.0] - 2026-09-22
+
+### Added
+- Electric blanket controls in bedroom popup: Dawn + Graham on/off switches with body/feet power level (0–6) and timer selects, conditional off/on cards
+- Bedroom room card: four-zone animated SVG heat visualization (intensity-scaled glow, rings, expanding waves per zone), Dawn left / Graham right, accent background circle replacing bed icon
+- Theme vars: electric-blanket-card-dawn/graham (dark + light), bubble-timer-color-on
+
+### Changed
+- room_card template: default `i` custom-field sizing for SVG room art
+- bubble_base: softened on-state img_cell inset shadow
+- Light theme card background and bubble on-icon tweak; dark theme timer colour
+
+### Removed
+- dashboards/home_cards/banner.yaml
+
 ## [2.2.1] - 2026-09-16
 
 ### Fixed

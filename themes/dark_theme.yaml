@@ -121,6 +121,7 @@ grahams-dark:
   bubble-icon-color-off: var(--primary-color)
   #bubble-icon-color-on: "rgba(0, 148, 193, 1)"
   #bubble-icon-glow-on: "rgba(0, 148, 193, 1)"
+  bubble-timer-color-on: "rgb(132, 194, 115)"
   bubble-icon-color-on: "rgba(255, 111, 34, 1)"
   bubble-options-card-on: "rgba(72, 123, 182,1)"
   bubble-icon-glow-on: "rgb(55, 161, 248)"
@@ -138,6 +139,8 @@ grahams-dark:
   bubble-slider-background: linear-gradient(to right, rgba(35, 126, 172, 0.6) 0%,rgb(34, 174, 255)100%)
   bubble-slider-on: "linear-gradient(90deg, bubble-icon-glow-on) 0%, rgba(0,0,0,0.10) 100%)"
   lock_background_light_on: "#8b8989ff"
+  electric-blanket-card-dawn: rgb(61, 38, 52)
+  electric-blanket-card-graham: rgb(30, 40, 60) 
   # -----------------------------------------------------
   # Room Accent Colors (Dark tuned)
   # -----------------------------------------------------

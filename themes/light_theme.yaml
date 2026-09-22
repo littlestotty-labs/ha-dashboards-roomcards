@@ -21,7 +21,7 @@ grahams-light:
   secondary-background-color: "#b7bdc2ff"
   # F2F3F4
   #  card-background-color: "#eaedf0ff"
-  card-background-color: "#F2F3F4"
+  card-background-color: "#f2f1eb"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#cfcfcf"
   light-button-background: radial-gradient(circle farthest-side at 25% 30%, rgba(245, 245, 245, 1) 17%, rgba(204, 204, 204, 1))
@@ -66,7 +66,8 @@ grahams-light:
   bubble-icon-background-color: rgba(227, 225, 225, 1)
   bubble-icon-background-color-on: white
   bubble-icon-color-off: var(--primary-color)
-  bubble-icon-color-on: "rgba(255, 111, 34, 1)"
+  bubble-icon-color-on: "rgb(254, 137, 73)"
+  bubble-timer-color-on: "rgb(132, 194, 115)"
   bubble-options-card-on: "rgba(95, 164, 243,1)"
   bubble-icon-glow-on: "rgba(255, 111, 34, 1)"
   bubble-sub-button-border-radius: var(--ha-card-border-radius)
@@ -83,7 +84,8 @@ grahams-light:
   bubble-slider-background: linear-gradient(to right, rgba(255, 111, 34 ,.6) 0%,rgba(255, 111, 34, 1)100%)
   bubble-slider-on: "linear-gradient(90deg, bubble-icon-glow-on) 0%, rgba(0,0,0,0.10) 100%)"
   lock_background_light_on: "#c9c9c9ff"
-
+  electric-blanket-card-dawn: rgb(253, 245, 245)
+  electric-blanket-card-graham: rgb(228, 240, 253)
   # -----------------------------------------------------
   # Room Accent Colors (light tuned)
   # -----------------------------------------------------
