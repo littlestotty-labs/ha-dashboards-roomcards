@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"uri": "vscode-remote://ssh-remote+7b22686f73744e616d65223a22486f6d65417373697374616e74227d/homeassistant"
+		},
+		{
+			"path": "opencode"
 		}
 	],
 	"remoteAuthority": "ssh-remote+7b22686f73744e616d65223a22486f6d65417373697374616e74227d",

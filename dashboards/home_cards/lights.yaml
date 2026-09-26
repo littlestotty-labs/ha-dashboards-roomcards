@@ -9,7 +9,14 @@
 type: custom:button-card
 template: room_card
 name: Lights
-icon: mdi:ceiling-light-multiple-outline
+icon: |
+  [[[
+    var count = states['sensor.number_of_lights_on'].state;
+    if (count > 0 ) {
+    return 'mdi:ceiling-light-multiple'; 
+    }
+    return 'mdi:ceiling-light-multiple-outline' 
+  ]]]
 tap_action:
   navigation_path: '#room_lights'
 show_label: true
@@ -21,6 +28,24 @@ label: |
     var count = states['sensor.number_of_lights_on'].state;
     return 'Lights on: ' + count
   ]]]
+styles:
+  icon:
+    - color: |
+        [[[
+          var count = states['sensor.number_of_lights_on'].state;
+          if (count > 0 ) {
+            return '#ee4949';
+          }
+          return 'var(--room-lights)';
+        ]]]
+    - opacity: | 
+          [[[
+            var count = states['sensor.number_of_lights_on'].state;
+            if (count > 0 ) {
+              return "1";
+            }
+            return "0.3";
+          ]]]
 custom_fields:
   btn:
     card:

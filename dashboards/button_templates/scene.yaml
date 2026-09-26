@@ -10,7 +10,7 @@ scene:
     card:
       - height: 63px
       #      - width: 90px
-      - padding: 0px 0px 5px 0px # Top, Right, Bottom, Left = 20px
+      - padding: 5px 0px 5px 0px # Top, Right, Bottom, Left = 20px
     icon:
       - width: 1.5em
       - height: 1.5em

@@ -332,26 +332,26 @@ custom_fields:
 
           <rect
             x="33"
-            y="8"
+            y="1"
             width="236"
             height="190"
             rx="15"
             fill="none"
             stroke="${bedColour}"
             stroke-width="15"
-            opacity="0.3"
+            opacity="0.2"
           />
 
           <!-- subtle mattress surface -->
 
           <rect
             x="40"
-            y="15"
+            y="8"
             width="220"
             height="180"
             rx="11"
             fill="${bedColour}"
-            opacity="0.025"
+            opacity="0.02"
           />
 
           <!-- ================================= -->
@@ -360,12 +360,12 @@ custom_fields:
 
           <rect
             x="43"
-            y="59"
+            y="52"
             width="215"
             height="133"
             rx="9"
             fill="${bedColour}"
-            opacity="0.15"
+            opacity="0.10"
           />
 
           <!-- ================================= -->
@@ -373,23 +373,23 @@ custom_fields:
           <!-- ================================= -->
 
           <rect
-            x="43"
-            y="19"
+            x="45"
+            y="12"
             width="105"
             height="36"
             rx="9"
             fill="${bedColour}"
-            opacity="0.3"
+            opacity="0.25"
           />
 
           <rect
             x="153"
-            y="19"
+            y="12"
             width="105"
             height="36"
             rx="9"
             fill="${bedColour}"
-            opacity="0.3"
+            opacity="0.25"
           />
 
           <!-- ================================= -->
@@ -398,22 +398,22 @@ custom_fields:
 
           <line
             x1="150"
-            y1="55"
+            y1="52"
             x2="150"
-            y2="190"
+            y2="183"
             stroke="${bedColour}"
             stroke-width="2"
-            opacity="0.3"
+            opacity="0.25"
           />
 
           <line
             x1="40"
-            y1="125"
+            y1="118"
             x2="260"
-            y2="125"
+            y2="118"
             stroke="${bedColour}"
             stroke-width="2"
-            opacity="0.2"
+            opacity="0.25"
           />
 
           <!-- ================================= -->
@@ -421,16 +421,16 @@ custom_fields:
           <!-- ================================= -->
 
           <!-- Dawn body -->
-          ${heatZone(95, 95, db)}
+          ${heatZone(95, 83, db)}
 
           <!-- Graham body -->
-          ${heatZone(205, 95, gb)}
+          ${heatZone(205, 83, gb)}
 
           <!-- Dawn feet -->
-          ${heatZone(95, 160, df)}
+          ${heatZone(95, 151, df)}
 
           <!-- Graham feet -->
-          ${heatZone(205, 160, gf)}
+          ${heatZone(205, 151, gf)}
 
         </svg>
       `;
@@ -537,7 +537,7 @@ styles:
     btn:
       - justify-content: end
       - align-self: start
-      - z-index: 2
+      - z-index: 3
     i:
       - position: absolute
       - left: 0
@@ -550,6 +550,6 @@ styles:
     vac:
       - justify-content: start
       - align-self: start
-      - z-index: 3
+      - z-index: 2
 
 show_state: true

@@ -57,7 +57,7 @@ grahams-dark:
   primary-background-color: "#121416"
   secondary-background-color: "#2e363dff"
 
-  card-background-color: "rgba(36, 39, 42, 1)"
+  card-background-color: "rgb(39, 36, 42)"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#2b2e34"
   ha-color-text-secondary: "#848484ff"
@@ -109,7 +109,7 @@ grahams-dark:
 
 
   bubble-border-radius: var(--ha-card-border-radius)
-  popup-header-background: rgba(60, 64, 67, 1)
+  popup-header-background: rgb(46, 46, 46)
   bubble-main-background-color: var(--card-background-color)
   #bubble-secondary-background-color: "rgba(52, 52, 52, 1)"
   bubble-secondary-background-color: var(--card-background-color)
@@ -122,7 +122,7 @@ grahams-dark:
   #bubble-icon-color-on: "rgba(0, 148, 193, 1)"
   #bubble-icon-glow-on: "rgba(0, 148, 193, 1)"
   bubble-timer-color-on: "rgb(132, 194, 115)"
-  bubble-icon-color-on: "rgba(255, 111, 34, 1)"
+  bubble-icon-color-on: "rgb(214, 96, 32)"
   bubble-options-card-on: "rgba(72, 123, 182,1)"
   bubble-icon-glow-on: "rgb(55, 161, 248)"
 
