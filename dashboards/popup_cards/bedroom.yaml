@@ -1,0 +1,744 @@
+# -----------------------------------------------------------
+# popup_cards/bedroom.yaml
+# Standalone bubble-card pop-up for the Bedroom room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Bedroom
+icon: mdi:bed-outline
+hash: "#room_bedroom"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-bedroom);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-bedroom) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        entity: switch.plug_blue
+        name: Pedestal Fan
+        icon: mdi:fan
+        variables:
+          attribute_entity: sensor.plug_blue_power
+      - type: custom:bubble-card
+        card_type: empty-column
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Purifier
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: climate
+        name: Purifier
+        entity: fan.core_300s
+        show_state: false
+        show_name: false
+        card_layout: large-2-rows
+        icon: mdi:air-purifier
+        sub_button:
+          - name: Mode
+            select_attribute: preset_modes
+            show_arrow: false
+            state_background: false
+            show_name: false
+          - name: PM2
+            entity: sensor.core_300s_pm2_5
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+          - name: AQ
+            entity: sensor.core_300s_air_quality
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+          - name: Filter
+            entity: sensor.core_300s_filter_lifetime
+            show_icon: false
+            show_background: false
+            show_state: true
+            show_name: true
+        styles: |
+          .bubble-container {
+            height: 50px !important;
+            background-color: var(--card-background-color) !important;
+            opacity: 1 !important;
+            border-radius: var(--ha-card-border-radius) !important;
+            box-shadow: var(--ha-card-box-shadow) !important;
+          }
+      - type: custom:button-card
+        entity: input_boolean.purifier_vacuum
+        section_mode: null
+        show_name: false
+        icon: |
+          [[[
+              if (entity.state == 'on') return 'mdi:vacuum';
+              else return 'mdi:vacuum-outline';
+          ]]]
+        styles:
+          card:
+            - width: 50px
+            - height: 50px
+            - border-radius: 10px
+            - padding: 5px 0px 5px 5px
+            - background: |
+                [[[
+                  if (entity.state == 'on') return 'red';
+                  else return 'var(--card-background-color)';
+                ]]]
+          img_cell:
+            - background-color: |
+                [[[ if (entity.state === "on")
+                     return 'red';
+                    else
+                     return 'var(--bubble-icon-background-color)';
+                 ]]]
+            - justify-self: start
+            - align-self: start
+            - padding: 2px
+            - border-radius: 500%
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 60%
+            - height: 60%
+            - color: |
+                [[[ if (entity.state === "on")
+                     return 'var(--ha-card-background)';
+                    else
+                     return 'var(--primary-color)';
+                 ]]]
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Air Conditioner
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_aircon
+        entity: input_boolean.cool_room
+        name: Aircon Cool
+        icon: mdi:snowflake
+        variables:
+          attribute_entity: climate.aircon
+      - type: custom:button-card
+        template: bubble_heater
+        entity: input_boolean.heat_room
+        name: Aircon Warm
+        icon: mdi:radiator
+        variables:
+          attribute_entity: climate.aircon
+  - type: custom:bubble-card
+    card_type: climate
+    name: Aircon
+    entity: climate.aircon
+    show_state: true
+    state-background: true
+    card_layout: normal
+    state-color: true
+    sub_button:
+      - name: HVAC modes menu
+        select_attribute: hvac_modes
+        show_arrow: true
+        state_background: true
+    styles: |
+      .bubble-container {
+        height: 50px !important;
+        background-color: var(--card-background-color) !important;
+        opacity: 1 !important;
+        border-radius: var(--ha-card-border-radius) !important;
+        box-shadow: var(--ha-card-box-shadow) !important;
+      }
+
+  ### ELECTRIC BLANKET
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: ''
+      - text_colour: var(--room-bedroom)
+      - margin_top: "-5px"
+
+
+  ### Blanket - Dawn - Off state
+  - type: conditional
+    conditions:
+      - entity: switch.electric_blanket_dawn
+        state: "off"
+    card:  
+      type: custom:button-card
+      entity: switch.electric_blanket_dawn
+      show_state: true
+      show_icon: true
+      show_name: true
+
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n i"
+              "s i"
+            # 1. Enforce strict ratios by telling the grid tracks they are allowed to shrink to 0
+          - grid-template-columns: minmax(0, 6.7fr) minmax(0, 3.3fr)
+          - grid-template-rows: 50% 50%
+        card:
+          - padding: 5px 10px 5px 16px # top right bottom left
+          - height: 50px
+          - border-radius: var(--ha-card-border-radius)
+          - background: var(--electric-blanket-card-dawn)
+        img_cell:
+          - justify-self: end
+          - align-self: center
+          - padding: 0px
+          - border-radius: 50%       # 1. 50% creates a perfect circle (500% stretches it)
+          - width: 40px              # 2. Hard-code a size or use a percentage
+          - aspect-ratio: 1 / 1      # 3. Forces height to always match the width perfectly
+          - background-color: var(--secondary-background-color) # (Optional) Helps you see the circle
+        icon:
+          - align-self: center
+          - width: 70%
+          - height: 70%
+          - color: var(--bubble-icon-color-off)
+        name:
+          - justify-self: start
+          - text-align: left
+          - font-size: 13px
+          - font-weight: 600
+          - padding-top: 5px
+          - color: var(--primary-text-color)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+        state:
+          - justify-self: start
+          - text-align: left
+          - font-size: 12px
+          - font-weight: 450
+          - padding-bottom: 1px
+          - color: var(--bubble-switch-status-off)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+
+  - type: conditional
+    conditions:
+      - entity: switch.electric_blanket_dawn
+        state: 'on'
+    card:
+      type: custom:button-card
+      entity: switch.electric_blanket_dawn
+      show_state: true
+      show_icon: true
+      show_name: true
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n i"
+              "s i"
+              "zone_header zone_header"
+              "power_level power_level"
+              "timer_header timer_header"
+              "timer_select timer_select"
+          - grid-template-columns: minmax(0, 6.7fr)  minmax(0, 3.3fr)
+          - grid-template-rows: 1fr 1fr 1.7fr 3fr 1.7fr 3fr
+        card:
+          - padding: 10px 10px 15px 16px
+          - height: 250px
+          - border-radius: var(--ha-card-border-radius)
+          - background: var(--electric-blanket-card-dawn)
+        img_cell:
+          - justify-self: end
+          - align-self: center
+          - padding: 0px
+          - border-radius: 50%
+          - width: 40px
+          - aspect-ratio: 1 / 1
+          - background-color: var(--bubble-icon-color-on)
+        icon:
+          - align-self: center
+          - width: 70%
+          - height: 70%
+          - color: var(--bubble-switch-text-on)
+        name:
+          - justify-self: start
+          - text-align: left
+          - font-size: 13px
+          - font-weight: 600
+          - padding-top: 5px
+          - color: rgba(233, 93, 210, 0.7)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+        state:
+          - justify-self: start
+          - text-align: left
+          - font-size: 12px
+          - font-weight: 450
+          - padding-bottom: 1px
+          - color: var(--primary-text-color)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+      custom_fields:
+        zone_header:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Body Controls
+                  - text_colour: var(--room-bedroom)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Feet Controls
+                  - text_colour: var(--room-bedroom)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+        power_level:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_dawn_body_level
+                show_icon: true
+                show_state: true
+                icon: mdi:heat-wave
+                name: Heat
+                tap_action:
+                  action: none
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_dawn_feet_level
+                show_icon: true
+                show_state: true
+                icon: mdi:heat-wave
+                name: Heat
+                tap_action:
+                  action: none
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+        timer_header:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: >
+                      [[[
+                        var ent = hass.states['sensor.electric_blanket_dawn_body_time_remaining'];
+                        var s = parseInt(ent.state);
+                        if (s === 0) return 'Timer not set';
+                        var m = Math.floor(s / 60);
+                        var h = Math.floor(m / 60);
+                        m = m % 60;
+                        return h > 0 ? 'Remaining ' + h + 'h ' + m + 'm' : 'Remaining ' + m + 'm';
+                      ]]]
+                  
+                  - text_colour: var(--primary-text-color)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: >
+                      [[[
+                        var ent = hass.states['sensor.electric_blanket_dawn_feet_time_remaining'];
+                        var s = parseInt(ent.state);
+                        if (s === 0) return 'Timer not set';
+                        var m = Math.floor(s / 60);
+                        var h = Math.floor(m / 60);
+                        m = m % 60;
+                        return h > 0 ? 'Remaining ' + h + 'h ' + m + 'm' : 'Remaining ' + m + 'm';
+                      ]]]
+                  
+                  - text_colour: var(--primary-text-color)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+        timer_select:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_dawn_body_timer
+                show_icon: true
+                icon: mdi:timer-outline
+                name: Timer
+                show_state: true
+                tap_action:
+                  action: none
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_dawn_feet_timer
+                show_icon: true
+                icon: mdi:timer-outline
+                name: Timer
+                show_state: true
+                tap_action:
+                  action: none
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+
+  ### Blanket - Graham - Off state
+  - type: conditional
+    conditions:
+      - entity: switch.electric_blanket_graham
+        state: "off"
+    card:  
+      type: custom:button-card
+      entity: switch.electric_blanket_graham
+      show_state: true
+      show_icon: true
+      show_name: true
+
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n i"
+              "s i"
+            # 1. Enforce strict ratios by telling the grid tracks they are allowed to shrink to 0
+          - grid-template-columns: minmax(0, 6.7fr) minmax(0, 3.3fr)
+          - grid-template-rows: 50% 50%
+        card:
+          - padding: 5px 10px 5px 16px # top right bottom left
+          - height: 50px
+          - border-radius: var(--ha-card-border-radius)
+          - background: var(--electric-blanket-card-graham)
+        img_cell:
+          - justify-self: end
+          - align-self: center
+          - padding: 0px
+          - border-radius: 50%       # 1. 50% creates a perfect circle (500% stretches it)
+          - width: 40px              # 2. Hard-code a size or use a percentage
+          - aspect-ratio: 1 / 1      # 3. Forces height to always match the width perfectly
+          - background: var(--bubble-icon-background-color)
+        icon:
+          - align-self: center
+          - width: 70%
+          - height: 70%
+          - color: var(--bubble-icon-color-off)
+        name:
+          - justify-self: start
+          - text-align: left
+          - font-size: 13px
+          - font-weight: 600
+          - padding-top: 5px
+          - color: var(--primary-text-color)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+        state:
+          - justify-self: start
+          - text-align: left
+          - font-size: 12px
+          - font-weight: 450
+          - padding-bottom: 1px
+          - color: var(--bubble-switch-status-off)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+
+  - type: conditional
+    conditions:
+      - entity: switch.electric_blanket_graham
+        state: 'on'
+    card:
+      type: custom:button-card
+      entity: switch.electric_blanket_graham
+      show_state: true
+      show_icon: true
+      show_name: true
+      styles:
+        grid:
+          - grid-template-areas: |
+              "n i"
+              "s i"
+              "zone_header zone_header"
+              "power_level power_level"
+              "timer_header timer_header"
+              "timer_select timer_select"
+          - grid-template-columns: minmax(0, 6.7fr)  minmax(0, 3.3fr)
+          - grid-template-rows: 1fr 1fr 1.7fr 3fr 1.7fr 3fr
+        card:
+          - padding: 10px 10px 15px 16px
+          - height: 250px
+          - border-radius: var(--ha-card-border-radius)
+          - background: var(--electric-blanket-card-graham)
+        img_cell:
+          - justify-self: end
+          - align-self: center
+          - padding: 0px
+          - border-radius: 50%
+          - width: 40px
+          - aspect-ratio: 1 / 1
+          - background-color: var(--bubble-icon-color-on)
+        icon:
+          - align-self: center
+          - width: 70%
+          - height: 70%
+          - color: var(--bubble-switch-text-on)
+        name:
+          - justify-self: start
+          - text-align: left
+          - font-size: 13px
+          - font-weight: 600
+          - padding-top: 5px
+          - color: rgba(70, 125, 208, 0.7)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+        state:
+          - justify-self: start
+          - text-align: left
+          - font-size: 12px
+          - font-weight: 450
+          - padding-bottom: 1px
+          - color: var(--primary-text-color)
+          - min-width: 0
+          - text-overflow: ellipsis
+          - overflow: hidden
+          - white-space: nowrap
+      custom_fields:
+        zone_header:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Body Controls
+                  - text_colour: var(--room-bedroom)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: Feet Controls
+                  - text_colour: var(--room-bedroom)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+        power_level:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_graham_body_level
+                show_icon: true
+                show_state: true
+                icon: mdi:heat-wave
+                name: Heat
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_graham_feet_level
+                show_icon: true
+                show_state: true
+                icon: mdi:heat-wave
+                name: Heat
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+        timer_header:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: >
+                      [[[
+                        var ent = hass.states['sensor.electric_blanket_graham_body_time_remaining'];
+                        var s = parseInt(ent.state);
+                        if (s === 0) return 'Timer not set';
+                        var m = Math.floor(s / 60);
+                        var h = Math.floor(m / 60);
+                        m = m % 60;
+                        return h > 0 ? 'Remaining ' + h + 'h ' + m + 'm' : 'Remaining ' + m + 'm';
+                      ]]]
+                  
+                  - text_colour: var(--primary-text-color)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+              - type: custom:decluttering-card
+                template: separator
+                variables:
+                  - name: >
+                      [[[
+                        var ent = hass.states['sensor.electric_blanket_graham_feet_time_remaining'];
+                        var s = parseInt(ent.state);
+                        if (s === 0) return 'Timer not set';
+                        var m = Math.floor(s / 60);
+                        var h = Math.floor(m / 60);
+                        m = m % 60;
+                        return h > 0 ? 'Remaining ' + h + 'h ' + m + 'm' : 'Remaining ' + m + 'm';
+                      ]]]
+                  
+                  - text_colour: var(--primary-text-color)
+                  - margin_top: -5px
+                  - margin_bottom: -20px
+        timer_select:
+          card:
+            type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_graham_body_timer
+                show_icon: true
+                icon: mdi:timer-outline
+                name: Timer
+                show_state: true
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+              - type: custom:bubble-card
+                card_type: select
+                entity: select.electric_blanket_graham_feet_timer
+                show_icon: true
+                icon: mdi:timer-outline
+                name: Timer
+                show_state: true
+                styles: |
+                  .bubble-container,bubble-button-background {
+                    background-color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--card-background-color)'} !important;
+                  }
+                  .bubble-name {
+                    color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-text-on)' : 'var(--bubble-switch-text-off)'} !important;
+                  }
+                  .bubble-state {
+                    color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }
+                  .bubble-icon {
+                    color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
+                  }

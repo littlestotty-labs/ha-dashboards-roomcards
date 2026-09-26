@@ -1,0 +1,30 @@
+# -----------------------------------------------------------
+# tech.yaml
+# Room card — Tech Stuff half-height tile with WAN/internet
+# connectivity status indicator.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: custom:button-card
+template: room_card
+variables:
+  accent_color: var(--room-tech)
+name: Tech Stuff
+icon: null
+tap_action:
+  navigation_path: "#room_tech"
+styles:
+  card:
+    - height: 75px
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: room_button
+          entity: null
+          icon: mdi:desktop-classic
+          variables:
+            accent_color: var(--room-tech)

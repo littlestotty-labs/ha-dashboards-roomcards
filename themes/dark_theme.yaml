@@ -1,26 +1,74 @@
+# -----------------------------------------------------------
+# dark_theme.yaml
+# grahams-dark theme — dark backgrounds, accent colors,
+# Bubble Card styling, and per-room color variables.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 grahams-dark:
   card-mod-theme: "grahams-dark"
   # -----------------------------------------------------
   # Base
   # -----------------------------------------------------
 
+  sidebar-icon-color: var(--primary-color)
+  sidebar-selected-icon-color: white
+    
+  ha-color-form-background: "#2f2f2f"
+  ha-color-form-background-hover: "#2a2a2a"
+  ha-color-form-background-disabled: "#111111"
+  ha-color-fill-color: "#1e1e1e"
+  ha-color-ink-color: "#e0e0e0"
+  mdc-text-field-background: "#2f2f2f"
   primary-font-family: "'Space Grotesk', sans-serif"
+  mdc-text-field-fill-color: "#1e1e1e" # background of the input
+  mdc-text-field-label-ink-color: "#999999" # label colour
+  mdc-text-field-idle-line-color: "#585656ff" # underline/border when idle
+  mdc-text-field-hover-line-color: "#666666" # underline/border when hovering
+  mdc-text-field-outlined-idle-border-color: "#999999"
+  mdc-text-field-outlined-hover-border-color: "#666666"
+  mdc-text-field-focused-label-color: "#03a9f4" # label when focused
+  mdc-text-field-focused-ink-color: "#000000" # text when focused
+  mdc-text-field-ink-color: "#e0e0e0"
+  mdc-text-field-placeholder-ink-color: "#888888"
+  # Developer tools / editor fields
+  codemirror-background: "#ed0f0fff"
+  codemirror-text-color: "#000000"
+  code-editor-background-color: "#353533ff"
+  code-editor-text-color: "#000000"
+  code-editor-gutter-color: "#ffffff"
 
+  # Background color of the input box
+  input-fill-color: "#1e1e1e"
+  input-ink-color: "#e0e0e0"
+  # Color of the label text
+  input-label-ink-color: "#CCCCCC" # Example: Light grey label
+  # Color of the bottom border when idle
+  input-idle-line-color: "#FFFFFF" # Example: White border
+  # Color of the bottom border when hovered
+  input-hover-line-color: "#00FF00" # Example: Green border on hover
+  # For outlined input styles (if used)
+  input-outlined-idle-border-color: "#FFFFFF"
+  input-outlined-hover-border-color: "#00FF00"
   # -----------------------------------------------------
   # Backgrounds
   # -----------------------------------------------------
   primary-background-color: "#121416"
-  secondary-background-color: "#181B1F"
+  secondary-background-color: "#2e363dff"
 
-  card-background-color: "#27292dff"
+  card-background-color: "rgb(39, 36, 42)"
   ha-card-background: var(--card-background-color)
   battery_slider_background: "#2b2e34"
+  ha-color-text-secondary: "#848484ff"
+  ha-color-fill-primary-quiet-resting: "#000000"
+  light-button-background: radial-gradient(circle farthest-side at 25% 30%, rgba(79, 78, 78, 1) 17%, rgba(28, 28, 28, 1))
 
   # -----------------------------------------------------
   # Text
   # -----------------------------------------------------
-  primary-color: "#6fa9cdff"
-  primary-text-color: "#E6E9ED"
+  primary-color: "#979ea3ff"
+  primary-text-color: var(--primary-color)
 
   # -----------------------------------------------------
   # Divider / Outline
@@ -30,40 +78,77 @@ grahams-dark:
   # -----------------------------------------------------
   # Cards
   # -----------------------------------------------------
-  ha-card-border-radius: "12px"
+  ha-card-border-radius: "10px"
+  ha-card-border-color: "rgba(137, 137, 137, 0.14)"
   ha-card-box-shadow: >
     0 8px 18px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24)
+    inset 0px 1px 0 rgba(255, 255, 255, 0.21)
+  ha-card-box-shadow-on: >
+      0px 2px 3px 0px rgba(0,0,0,0.3)
   # -----------------------------------------------------
   # Accent / State
   # -----------------------------------------------------
   accent-color: "#7cb7dcff"
   state-icon-color: "#7FA6BC"
-  bubble-accent-color: linear-gradient(145deg, rgba(86, 130, 155, 1) -10%, rgba(117, 160, 185, 1) 100%)
-  bubble-light-opacity: 0.6
 
   # -----------------------------------------------------
   # Icons
   # -----------------------------------------------------
-  scene-active-background: "#6a99bd" # background for large scene button
-  selected-color: "#494c50ff" # used for small room buttons
+  scene-active-background: "#244760ff" # background for large scene button
+  selected-color: "#384655ff" # used for small room buttons
   scene-selected-color: var(--card-background-color) # icon and text of large scene button
 
   # -----------------------------------------------------
   # Bubble Card
   # -----------------------------------------------------
 
-  bubble-border-radius: "18px"
-  popup-header-background: rgb(35,38,42,1)
+  bubble-sub-button-light-background-color: var(--card-background-color)
 
+  # bubble-sub-button-background-color: var(--card-background-color)
+
+
+
+  bubble-border-radius: var(--ha-card-border-radius)
+  popup-header-background: rgb(46, 46, 46)
+  bubble-main-background-color: var(--card-background-color)
+  #bubble-secondary-background-color: "rgba(52, 52, 52, 1)"
+  bubble-secondary-background-color: var(--card-background-color)
+  bubble-icon-border-radius: 50%
+  # bubble-icon-background-color: var(--secondary-background-color)
+  #bubble-icon-background-color: rgba(57, 57, 57, 1)
+  bubble-icon-background-color: rgba(50, 50, 50, 1)
+  bubble-icon-background-color-on: white
+  bubble-icon-color-off: var(--primary-color)
+  #bubble-icon-color-on: "rgba(0, 148, 193, 1)"
+  #bubble-icon-glow-on: "rgba(0, 148, 193, 1)"
+  bubble-timer-color-on: "rgb(132, 194, 115)"
+  bubble-icon-color-on: "rgb(214, 96, 32)"
+  bubble-options-card-on: "rgba(72, 123, 182,1)"
+  bubble-icon-glow-on: "rgb(55, 161, 248)"
+
+  popup-text: "#bab9b9ff"
+  bubble-sub-button-border-radius: var(--ha-card-border-radius)
+  bubble-sub-button-background-color: var(--bubble-main-background-color)
+  bubble-box-shadow: var(--ha-card-box-shadow)
+  bubble-border: var(--ha-card-border-color)
+  bubble-switch-text-off: var(--primary-color)
+  bubble-switch-text-on: "#ffffffff"
+  bubble-switch-status-off: var(--primary-text-color)
+  bubble-switch-status-on: rgba(0,0,0,1)
+  bubble-light-opacity: 0.5
+  bubble-slider-background: linear-gradient(to right, rgba(35, 126, 172, 0.6) 0%,rgb(34, 174, 255)100%)
+  bubble-slider-on: "linear-gradient(90deg, bubble-icon-glow-on) 0%, rgba(0,0,0,0.10) 100%)"
+  lock_background_light_on: "#8b8989ff"
+  electric-blanket-card-dawn: rgb(61, 38, 52)
+  electric-blanket-card-graham: rgb(30, 40, 60) 
   # -----------------------------------------------------
   # Room Accent Colors (Dark tuned)
   # -----------------------------------------------------
-  room-lounge: "#d19c51ff"
-  room-bedroom: "#3a9ff8ff"
-  room-office: "#78b78fff"
-  room-lights: "#ba7171ff"
+  room-lounge: "#ebaa50ff"
+  room-bedroom: "#4aabffff"
+  room-office: "#87cea1ff"
+  room-lights: "#cd5a5aff"
   room-petrol: "#c9c687ff"
-  room-garden: "#c387c9ff"
-  room-tech: "#c9ab87ff"
-  room-kitchen: "#5f88adff"
+  room-garden: "#d290d8ff"
+  room-tech: "rgb(157, 126, 90)"
+  room-kitchen: "#76a3cbff"

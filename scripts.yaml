@@ -1,3 +1,10 @@
+# -----------------------------------------------------------
+# scripts.yaml
+# Home Assistant scripts — Spotify/Spotcast playback helpers.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
 Script_spotify:
   alias: activate_chrome_audio
   sequence:
@@ -44,4 +51,29 @@ speed_test:
         seconds: 20
         milliseconds: 0
   alias: Speedtest update
+  mode: single
+
+dishwasher_start:
+  alias: "Dishwasher: Start with selected program and options"
+  description: >-
+    Selects the program, then starts with options passed directly.
+  sequence:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.dishwasher_starting
+    - action: home_connect_alt.select_program
+      data:
+        device_id: cbc483dd378433abf4426eb26e91b4cb
+        program_key: "{{ states('input_select.dishwasher_program') }}"
+    - action: home_connect_alt.start_program
+      data:
+        device_id: cbc483dd378433abf4426eb26e91b4cb
+        program_key: "{{ states('input_select.dishwasher_program') }}"
+        options:
+          - key: "Dishcare.Dishwasher.Option.ExtraDry"
+            value: "{{ is_state('input_boolean.dishwasher_option_extradry', 'on') }}"
+          - key: "Dishcare.Dishwasher.Option.HygienePlus"
+            value: "{{ is_state('input_boolean.dishwasher_option_hygieneplus', 'on') }}"
+          - key: "Dishcare.Dishwasher.Option.VarioSpeed"
+            value: "{{ is_state('input_boolean.dishwasher_option_variospeed', 'on') }}"
   mode: single

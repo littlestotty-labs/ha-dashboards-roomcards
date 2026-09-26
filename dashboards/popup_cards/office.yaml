@@ -1,0 +1,148 @@
+# -----------------------------------------------------------
+# popup_cards/office.yaml
+# Standalone bubble-card pop-up for the Office room.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Office
+icon: mdi:desk
+hash: "#room_office"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-office);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-office) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }
+sub_button:
+  main: []
+  bottom: []
+
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Lights
+      - text_colour: var(--room-office)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.office_light
+      lock_entity: input_boolean.officelightlock_switch
+      motion_entity: binary_sensor.0xa4c1380ce7f7b699_occupancy
+      icon: mdi:chair-rolling
+      name: Office Light
+
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: WFH Status
+      - text_colour: var(--room-office)
+      - margin_top: "-5px"
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_base
+        entity: input_text.office_status
+        name: Office Status
+        variables:
+          - attribute_entity: input_text.office_status
+          - icon: mdi:chair-rolling
+      - type: custom:gap-card
+        height: 30px
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Switches
+      - text_colour: var(--room-office)
+      - margin_top: "-5px"
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.office_wall_l
+        name: Desk Wall (L)
+        icon: mdi:power-socket-au
+      - type: custom:button-card
+        template: bubble_lookalike
+        entity: switch.office_wall_r
+        name: Desk Wall (R)
+        icon: mdi:power-socket-au
+
+  - type: horizontal-stack
+    cards:
+      # - type: custom:button-card
+      #   template: bubble_fan
+      #   entity: switch.plug_yellow
+      #   name: Pedestal Fan
+      - type: custom:button-card
+        template: bubble_heater
+        entity: switch.plug_yellow
+        name: Dyson Heater
+
+        variables:
+          attribute_entity: sensor.plug_yellow_power
+      - type: custom:button-card
+        template: bubble_coffee
+        entity: switch.plug_orange
+        name: Fridge/Coffee
+        variables:
+          attribute_entity: sensor.plug_orange_power
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_heater
+        entity: switch.plug_purple_2
+        name: Heated Throw
+        variables:
+          attribute_entity: sensor.plug_purple_2_power_2
+      - type: custom:gap-card
+        height: 30px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: bubble_fan
+        icon: mdi:fan
+        entity: switch.plug_pink_2
+        name: Pedestal Fan
+        variables:
+          attribute_entity: sensor.plug_pink_2_power
+      - type: custom:gap-card
+        height: 30px

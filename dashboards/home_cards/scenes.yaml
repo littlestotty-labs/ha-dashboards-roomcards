@@ -1,0 +1,59 @@
+# -----------------------------------------------------------
+# scenes.yaml
+# Scene bar — grid row of decluttering-card scene buttons
+# (Movie, Wii, Chat, Music, Chill, seasonal Xmas).
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    template: bubble_scene
+    entity: input_boolean.movie_switch
+    variables:
+      name: Movie
+      icon: mdi:movie-open-outline
+      colour: "#FF6700"
+  - type: custom:button-card
+    template: bubble_scene
+    entity: input_boolean.wii_switch
+    variables:
+      name: Wii
+      icon: mdi:nintendo-wii
+      colour: "#00bfff"
+  - type: custom:button-card
+    template: bubble_scene
+    entity: input_boolean.whatsapp_switch
+    variables:
+      name: Chat
+      icon: mdi:whatsapp
+      colour: "#129603ff"
+  - type: custom:button-card
+    template: bubble_scene
+    entity: input_boolean.reading_switch
+    variables:
+      name: Music
+      icon: mdi:music
+      colour: "#FF2E63"
+  - type: custom:button-card
+    template: bubble_scene
+    entity: input_boolean.lounge_chill_switch
+    variables:
+      name: Chill
+      icon: mdi:sofa-outline
+      colour: "#A020F0"
+  - type: conditional
+    conditions:
+      - condition: state
+        entity: input_boolean.its_christmas
+        state: "on"
+    card:
+      - type: custom:button-card
+        template: bubble_scene
+        entity: input_boolean.xmas_switch
+        variables:
+          name: Xmas
+          icon: mdi:pine-tree-variant-outline
+          entity: input_boolean.xmas_switch
+          colour: "#FFD200"

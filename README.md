@@ -2,15 +2,17 @@
 
 This repository contains my personal configuration for Home Assistant, focused on a clean, room-based dashboard and modular YAML structure.
 
-**Version:** v1.0 (Initial public release)
-
+**Version:** v2.1.0
+ - v2 dashboard refactor: modular room and popup cards, light row grid, waste collection
+ - v1.1: separation of templates and room cards complete
+**Version:** V1.0 (initial public release)
 ---
 
 ## 🖥️ Dashboard Screenshots
   Light Theme             |  Dark Theme
 :-------------------------:|:-------------------------:
-![Light themed dashboard](./screenshots/dashboard-light.jpg)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.jpg)
-
+![Light themed dashboard](./screenshots/dashboard-light.png)  |  ![Dark themed dashboard](./screenshots/dashboard-dark.png)
+![Light themed popup example](./screenshots/office-popup-light.png)  |  ![Dark themed popup example](./screenshots/office-popup-dark.png)
 ---
 
 
@@ -19,7 +21,7 @@ This repository contains my personal configuration for Home Assistant, focused o
 * **Platform:** Home Assistant
 * **Dashboard Mode:** YAML (modular, Git-managed)
 * **Design Approach:** Room-centric cards (not multi-page navigation)
-* **Automation:** Primarily Node-Red (json flows added)
+* **Automation:** Primarily Node-RED — the JSON flows live in the separate [node-red-flows](https://github.com/littlestotty-labs/node-red-flows) repo (HA YAML automations are minimal)
 
 * **Goal:** Maintainable, version-controlled smart home setup
 
@@ -30,10 +32,37 @@ This repository contains my personal configuration for Home Assistant, focused o
 ```text
 /config
   /dashboards
+    /button_templates
+      ** all button-card templates here **
+    /home_cards
+      banner.yaml
+      bedroom.yaml
+      garden.yaml
+      kitchen.yaml
+      lights.yaml
+      lounge.yaml
+      menu.yaml
+      office.yaml
+      petrol.yaml
+      scenes.yaml
+      tech.yaml
+      waste.yaml
+    /popup_cards
+      bedroom.yaml
+      garden.yaml
+      kitchen.yaml
+      lights.yaml
+      lounge.yaml
+      office.yaml
+      petrol.yaml
+      tech.yaml
+    /includes
+      decluttering.yaml
+      kiosk.yaml
     ui-lovelace.yaml
-  /node_red
-    node_red_all_flows.json
-    + json flows for each area/room 
+  /screenshots
+    dashboard-light.png
+    dashboard-dark.png
   /themes
     dark_theme.yaml
     light_theme.yaml
@@ -45,6 +74,8 @@ This repository contains my personal configuration for Home Assistant, focused o
   secrets_example.yaml
   scenes.yaml
   google_calendars.example.yaml
+  CHANGELOG.md
+  VERSION
 ```
 
 ---
@@ -126,20 +157,9 @@ Screenshots are stored in the `/screenshots` directory and referenced using rela
 
 * Add detail on how my instance is configured (HAOS/Zigbee etc)
 * Further modularisation of dashboard components
-* Dashboards are to be split into **modular card files** for easier maintenance and cleaner Git diffs.
-* Each room or section is defined independently and included in the main dashboard.
-    /cards 
-      lounge.yaml
-      bedroom.yaml
-      office.yaml
-      lights.yaml
-      garden.yaml
-      kitchen.yaml
-      tech.yaml
-      fuel.yaml
 * Template standardisation for reusable card styles
 * Optional Git-based deployment workflow
-* Complete a kitchen popup card for white-good automation
+* Expand kitchen popup card for white-good automation
 * and no doubt many more tweaks and updates as my journey evolves.
 
 ## 🛠️ Getting Started

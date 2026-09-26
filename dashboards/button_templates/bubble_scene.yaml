@@ -1,0 +1,8 @@
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+bubble_scene:
+  template:
+    - bubble_base
+    - scene

@@ -1,0 +1,60 @@
+# -----------------------------------------------------------
+# lights.yaml
+# Room card — Lights tile with "lights on" count label and
+# house-lights group toggle button.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: custom:button-card
+template: room_card
+name: Lights
+icon: |
+  [[[
+    var count = states['sensor.number_of_lights_on'].state;
+    if (count > 0 ) {
+    return 'mdi:ceiling-light-multiple'; 
+    }
+    return 'mdi:ceiling-light-multiple-outline' 
+  ]]]
+tap_action:
+  navigation_path: '#room_lights'
+show_label: true
+show_state: true
+variables:
+  accent_color: var(--room-lights)
+label: |
+  [[[
+    var count = states['sensor.number_of_lights_on'].state;
+    return 'Lights on: ' + count
+  ]]]
+styles:
+  icon:
+    - color: |
+        [[[
+          var count = states['sensor.number_of_lights_on'].state;
+          if (count > 0 ) {
+            return '#ee4949';
+          }
+          return 'var(--room-lights)';
+        ]]]
+    - opacity: | 
+          [[[
+            var count = states['sensor.number_of_lights_on'].state;
+            if (count > 0 ) {
+              return "1";
+            }
+            return "0.3";
+          ]]]
+custom_fields:
+  btn:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: room_button
+          entity: light.house_lights
+          icon: mdi:lightbulb-group-outline
+          variables:
+            accent_color: var(--room-lights)
+            tap_action: call-service

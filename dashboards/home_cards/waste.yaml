@@ -1,0 +1,55 @@
+type: horizontal-stack
+cards:
+  - type: custom:button-card
+    entity: sensor.waste_collection_schedule_general_waste
+    icon: mdi:trash-can-outline
+    show_name: false
+    show_state: false
+    show_label: false
+    styles:
+      icon:
+        - color: "#E53935"
+      card:
+        - background: transparent
+        - box-shadow: none
+        - border: none
+        - padding: 4px
+        - background-image: |
+            [[[ 
+              var images = states["weather.ryde"].state; 
+              return 'url(/local/ic/weather_icons/animated2/'+images+'.svg)'
+            ]]]
+        - background-repeat: no-repeat
+        - background-size: 32%
+        - background-position-x: 4px
+        - background-position-y: center
+        - background-origin: border-box
+
+  - type: custom:button-card
+    entity: sensor.next_bins_type
+    show_name: false
+    show_state: false
+    show_label: false
+    styles:
+      card:
+        - background: transparent
+        - box-shadow: none
+        - border: none
+        - padding: 4px
+    state:
+      - value: recycling
+        icon: mdi:recycle
+        styles:
+          icon:
+            - color: "#FDD835"
+            - filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.6))
+      - value: organics
+        icon: mdi:leaf
+        styles:
+          icon:
+            - color: "#43A047"
+      - value: none
+        icon: mdi:trash-can-outline
+        styles:
+          icon:
+            - color: transparent

@@ -1,0 +1,214 @@
+# -----------------------------------------------------------
+# popup_cards/lights.yaml
+# Standalone bubble-card pop-up for House Lights.
+# Extracted from ui-lovelace.yaml during v3.2.0 migration.
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: House Lights
+icon: mdi:lightbulb-group
+hash: "#room_lights"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-lights);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-lights) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Ground Floor
+      - text_colour: var(--room-lights)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.lounge_light
+      name: Lounge Light
+      icon: mdi:sofa-outline
+      lock_entity: input_boolean.loungelightlock_switch
+      motion_entity: binary_sensor.loungemotion_purple2_occupancy
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.lobby_light
+      name: Foyer
+      icon: phu:rooms-front-door
+      lock_entity: input_boolean.foyerlightlock_switch
+      motion_entity: binary_sensor.front_door_inside_sensor_occupancy
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.laundry_light
+      name: Laundry
+      icon: mdi:washing-machine
+      lock_entity: input_boolean.laundrylightlock_switch
+      motion_entity: binary_sensor.laundry_motion_blue2_occupancy
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.loo_light
+      name: Downstairs Loo
+      icon: phu:yeelight-ceiling
+      lock_entity: input_boolean.loolightlock_switch
+      motion_entity: binary_sensor.downstairs_loo_motion_occupancy
+
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: First Floor
+      - text_colour: var(--room-lights)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.stairs_light
+      name: Stairs
+      icon: mdi:stairs
+      lock_entity: input_boolean.stairslightlock_switch
+      motion_entity: binary_sensor.stairs_motion_occupancy
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.upstairs_landing_bedroom
+      name: Landing
+      icon: mdi:stairs
+      lock_entity: input_boolean.landinglightlock_switch
+      motion_entity: binary_sensor.landing_motion_combined
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.office_light
+      name: Office
+      icon: phu:rooms-office
+      lock_entity: input_boolean.officelightlock_switch
+      motion_entity: binary_sensor.0xa4c1380ce7f7b699_occupancy
+
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Front Garden
+      - text_colour: var(--room-lights)
+      - margin_top: "-5px"
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.outside_front
+      name: All Lights
+      icon: phu:stage-spot-light
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.0xb40ecfd1a09f0000
+      name: Outside G10 Lamp 1
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.0xb40ecfd2d0440000
+      name: Outside G10 Lamp 2
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:button-card
+    template: bubble_light
+    variables:
+      entity_id: light.front_garden_light
+      name: Outside Porch Light
+      icon: mdi:outdoor-lamp
+      lock_entity: input_boolean.outdoorlightlock_switch
+      motion_entity: binary_sensor.hue_outdoor_motion_sensor_1_motion
+
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:decluttering-card
+    template: separator
+    variables:
+      - name: Light Quality (Lights active < 50)
+      - text_colour: var(--room-lights)
+      - margin_top: "-5px"
+  - type: tile
+    entity: sensor.luxsensor_illuminance
+    color: var(--room-lights)
+    show_entity_picture: false
+    hide_state: false
+    state_content:
+      - state
+      - last_updated
+    vertical: false
+    features:
+      - type: trend-graph
+        hours_to_show: 24
+        detail: true
+    features_position: inline
+
+  - type: custom:horizon-card
+    moon: false
+    refresh_period: 60
+    fields:
+      sunrise: true
+      sunset: true
+      dawn: false
+      noon: false
+      dusk: false
+    southern_flip: false
+    moon_phase_rotation: -10
+    language: en
+    time_format: language
+    number_format: language
+    card_mod:
+      style: |
+        ha-card {
+          -webkit-backdrop-filter: blur(10px); !important;
+
+        }
