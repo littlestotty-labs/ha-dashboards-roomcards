@@ -347,7 +347,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_dawn_body_level
-                show_icon: true
+                show_icon: false
                 show_state: true
                 icon: mdi:heat-wave
                 name: Heat
@@ -369,7 +369,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_dawn_feet_level
-                show_icon: true
+                show_icon: false
                 show_state: true
                 icon: mdi:heat-wave
                 name: Heat
@@ -433,8 +433,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_dawn_body_timer
-                show_icon: true
-                icon: mdi:timer-outline
+                show_icon: false
                 name: Timer
                 show_state: true
                 tap_action:
@@ -455,8 +454,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_dawn_feet_timer
-                show_icon: true
-                icon: mdi:timer-outline
+                show_icon: false
                 name: Timer
                 show_state: true
                 tap_action:
@@ -623,7 +621,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_graham_body_level
-                show_icon: true
+                show_icon: false  
                 show_state: true
                 icon: mdi:heat-wave
                 name: Heat
@@ -643,7 +641,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_graham_feet_level
-                show_icon: true
+                show_icon: false
                 show_state: true
                 icon: mdi:heat-wave
                 name: Heat
@@ -705,8 +703,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_graham_body_timer
-                show_icon: true
-                icon: mdi:timer-outline
+                show_icon: false
                 name: Timer
                 show_state: true
                 styles: |
@@ -725,8 +722,7 @@ cards:
               - type: custom:bubble-card
                 card_type: select
                 entity: select.electric_blanket_graham_feet_timer
-                show_icon: true
-                icon: mdi:timer-outline
+                show_icon: false
                 name: Timer
                 show_state: true
                 styles: |
