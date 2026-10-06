@@ -1,0 +1,345 @@
+# -----------------------------------------------------------
+# popup_cards/printers.yaml
+# Standalone bubble-card pop-up for printer ink levels.
+# Printer card moved from popup_cards/tech.yaml.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Printers
+icon: mdi:printer
+hash: "#room_printers"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-tech);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-tech) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }  
+sub_button:
+  main: []
+  bottom: []
+slider_fill_orientation: left
+slider_value_position: right
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: conditional
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity: sensor.hp_color_laserjet_mfp_m277dw
+            state_not: Unavailable
+          - condition: state
+            entity: sensor.hp_color_laserjet_mfp_m277dw
+            state_not: unavailable
+    card:
+      type: custom:stack-in-card
+      mode: vertical
+      cards:
+        - type: markdown
+          content: |
+            # Printers
+          card_mod:
+            style: |
+              ha-card {
+                border: none !important;
+                box-shadow: none !important;
+              }
+
+              ha-markdown {
+                font-size: 9px;
+                font-weight: 500;
+                color: var(--room-tech);
+                margin-top: 5px;
+                padding: 10px 0px 0px 15px !important;
+              }
+        - type: custom:button-card
+          entity: sensor.hp_color_laserjet_mfp_m277dw
+          name: null
+          show_state: false
+          show_icon: true
+          icon: mdi:printer
+          show_name: false
+          styles:
+            card:
+              - background: var(--popup-card-background)
+              - border-style: none
+              - box-shadow: none
+              - padding: 20px
+
+            grid:
+              - grid-template-areas: '" i c m y k" "n s s s s"'
+              - grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+              - grid-template-rows: auto
+            custom_fields:
+              k:
+                - width: 80%
+                - margin: auto
+              c:
+                - width: 80%
+                - margin: auto
+              m:
+                - width: 80%
+                - margin: auto
+              "y":
+                - width: 80%
+                - margin: auto
+          custom_fields:
+            k:
+              card:
+                type: custom:button-card
+                show_name: false
+                show_state: true
+                entity: sensor.hp_color_laserjet_mfp_m277dw_black_cartridge_hp_cf400a
+                extra_styles: |
+                  [[[ return `
+                    @keyframes pulse {
+                      0% {
+                        background-color: black;
+                      }
+                      50% {
+                        background-color: transparent;
+                      }
+                      100% {
+                        background-color: black;
+                      }
+                    }
+                  `]]]
+                styles:
+                  icon:
+                    - opacity: 0.7
+                    - color: black
+                  state:
+                    - font-size: 0.7em
+                    - font-weight: normal
+                    - color: |
+                        [[[
+                        var color = 'black';
+                        if (color == 'black') return 'magenta';
+                        if (color == 'yellow') return 'black';
+                        else return 'var(--grey800)';
+                        ]]]
+                  card:
+                    - border: solid 1px VAR(--grey600)
+                    - border-radius: 6px 6px 15px 15px
+                    - background: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_black_cartridge_hp_cf400a"].state
+                          var color = 'black';
+                          var ink_color = 'black'; // Added quotes and fixed semicolon
+
+                          if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+                          if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+                          if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+                          if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+                          return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+                        ]]]
+                    - animation: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_black_cartridge_hp_cf400a"].state
+                          return (0 + level) < 10
+                            ? 'pulse 3s ease-in-out infinite'
+                            : 'none'
+                        ]]]
+            c:
+              card:
+                type: custom:button-card
+                show_name: false
+                show_state: true
+                entity: sensor.hp_color_laserjet_mfp_m277dw_cyan_cartridge_hp_cf401a
+                extra_styles: |
+                  [[[ return `
+                    @keyframes pulse {
+                      0% {
+                        background-color:cyan;
+                      }
+                      50% {
+                        background-color: transparent;
+                      }
+                      100% {
+                        background-color: cyan;
+                      }
+                    }
+                  `]]]
+                styles:
+                  icon:
+                    - opacity: 0.7
+                    - color: cyan
+                  state:
+                    - font-size: 0.7em
+                    - font-weight: normal
+                    - color: |
+                        [[[
+                        var color = 'cyan';
+                        if (color == 'black') return 'white';
+                        if (color == 'yellow') return 'black';
+                        else return 'var(--grey800)';
+                        ]]]
+                  card:
+                    - border: solid 1px VAR(--grey600)
+                    - border-radius: 6px 6px 15px 15px
+                    - background: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_cyan_cartridge_hp_cf401a"].state
+                          var color = 'cyan';
+                          var ink_color = 'black'; // Added quotes and fixed semicolon
+
+                          if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+                          if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+                          if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+                          if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+                          return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+                        ]]]
+                    - animation: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_cyan_cartridge_hp_cf401a"].state
+                          return (0 + level) < 10
+                            ? 'pulse 3s ease-in-out infinite'
+                            : 'none'
+                        ]]]
+            m:
+              card:
+                type: custom:button-card
+                entity: sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403a
+                show_name: false
+                show_state: true
+                extra_styles: |
+                  [[[ return `
+                    @keyframes pulse {
+                      0% {
+                        background-color:magenta;
+                      }
+                      50% {
+                        background-color: transparent;
+                      }
+                      100% {
+                        background-color: magenta;
+                      }
+                    }
+                  `]]]
+                styles:
+                  icon:
+                    - opacity: 0.7
+                    - color: magenta
+                  state:
+                    - font-size: 0.7em
+                    - font-weight: normal
+                    - color: |
+                        [[[
+                        var color = 'magenta';
+                        if (color == 'black') return 'white';
+                        if (color == 'yellow') return 'black';
+                        else return 'var(--grey800)';
+                        ]]]
+                  card:
+                    - border: solid 1px VAR(--grey600)
+                    - border-radius: 6px 6px 15px 15px
+                    - background: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403a"].state
+                          var color = 'magenta';
+                          var ink_color = 'black'; // Added quotes and fixed semicolon
+
+                          if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+                          if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+                          if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+                          if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+                          return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+                        ]]]
+                    - animation: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403a"].state
+                          return (0 + level) < 10
+                            ? 'pulse 3s ease-in-out infinite'
+                            : 'none'
+                        ]]]
+            "y":
+              card:
+                type: custom:button-card
+                show_name: false
+                show_state: true
+                entity: sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402a
+                extra_styles: |
+                  [[[ return `
+                    @keyframes pulse {
+                      0% {
+                        background-color:yellow;
+                      }
+                      50% {
+                        background-color: transparent;
+                      }
+                      100% {
+                        background-color: yellow;
+                      }
+                    }
+                  `]]]
+                styles:
+                  icon:
+                    - opacity: 0.7
+                    - color: yellow
+                  state:
+                    - font-size: 0.7em
+                    - font-weight: normal
+                    - color: |
+                        [[[
+                        var color = 'yellow';
+                        if (color == 'black') return 'white';
+                        if (color == 'yellow') return 'black';
+                        else return 'var(--grey800)';
+                        ]]]
+                  card:
+                    - border: solid 1px VAR(--grey600)
+                    - border-radius: 6px 6px 15px 15px
+                    - background: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402a"].state
+                          var color = 'yellow';
+                          var ink_color = 'black'; // Added quotes and fixed semicolon
+
+                          if (color == 'magenta') ink_color = 'rgba(255,0,255,0.7)'; // Added quotes
+                          if (color == 'cyan') ink_color = 'rgba(0,255,255,0.7)'; // Fixed rbga typo
+                          if (color == 'yellow') ink_color = 'rgba(255,255,0,0.7)'; // Fixed rbga typo
+                          if (color == 'black') ink_color = 'rgba(0,0,0,0.7)'; // Fixed rbga typo
+
+                          return `linear-gradient(to top, ${ink_color}, ${ink_color} ${level}%, rgba(255,255,255,0.12) ${level}%)`;
+                        ]]]
+                    - animation: |
+                        [[[
+                          var level = states["sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402a"].state
+                          return (0 + level) < 10
+                            ? 'pulse 3s ease-in-out infinite'
+                            : 'none'
+                        ]]]

@@ -44,3 +44,50 @@ cards:
       icon:
         - width: 90%
         - color: var(--ha-color-text-secondary)
+
+  - type: custom:button-card
+    tap_action:
+      action: navigate
+      navigation_path: "#room_batteries"
+    icon: mdi:battery
+    color: var(--primary-color)
+    show_name: false
+    styles:
+      card:
+        - width: 33px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: none
+        - background: transparent
+      icon:
+        - width: 90%
+        - color: var(--ha-color-text-secondary)
+
+  - type: conditional
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity: sensor.hp_color_laserjet_mfp_m277dw
+            state_not: Unavailable
+          - condition: state
+            entity: sensor.hp_color_laserjet_mfp_m277dw
+            state_not: unavailable
+    card:
+      type: custom:button-card
+      tap_action:
+        action: navigate
+        navigation_path: "#room_printers"
+      icon: mdi:printer
+      color: var(--primary-color)
+      show_name: false
+      styles:
+        card:
+          - width: 33px
+          - height: 35px
+          - border-radius: var(--ha-card-border-radius)
+          - box-shadow: none
+          - background: transparent
+        icon:
+          - width: 90%
+          - color: var(--ha-color-text-secondary)
