@@ -1,0 +1,187 @@
+# -----------------------------------------------------------
+# popup_cards/batteries.yaml
+# Standalone bubble-card pop-up for low battery monitoring.
+# Battery card moved from popup_cards/tech.yaml.
+# Author: Graham Stott (littlestotty-labs)
+# Version: 1.0
+# -----------------------------------------------------------
+
+type: custom:bubble-card
+card_type: pop-up
+name: Batteries
+icon: mdi:battery
+hash: "#room_batteries"
+is_sidebar_hidden: true
+margin_top_mobile: "-30px"
+margin_top_desktop: "-30px"
+button_type: name
+show_header: true
+styles: |
+  .bubble-pop-up-background {
+    background: var(--popup-header-background) !important;
+  }
+  .bubble-button-background {
+    background: var(--popup-header-background) !important; 
+  } 
+  .bubble-close-button {
+    background-color: var(--popup-header-background) !important;
+  }    
+  .bubble-close-icon {
+    --mdc-icon-size: 40px !important;
+      color: var(--room-tech);
+      background: var(--popup-header-background) !important; 
+  }       
+  .bubble-header {
+      color: var(--room-tech) !important;
+      background: var(--popup-header-background) !important; 
+  }
+  .bubble-main-icon-container {
+    background-color: var(--popup-header-background) !important;
+  }
+  .bubble-button-container {
+      background: transparent !important; 
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+  }  
+sub_button:
+  main: []
+  bottom: []
+slider_fill_orientation: left
+slider_value_position: right
+cards:
+  - type: custom:gap-card
+    height: 40px
+  - type: custom:stack-in-card
+    mode: vertical
+    cards:
+      - type: markdown
+        content: |
+          # Low Batteries
+        card_mod:
+          style: |
+            ha-card {
+              border: none !important;
+              box-shadow: none !important;
+            }
+
+            ha-markdown {
+              font-size: 9px;
+              font-weight: 300;
+              color: var(--room-tech);
+              margin-top: 10px;
+              margin-bottom: 0px;
+              padding: 00px 0px 0px 20px !important;
+            }
+      - type: custom:auto-entities
+        card:
+          type: entities
+          card_mod:
+            style: |
+              ha-card {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin-top: -20px;
+              }
+        filter:
+          include:
+            - options:
+                type: custom:button-card
+                entity: this.entity_id
+                show_icon: false
+                show_state: true
+                custom_fields:
+                  bar: |
+                    [[[
+                      const state = Number(entity.state);
+
+                      let color = "#5f8f6a"; // high battery (default)
+
+                      if (state <= 15)      color = "#c74b4b"; // red
+                      else if (state <= 30) color = "#d17a4a"; // orange
+                      else if (state <= 45) color = "#d1b04a"; // amber
+                      else if (state <= 60) color = "#a8b85a"; // olive
+                      else if (state <= 75) color = "#7fa36a"; // muted green
+
+                      const width = isNaN(state) ? 0 : Math.min(Math.max(state, 0), 100);
+                      
+                      return `
+                        <div class="battery-track">
+                          <div
+                            class="battery-fill"
+                            style="width:${state}%; background:${color};"
+                          ></div>
+                        </div>
+                      `;
+                    ]]]
+                styles:
+                  grid:
+                    - grid-template-areas: '"n s" "bar bar"'
+                    - grid-template-columns: 1fr min-content
+                    - grid-template-rows: min-content min-content 1fr
+                    - grid-template-rows: min-content min-content
+                  card:
+                    - padding: 1px 1px 1px 1px
+                    - border: none;
+                    - box-shadow: none
+                    - border-radius: 10px
+                    - background: var(--card-background-color);
+                  name:
+                    - justify-self: start
+                    - text-align: left
+                    - font-size: 12px
+                    - padding: 0px 4px 6px 0px
+                    - color: var(--primary-color)
+                  state:
+                    - justify-self: start
+                    - text-align: left
+                    - font-size: 12px
+                    - padding: 0px 4px 6px 0px
+                    - color: var(--primary-color)
+                    - opacity: 0.7
+                  custom_fields:
+                    bar:
+                      - width: 100%
+                      - height: 12px
+                      - justify-self: stretch
+                card_mod:
+                  style: |
+                    .battery-track {
+                      width: 100%;
+                      height: 12px;
+                      background: var(--battery_slider_background);
+                      border-radius: 50px;
+                      overflow: hidden;
+                      box-shadow: inset -3px -1px 2px 0px rgba(255,255,255,.1);                
+                      }
+
+                    .battery-fill {
+                      height: 100%;
+                      border-radius: 50px;
+                      box-shadow: inset 1px 1px 1px 0px rgba(255,255,255,.5);
+                    }
+              entity_id: "*battery*"
+          exclude:
+            - options: {}
+              state: "> 30"
+            - options: {}
+              state: "off"
+            - options: {}
+              state: unavailable
+            - options: {}
+              state: Unavailable
+            - options: {}
+              state: unknown
+            - options: {}
+              entity_id: "*state*"
+            - options: {}
+              entity_id: "*906*"
+            - options: {}
+              entity_id: "*926*"
+        sort:
+          method: state
+          numeric: true
+          reverse: false
+          count: 55

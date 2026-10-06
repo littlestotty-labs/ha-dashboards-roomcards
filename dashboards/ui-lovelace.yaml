@@ -45,4 +45,6 @@ views:
       - !include popup_cards/petrol.yaml
       - !include popup_cards/garden.yaml
       - !include popup_cards/tech.yaml
+      - !include popup_cards/batteries.yaml
+      - !include popup_cards/printers.yaml
       - !include popup_cards/kitchen.yaml

@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.4.0] - 2026-10-06
+
+### Added
+- New `batteries` popup card (`#room_batteries`) holding the low-battery list moved out of the tech popup, opened by a new always-on battery button in `bottom_tools.yaml`
+- New `printers` popup card (`#room_printers`) holding the HP Color LaserJet ink levels moved out of the tech popup, opened by a new printer button in `bottom_tools.yaml` conditional on `sensor.hp_color_laserjet_mfp_m277dw` being available
+- Both new popups wired into `ui-lovelace.yaml`
+
+### Changed
+- Tech popup (`popup_cards/tech.yaml`) now contains only the Server Storage card
+
 ## [2.3.0] - 2026-09-22
 
 ### Added
