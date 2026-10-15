@@ -362,6 +362,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['select.electric_blanket_dawn_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -384,6 +385,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['select.electric_blanket_dawn_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -447,6 +449,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['sensor.electric_blanket_dawn_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -468,6 +471,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['sensor.electric_blanket_dawn_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -634,6 +638,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['select.electric_blanket_graham_body_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -654,6 +659,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['select.electric_blanket_graham_feet_level'].state !== '0' ? 'var(--bubble-icon-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -715,6 +721,8 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
+                    
                   }
                   .bubble-icon {
                     color: ${hass.states['sensor.electric_blanket_graham_body_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;
@@ -734,6 +742,7 @@ cards:
                   }
                   .bubble-state {
                     color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-switch-status-on)' : 'var(--bubble-switch-status-off)'} !important;
+                    font-weight: 800 !important;
                   }
                   .bubble-icon {
                     color: ${hass.states['sensor.electric_blanket_graham_feet_time_remaining'].state !== '0' ? 'var(--bubble-timer-color-on)' : 'var(--bubble-switch-status-off)'} !important;

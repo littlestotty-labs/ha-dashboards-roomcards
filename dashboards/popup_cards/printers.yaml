@@ -68,7 +68,7 @@ cards:
       cards:
         - type: markdown
           content: |
-            # Printers
+            # Ink Levels
           card_mod:
             style: |
               ha-card {
@@ -79,7 +79,7 @@ cards:
               ha-markdown {
                 font-size: 9px;
                 font-weight: 500;
-                color: var(--room-tech);
+                color: var(--primary-text-color);
                 margin-top: 5px;
                 padding: 10px 0px 0px 15px !important;
               }
@@ -87,7 +87,7 @@ cards:
           entity: sensor.hp_color_laserjet_mfp_m277dw
           name: null
           show_state: false
-          show_icon: true
+          show_icon: false
           icon: mdi:printer
           show_name: false
           styles:
@@ -98,8 +98,8 @@ cards:
               - padding: 20px
 
             grid:
-              - grid-template-areas: '" i c m y k" "n s s s s"'
-              - grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+              - grid-template-areas: '" c m y k" "s s s s"'
+              - grid-template-columns: 1fr 1fr 1fr 1fr
               - grid-template-rows: auto
             custom_fields:
               k:

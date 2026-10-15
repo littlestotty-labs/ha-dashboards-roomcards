@@ -76,14 +76,17 @@ cards:
     cards:
       - type: custom:button-card
         template: bubble_fan
-        entity: switch.plug_pink_2
+        entity: switch.tuya_pink_2
         name: Pedestal Fan
         icon: mdi:fan
-      - type: custom:button-card
-        template: bubble_lookalike
-        entity: switch.plug_purple_2
-        name: Heater
-        icon: mdi:heat-wave
+
+      - type: custom:bubble-card
+        card_type: empty-column
+      # - type: custom:button-card
+      #   template: bubble_lookalike
+      #   entity: switch.plug_purple_22
+      #   name: Heater
+      #   icon: mdi:heat-wave
   - type: custom:gap-card
     height: 40px
   - type: custom:vertical-stack-in-card

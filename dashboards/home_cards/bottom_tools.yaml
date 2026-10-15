@@ -34,6 +34,16 @@ cards:
     icon: mdi:desktop-classic
     color: var(--primary-color)
     show_name: false
+    triggers_update:
+      - binary_sensor.tech_storage_low
+    custom_fields:
+      badge: |
+        [[[
+          if (states['binary_sensor.tech_storage_low'].state === 'on') {
+            return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+          }
+          return '';
+        ]]]
     styles:
       card:
         - width: 33px
@@ -41,17 +51,34 @@ cards:
         - border-radius: var(--ha-card-border-radius)
         - box-shadow: none
         - background: transparent
+        - position: relative
       icon:
         - width: 90%
         - color: var(--ha-color-text-secondary)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1
 
   - type: custom:button-card
     tap_action:
       action: navigate
       navigation_path: "#room_batteries"
-    icon: mdi:battery
+    icon: mdi:battery-low
     color: var(--primary-color)
     show_name: false
+    triggers_update:
+      - binary_sensor.battery_very_low
+    custom_fields:
+      badge: |
+        [[[
+          if (states['binary_sensor.battery_very_low'].state === 'on') {
+            return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+          }
+          return '';
+        ]]]
     styles:
       card:
         - width: 33px
@@ -59,9 +86,16 @@ cards:
         - border-radius: var(--ha-card-border-radius)
         - box-shadow: none
         - background: transparent
+        - position: relative
       icon:
         - width: 90%
         - color: var(--ha-color-text-secondary)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1
 
   - type: conditional
     conditions:
@@ -72,7 +106,8 @@ cards:
             state_not: Unavailable
           - condition: state
             entity: sensor.hp_color_laserjet_mfp_m277dw
-            state_not: unavailable
+            state_not: Unavailable
+
     card:
       type: custom:button-card
       tap_action:
@@ -81,6 +116,16 @@ cards:
       icon: mdi:printer
       color: var(--primary-color)
       show_name: false
+      triggers_update:
+        - binary_sensor.printer_ink_low
+      custom_fields:
+        badge: |
+          [[[
+            if (states['binary_sensor.printer_ink_low'].state === 'on') {
+              return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+            }
+            return '';
+          ]]]
       styles:
         card:
           - width: 33px
@@ -88,6 +133,13 @@ cards:
           - border-radius: var(--ha-card-border-radius)
           - box-shadow: none
           - background: transparent
+          - position: relative
         icon:
           - width: 90%
           - color: var(--ha-color-text-secondary)
+        custom_fields:
+          badge:
+            - position: absolute
+            - top: 2px
+            - right: 2px
+            - z-index: 1

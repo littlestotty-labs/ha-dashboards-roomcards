@@ -27,7 +27,7 @@ room_card:
       - grid-template-rows: min-content min-content 1fr
 
     card:
-      - height: 155px
+      - height: 152px
       - padding: 6px 10px 15px 15px
 
     custom_fields:

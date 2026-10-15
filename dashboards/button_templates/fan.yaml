@@ -9,8 +9,8 @@
 fan:
   icon: |
     [[[
-      if (entity.state !== 'on') return 'icon: mdi:fan';
-      return 'mdi:power-plug-off';
+      if (entity.state !== 'on') return 'mdi:power-plug-off';
+      return 'mdi:fan';
     ]]]
   styles:
     icon:

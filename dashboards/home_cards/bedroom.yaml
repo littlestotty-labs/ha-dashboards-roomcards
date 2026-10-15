@@ -35,8 +35,10 @@ name: |
 
     let emoji_temp = '';
 
-    if (temp >= 27) emoji_temp = '🔥';
-    else if (temp < 17) emoji_temp = '❄️';
+    if (temp >= 33) emoji_temp = '🔥🔥🔥';
+    else if (temp >= 30) emoji_temp = '🔥🔥';
+    else if (temp >= 27) emoji_temp = '🔥';
+    else if (temp<17) emoji_temp = '❄️';
 
     let emoji_hum = '';
 

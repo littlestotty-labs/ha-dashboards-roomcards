@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.5.0] - 2026-10-15
+
+### Added
+- Three `problem` binary sensors in `template.yaml`: `tech_storage_low` (any storage bar >= 90% used), `printer_ink_low` (any cartridge <= 10%), `battery_very_low` (any battery <= 10%)
+- Red warning badge dots on the tech, battery and printer buttons in `bottom_tools.yaml`, driven by those sensors; battery button icon switched to `mdi:battery-low`
+
+### Changed
+- Plug entity updates: lounge pedestal fan now `switch.tuya_pink_2`; office fan now `switch.plug_purple_2`; office heated-throw and lounge heater cards commented out pending their new entities
+- Tech popup renamed "Device Storage" and restructured into NVIDIA SHIELD / SYNOLOGY (DS216+II) / QNAP (TS-264) cards, each with its own icon and header
+- Storage bars restyled: square 15px bars, 12-15px labels at full opacity, tighter inset shadow
+- Battery popup restyled: square 15px bars, 14px name/state at full opacity; filter now hides only batteries above 99% (was 30%)
+- Battery friendly names in `customize.yaml` no longer repeat the "Battery" suffix; added Office Temp/Humidity
+- Printers popup heading -> "Ink Levels", icon hidden, header uses primary text colour
+- Bedroom/office heat emoji now scale to 🔥🔥 / 🔥🔥🔥 at 30/33 °C
+- Sizing tweaks: room card 152px, room button 41px, scene button 66px, separator label 15px; fan button icon logic corrected; blanket state labels bold
+
+### Fixed
+- Template sensors hardened against unavailable entities (Shield/TV source, soundbar/TV volume, plug power, Ryde temperature now `°C`); removed duplicated `shield_source`
+- `tv_volume` now reads `media_player.lg_webos_smart_tv`
+- Printer button condition uses `state_not: Unavailable` consistently; dropped invalid `device_class: volume` from `number_of_lights_on`
+
 ## [2.4.0] - 2026-10-06
 
 ### Added

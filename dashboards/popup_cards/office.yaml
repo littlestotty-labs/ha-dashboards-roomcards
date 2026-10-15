@@ -128,21 +128,27 @@ cards:
   - type: horizontal-stack
     cards:
       - type: custom:button-card
-        template: bubble_heater
-        entity: switch.plug_purple_2
-        name: Heated Throw
-        variables:
-          attribute_entity: sensor.plug_purple_2_power_2
-      - type: custom:gap-card
-        height: 30px
-  - type: horizontal-stack
-    cards:
-      - type: custom:button-card
         template: bubble_fan
-        icon: mdi:fan
-        entity: switch.plug_pink_2
+        entity: switch.plug_purple_2
         name: Pedestal Fan
         variables:
-          attribute_entity: sensor.plug_pink_2_power
+          attribute_entity: sensor.plug_purple_2_power_2
+      # - type: custom:button-card
+      #   template: bubble_heater
+      #   entity: switch.plug_purple_2
+      #   name: Heated Throw
+      #   variables:
+      #     attribute_entity: sensor.plug_purple_2_power_2
       - type: custom:gap-card
         height: 30px
+  # - type: horizontal-stack
+  #   cards:
+  #     - type: custom:button-card
+  #       template: bubble_fan
+  #       icon: mdi:fan
+  #       entity: switch.plug_pink_2
+  #       name: Pedestal Fan
+  #       variables:
+  #         attribute_entity: sensor.plug_pink_2_power
+  #     - type: custom:gap-card
+  #       height: 30px
