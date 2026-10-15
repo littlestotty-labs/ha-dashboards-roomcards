@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.6.0] - 2026-10-15
+
+### Added
+- Vacuum alert button in `bottom_tools.yaml`: `mdi:air-filter` icon, shown only while `input_boolean.purifier_vacuum` is on, with a red badge dot; navigates to `#room_bedroom`
+
+### Changed
+- Printer and vacuum toolbar buttons unwrapped from `conditional` cards into direct button-card children, with show/hide moved to a templated `styles.card.display`. The conditional wrappers were being stretched to an equal share by the `horizontal-stack` (they had no `width` to trigger button-card's `flex: 0 0 auto` self-limit), leaving a gap between the two icons
+- Both buttons gained `triggers_update` for the entity their `display` template reads, so they hide/show live rather than only on a dashboard reload
+- Electric blanket popup icon background now uses `var(--bubble-icon-background-color)`
+
+### Removed
+- VACUUM ALERT overlay from the bedroom room card (`bedroom.yaml`) — the `vac` custom field and its styling, superseded by the toolbar button
+
 ## [2.5.0] - 2026-10-15
 
 ### Added
