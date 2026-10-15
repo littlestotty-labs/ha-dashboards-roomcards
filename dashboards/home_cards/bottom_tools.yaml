@@ -25,7 +25,7 @@ cards:
         - background: transparent
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
 
   - type: custom:button-card
     tap_action:
@@ -54,7 +54,7 @@ cards:
         - position: relative
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
       custom_fields:
         badge:
           - position: absolute
@@ -89,7 +89,7 @@ cards:
         - position: relative
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
       custom_fields:
         badge:
           - position: absolute
@@ -129,7 +129,7 @@ cards:
             ]]]
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
       custom_fields:
         badge:
           - position: absolute
@@ -165,7 +165,8 @@ cards:
             ]]]
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        # - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
       custom_fields:
         badge:
           - position: absolute
