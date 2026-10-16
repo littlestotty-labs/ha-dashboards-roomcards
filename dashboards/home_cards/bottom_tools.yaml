@@ -25,7 +25,7 @@ cards:
         - background: transparent
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
 
   - type: custom:button-card
     tap_action:
@@ -34,6 +34,16 @@ cards:
     icon: mdi:desktop-classic
     color: var(--primary-color)
     show_name: false
+    triggers_update:
+      - binary_sensor.tech_storage_low
+    custom_fields:
+      badge: |
+        [[[
+          if (states['binary_sensor.tech_storage_low'].state === 'on') {
+            return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+          }
+          return '';
+        ]]]
     styles:
       card:
         - width: 33px
@@ -41,17 +51,34 @@ cards:
         - border-radius: var(--ha-card-border-radius)
         - box-shadow: none
         - background: transparent
+        - position: relative
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1
 
   - type: custom:button-card
     tap_action:
       action: navigate
       navigation_path: "#room_batteries"
-    icon: mdi:battery
+    icon: mdi:battery-low
     color: var(--primary-color)
     show_name: false
+    triggers_update:
+      - binary_sensor.battery_very_low
+    custom_fields:
+      badge: |
+        [[[
+          if (states['binary_sensor.battery_very_low'].state === 'on') {
+            return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+          }
+          return '';
+        ]]]
     styles:
       card:
         - width: 33px
@@ -59,35 +86,90 @@ cards:
         - border-radius: var(--ha-card-border-radius)
         - box-shadow: none
         - background: transparent
+        - position: relative
       icon:
         - width: 90%
-        - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1
 
-  - type: conditional
-    conditions:
-      - condition: and
-        conditions:
-          - condition: state
-            entity: sensor.hp_color_laserjet_mfp_m277dw
-            state_not: Unavailable
-          - condition: state
-            entity: sensor.hp_color_laserjet_mfp_m277dw
-            state_not: unavailable
-    card:
-      type: custom:button-card
-      tap_action:
-        action: navigate
-        navigation_path: "#room_printers"
-      icon: mdi:printer
-      color: var(--primary-color)
-      show_name: false
-      styles:
-        card:
-          - width: 33px
-          - height: 35px
-          - border-radius: var(--ha-card-border-radius)
-          - box-shadow: none
-          - background: transparent
-        icon:
-          - width: 90%
-          - color: var(--ha-color-text-secondary)
+  - type: custom:button-card
+    tap_action:
+      action: navigate
+      navigation_path: "#room_printers"
+    icon: mdi:printer
+    color: var(--primary-color)
+    show_name: false
+    triggers_update:
+      - binary_sensor.printer_ink_low
+      - sensor.hp_color_laserjet_mfp_m277dw
+    custom_fields:
+      badge: |
+        [[[
+          if (states['binary_sensor.printer_ink_low'].state === 'on') {
+            return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+          }
+          return '';
+        ]]]
+    styles:
+      card:
+        - width: 33px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: none
+        - background: transparent
+        - position: relative
+        - display: |
+            [[[
+              return states['sensor.hp_color_laserjet_mfp_m277dw'].state !== 'unavailable' ? '' : 'none';
+            ]]]
+      icon:
+        - width: 90%
+        - color: var(--primary-text-color)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1
+
+  - type: custom:button-card
+    tap_action:
+      action: navigate
+      navigation_path: "#room_bedroom"
+    icon: mdi:air-filter
+    color: var(--primary-color)
+    show_name: false
+    triggers_update:
+      - input_boolean.purifier_vacuum
+    custom_fields:
+      badge: |
+        [[[
+          return '<div style="width: 10px; height: 10px; border-radius: 50%; background: var(--error-color, #f44336); box-shadow: 0 0 3px rgba(0,0,0,0.35);"></div>';
+        ]]]
+    styles:
+      card:
+        - width: 33px
+        - height: 35px
+        - border-radius: var(--ha-card-border-radius)
+        - box-shadow: none
+        - background: transparent
+        - position: relative
+        - display: |
+            [[[
+              return states['input_boolean.purifier_vacuum'].state !== 'off' ? '' : 'none';
+            ]]]
+      icon:
+        - width: 90%
+        # - color: var(--ha-color-text-secondary)
+        - color: var(--primary-text-color)
+      custom_fields:
+        badge:
+          - position: absolute
+          - top: 2px
+          - right: 2px
+          - z-index: 1

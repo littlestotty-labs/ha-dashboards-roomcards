@@ -13,7 +13,9 @@ name: |
     const temp = parseFloat(states['sensor.office_temp_humidity_temperature'].state).toFixed(1);
     const hum = parseFloat(states['sensor.office_temp_humidity_humidity'].state).toFixed(1);
     let emoji_temp = '';
-    if (temp >= 27) emoji_temp = '🔥';
+    if (temp >= 33) emoji_temp = '🔥🔥🔥';
+    else if (temp >= 30) emoji_temp = '🔥🔥';
+    else if (temp >= 27) emoji_temp = '🔥';
     else if (temp<17) emoji_temp = '❄️';
    let emoji_hum = '';
     if (hum >= 70 ) emoji_hum= '💧';
@@ -63,7 +65,7 @@ custom_fields:
             tap_action: toggle
         - type: custom:button-card
           template: fan_room_button
-          entity: switch.plug_yellow
+          entity: switch.plug_purple_2
           icon: mdi:fan
           variables:
             accent_color: var(--room-office)

@@ -8,7 +8,7 @@ scene:
       - grid-template-columns: auto
       - grid-template-rows: 70% 30%
     card:
-      - height: 63px
+      - height: 66px
       #      - width: 90px
       - padding: 5px 0px 5px 0px # Top, Right, Bottom, Left = 20px
     icon:

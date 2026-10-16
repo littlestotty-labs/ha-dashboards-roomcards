@@ -7,38 +7,40 @@
 # -----------------------------------------------------------
 
 sensor.0xa4c1380ce7f7b699_battery:
-  friendly_name: Office Motion Battery
+  friendly_name: Office Motion
 sensor.0xa4c13878fe0e5f3e_battery:
-  friendly_name: Landing Far Motion Battery
+  friendly_name: Landing Far Motion
 sensor.downstairs_loo_motion_battery:
-  friendly_name: Downstairs Loo Motion Battery
+  friendly_name: Downstairs Loo Motion
 sensor.front_door_inside_sensor_battery:
-  friendly_name: Front Door Motion Battery
+  friendly_name: Front Door Motion
 sensor.hue_dimmer_switch_1_battery:
-  friendly_name: Hue dimmer switch 1 Battery
+  friendly_name: Hue dimmer switch 1
 sensor.hue_outdoor_motion_sensor_1_battery:
-  friendly_name: Outside Motion Battery
+  friendly_name: Outside Motion
 sensor.laundry_motion_blue2_battery:
-  friendly_name: Laundry Motion Battery
+  friendly_name: Laundry Motion
 sensor.loungemotion_purple2_battery:
-  friendly_name: Lounge Motion Battery
+  friendly_name: Lounge Motion
 sensor.luxsensor_battery:
-  friendly_name: Lux Outdoor Battery
+  friendly_name: Lux Outdoor
 sensor.piryun_dong_chuan_gan_qi_2_battery:
-  friendly_name: PIR运动传感器 2 Battery
+  friendly_name: PIR运动传感器 2
 sensor.piryun_dong_chuan_gan_qi_3_battery:
-  friendly_name: PIR运动传感器 3 Battery
+  friendly_name: PIR运动传感器 3
 sensor.piryun_dong_chuan_gan_qi_battery:
-  friendly_name: PIR运动传感器 4 Battery
+  friendly_name: PIR运动传感器 4
 sensor.stairs_motion_battery:
-  friendly_name: Stairs Motion Battery
+  friendly_name: Stairs Motion
 sensor.tap_battery:
-  friendly_name: Garden Tap Battery
+  friendly_name: Garden Tap
 sensor.temp_sensor_battery:
-  friendly_name: Temp/Humidity Battery
+  friendly_name: Bedroom Temp/Humidity
 sensor.upstairs_sensor_battery:
-  friendly_name: Landing (Nr Loo) Motion Battery
-
+  friendly_name: Landing (Nr Loo) Motion
+sensor.office_temp_humidity_battery:
+  friendly_name: Office Temp/Humidity
+  
 sensor.ampol_foodary_north_ryde_e10:
   friendly_name: Ampol, Epping Rd
 sensor.apex_petroleum_west_ryde_e10:

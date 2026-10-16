@@ -1,7 +1,7 @@
 # -----------------------------------------------------------
 # bedroom.yaml
 # Room card — Bedroom tile with temp/humidity label, fan,
-# aircon, heater buttons, vacuum alert overlay, and
+# aircon and heater buttons, and
 # animated four-zone electric blanket visualization.
 # Author: Graham Stott (littlestotty-labs)
 # Version: 1.1
@@ -35,8 +35,10 @@ name: |
 
     let emoji_temp = '';
 
-    if (temp >= 27) emoji_temp = '🔥';
-    else if (temp < 17) emoji_temp = '❄️';
+    if (temp >= 33) emoji_temp = '🔥🔥🔥';
+    else if (temp >= 30) emoji_temp = '🔥🔥';
+    else if (temp >= 27) emoji_temp = '🔥';
+    else if (temp<17) emoji_temp = '❄️';
 
     let emoji_hum = '';
 
@@ -437,55 +439,6 @@ custom_fields:
     ]]]
 
   # =========================================================
-  # VACUUM ALERT
-  # =========================================================
-
-  vac:
-    card:
-      type: vertical-stack
-      cards:
-
-        - type: conditional
-          conditions:
-            - condition: and
-              conditions:
-                - condition: state
-                  entity: input_boolean.purifier_vacuum
-                  state: "on"
-
-          card:
-            type: custom:button-card
-            icon: mdi:vacuum
-            entity: input_boolean.purifier_vacuum
-
-            tap_action:
-              action: navigate
-              navigation_path: "#room_bedroom"
-
-            styles:
-              card:
-                - animation: blink 2s ease infinite
-                - height: 30px
-                - width: 30px
-                - border: none
-                - box-shadow: none
-                - border-style: none
-                - border-radius: 100%
-                - margin-right: 5px
-                - margin-top: "-54px"
-
-              img_cell:
-                - border-radius: 100%
-                - background: rgba(180,60,60,1)
-
-              icon:
-                - color: white
-                - height: 18px
-                - width: 18px
-
-            show_name: false
-
-  # =========================================================
   # ROOM CONTROLS
   # =========================================================
 
@@ -547,9 +500,5 @@ styles:
       - margin: 0 0 -5px -5px
       - overflow: visible
       - z-index: 1
-    vac:
-      - justify-content: start
-      - align-self: start
-      - z-index: 2
 
 show_state: true
