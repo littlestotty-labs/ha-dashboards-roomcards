@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.7.0] - 2026-10-19
+
+### Added
+- `TV Bring-up` subflow in the Lounge flow: one parameterised bring-up (`tv_source` / `sound_mode` / `sound_volume` env vars) shared by the Movie and Wii scenes, with `tv_auto_on` set on entry and cleared after source select
+- Xmas scene rows in the engine (plugs on/off) plus its goldenHour and 23:30 eztimers, added with `suspended: true` pending December
+- Decision notes in `AGENTS.local.md`: Xmas standalone (excluded from mutual exclusion, none-on reset and midnight), `tv_auto_on` kept because the TV-polling guards halt on it, Shield poll re-added for ADB lag, scene→lights links wired deliberately, and the backup's generic subflow collection
+- `node_red_backup_nodes.json` export for the Backup Nodes tab in the node-red-flows backup repo
+
+### Changed
+- Lounge tab rebuilt around a data-driven scene engine: one 6-scene trigger → `Scene Engine` function → per-scene dispatch switches, replacing 18 triggers and cascading state checks; green plug auto-scene, midnight 00:06 reset and per-user Spotify carried over unchanged
+- Status text is now cleared only by the none-on check (live had 4 racing clear calls), always cleared on last-scene-off and at midnight; `unavailable`/`unknown` switch states are ignored instead of triggering teardown
+- Fixed the none-on `ha-get-entities` list: `input_boolean.whatsapp_switch` (was `input_boolean.whatsapp`) and the stray space in ` input_boolean.reading_switch`
+- Scene → Lights links wired: movie/music/chill → light 60%, wii → light 70%, chat → light 100%, Reset Room Lights → scene cascade, polling "Lights Low" pair → Wii? cascade; `Poll Shield Box` re-added for Shield ADB state lag
+- `splitter.js` subflow collection made explicit and now logged per run (`subflows [Light On, Light Off (1), TV Bring-up]`); Backup Nodes tab mapped to stop the unmapped-tab warning; node-red-flows README table updated
+
+### Removed
+- Original Lounge scene section (superseded by the engine); the TV-polling section was carried over into the rebuilt tab
+
 ## [2.6.0] - 2026-10-15
 
 ### Added
