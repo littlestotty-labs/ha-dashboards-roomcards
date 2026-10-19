@@ -193,7 +193,6 @@ Each dashboard view is captured in both themes: files suffixed `_light.png` for 
 * Further modularisation of dashboard components
 * Template standardisation for reusable card styles
 * Optional Git-based deployment workflow
-* Expand kitchen popup card for white-good automation
 * and no doubt many more tweaks and updates as my journey evolves.
 
 ## 🛠️ Getting Started

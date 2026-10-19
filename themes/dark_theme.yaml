@@ -122,7 +122,8 @@ grahams-dark:
   #bubble-icon-color-on: "rgba(0, 148, 193, 1)"
   #bubble-icon-glow-on: "rgba(0, 148, 193, 1)"
   bubble-timer-color-on: "rgb(132, 194, 115)"
-  bubble-icon-color-on: "rgb(214, 96, 32)"
+  # bubble-icon-color-on: "rgb(214, 96, 32)"
+  bubble-icon-color-on: "rgb(214, 114, 60)"
   bubble-options-card-on: "rgba(72, 123, 182,1)"
   bubble-icon-glow-on: "rgb(55, 161, 248)"
 
